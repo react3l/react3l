@@ -1,10 +1,23 @@
-import React from 'react';
+import initialGlobalState, {GlobalState} from 'config/global';
+import {routes} from 'config/routes';
+import * as serviceWorker from 'config/service-worker';
+import {App, AppLoading} from 'core/components';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from 'react-router-dom';
+import React, {setGlobal} from 'reactn';
+import 'styles';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+setGlobal<GlobalState>(initialGlobalState)
+  .then(() => {
+    ReactDOM.render(
+      <BrowserRouter>
+        <AppLoading>
+          <App routes={routes}/>
+        </AppLoading>
+      </BrowserRouter>,
+      document.getElementById('root'),
+    );
+  });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
