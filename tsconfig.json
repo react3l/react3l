@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
     "baseUrl": "src",
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
@@ -16,13 +17,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5",
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "target": "es5"
   },
   "include": [
     "src"

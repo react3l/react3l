@@ -1,36 +1,37 @@
 import {PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
 import {Model, Search} from 'core/models';
-import {DEFAULT_TAKE, SearchOrderType} from 'core/models/Search';
+import {DEFAULT_TAKE} from 'core/models/Search';
 import React from 'react';
 
-export type UseMasterTableResult<T extends Model, TSearch extends Search> = [
+export type UseMasterTableResult<T extends Model> = [
   PaginationProps,
-  (pagination: PaginationProps) => void,
   SorterResult<T>,
-  (sorter: SorterResult<T>) => void,
   (pagination: PaginationProps, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
 ];
-
-function getSortOrder(sortOrder: SearchOrderType) {
-  if (sortOrder === 'asc') {
-    return 'ascend';
-  }
-  return 'descend';
-}
 
 export function useMasterTable<T extends Model, TSearch extends Search>(
   search: TSearch,
   setSearch: (search: TSearch) => void,
-): UseMasterTableResult<T, TSearch> {
-  const [sorter, setSorter] = React.useState<SorterResult<T>>({
-    field: search.orderBy,
-    order: getSortOrder(search.orderType),
-  } as SorterResult<T>);
-  const [pagination, setPagination] = React.useState<PaginationProps>({
-    current: search.skip / search.take + 1,
-    pageSize: search.take,
-  } as PaginationProps);
+  total: number,
+): UseMasterTableResult<T> {
+
+  const pagination: PaginationProps = React.useMemo(
+    () => ({
+      total,
+      current: search.skip / search.take + 1,
+      pageSize: search.take,
+    }),
+    [total, search],
+  );
+
+  const sorter: SorterResult<T> = React.useMemo(
+    () => ({
+      field: search.orderBy,
+      order: Search.getOrderType(search),
+    } as SorterResult<T>),
+    [search],
+  );
 
   const handleTableChange = React.useCallback(
     (
@@ -40,39 +41,35 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
     ) => {
       const {field, order} = sorter;
       if (newSorter.field !== field || newSorter.order !== order) {
-        setSorter(newSorter);
-        setPagination({
-          ...newPagination,
-          current: 1,
-        });
-        setSearch(new Search({
+        const newSearch: TSearch = Search.clone<TSearch>({
           ...search,
-          orderBy: newSorter.order,
-          orderType: newSorter.order,
+          orderBy: newSorter.field,
           skip: 0,
-        }) as TSearch);
-        return;
-      }
-      const {current, pageSize} = pagination;
-      if (newPagination.current !== current || newPagination.pageSize !== pageSize) {
-        setPagination({
-          ...pagination,
-          ...newPagination,
         });
-        setSearch(new Search({
-          ...search,
-          take: newPagination.pageSize || DEFAULT_TAKE,
-          skip: (newPagination.current || 1) * ((newPagination.pageSize || DEFAULT_TAKE) - 1),
-        }) as TSearch);
+        Search.setOrderType(newSearch, newSorter.order);
+        setSearch(newSearch);
         return;
       }
-      setSearch(new Search({
+      const {
+        current = 1,
+        pageSize = DEFAULT_TAKE,
+        total = 0,
+      } = newPagination;
+      if (pagination.current !== current || pagination.pageSize !== pageSize || pagination.total !== total) {
+        setSearch(Search.clone<TSearch>({
+          ...search,
+          take: pageSize,
+          skip: (current - 1) * pageSize,
+        }));
+        return;
+      }
+      setSearch(Search.clone<TSearch>({
         ...search,
         ...filters,
-      }) as TSearch);
+      }));
     },
-    [search, setSearch, sorter, pagination],
+    [search, setSearch, pagination, sorter],
   );
 
-  return [pagination, setPagination, sorter, setSorter, handleTableChange];
+  return [pagination, sorter, handleTableChange];
 }

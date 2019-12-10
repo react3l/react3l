@@ -1,4 +1,4 @@
-import {Model} from 'core/models';
+import {User} from 'models/User';
 
 export type LanguageType = 'en' | 'vi';
 
@@ -9,14 +9,14 @@ export interface GlobalState {
 
   loading?: boolean;
 
-  user?: Model;
+  user?: User;
 }
 
 const initialGlobalState: GlobalState = {
   language: 'vi',
-  fallbackLanguage: 'en',
+  fallbackLanguage: 'vi',
   loading: true,
-  user: new Model(),
+  user: null,
 };
 
 export default initialGlobalState;

@@ -9,9 +9,4 @@ export class Province extends Model {
   public type?: string;
 
   public districts?: District[];
-
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(province?: Province) {
-    super(province);
-  }
 }

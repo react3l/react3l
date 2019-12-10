@@ -4,6 +4,7 @@ import {url} from 'helpers/url';
 import kebabCase from 'lodash/kebabCase';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
+import nameOf from 'ts-nameof.macro';
 
 export class ProvinceMasterRepository extends Repository {
   constructor() {
@@ -12,12 +13,27 @@ export class ProvinceMasterRepository extends Repository {
   }
 
   public list = (provinceSearch?: ProvinceSearch): Promise<Province[]> => {
-    return this.http.get<Province[]>(kebabCase(this.list.name))
+    return this.http.get<Province[]>(
+      kebabCase(nameOf(this.list)),
+      {
+        params: provinceSearch,
+      },
+    )
       .then((response: AxiosResponse<Province[]>) => {
         return response.data.map((province: Province) => {
-          return new Province(province);
+          return Province.clone<Province>(province);
         });
       });
+  };
+
+  public count = (provinceSearch?: ProvinceSearch): Promise<number> => {
+    return this.http.get<number>(
+      kebabCase(nameOf(this.count)),
+      {
+        params: provinceSearch,
+      },
+    )
+      .then((response: AxiosResponse<number>) => response.data);
   };
 }
 

@@ -8,22 +8,29 @@ type UseDetailResult<T extends Model> = [
   boolean
 ];
 
+interface DetailParams {
+  id?: string;
+}
+
 /**
  * Handling a detail page
  *
  * @param getDetail (id?: number | string) => Promise<T>
  * @return          UseDetailResult<T>
  */
-export function useDetail<T extends Model>(getDetail?: (id?: number | string) => Promise<T>): UseDetailResult<T> {
+export function useDetail<T extends Model>(getDetail?: (t?: Model) => Promise<T>): UseDetailResult<T> {
   const [t, setT] = React.useState<T>(new Model() as T);
-  const {id} = useParams();
+  const {id} = useParams<DetailParams>();
   const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(
     () => {
-      if (getDetail) {
+      if (!!getDetail) {
         setLoading(true);
-        getDetail(id)
+        const t: T = Model.clone<Model>({
+          id,
+        }) as T;
+        getDetail(t)
           .then((t: T) => {
             setT(t);
           })

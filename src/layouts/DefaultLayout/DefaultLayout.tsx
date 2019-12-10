@@ -22,7 +22,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
     <Layout className={className}>
       <Header className={headerClassName}/>
       <Layout className={mainClassName}>
-        <Sider theme="dark"/>
+        <Sider theme="dark" collapsible/>
         <Content className={contentClassName}>
           <Switch>
             {route && route.children && renderRoutes(route.children)}

@@ -1,0 +1,12 @@
+{
+  "general": {
+    "master": {
+      "actions": "Tác vụ",
+      "index": "STT"
+    }
+  },
+  "province": {
+    "id": "Mã tỉnh/thành",
+    "name": "Tên tỉnh/thành"
+  }
+}

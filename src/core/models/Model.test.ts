@@ -1,13 +1,14 @@
-import { Model } from './Model';
+import {Model} from './Model';
+
+class TestModel extends Model {
+  public name?: string;
+}
 
 describe('Model', () => {
-  class ChildModel extends Model {
-    public name: string;
-  }
 
   it('create model from object', () => {
     const name: string = 'Test Model';
-    const childModel: ChildModel = new ChildModel({
+    const childModel: TestModel = TestModel.clone<TestModel>({
       name,
     });
     expect(childModel.name).toEqual(name);
