@@ -8,7 +8,7 @@ export async function changeLanguage(language: LanguageType) {
   await setGlobal<GlobalState>({
     loading: true,
   });
-  await axios.get(join('i18n', `${language}.json`))
+  await axios.get(join('/i18n', `${language}.json`))
     .then(async (response: AxiosResponse<any>) => {
       await i18next.addResource(language, '', '', response.data);
       await i18next.changeLanguage(language);

@@ -1,0 +1,33 @@
+.ant-layout {
+  &.default-layout {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .ant-layout-header {
+      background: #ffffff;
+    }
+
+    > .ant-layout {
+      display: flex;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      &.ant-layout-has-sider {
+        .ant-layout-content {
+          flex-grow: 1;
+          padding: 1rem 1rem;
+
+          .ant-card {
+            margin-bottom: 1rem;
+
+            &:last-of-type {
+              margin-bottom: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

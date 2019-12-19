@@ -1,6 +1,21 @@
 {
   "province": {
+    "actions": {
+      "add": "",
+      "delete": "",
+      "edit": "",
+      "reset": ""
+    },
+    "delete": {
+      "content": "",
+      "failure": "",
+      "success": "",
+      "title": ""
+    },
     "id": "",
+    "master": {
+      "title": ""
+    },
     "name": ""
   }
 }

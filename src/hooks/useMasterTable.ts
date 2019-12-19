@@ -70,6 +70,5 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
     },
     [search, setSearch, pagination, sorter],
   );
-
   return [pagination, sorter, handleTableChange];
 }

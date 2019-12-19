@@ -25,7 +25,7 @@ export function useDetail<T extends Model>(getDetail?: (t?: Model) => Promise<T>
 
   React.useEffect(
     () => {
-      if (!!getDetail) {
+      if (!!getDetail && id !== 'add') {
         setLoading(true);
         const t: T = Model.clone<Model>({
           id,

@@ -1,7 +1,9 @@
 import Layout from 'antd/lib/layout';
+import classNames from 'classnames';
 import * as React from 'react';
 import {renderRoutes, RouteConfigComponentProps} from 'react-router-config';
 import {Switch, withRouter} from 'react-router-dom';
+import './DefaultLayout.scss';
 
 const {Header, Sider, Content, Footer} = Layout;
 
@@ -19,10 +21,10 @@ function DefaultLayout(props: DefaultLayoutProps) {
   const {route, className, contentClassName, headerClassName, mainClassName} = props;
 
   return (
-    <Layout className={className}>
+    <Layout className={classNames('default-layout', className)}>
       <Header className={headerClassName}/>
       <Layout className={mainClassName}>
-        <Sider theme="dark" collapsible/>
+        <Sider theme="dark"/>
         <Content className={contentClassName}>
           <Switch>
             {route && route.children && renderRoutes(route.children)}

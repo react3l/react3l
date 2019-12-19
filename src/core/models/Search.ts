@@ -3,7 +3,7 @@ import {Model} from './Model';
 
 export const DEFAULT_TAKE: number = 10;
 
-export type SearchOrderType = 'asc' | 'desc' | undefined | null | boolean;
+export type SearchOrderType = 'ASC' | 'DESC' | undefined | null | boolean;
 
 export class Search extends Model {
 
@@ -15,26 +15,26 @@ export class Search extends Model {
       return;
     }
     if (typeof orderType === 'string') {
-      if (orderType.toLowerCase().startsWith('asc')) {
-        search.orderType = 'asc';
+      if (orderType.toUpperCase().startsWith('ASC')) {
+        search.orderType = 'ASC';
         return;
       }
-      search.orderType = 'desc';
+      search.orderType = 'DESC';
       return;
     }
     if (typeof orderType === 'boolean') {
       if (orderType) {
-        return 'asc';
+        return 'ASC';
       }
-      search.orderType = 'desc';
-      return 'desc';
+      search.orderType = 'DESC';
+      return 'DESC';
     }
     search.orderType = undefined;
   }
 
   public static getOrderType(search: Search) {
     if (search.orderType) {
-      if (search.orderType === 'asc') {
+      if (search.orderType === 'ASC') {
         return 'ascend';
       }
       return 'descend';

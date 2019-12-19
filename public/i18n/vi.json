@@ -6,7 +6,22 @@
     }
   },
   "province": {
+    "actions": {
+      "add": "Thêm",
+      "delete": "Xóa",
+      "edit": "Chỉnh sửa",
+      "reset": "Bỏ lọc"
+    },
+    "delete": {
+      "content": "Thao tác này không thể khôi phục",
+      "failure": "Xóa {{name}} thất bại",
+      "success": "Xóa {{name}} thành công",
+      "title": "Bạn xác nhận xóa {{name}}?"
+    },
     "id": "Mã tỉnh/thành",
+    "master": {
+      "title": "Quản lý danh sách tỉnh/thành"
+    },
     "name": "Tên tỉnh/thành"
   }
 }

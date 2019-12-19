@@ -2,6 +2,7 @@ import initialGlobalState, {GlobalState} from 'config/global';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
 import {App, AppLoading} from 'core/components';
+import {changeLanguage} from 'core/helpers';
 import i18next from 'i18next';
 import ReactDOM from 'react-dom';
 import {initReactI18next} from 'react-i18next';
@@ -9,16 +10,15 @@ import {BrowserRouter} from 'react-router-dom';
 import React, {setGlobal} from 'reactn';
 import * as serviceWorker from 'service-worker';
 import 'styles';
-import {changeLanguage} from './core/helpers';
 
 Promise.all([
   i18next.use(initReactI18next)
-    .init(initialI18NextConfig),
+    .init(initialI18NextConfig)
+    .then(() => {
+      return changeLanguage('vi');
+    }),
   setGlobal<GlobalState>(initialGlobalState),
 ])
-  .then(async () => {
-    await changeLanguage('vi');
-  })
   .then(() => {
     ReactDOM.render(
       <BrowserRouter>

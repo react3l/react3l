@@ -5,7 +5,7 @@ import {useDetail} from 'core/hooks';
 import {useChangeHandlers} from 'core/hooks/useChangeHandlers';
 import {Province} from 'models/Province';
 import React from 'react';
-import nameOf from 'ts-nameof.macro';
+import nameof from 'ts-nameof.macro';
 import './ProvinceDetail.scss';
 import provinceDetailRepository from './ProvinceDetailRepository';
 
@@ -22,9 +22,9 @@ function ProvinceDetail() {
         <Form.Item>
           <Input
             type="text"
-            name={nameOf(province.name)}
+            name={nameof(province.name)}
             value={province.name}
-            onChange={handleUpdateSimpleField(nameOf(province.name))}
+            onChange={handleUpdateSimpleField(nameof(province.name))}
           />
         </Form.Item>
       </Form>

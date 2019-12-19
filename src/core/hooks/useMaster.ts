@@ -6,7 +6,8 @@ type UseMasterResult<T extends Model, TSearch extends Search> = [
   number,
   TSearch,
   (tSearch: TSearch) => void,
-  boolean
+  boolean,
+  (loading: boolean) => void,
 ];
 
 /**
@@ -42,5 +43,5 @@ export function useMaster<T extends Model, TSearch extends Search>(
     [getList, count, search, setList, setLoading],
   );
 
-  return [list, total, search, setSearch, loading];
+  return [list, total, search, setSearch, loading, setLoading];
 }

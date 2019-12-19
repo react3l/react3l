@@ -1,2 +1,42 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~antd/dist/antd.min.css";
+
+.master-table {
+  .actions {
+    width: 200px;
+  }
+
+  th {
+    &.actions {
+      padding-left: 31px;
+    }
+  }
+}
+
+.ant-table {
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-right: 0.5rem;
+      display: flex;
+      align-content: center;
+      align-items: center;
+
+      &:last-of-type {
+        margin-right: unset;
+      }
+    }
+  }
+
+  .ant-table-thead {
+    > tr {
+      > th {
+        &[colspan] {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
