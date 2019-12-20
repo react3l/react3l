@@ -1,149 +1,125 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
-import Input from 'antd/lib/input';
-import message from 'antd/lib/message';
-import Modal from 'antd/lib/modal';
 import Table, {ColumnProps} from 'antd/lib/table';
+import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
+import {MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
-import {useMaster} from 'core/hooks';
+import {useDeleteHandler, useMaster} from 'core/hooks';
+import {useEnumList} from 'core/hooks/useEnumList';
 import {withTableFilterSuffix} from 'helpers/string';
 import {renderMasterIndex} from 'helpers/view';
 import {useMasterTable} from 'hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
-import {join} from 'path';
+import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {useHistory} from 'react-router';
 import nameof from 'ts-nameof.macro';
 import './ProvinceMaster.scss';
 import repository from './ProvinceMasterRepository';
 
-const model: Province = new Province();
-
 function ProvinceMaster() {
   const [translate] = useTranslation();
-  const history = useHistory();
 
-  const [
-    list,
-    total,
-    search,
-    setSearch,
-    loading,
-    setLoading,
-  ] = useMaster<Province, ProvinceSearch>(repository.list, repository.count);
+  const [provinceTypes] = useEnumList<ProvinceType>(repository.listProvinceType);
 
-  const [
-    pagination,
-    sorter,
-    handleTableChange,
-  ] = useMasterTable<Province, ProvinceSearch>(search, setSearch, total);
+  // tslint:disable-next-line:max-line-length
+  const [list, total, search, setSearch, loading, setLoading, handleAdd, handleReset, handleEdit, handleFilter, handleObjectFilter] = useMaster<Province, ProvinceSearch>(PROVINCE_ROUTE, repository.list, repository.count);
 
-  const handleEdit = React.useCallback(
-    (id: number) => {
-      return () => {
-        history.push(join(PROVINCE_ROUTE, id.toString()));
-      };
-    },
-    [history],
-  );
+  const [pagination, sorter, handleTableChange] = useMasterTable<Province, ProvinceSearch>(search, setSearch, total);
 
-  const handleDelete = React.useCallback(
-    (province: Province) => {
-      return () => {
-        Modal.confirm({
-          title: translate('province.delete.title', province),
-          content: translate('province.delete.content', province),
-          onOk: async () => {
-            setLoading(true);
-            repository.delete(province)
-              .then(() => {
-                message.info({
-                  content: translate('province.delete.success', province),
-                });
-              })
-              .catch(() => {
-                message.error(translate('province.delete.failure', province));
-              })
-              .finally(() => {
-                setLoading(false);
-              });
-          },
-          onCancel: () => {
-            // Implement action handler here
-          },
-        });
-      };
-    },
-    [translate, setLoading],
-  );
-
-  const handleAdd = React.useCallback(
-    () => {
-      history.push(join(PROVINCE_ROUTE, 'add'));
-    },
-    [history],
-  );
-
-  const handleReset = React.useCallback(
-    () => {
-      setSearch(new ProvinceSearch());
-    },
-    [setSearch],
-  );
+  const handleDelete = useDeleteHandler<Province>(repository.delete, setLoading);
 
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => {
+      const {
+        id,
+        name,
+        provinceType,
+        provinceTypeId,
+      } = search;
       return [
         {
           title: translate('general.master.index'),
-          key: 'index',
-          dataIndex: nameof(model.id),
+          key: nameof(MASTER_KEYS.index),
+          dataIndex: nameof(list[0].id),
           children: [
             {
-              key: withTableFilterSuffix('index'),
-              dataIndex: nameof(model.id),
+              key: withTableFilterSuffix(nameof(MASTER_KEYS.index)),
+              dataIndex: nameof(list[0].id),
               render: renderMasterIndex<Province>(pagination),
             },
           ],
         },
         {
           title: translate('province.id'),
-          key: nameof(model.id),
-          dataIndex: nameof(model.id),
+          key: nameof(list[0].id),
+          dataIndex: nameof(list[0].id),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(model.id), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].id), sorter),
           children: [
             {
               title: (
-                <Input name={nameof(model.id)}/>
+                <MasterTableFilter name={nameof(list[0].id)}
+                                   defaultValue={id}
+                                   onChange={handleFilter(nameof(id))}/>
               ),
-              key: withTableFilterSuffix(nameof(model.id)),
-              dataIndex: nameof(model.id),
+              key: withTableFilterSuffix(nameof(list[0].id)),
+              dataIndex: nameof(list[0].id),
             },
           ],
         },
         {
           title: translate('province.name'),
-          key: nameof(model.name),
+          key: nameof(list[0].name),
+          dataIndex: nameof(list[0].name),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(model.name), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].name), sorter),
           children: [
             {
-              key: withTableFilterSuffix(nameof(model.name)),
-              dataIndex: nameof(model.name),
+              title: (
+                <MasterTableFilter name={nameof(list[0].name)}
+                                   defaultValue={name}
+                                   onChange={handleFilter(nameof(name))}/>
+              ),
+              key: withTableFilterSuffix(nameof(list[0].name)),
+              dataIndex: nameof(list[0].name),
+            },
+          ],
+        },
+        {
+          title: translate('province.provinceType'),
+          key: nameof(list[0].provinceType),
+          dataIndex: nameof(list[0].provinceType),
+          sorter: true,
+          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].provinceType), sorter),
+          children: [
+            {
+              title: (
+                <MasterTableObjectFilter list={provinceTypes}
+                                         value={provinceTypeId}
+                                         onChange={handleObjectFilter(nameof(provinceType))}
+                />
+              ),
+              key: withTableFilterSuffix(nameof(list[0].provinceType)),
+              dataIndex: nameof(list[0].provinceType),
+              render(type: ProvinceType) {
+                return type?.name;
+              },
             },
           ],
         },
         {
           title: translate('general.master.actions'),
-          key: 'actions',
+          key: nameof(MASTER_KEYS.actions),
           className: 'actions',
+          fixed: 'right',
           children: [
             {
-              key: withTableFilterSuffix('actions'),
-              dataIndex: nameof(model.id),
+              key: withTableFilterSuffix(nameof(MASTER_KEYS.actions)),
+              dataIndex: nameof(list[0].id),
+              className: 'filter-placeholder',
+              fixed: 'right',
               render: (id: number, province: Province) => {
                 return (
                   <>
@@ -161,14 +137,16 @@ function ProvinceMaster() {
         },
       ];
     },
-    [translate, sorter, pagination, handleDelete, handleEdit],
+    // tslint:disable-next-line:max-line-length
+    [handleDelete, handleEdit, handleFilter, handleObjectFilter, list, pagination, provinceTypes, search, sorter, translate],
   );
 
   return (
     <Card title={translate('province.master.title')}>
       <Table
-        className="master-table"
+        className="master-table province-master-table"
         rowKey="id"
+        size="small"
         bordered
         pagination={pagination}
         columns={columns}
@@ -178,10 +156,10 @@ function ProvinceMaster() {
         title={() => (
           <div className="table-actions">
             <Button htmlType="button" type="primary" icon="plus" onClick={handleAdd}>
-              {translate('province.actions.add')}
+              {translate('general.actions.add')}
             </Button>
             <Button htmlType="button" type="default" icon="filter" onClick={handleReset}>
-              {translate('province.actions.reset')}
+              {translate('general.actions.reset')}
             </Button>
           </div>
         )}

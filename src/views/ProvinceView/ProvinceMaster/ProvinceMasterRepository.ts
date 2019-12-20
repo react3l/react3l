@@ -5,6 +5,7 @@ import {url} from 'helpers/url';
 import kebabCase from 'lodash/kebabCase';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
+import {ProvinceType} from 'models/ProvinceType';
 import nameof from 'ts-nameof.macro';
 
 export class ProvinceMasterRepository extends Repository {
@@ -18,6 +19,15 @@ export class ProvinceMasterRepository extends Repository {
       .then((response: AxiosResponse<Province[]>) => {
         return response.data.map((province: Province) => {
           return Province.clone<Province>(province);
+        });
+      });
+  };
+
+  public listProvinceType = (): Promise<ProvinceType[]> => {
+    return this.http.post<ProvinceType[]>(kebabCase(nameof(this.listProvinceType)))
+      .then((response: AxiosResponse<ProvinceType[]>) => {
+        return response.data.map((provinceType: ProvinceType) => {
+          return ProvinceType.clone<ProvinceType>(provinceType);
         });
       });
   };

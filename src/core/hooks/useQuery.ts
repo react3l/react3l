@@ -1,7 +1,7 @@
 import {DEFAULT_TAKE, Search} from 'core/models/Search';
 import QueryString, {ParsedQuery} from 'query-string';
 import React from 'react';
-import {useHistory, useLocation} from 'react-router';
+import {useHistory, useLocation} from 'react-router-dom';
 
 /**
  * Sync search entity with query string

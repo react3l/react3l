@@ -1,21 +1,22 @@
 {
   "province": {
     "actions": {
-      "add": "Thêm",
       "delete": "Xóa",
-      "edit": "Chỉnh sửa",
-      "reset": "Bỏ lọc"
+      "edit": "Chỉnh sửa"
     },
-    "delete": {
-      "content": "Thao tác này không thể khôi phục",
-      "failure": "Xóa {{name}} thất bại",
-      "success": "Xóa {{name}} thành công",
-      "title": "Bạn xác nhận xóa {{name}}?"
+    "detail": {
+      "districts": {
+        "newTitle": "Danh sách quận/huyện thuộc tỉnh/thành mới",
+        "title": "Danh sách quận/huyện thuộc {{name}}"
+      },
+      "newTitle": "Thêm mới tỉnh/thành",
+      "title": "Thông tin {{name}}"
     },
     "id": "Mã tỉnh/thành",
     "master": {
       "title": "Quản lý danh sách tỉnh/thành"
     },
-    "name": "Tên tỉnh/thành"
+    "name": "Tên tỉnh/thành",
+    "provinceType": "Loại"
   }
 }

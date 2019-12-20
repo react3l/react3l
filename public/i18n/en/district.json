@@ -1,9 +1,10 @@
 {
-  "general": {
+  "district": {
     "actions": {
       "add": "",
-      "reset": "",
-      "save": ""
+      "delete": "",
+      "edit": "",
+      "reset": ""
     },
     "delete": {
       "content": "",
@@ -11,13 +12,12 @@
       "success": "",
       "title": ""
     },
+    "districtType": "",
+    "id": "",
     "master": {
-      "actions": "",
-      "index": ""
+      "title": ""
     },
-    "saving": {
-      "failure": "",
-      "success": ""
-    }
+    "name": "",
+    "province": ""
   }
 }

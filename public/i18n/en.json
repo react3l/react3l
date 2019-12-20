@@ -1,11 +1,5 @@
 {
-  "general": {
-    "master": {
-      "actions": "",
-      "index": ""
-    }
-  },
-  "province": {
+  "district": {
     "actions": {
       "add": "",
       "delete": "",
@@ -18,10 +12,58 @@
       "success": "",
       "title": ""
     },
+    "districtType": "",
     "id": "",
     "master": {
       "title": ""
     },
-    "name": ""
+    "name": "",
+    "province": ""
+  },
+  "general": {
+    "actions": {
+      "add": "",
+      "reset": "",
+      "save": ""
+    },
+    "delete": {
+      "content": "",
+      "failure": "",
+      "success": "",
+      "title": ""
+    },
+    "master": {
+      "actions": "",
+      "index": ""
+    },
+    "saving": {
+      "failure": "",
+      "success": ""
+    }
+  },
+  "menu": {
+    "district": "",
+    "province": "",
+    "ward": ""
+  },
+  "province": {
+    "actions": {
+      "delete": "",
+      "edit": ""
+    },
+    "detail": {
+      "districts": {
+        "newTitle": "",
+        "title": ""
+      },
+      "newTitle": "",
+      "title": ""
+    },
+    "id": "",
+    "master": {
+      "title": ""
+    },
+    "name": "",
+    "provinceType": ""
   }
 }

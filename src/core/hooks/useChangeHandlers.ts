@@ -15,11 +15,11 @@ export function useChangeHandlers<T extends Model>(model?: T, setModel?: (t: T) 
 
   const handleDebounceInputValue = React.useCallback(
     debounce(handleSetInputValue),
-    [model, setModel],
+    [handleSetInputValue],
   );
 
   const handleChangeSimpleField = React.useCallback(
-    (field: string, debounce: boolean = false) => {
+    (field: string, debounce: boolean = true) => {
       return (event) => {
         if (event && typeof event === 'object') {
           if (event.target) {
@@ -42,15 +42,15 @@ export function useChangeHandlers<T extends Model>(model?: T, setModel?: (t: T) 
 
   const handleChangeObjectField = React.useCallback(
     (field: string) => {
-      return (id: number | string | null | undefined, model?: T) => {
+      return (id?: number | string | null, t?: T) => {
         setModel(Model.clone<T>({
           ...model,
-          [field]: model,
+          [field]: t,
           [`${field}Id`]: id,
         }));
       };
     },
-    [setModel],
+    [model, setModel],
   );
 
   return [

@@ -1,21 +1,22 @@
 {
   "province": {
     "actions": {
-      "add": "",
       "delete": "",
-      "edit": "",
-      "reset": ""
+      "edit": ""
     },
-    "delete": {
-      "content": "",
-      "failure": "",
-      "success": "",
+    "detail": {
+      "districts": {
+        "newTitle": "",
+        "title": ""
+      },
+      "newTitle": "",
       "title": ""
     },
     "id": "",
     "master": {
       "title": ""
     },
-    "name": ""
+    "name": "",
+    "provinceType": ""
   }
 }

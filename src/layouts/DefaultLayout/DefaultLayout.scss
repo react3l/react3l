@@ -9,6 +9,14 @@
       background: #ffffff;
     }
 
+    .ant-layout-sider {
+      .ant-menu-inline {
+        .ant-menu-item:first-of-type {
+          margin-top: unset;
+        }
+      }
+    }
+
     > .ant-layout {
       display: flex;
       overflow-y: auto;

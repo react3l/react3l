@@ -1,6 +1,6 @@
 import React from 'react';
-import {Switch, withRouter} from 'react-router';
 import {renderRoutes, RouteConfigComponentProps} from 'react-router-config';
+import {Switch, withRouter} from 'react-router-dom';
 import ProvinceDetail from './ProvinceDetail/ProvinceDetail';
 import ProvinceMaster from './ProvinceMaster/ProvinceMaster';
 import './ProvinceView.scss';

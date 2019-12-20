@@ -1,17 +1,18 @@
+import {MemoryRouter} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MemoryRouter} from 'react-router-dom';
-import TableFilter from './TableFilter';
+import CardTitle from 'components/CardTitle/CardTitle';
 
-describe('TableFilter', () => {
+describe('CardTitle', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-        <TableFilter/>
+      <CardTitle/>
       </MemoryRouter>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 });
+

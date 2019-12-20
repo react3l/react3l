@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@rollup/plugin-typescript": "^2.0.1",
     "@storybook/cli": "^5.2.8",
     "@storybook/core": "^5.2.8",
     "@storybook/react": "^5.2.8",
@@ -24,6 +25,7 @@
     "@types/ts-nameof": "^4.2.0",
     "awesome-typescript-loader": "^5.2.1",
     "ejs": "^3.0.1",
+    "eslint-config-react-app": "^5.1.0",
     "husky": "^3.1.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
@@ -31,6 +33,7 @@
     "react-i18next-extract": "^0.3.2",
     "react-scripts": "3.3.0",
     "react3l-cli": "0.1.2",
+    "rollup": "^1.27.13",
     "ts-nameof.macro": "^4.2.1",
     "tslint": "^5.20.1",
     "tslint-eslint-rules": "^5.4.0",

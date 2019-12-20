@@ -1,11 +1,5 @@
 {
-  "general": {
-    "master": {
-      "actions": "Tác vụ",
-      "index": "STT"
-    }
-  },
-  "province": {
+  "district": {
     "actions": {
       "add": "Thêm",
       "delete": "Xóa",
@@ -16,12 +10,60 @@
       "content": "Thao tác này không thể khôi phục",
       "failure": "Xóa {{name}} thất bại",
       "success": "Xóa {{name}} thành công",
-      "title": "Bạn xác nhận xóa {{name}}?"
+      "title": "Bạn xác nhận xóa {{name}}"
+    },
+    "districtType": "Loại",
+    "id": "Mã quận/huyện",
+    "master": {
+      "title": "Danh sách quận/huyện"
+    },
+    "name": "Tên quận/huyện",
+    "province": "Tỉnh/thành"
+  },
+  "general": {
+    "actions": {
+      "add": "Thêm",
+      "reset": "Bỏ lọc",
+      "save": "Lưu"
+    },
+    "delete": {
+      "content": "Thao tác này không thể khôi phục",
+      "failure": "Xóa {{name}} thất bại",
+      "success": "Xóa {{name}} thành công",
+      "title": "Bạn xác nhận xóa {{name}}"
+    },
+    "master": {
+      "actions": "Tác vụ",
+      "index": "STT"
+    },
+    "saving": {
+      "failure": "Cập nhật thất bại {{name}}",
+      "success": "Cập nhật thành công {{name}}"
+    }
+  },
+  "menu": {
+    "district": "Quận/huyện",
+    "province": "Tỉnh/thành",
+    "ward": "Phường/xã"
+  },
+  "province": {
+    "actions": {
+      "delete": "Xóa",
+      "edit": "Chỉnh sửa"
+    },
+    "detail": {
+      "districts": {
+        "newTitle": "Danh sách quận/huyện thuộc tỉnh/thành mới",
+        "title": "Danh sách quận/huyện thuộc {{name}}"
+      },
+      "newTitle": "Thêm mới tỉnh/thành",
+      "title": "Thông tin {{name}}"
     },
     "id": "Mã tỉnh/thành",
     "master": {
       "title": "Quản lý danh sách tỉnh/thành"
     },
-    "name": "Tên tỉnh/thành"
+    "name": "Tên tỉnh/thành",
+    "provinceType": "Loại"
   }
 }

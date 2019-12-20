@@ -1,5 +1,6 @@
 import AntSelect, {ModeOption, OptionProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
+import classNames from 'classnames';
 import {debounce} from 'core/helpers/debounce';
 import {Model, Search} from 'core/models';
 import React, {ReactElement, Ref} from 'react';
@@ -8,19 +9,17 @@ import './Select.scss';
 const {Option} = AntSelect;
 
 export interface SelectOptionProps<T extends Model> extends OptionProps {
-  [key: string]: any;
-
   'data-content': T;
+
+  [key: string]: any;
 }
 
 type DefaultSelectChange<T extends Model> = (value: string | number, subject?: T) => void;
 
-type MultipleSelectChange<T extends Model> = (values: Array<string | number>, subjects?: T[]) => void;
+export interface SelectProps<T extends Model, TSearch extends Search> {
+  value?: number;
 
-interface SelectProps<T extends Model, TSearch extends Search> {
-  value?: Array<string | number>;
-
-  defaultValue?: Array<string | number>;
+  defaultValue?: number;
 
   mode?: ModeOption;
 
@@ -44,11 +43,9 @@ interface SelectProps<T extends Model, TSearch extends Search> {
 
   className?: string;
 
-  onChange?: DefaultSelectChange<T> | MultipleSelectChange<T>;
+  onChange?: DefaultSelectChange<T>;
 
   onSearchError?: (error: AxiosError<T>) => void;
-
-  isEnum?: boolean;
 }
 
 const Select = React.forwardRef(
@@ -65,14 +62,24 @@ const Select = React.forwardRef(
       allowSearch,
       onChange,
       searchField,
-      isEnum,
       mode,
+      value,
+      defaultValue,
     } = props;
 
-    const [list, setList] = React.useState<T[]>(defaultList || []);
+    const [list, setList] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
 
-    const handlePromiseLoad = React.useCallback(
+    React.useEffect(
+      () => {
+        if (defaultList) {
+          setList(defaultList);
+        }
+      },
+      [defaultList],
+    );
+
+    const handleLoadList = React.useCallback(
       () => {
         setLoading(true);
         getList(search)
@@ -89,60 +96,35 @@ const Select = React.forwardRef(
 
     React.useEffect(
       () => {
-        if (isEnum && getList) {
-          handlePromiseLoad();
+        if (getList) {
+          handleLoadList();
         }
       },
-      [isEnum, getList, handlePromiseLoad],
+      [getList, handleLoadList],
     );
 
     const handleToggle = React.useCallback(
       (visible: boolean) => {
-        if (visible && getList && !isEnum) {
-          handlePromiseLoad();
+        if (visible && getList) {
+          handleLoadList();
         }
       },
-      [getList, handlePromiseLoad, isEnum],
+      [getList, handleLoadList],
     );
 
-    const handleDefaultChange = React.useCallback(
+    const handleChange = React.useCallback(
       (
         value: number | string,
         option?: ReactElement<SelectOptionProps<T>>,
       ) => {
         if (onChange) {
-          if (value && option && option instanceof Array) {
-            return (onChange as DefaultSelectChange<T>)(value, option.props['data-content']);
+          if (value && option) {
+            return onChange(value, option.props['data-content']);
           }
           return onChange(undefined, undefined);
         }
       },
       [onChange],
-    );
-
-    const handleMultipleChange = React.useCallback(
-      (
-        values: Array<number | string>,
-        options?: Array<ReactElement<SelectOptionProps<T>>>,
-      ) => {
-        if (onChange) {
-          const subjects: T[] = options.map((option: ReactElement<SelectOptionProps<T>>) => {
-            return option.props['data-content'];
-          });
-          (onChange as MultipleSelectChange<T>)(values, subjects);
-        }
-      },
-      [onChange],
-    );
-
-    const handleChange = React.useCallback(
-      (values, options?) => {
-        if (mode === 'default') {
-          return handleDefaultChange(values, options);
-        }
-        return handleMultipleChange(values, options);
-      },
-      [handleDefaultChange, handleMultipleChange, mode],
     );
 
     const handleSearch = React.useMemo(
@@ -155,24 +137,31 @@ const Select = React.forwardRef(
       [setSearch, search, searchField],
     );
 
-    return (
-      <AntSelect
-        ref={ref}
-        className={className}
-        onDropdownVisibleChange={handleToggle}
-        onChange={handleChange}
-        loading={loading}
-        allowClear={allowClear}
-        showSearch={allowSearch}
-        onSearch={handleSearch}
-      >
-        {list.map((t: T) => (
-          <Option key={t.id} data-content={t} value={t.id}>
-            {t.name}
-          </Option>
-        ))}
-        {children}
-      </AntSelect>
+    return React.useMemo(
+      () => (
+        <AntSelect
+          ref={ref}
+          className={classNames('w-100', className)}
+          onDropdownVisibleChange={handleToggle}
+          mode={mode}
+          onChange={handleChange}
+          loading={loading}
+          allowClear={allowClear}
+          showSearch={allowSearch}
+          onSearch={handleSearch}
+          defaultValue={defaultValue}
+          value={value}
+        >
+          {list.map((t: T) => (
+            <Option key={t.id} data-content={t} value={t.id}>
+              {t.name}
+            </Option>
+          ))}
+          {children}
+        </AntSelect>
+      ),
+      // tslint:disable-next-line:max-line-length
+      [allowClear, allowSearch, children, className, defaultValue, handleChange, handleSearch, handleToggle, list, loading, mode, ref, value],
     );
   },
 );

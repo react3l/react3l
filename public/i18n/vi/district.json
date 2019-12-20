@@ -1,9 +1,10 @@
 {
-  "general": {
+  "district": {
     "actions": {
       "add": "Thêm",
-      "reset": "Bỏ lọc",
-      "save": "Lưu"
+      "delete": "Xóa",
+      "edit": "Chỉnh sửa",
+      "reset": "Bỏ lọc"
     },
     "delete": {
       "content": "Thao tác này không thể khôi phục",
@@ -11,13 +12,12 @@
       "success": "Xóa {{name}} thành công",
       "title": "Bạn xác nhận xóa {{name}}"
     },
+    "districtType": "Loại",
+    "id": "Mã quận/huyện",
     "master": {
-      "actions": "Tác vụ",
-      "index": "STT"
+      "title": "Danh sách quận/huyện"
     },
-    "saving": {
-      "failure": "Cập nhật thất bại {{name}}",
-      "success": "Cập nhật thành công {{name}}"
-    }
+    "name": "Tên quận/huyện",
+    "province": "Tỉnh/thành"
   }
 }

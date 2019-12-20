@@ -1,4 +1,5 @@
 import {Model} from 'core/models';
+import {DistrictType} from 'models/DistrictType';
 import {Province} from './Province';
 
 export class District extends Model {
@@ -6,7 +7,9 @@ export class District extends Model {
 
   public name?: string;
 
-  public type?: string;
+  public districtType?: DistrictType;
+
+  public districtTypeId?: number;
 
   public provinceId?: number;
 

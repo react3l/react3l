@@ -1,6 +1,5 @@
 import React, {ReactElement} from 'react';
-import {MemoryRouterProps} from 'react-router';
-import {MemoryRouter} from 'react-router-dom';
+import {MemoryRouter, MemoryRouterProps} from 'react-router-dom';
 import ProvinceMaster from './ProvinceMaster';
 
 describe('ProvinceMaster', () => {
