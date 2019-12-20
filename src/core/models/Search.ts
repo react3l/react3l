@@ -9,14 +9,6 @@ export class Search extends Model {
 
   [key: string]: any;
 
-  public skip?: number = 0;
-
-  public take?: number = DEFAULT_TAKE;
-
-  public orderBy?: string;
-
-  public orderType?: SearchOrderType;
-
   public static setOrderType(search: Search, orderType: string | null | undefined | boolean) {
     if (typeof orderType === 'undefined') {
       search.orderType = undefined;
@@ -53,4 +45,12 @@ export class Search extends Model {
   public static getOrderTypeForTable<TSearch extends Search>(field: string, sorter: SorterResult<TSearch>) {
     return (field === sorter.field) ? sorter.order : undefined;
   }
+
+  public skip?: number = 0;
+
+  public take?: number = DEFAULT_TAKE;
+
+  public orderBy?: string;
+
+  public orderType?: SearchOrderType;
 }
