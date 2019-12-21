@@ -4,6 +4,6 @@ export * from './helpers';
 
 export * from './hooks';
 
-export * from './repositories';
-
 export * from './models';
+
+export * from './repositories';

@@ -1,14 +1,15 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
+import MasterTableActions from 'components/MasterTableActions/MasterTableActions';
 import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
 import {MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {useDeleteHandler, useMaster} from 'core/hooks';
 import {useEnumList} from 'core/hooks/useEnumList';
+import {useMasterTable} from 'core/hooks/useMasterTable';
 import {withTableFilterSuffix} from 'helpers/string';
 import {renderMasterIndex} from 'helpers/view';
-import {useMasterTable} from 'hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
 import {ProvinceType} from 'models/ProvinceType';
@@ -40,7 +41,7 @@ function ProvinceMaster() {
       } = search;
       return [
         {
-          title: translate('general.master.index'),
+          title: translate(MASTER_KEYS.index),
           key: nameof(MASTER_KEYS.index),
           dataIndex: nameof(list[0].id),
           children: [
@@ -110,7 +111,7 @@ function ProvinceMaster() {
           ],
         },
         {
-          title: translate('general.master.actions'),
+          title: translate(MASTER_KEYS.actions),
           key: nameof(MASTER_KEYS.actions),
           className: 'actions',
           fixed: 'right',
@@ -122,14 +123,11 @@ function ProvinceMaster() {
               fixed: 'right',
               render: (id: number, province: Province) => {
                 return (
-                  <>
-                    <Button htmlType="button" type="link" onClick={handleEdit(id)}>
-                      {translate('province.actions.edit')}
-                    </Button>
-                    <Button htmlType="button" type="link" onClick={handleDelete(province)}>
-                      {translate('province.actions.delete')}
-                    </Button>
-                  </>
+                  <MasterTableActions onEdit={handleEdit}
+                                      onDelete={handleDelete}
+                                      model={province}
+                                      id={id}
+                  />
                 );
               },
             },

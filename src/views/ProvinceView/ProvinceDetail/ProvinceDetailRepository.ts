@@ -2,6 +2,7 @@ import {AxiosResponse} from 'axios';
 import {Repository} from 'core/repositories';
 import {url} from 'helpers';
 import kebabCase from 'lodash/kebabCase';
+import {DistrictType} from 'models/DistrictType';
 import {Province} from 'models/Province';
 import {ProvinceType} from 'models/ProvinceType';
 import nameof from 'ts-nameof.macro';
@@ -24,6 +25,15 @@ export class ProvinceDetailRepository extends Repository {
       .then((response: AxiosResponse<ProvinceType[]>) => {
         return response.data.map((provinceType: ProvinceType) => {
           return ProvinceType.clone<ProvinceType>(provinceType);
+        });
+      });
+  };
+
+  public listDistrictType = (): Promise<DistrictType[]> => {
+    return this.http.post<DistrictType[]>(kebabCase(nameof(this.listDistrictType)))
+      .then((response: AxiosResponse<DistrictType[]>) => {
+        return response.data.map((provinceType: DistrictType) => {
+          return DistrictType.clone<DistrictType>(provinceType);
         });
       });
   };

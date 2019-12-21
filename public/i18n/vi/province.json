@@ -1,9 +1,5 @@
 {
   "province": {
-    "actions": {
-      "delete": "Xóa",
-      "edit": "Chỉnh sửa"
-    },
     "detail": {
       "districts": {
         "newTitle": "Danh sách quận/huyện thuộc tỉnh/thành mới",

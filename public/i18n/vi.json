@@ -23,6 +23,8 @@
   "general": {
     "actions": {
       "add": "Thêm",
+      "delete": "Xóa",
+      "edit": "Sửa",
       "reset": "Bỏ lọc",
       "save": "Lưu"
     },
@@ -47,10 +49,6 @@
     "ward": "Phường/xã"
   },
   "province": {
-    "actions": {
-      "delete": "Xóa",
-      "edit": "Chỉnh sửa"
-    },
     "detail": {
       "districts": {
         "newTitle": "Danh sách quận/huyện thuộc tỉnh/thành mới",

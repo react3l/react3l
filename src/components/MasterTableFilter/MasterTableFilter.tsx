@@ -1,7 +1,7 @@
 import Input from 'antd/lib/input';
 import Select, {SelectProps} from 'components/Select/Select';
 import {Model, Search} from 'core/models';
-import React, {ChangeEvent, LegacyRef} from 'react';
+import React, {ChangeEvent, LegacyRef, Ref} from 'react';
 import './MasterTableFilter.scss';
 
 interface MasterTableFilterProps {
@@ -42,11 +42,14 @@ function MasterTableFilter(props: MasterTableFilterProps) {
 
 export default MasterTableFilter;
 
-export function MasterTableObjectFilter<T extends Model, TSearch extends Search>(props: SelectProps<T, TSearch>) {
-  return (
-    <Select
-      {...props}
-      allowClear={true}
-    />
-  );
-}
+export const MasterTableObjectFilter = React.forwardRef(
+  <T extends Model, TSearch extends Search>(props: SelectProps<T, TSearch>, ref: Ref<any>) => {
+    return (
+      <Select{...props} ref={ref}/>
+    );
+  },
+);
+
+MasterTableObjectFilter.defaultProps = {
+  allowClear: true,
+};

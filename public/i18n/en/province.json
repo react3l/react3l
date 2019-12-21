@@ -1,9 +1,5 @@
 {
   "province": {
-    "actions": {
-      "delete": "",
-      "edit": ""
-    },
     "detail": {
       "districts": {
         "newTitle": "",

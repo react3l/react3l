@@ -1,4 +1,5 @@
 import {FormProps} from 'antd/lib/form';
+import {translate} from 'core/helpers';
 
 export const INPUT_DEBOUNCE_TIME: number = 400;
 
@@ -7,8 +8,8 @@ export const BASE_URL: string = process.env.REACT_APP_BASE_URL || window.locatio
 export const APP_TITLE: string = process.env.REACT_APP_TITLE || '';
 
 export const MASTER_KEYS: { [key: string]: string } = {
-  index: 'index',
-  actions: 'actions',
+  index: translate('general.master.index'),
+  actions: translate('general.master.actions'),
 };
 
 export const DETAIL_KEYS: { [key: string]: string } = {

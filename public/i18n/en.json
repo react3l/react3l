@@ -23,6 +23,8 @@
   "general": {
     "actions": {
       "add": "",
+      "delete": "",
+      "edit": "",
       "reset": "",
       "save": ""
     },
@@ -47,10 +49,6 @@
     "ward": ""
   },
   "province": {
-    "actions": {
-      "delete": "",
-      "edit": ""
-    },
     "detail": {
       "districts": {
         "newTitle": "",
