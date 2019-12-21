@@ -1,6 +1,6 @@
 import {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {httpConfig} from 'config/http';
-import {createHttpService} from '../../helpers/http';
+import {createHttpService} from 'core/helpers/http';
 
 export class Repository {
   protected http: AxiosInstance;

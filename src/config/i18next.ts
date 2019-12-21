@@ -1,5 +1,5 @@
+import initialGlobalState from 'core/config/global';
 import {InitOptions} from 'i18next';
-import initialGlobalState from './global';
 
 const i18nextConfig: InitOptions = {
   resources: {},

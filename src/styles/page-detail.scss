@@ -1,0 +1,16 @@
+.page-detail {
+  .page-detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    button, a[role="button"] {
+      margin-right: 0.5rem;
+
+      &:last-child {
+        margin-right: unset;
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import {HOME_ROUTE, PROVINCE_ROUTE} from 'config/route-consts';
-import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
+import DefaultLayout from 'core/layouts/DefaultLayout/DefaultLayout';
 import {join} from 'path';
 import {RouteConfig} from 'react-router-config';
 import ProvinceView, {ProvinceDetail, ProvinceMaster} from 'views/ProvinceView/ProvinceView';

@@ -1,4 +1,4 @@
-import initialGlobalState, {GlobalState} from 'config/global';
+import initialGlobalState, {GlobalState} from 'core/config/global';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
 import {App, AppLoading} from 'core/components';

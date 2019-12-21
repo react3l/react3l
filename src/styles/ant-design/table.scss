@@ -1,0 +1,66 @@
+.ant-table {
+  .ant-table-fixed {
+    .ant-table-thead,
+    .ant-table-tbody {
+      tr {
+        height: unset !important;
+      }
+    }
+  }
+
+  &.ant-table-small {
+    &.ant-table-bordered {
+      @mixin last-cell {
+        &:last-of-type {
+          border-right: none;
+        }
+      }
+
+      .ant-table-fixed-right {
+        border-right: none;
+      }
+
+      .ant-table-thead {
+        tr {
+          th {
+            @include last-cell;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-table-thead {
+    > tr {
+      > th {
+        &[colspan] {
+          text-align: left;
+        }
+
+        &.filter-placeholder {
+          height: 49px !important;
+        }
+      }
+
+      .ant-table-header-column {
+        width: 100%;
+      }
+    }
+  }
+
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-right: 0.5rem;
+      display: flex;
+      align-content: center;
+      align-items: center;
+
+      &:last-of-type {
+        margin-right: unset;
+      }
+    }
+  }
+}

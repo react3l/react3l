@@ -1,5 +1,5 @@
 {
-  "name": "react3l-template",
+  "name": "react3l",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -87,6 +87,8 @@
     "eject": "react-scripts eject",
     "lint": "tslint --fix ./src/**/*.{ts,tsx} -e ./src/**/*.test.{ts,tsx}",
     "extract": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ extract",
-    "merge": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ merge"
+    "merge": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ merge",
+    "build:lib": "rollup -c",
+    "watch:lib": "rollup -c -w"
   }
 }

@@ -8,16 +8,16 @@ import {PROVINCE_ROUTE} from 'config/route-consts';
 import {useDeleteHandler, useMaster} from 'core/hooks';
 import {useEnumList} from 'core/hooks/useEnumList';
 import {useMasterTable} from 'core/hooks/useMasterTable';
-import {withTableFilterSuffix} from 'helpers/string';
-import {renderMasterIndex} from 'helpers/view';
+import {withTableFilterSuffix} from 'core/helpers/string';
+import {renderMasterIndex} from 'core/helpers/view';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
 import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
+import repository from 'views/ProvinceView/ProvinceRepository';
 import './ProvinceMaster.scss';
-import repository from './ProvinceMasterRepository';
 
 function ProvinceMaster() {
   const [translate] = useTranslation();
@@ -114,13 +114,11 @@ function ProvinceMaster() {
           title: translate(MASTER_KEYS.actions),
           key: nameof(MASTER_KEYS.actions),
           className: 'actions',
-          fixed: 'right',
           children: [
             {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.actions)),
               dataIndex: nameof(list[0].id),
-              className: 'filter-placeholder',
-              fixed: 'right',
+              className: 'actions filter-placeholder',
               render: (id: number, province: Province) => {
                 return (
                   <MasterTableActions onEdit={handleEdit}

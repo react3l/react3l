@@ -1,5 +1,5 @@
 import Spin from 'antd/lib/spin';
-import {GlobalState} from 'config/global';
+import {GlobalState} from 'core/config/global';
 import {ReactNode} from 'react';
 import React, {useGlobal} from 'reactn';
 import './AppLoading.scss';

@@ -1,10 +1,10 @@
 import Table, {ColumnProps} from 'antd/lib/table';
 import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
 import {MASTER_KEYS} from 'config/consts';
+import {renderMasterIndex} from 'core/helpers';
+import {withTableFilterSuffix} from 'core/helpers/string';
 import {useEnumList, useLocalTable} from 'core/hooks';
 import {ContentTableProps, useContentTable} from 'core/hooks/useContentTable';
-import {renderMasterIndex} from 'helpers';
-import {withTableFilterSuffix} from 'helpers/string';
 import {District} from 'models/District';
 import {DistrictSearch} from 'models/DistrictSearch';
 import {DistrictType} from 'models/DistrictType';
@@ -12,14 +12,17 @@ import {Province} from 'models/Province';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
-import {districtFilter} from 'views/ProvinceView/ProvinceDetail/DistrictContentTable/DistrictContentTableHooks';
-import repository from '../ProvinceDetailRepository';
+import {districtFilter} from 'views/ProvinceView/ProvinceHooks';
+import repository from 'views/ProvinceView/ProvinceRepository';
 import './DistrictContentTable.scss';
 
 function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
   const {model, setModel, field} = props;
+
   const [districts] = useContentTable<Province, 'districts'>(model, setModel, field);
+
   const [districtTypes] = useEnumList<DistrictType>(repository.listDistrictType);
+
   const [translate] = useTranslation();
   // tslint:disable-next-line:max-line-length
   const [dataSource, pagination, search, , handleChange, handleFilter, handleObjectFilter] = useLocalTable<District, DistrictSearch>(districts, districtFilter);
@@ -88,13 +91,13 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
         },
       ];
     },
-    [districtTypes, districts, handleObjectFilter, pagination, search, translate],
+    [districtTypes, districts, handleFilter, handleObjectFilter, pagination, search, translate],
   );
 
   return (
-    <Table dataSource={dataSource}
-           bordered
+    <Table bordered
            size="small"
+           dataSource={dataSource}
            rowKey={nameof(districts[0].id)}
            columns={columns}
            pagination={pagination}

@@ -1,14 +1,11 @@
-import * as helpers from 'core/helpers';
+export * from 'core/components';
 
-import * as models from 'core/models';
+export * from 'core/config';
 
-import * as repositories from 'core/repositories';
+export * from 'core/helpers';
 
-// tslint:disable-next-line:no-console
-console.log('You are importing the whole package `react3l-core`, which is not recommended');
+export * from 'core/hooks';
 
-export {
-  helpers,
-  models,
-  repositories,
-};
+export * from 'core/models';
+
+export * from 'core/repositories';
