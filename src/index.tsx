@@ -1,7 +1,7 @@
-import initialGlobalState, {GlobalState} from 'core/config/global';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
 import {App, AppLoading} from 'core/components';
+import initialGlobalState, {GlobalState} from 'core/config/global';
 import {changeLanguage} from 'core/helpers';
 import i18next from 'i18next';
 import ReactDOM from 'react-dom';

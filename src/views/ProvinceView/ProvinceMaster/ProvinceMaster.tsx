@@ -5,11 +5,11 @@ import MasterTableActions from 'components/MasterTableActions/MasterTableActions
 import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
 import {MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
+import {withTableFilterSuffix} from 'core/helpers/string';
+import {renderMasterIndex} from 'core/helpers/view';
 import {useDeleteHandler, useMaster} from 'core/hooks';
 import {useEnumList} from 'core/hooks/useEnumList';
 import {useMasterTable} from 'core/hooks/useMasterTable';
-import {withTableFilterSuffix} from 'core/helpers/string';
-import {renderMasterIndex} from 'core/helpers/view';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
 import {ProvinceType} from 'models/ProvinceType';
