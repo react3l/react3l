@@ -20,17 +20,18 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "target": "es5"
   },
   "include": [
-    "src"
+    "src/public.ts",
+    "package.json"
   ],
   "exclude": [
     "src/**/*.stories.tsx",

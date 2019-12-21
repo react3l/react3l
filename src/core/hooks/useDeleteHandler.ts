@@ -13,10 +13,6 @@ const DEFAULT_CONTENT_MESSAGE: string = translate('general.delete.content');
 export function useDeleteHandler<T extends Model>(
   onDelete: (t: T) => Promise<T>,
   onSetLoading: (loading: boolean) => void,
-  confirmTitle: string = DEFAULT_TITLE_MESSAGE,
-  confirmContent: string = DEFAULT_CONTENT_MESSAGE,
-  successMessage: string = DEFAULT_SUCCESS_MESSAGE,
-  failureMessage: string = DEFAULT_FAILURE_MESSAGE,
   onSuccess?: (t?: T) => void,
   onError?: (error: Error) => void,
   onCancel?: () => void,
@@ -26,20 +22,20 @@ export function useDeleteHandler<T extends Model>(
     (t: T) => {
       return () => {
         Modal.confirm({
-          title: translate(confirmTitle, t),
-          content: translate(confirmContent, t),
+          title: translate(DEFAULT_TITLE_MESSAGE, t),
+          content: translate(DEFAULT_CONTENT_MESSAGE, t),
           okType: 'danger',
           onOk: () => {
             onSetLoading(true);
             onDelete(t)
               .then(() => {
-                message.info(translate(successMessage, t));
+                message.info(translate(DEFAULT_SUCCESS_MESSAGE, t));
                 if (typeof onSuccess === 'function') {
                   onSuccess();
                 }
               })
               .catch((error: Error) => {
-                message.error(translate(failureMessage, {error, ...t}));
+                message.error(translate(DEFAULT_FAILURE_MESSAGE, {error, ...t}));
                 if (typeof onError === 'function') {
                   onError(error);
                 }
@@ -55,6 +51,6 @@ export function useDeleteHandler<T extends Model>(
       };
     },
     // tslint:disable-next-line:max-line-length
-    [translate, confirmTitle, confirmContent, onCancel, onSetLoading, onDelete, successMessage, onSuccess, failureMessage, onError],
+    [onCancel, onDelete, onError, onSetLoading, onSuccess, translate],
   );
 }

@@ -15,7 +15,7 @@ export function useChangeHandlers<T extends Model>(model?: T, setModel?: (t: T) 
 
   const handleDebounceInputValue = React.useCallback(
     debounce(handleSetInputValue),
-    [handleSetInputValue],
+    [],
   );
 
   const handleChangeSimpleField = React.useCallback(

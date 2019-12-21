@@ -30,6 +30,10 @@
     }
   }
 
+  @mixin column-actions {
+    width: 150px;
+  }
+
   .ant-table-thead {
     > tr {
       > th {
@@ -44,6 +48,30 @@
 
       .ant-table-header-column {
         width: 100%;
+
+        .ant-table-column-sorters {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    tr {
+      th {
+        &.actions {
+          @include column-actions;
+        }
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    tr {
+      td {
+        &.actions {
+          @include column-actions;
+        }
       }
     }
   }

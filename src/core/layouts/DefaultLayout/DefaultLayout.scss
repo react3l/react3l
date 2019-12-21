@@ -15,6 +15,17 @@
           margin-top: unset;
         }
       }
+
+      .material-icons {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
 
     > .ant-layout {

@@ -22,7 +22,7 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
       current: search.skip / search.take + 1,
       pageSize: search.take,
     }),
-    [total, search],
+    [search.skip, search.take, total],
   );
 
   const sorter: SorterResult<T> = React.useMemo(
@@ -68,7 +68,7 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
         ...filters,
       }));
     },
-    [search, setSearch, pagination, sorter],
+    [pagination, search, setSearch, sorter],
   );
   return [pagination, sorter, handleTableChange];
 }

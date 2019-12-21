@@ -1,14 +1,10 @@
 import {SorterResult} from 'antd/lib/table';
-import {Model} from './Model';
+import {SortType} from 'core/types';
+import {Cloneable} from './Cloneable';
 
 export const DEFAULT_TAKE: number = 10;
 
-export type SearchOrderType = 'ASC' | 'DESC' | undefined | null | boolean;
-
-export class Search extends Model {
-
-  [key: string]: any;
-
+export class Search extends Cloneable {
   public static setOrderType(search: Search, orderType: string | null | undefined | boolean) {
     if (typeof orderType === 'undefined') {
       search.orderType = undefined;
@@ -52,5 +48,5 @@ export class Search extends Model {
 
   public orderBy?: string;
 
-  public orderType?: SearchOrderType;
+  public orderType?: SortType;
 }

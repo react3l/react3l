@@ -53,7 +53,7 @@ export function useDetail<T extends Model>(
     () => {
       history.push(join(baseRoute));
     },
-    [history, baseRoute],
+    [baseRoute, history],
   );
 
   const handleSave = React.useCallback(

@@ -55,7 +55,7 @@ export function useMaster<T extends Model, TSearch extends Search>(
         history.push(join(baseRoute, id.toString()));
       };
     },
-    [history, baseRoute],
+    [baseRoute, history],
   );
 
   const [handleFilter, handleObjectFilter] = useFilter<T, TSearch>(search, setSearch);
@@ -64,7 +64,7 @@ export function useMaster<T extends Model, TSearch extends Search>(
     () => {
       setSearch(new Search() as TSearch);
     },
-    [setSearch],
+    [],
   );
 
   React.useEffect(
@@ -82,7 +82,7 @@ export function useMaster<T extends Model, TSearch extends Search>(
           setLoading(false);
         });
     },
-    [masterList, masterCount, search, setList, setLoading],
+    [masterCount, masterList, search],
   );
 
   return [

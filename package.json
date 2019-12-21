@@ -1,8 +1,14 @@
 {
   "name": "react3l",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.0-pre-release.2019.12.21",
+  "private": false,
   "main": "dist/index.js",
+  "license": "MIT",
+  "author": {
+    "email": "ht@thanhtunguet.info",
+    "name": "thanhtunguet",
+    "url": "https://thanhtunguet.info"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^2.0.1",
     "@storybook/cli": "^5.2.8",

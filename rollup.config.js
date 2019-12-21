@@ -1,13 +1,21 @@
 import rollupTypescript from "@rollup/plugin-typescript";
 
 export default {
-  input: "./src/public.ts",
-  output: {
-    format: "cjs",
-    file: "./dist/index.js",
-  },
+  input: "./src/core/index.ts",
+  output: [
+    {
+      format: "cjs",
+      file: "./dist/index.js",
+    },
+    {
+      format: "es",
+      file: "./dist/index.es.js",
+    },
+  ],
   external: [],
   plugins: [
-    rollupTypescript(),
+    rollupTypescript({
+      tsconfig: "tsconfig.lib.json",
+    }),
   ],
 };

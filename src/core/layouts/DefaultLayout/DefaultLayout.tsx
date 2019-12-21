@@ -37,6 +37,9 @@ function renderMenu(menu: RouteConfig[], translate: (key: string, data?: any) =>
         {item.icon && (
           <Icon type={item.icon}/>
         )}
+        {item.matIcon && (
+          <i className="material-icons">{item.matIcon}</i>
+        )}
         {translate(item.title)}
       </NavLink>
       {item?.children && (

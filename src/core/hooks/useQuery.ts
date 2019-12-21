@@ -29,7 +29,7 @@ function parseSearch<TSearch extends Search>(search: string): TSearch {
           break;
         case 'orderType':
           if (typeof value === 'string') {
-            tSearch.setOrderType(value);
+            Search.setOrderType(tSearch, value);
           }
           break;
         default:

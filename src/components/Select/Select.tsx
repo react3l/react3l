@@ -91,7 +91,7 @@ const Select = React.forwardRef(
             setLoading(false);
           });
       },
-      [getList, search, setLoading, setList, onSearchError],
+      [getList, onSearchError, search],
     );
 
     React.useEffect(
@@ -134,7 +134,7 @@ const Select = React.forwardRef(
           [searchField]: value,
         }));
       }),
-      [setSearch, search, searchField],
+      [search, searchField, setSearch],
     );
 
     return React.useMemo(
