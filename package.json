@@ -2,6 +2,7 @@
   "name": "react3l",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
   "devDependencies": {
     "@rollup/plugin-typescript": "^2.0.1",
     "@storybook/cli": "^5.2.8",
