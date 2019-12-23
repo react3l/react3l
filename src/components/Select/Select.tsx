@@ -14,6 +14,10 @@ export interface SelectOptionProps<T extends Model> extends OptionProps {
   [key: string]: any;
 }
 
+function defaultRenderObject<T extends Model>(t: T) {
+  return t.name;
+}
+
 type DefaultSelectChange<T extends Model> = (value: string | number, subject?: T) => void;
 
 export interface SelectProps<T extends Model, TSearch extends Search> {
@@ -46,6 +50,8 @@ export interface SelectProps<T extends Model, TSearch extends Search> {
   onChange?: DefaultSelectChange<T>;
 
   onSearchError?: (error: AxiosError<T>) => void;
+
+  render?: (t: T) => string;
 }
 
 const Select = React.forwardRef(
@@ -65,6 +71,7 @@ const Select = React.forwardRef(
       mode,
       value,
       defaultValue,
+      render,
     } = props;
 
     const [list, setList] = React.useState<T[]>([]);
@@ -154,16 +161,20 @@ const Select = React.forwardRef(
         >
           {list.map((t: T) => (
             <Option key={t.id} data-content={t} value={t.id}>
-              {t.name}
+              {render(t)}
             </Option>
           ))}
           {children}
         </AntSelect>
       ),
       // tslint:disable-next-line:max-line-length
-      [allowClear, allowSearch, children, className, defaultValue, handleChange, handleSearch, handleToggle, list, loading, mode, ref, value],
+      [allowClear, allowSearch, children, className, defaultValue, handleChange, handleSearch, handleToggle, list, loading, mode, ref, render, value],
     );
   },
 );
+
+Select.defaultProps = {
+  render: defaultRenderObject,
+};
 
 export default Select;
