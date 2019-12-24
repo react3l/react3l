@@ -1,14 +1,12 @@
+import {ListFilter, NumberFilter, StringFilter} from 'core/filters';
 import {Search} from 'core/models';
-import {DistrictType} from 'models/DistrictType';
 
 export class DistrictSearch extends Search {
-  public id?: number;
+  public id?: NumberFilter = new NumberFilter();
 
-  public name?: string;
+  public name?: StringFilter = new StringFilter();
 
-  public provinceId?: number;
+  public provinceId?: ListFilter = new ListFilter();
 
-  public districtTypeId?: number;
-
-  public districtType?: DistrictType;
+  public districtTypeId?: ListFilter = new ListFilter();
 }

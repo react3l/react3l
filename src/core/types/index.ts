@@ -1,5 +1,3 @@
-export type PrimitiveType = string | number | boolean | null | undefined;
-
 export type Guid = string | string[];
 
 export type Id = number | number[];
@@ -16,8 +14,14 @@ export type TypeName<T> =
                   T extends (...params: any[]) => any ? 'function' :
                     'object';
 
-export type SortType = 'ASC' | 'DESC' | undefined | null | boolean;
-
 export type ErrorMap<T> = {
   [P in keyof T]: string | ErrorMap<T[P]>;
 };
+
+export type PrimitiveValue = number | string | boolean | null | undefined;
+
+export interface FilterType {
+  id: number;
+
+  name: string;
+}

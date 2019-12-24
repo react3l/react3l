@@ -1,8 +1,8 @@
 import {SorterResult} from 'antd/lib/table';
-import {SortType} from 'core/types';
+import {Model} from 'core/models/Model';
+import nameof from 'ts-nameof.macro';
+import {DEFAULT_TAKE, SORT_TYPES} from '../config';
 import {Cloneable} from './Cloneable';
-
-export const DEFAULT_TAKE: number = 10;
 
 export class Search extends Cloneable {
   public static setOrderType(search: Search, orderType: string | null | undefined | boolean) {
@@ -11,26 +11,26 @@ export class Search extends Cloneable {
       return;
     }
     if (typeof orderType === 'string') {
-      if (orderType.toUpperCase().startsWith('ASC')) {
-        search.orderType = 'ASC';
+      if (orderType.toUpperCase().startsWith(nameof(SORT_TYPES.ASC))) {
+        search.orderType = nameof(SORT_TYPES.ASC);
         return;
       }
-      search.orderType = 'DESC';
+      search.orderType = nameof(SORT_TYPES.DESC);
       return;
     }
     if (typeof orderType === 'boolean') {
       if (orderType) {
-        return 'ASC';
+        return nameof(SORT_TYPES.ASC);
       }
-      search.orderType = 'DESC';
-      return 'DESC';
+      search.orderType = nameof(SORT_TYPES.DESC);
+      return nameof(SORT_TYPES.DESC);
     }
     search.orderType = undefined;
   }
 
   public static getOrderType(search: Search) {
     if (search.orderType) {
-      if (search.orderType === 'ASC') {
+      if (search.orderType === nameof(SORT_TYPES.ASC)) {
         return 'ascend';
       }
       return 'descend';
@@ -38,15 +38,15 @@ export class Search extends Cloneable {
     return undefined;
   }
 
-  public static getOrderTypeForTable<TSearch extends Search>(field: string, sorter: SorterResult<TSearch>) {
+  public static getOrderTypeForTable<T extends Model>(field: string, sorter: SorterResult<T>) {
     return (field === sorter.field) ? sorter.order : undefined;
   }
 
-  public skip?: number = 0;
+  public skip: number = 0;
 
-  public take?: number = DEFAULT_TAKE;
+  public take: number = DEFAULT_TAKE;
 
-  public orderBy?: string;
+  public orderBy: string;
 
-  public orderType?: SortType;
+  public orderType: string;
 }

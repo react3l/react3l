@@ -2,6 +2,18 @@ import {Filter} from 'core/filters/Filter';
 import nameof from 'ts-nameof.macro';
 
 export class NumberFilter extends Filter {
+
+  public static types(filter?: NumberFilter): string[] {
+    return [
+      nameof(filter.equalTo),
+      nameof(filter.notEqualTo),
+      nameof(filter.greaterThan),
+      nameof(filter.greaterThanOrEqualTo),
+      nameof(filter.lessThan),
+      nameof(filter.lessThanOrEqualTo),
+    ];
+  }
+
   public equalTo?: number;
 
   public notEqualTo?: number;
@@ -13,15 +25,4 @@ export class NumberFilter extends Filter {
   public lessThan?: number;
 
   public lessThanOrEqualTo?: number;
-
-  public get types(): string[] {
-    return [
-      nameof(this.equalTo),
-      nameof(this.notEqualTo),
-      nameof(this.greaterThan),
-      nameof(this.greaterThanOrEqualTo),
-      nameof(this.lessThan),
-      nameof(this.lessThanOrEqualTo),
-    ];
-  }
 }

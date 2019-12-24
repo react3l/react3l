@@ -2,13 +2,11 @@ import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
 import MasterTableActions from 'components/MasterTableActions/MasterTableActions';
-import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
 import {MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
 import {useDeleteHandler, useMaster} from 'core/hooks';
-import {useEnumList} from 'core/hooks/useEnumList';
 import {useMasterTable} from 'core/hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
@@ -22,23 +20,15 @@ import './ProvinceMaster.scss';
 function ProvinceMaster() {
   const [translate] = useTranslation();
 
-  const [provinceTypes] = useEnumList<ProvinceType>(repository.listProvinceType);
-
   // tslint:disable-next-line:max-line-length
-  const [list, total, search, setSearch, loading, setLoading, handleAdd, handleReset, handleEdit, handleFilter, handleObjectFilter] = useMaster<Province, ProvinceSearch>(PROVINCE_ROUTE, repository.list, repository.count);
+  const [list, total, search, setSearch, loading, setLoading, handleAdd, handleReset, handleEdit] = useMaster<Province, ProvinceSearch>(PROVINCE_ROUTE, repository.list, repository.count);
 
   const [pagination, sorter, handleTableChange] = useMasterTable<Province, ProvinceSearch>(search, setSearch, total);
 
-  const handleDelete = useDeleteHandler<Province>(repository.delete, setLoading);
+  const handleDelete = useDeleteHandler<Province, ProvinceSearch>(repository.delete, setLoading, search, setSearch);
 
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => {
-      const {
-        id,
-        name,
-        provinceType,
-        provinceTypeId,
-      } = search;
       return [
         {
           title: translate(MASTER_KEYS.index),
@@ -57,14 +47,9 @@ function ProvinceMaster() {
           key: nameof(list[0].id),
           dataIndex: nameof(list[0].id),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].id), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].id), sorter),
           children: [
             {
-              title: (
-                <MasterTableFilter name={nameof(list[0].id)}
-                                   defaultValue={id}
-                                   onChange={handleFilter(nameof(id))}/>
-              ),
               key: withTableFilterSuffix(nameof(list[0].id)),
               dataIndex: nameof(list[0].id),
             },
@@ -75,14 +60,9 @@ function ProvinceMaster() {
           key: nameof(list[0].name),
           dataIndex: nameof(list[0].name),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].name), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].name), sorter),
           children: [
             {
-              title: (
-                <MasterTableFilter name={nameof(list[0].name)}
-                                   defaultValue={name}
-                                   onChange={handleFilter(nameof(name))}/>
-              ),
               key: withTableFilterSuffix(nameof(list[0].name)),
               dataIndex: nameof(list[0].name),
             },
@@ -93,15 +73,9 @@ function ProvinceMaster() {
           key: nameof(list[0].provinceType),
           dataIndex: nameof(list[0].provinceType),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<ProvinceSearch>(nameof(list[0].provinceType), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].provinceType), sorter),
           children: [
             {
-              title: (
-                <MasterTableObjectFilter list={provinceTypes}
-                                         value={provinceTypeId}
-                                         onChange={handleObjectFilter(nameof(provinceType))}
-                />
-              ),
               key: withTableFilterSuffix(nameof(list[0].provinceType)),
               dataIndex: nameof(list[0].provinceType),
               render(type: ProvinceType) {
@@ -134,7 +108,7 @@ function ProvinceMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleDelete, handleEdit, handleFilter, handleObjectFilter, list, pagination, provinceTypes, search, sorter, translate],
+    [handleDelete, handleEdit, list, pagination, sorter, translate],
   );
 
   return (

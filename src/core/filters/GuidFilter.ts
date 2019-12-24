@@ -2,6 +2,16 @@ import nameof from 'ts-nameof.macro';
 import {Filter} from './Filter';
 
 export class GuidFilter extends Filter {
+
+  public static types(filter?: GuidFilter): string[] {
+    return [
+      nameof(filter.equalTo),
+      nameof(filter.notEqualTo),
+      nameof(filter.in),
+      nameof(filter.notIn),
+    ];
+  }
+
   public equalTo?: string;
 
   public notEqualTo?: string;
@@ -9,13 +19,4 @@ export class GuidFilter extends Filter {
   public in?: string[];
 
   public notIn?: string[];
-
-  public get types(): string[] {
-    return [
-      nameof(this.equalTo),
-      nameof(this.notEqualTo),
-      nameof(this.in),
-      nameof(this.notIn),
-    ];
-  }
 }

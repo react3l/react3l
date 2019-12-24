@@ -1,17 +1,14 @@
-import {PaginationProps} from 'antd/lib/pagination';
+import {PaginationConfig, PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
-import {PrimitiveValue, useFilter} from 'core/hooks/useFilter';
 import {Model, Search} from 'core/models';
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 
-type LocalTableResult<T extends Model, TSearch extends Search> = [
+export type LocalTableHookResult<T extends Model, TSearch extends Search> = [
   T[],
   PaginationProps,
   TSearch,
   SorterResult<TSearch>,
-  (newPagination: PaginationProps, filters: Record<string, any>, newSorter: SorterResult<TSearch>) => void,
-  (field: string) => (event?: ChangeEvent | PrimitiveValue | PrimitiveValue[]) => void,
-  (field: string) => (value?: number, model?: T) => void,
+  (newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
 ];
 
 export type FilterHandlerType<TSearch extends Search> = (list: any[], search: TSearch) => any[];
@@ -23,7 +20,7 @@ function defaultFilterHandler(list: any[]) {
 export function useLocalTable<T extends Model, TSearch extends Search>(
   list: T[],
   filterHandler: FilterHandlerType<TSearch> = defaultFilterHandler,
-): LocalTableResult<T, TSearch> {
+): LocalTableHookResult<T, TSearch> {
   const [search, setSearch] = React.useState<TSearch>(new Search() as TSearch);
 
   const sorter: SorterResult<TSearch> = React.useMemo(
@@ -63,9 +60,9 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
 
   const handleTableChange = React.useCallback(
     (
-      newPagination: PaginationProps,
+      newPagination: PaginationConfig,
       filters: Record<string, any>,
-      newSorter: SorterResult<TSearch>,
+      newSorter: SorterResult<T>,
     ) => {
       const {pageSize: take} = newPagination;
       const skip: number = (newPagination.current - 1) * newPagination.pageSize;
@@ -85,7 +82,7 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
         setSearch(Search.clone<TSearch>({
           ...search,
           orderBy: newSorter.field,
-          orderType: Search.getOrderTypeForTable<TSearch>(newSorter.field, newSorter),
+          orderType: Search.getOrderTypeForTable<T>(newSorter.field, newSorter),
         }));
         return;
       }
@@ -98,7 +95,5 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
     [search, sorter],
   );
 
-  const [handleFilter, handleObjectFilter] = useFilter<T, TSearch>(search, setSearch);
-
-  return [dataSource, pagination, search, sorter, handleTableChange, handleFilter, handleObjectFilter];
+  return [dataSource, pagination, search, sorter, handleTableChange];
 }

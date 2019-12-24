@@ -2,6 +2,18 @@ import {Filter} from 'core/filters/Filter';
 import nameof from 'ts-nameof.macro';
 
 export class DateFilter extends Filter {
+
+  public static types(filter?: DateFilter): string[] {
+    return [
+      nameof(filter.equalTo),
+      nameof(filter.notEqualTo),
+      nameof(filter.greaterThan),
+      nameof(filter.greaterThanOrEqualTo),
+      nameof(filter.lessThan),
+      nameof(filter.lessThanOrEqualTo),
+    ];
+  }
+
   public equalTo?: Date;
 
   public notEqualTo?: Date;
@@ -13,15 +25,4 @@ export class DateFilter extends Filter {
   public lessThan?: Date;
 
   public lessThanOrEqualTo?: Date;
-
-  public get types(): string[] {
-    return [
-      nameof(this.equalTo),
-      nameof(this.notEqualTo),
-      nameof(this.greaterThan),
-      nameof(this.greaterThanOrEqualTo),
-      nameof(this.lessThan),
-      nameof(this.lessThanOrEqualTo),
-    ];
-  }
 }

@@ -11,7 +11,7 @@ import nameof from 'ts-nameof.macro';
 const DEFAULT_SAVING_SUCCESS_MESSAGE: string = translate('general.saving.success');
 const DEFAULT_SAVING_FAILURE_MESSAGE: string = translate('general.saving.failure');
 
-export type UseDetailResult<T extends Model> = [
+export type DetailHookResult<T extends Model> = [
   T,
   (t: T) => void,
   boolean,
@@ -32,7 +32,7 @@ interface DetailParams {
  * @param {(error: Error) => void} onSavingError
  * @param {string} successMessage
  * @param {string} failureMessage
- * @returns {UseDetailResult<T>}
+ * @returns {DetailHookResult<T>}
  */
 export function useDetail<T extends Model>(
   baseRoute: string,
@@ -41,7 +41,7 @@ export function useDetail<T extends Model>(
   onSavingError?: (error: Error) => void,
   successMessage: string = DEFAULT_SAVING_SUCCESS_MESSAGE,
   failureMessage: string = DEFAULT_SAVING_FAILURE_MESSAGE,
-): UseDetailResult<T> {
+): DetailHookResult<T> {
   const [t, setT] = React.useState<T>(new Model() as T);
   const {id} = useParams<DetailParams>();
   const [loading, setLoading] = React.useState<boolean>(false);

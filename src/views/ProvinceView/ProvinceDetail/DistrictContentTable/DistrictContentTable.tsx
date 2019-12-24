@@ -1,5 +1,4 @@
 import Table, {ColumnProps} from 'antd/lib/table';
-import MasterTableFilter, {MasterTableObjectFilter} from 'components/MasterTableFilter/MasterTableFilter';
 import {MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {withTableFilterSuffix} from 'core/helpers/string';
@@ -25,11 +24,10 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
 
   const [translate] = useTranslation();
   // tslint:disable-next-line:max-line-length
-  const [dataSource, pagination, search, , handleChange, handleFilter, handleObjectFilter] = useLocalTable<District, DistrictSearch>(districts, districtFilter);
+  const [dataSource, pagination, , , handleChange] = useLocalTable<District, DistrictSearch>(districts, districtFilter);
 
   const columns: Array<ColumnProps<District>> = React.useMemo(
     () => {
-      const {districtType, districtTypeId, id, name} = search;
       return [
         {
           title: translate(MASTER_KEYS.index),
@@ -47,9 +45,6 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
           dataIndex: nameof(districts[0].id),
           children: [
             {
-              title: (
-                <MasterTableFilter defaultValue={id} onChange={handleFilter(nameof(id))}/>
-              ),
               key: withTableFilterSuffix(nameof(districts[0].id)),
               dataIndex: nameof(districts[0].id),
             },
@@ -61,9 +56,6 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
           dataIndex: nameof(districts[0].name),
           children: [
             {
-              title: (
-                <MasterTableFilter defaultValue={name} onChange={handleFilter(nameof(name))}/>
-              ),
               key: withTableFilterSuffix(nameof(districts[0].name)),
               dataIndex: nameof(districts[0].name),
             },
@@ -75,12 +67,6 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
           dataIndex: nameof(districts[0].districtTypeId),
           children: [
             {
-              title: (
-                <MasterTableObjectFilter list={districtTypes}
-                                         value={districtTypeId}
-                                         onChange={handleObjectFilter(nameof(districtType))}
-                />
-              ),
               key: withTableFilterSuffix(nameof(districts[0].districtType)),
               dataIndex: nameof(districts[0].districtTypeId),
               render(districtTypeId: number) {
@@ -91,7 +77,7 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
         },
       ];
     },
-    [districtTypes, districts, handleFilter, handleObjectFilter, pagination, search, translate],
+    [districtTypes, districts, pagination, translate],
   );
 
   return (

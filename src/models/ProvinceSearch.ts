@@ -1,12 +1,10 @@
+import {ListFilter, NumberFilter, StringFilter} from 'core/filters';
 import {Search} from 'core/models';
-import {ProvinceType} from 'models/ProvinceType';
 
 export class ProvinceSearch extends Search {
-  public id?: number;
+  public id?: NumberFilter = new NumberFilter();
 
-  public name?: string;
+  public name?: StringFilter = new StringFilter();
 
-  public provinceTypeId?: number;
-
-  public provinceType?: ProvinceType;
+  public provinceTypeId?: ListFilter = new ListFilter();
 }

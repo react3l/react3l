@@ -1,7 +1,7 @@
 import message from 'antd/lib/message';
 import Modal from 'antd/lib/modal';
 import {translate} from 'core/helpers';
-import {Model} from 'core/models';
+import {Model, Search} from 'core/models';
 import {useTranslation} from 'react-i18next';
 import React from 'reactn';
 
@@ -10,9 +10,11 @@ const DEFAULT_FAILURE_MESSAGE: string = translate('general.delete.failure');
 const DEFAULT_TITLE_MESSAGE: string = translate('general.delete.title');
 const DEFAULT_CONTENT_MESSAGE: string = translate('general.delete.content');
 
-export function useDeleteHandler<T extends Model>(
+export function useDeleteHandler<T extends Model, TSearch extends Search>(
   onDelete: (t: T) => Promise<T>,
   onSetLoading: (loading: boolean) => void,
+  search: TSearch,
+  setSearch: (search: TSearch) => void,
   onSuccess?: (t?: T) => void,
   onError?: (error: Error) => void,
   onCancel?: () => void,
@@ -30,6 +32,7 @@ export function useDeleteHandler<T extends Model>(
             onDelete(t)
               .then(() => {
                 message.info(translate(DEFAULT_SUCCESS_MESSAGE, t));
+                setSearch(Search.clone<TSearch>(search));
                 if (typeof onSuccess === 'function') {
                   onSuccess();
                 }
@@ -51,6 +54,6 @@ export function useDeleteHandler<T extends Model>(
       };
     },
     // tslint:disable-next-line:max-line-length
-    [onCancel, onDelete, onError, onSetLoading, onSuccess, translate],
+    [onCancel, onDelete, onError, onSetLoading, onSuccess, search, setSearch, translate],
   );
 }

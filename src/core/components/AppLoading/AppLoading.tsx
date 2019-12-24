@@ -2,7 +2,6 @@ import Spin from 'antd/lib/spin';
 import {GlobalState} from 'core/config/global';
 import {ReactNode} from 'react';
 import React, {useGlobal} from 'reactn';
-import './AppLoading.scss';
 
 interface AppLoadingProps {
   children?: ReactNode | ReactNode[];

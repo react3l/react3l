@@ -1,5 +1,5 @@
 import {FormProps} from 'antd/lib/form';
-import {translate} from '../helpers/translate';
+import {translate} from '../helpers';
 
 export const MASTER_KEYS: { [key: string]: string } = {
   index: translate('general.master.index'),
@@ -20,3 +20,16 @@ export const formItemLayout: FormProps = {
     sm: {span: 16},
   },
 };
+
+interface SortType {
+  ASC: string;
+
+  DESC: string;
+}
+
+export const SORT_TYPES: SortType = {
+  ASC: 'ASC',
+  DESC: 'DESC',
+};
+
+export const DEFAULT_TAKE: number = 10;
