@@ -3,26 +3,27 @@ import nameof from 'ts-nameof.macro';
 
 export class DateFilter extends Filter {
 
-  public static types(filter?: DateFilter): string[] {
+  public static types(): string[] {
+    const filter: DateFilter = new DateFilter();
     return [
-      nameof(filter.equalTo),
-      nameof(filter.notEqualTo),
-      nameof(filter.greaterThan),
-      nameof(filter.greaterThanOrEqualTo),
-      nameof(filter.lessThan),
-      nameof(filter.lessThanOrEqualTo),
+      nameof(filter.equal),
+      nameof(filter.notEqual),
+      nameof(filter.greater),
+      nameof(filter.greaterEqual),
+      nameof(filter.less),
+      nameof(filter.lessEqual),
     ];
   }
 
-  public equalTo?: Date;
+  public equal?: Date;
 
-  public notEqualTo?: Date;
+  public notEqual?: Date;
 
-  public greaterThan?: Date;
+  public greater?: Date;
 
-  public greaterThanOrEqualTo?: Date;
+  public greaterEqual?: Date;
 
-  public lessThan?: Date;
+  public less?: Date;
 
-  public lessThanOrEqualTo?: Date;
+  public lessEqual?: Date;
 }

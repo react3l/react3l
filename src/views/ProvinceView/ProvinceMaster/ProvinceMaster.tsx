@@ -1,8 +1,7 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
-import MasterTableActions from 'components/MasterTableActions/MasterTableActions';
-import {MASTER_KEYS} from 'config/consts';
+import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
@@ -10,12 +9,19 @@ import {useDeleteHandler, useMaster} from 'core/hooks';
 import {useMasterTable} from 'core/hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
-import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
 import repository from 'views/ProvinceView/ProvinceMaster/ProvinceMasterRepository';
 import './ProvinceMaster.scss';
+
+const columnWidth = {
+  index: COLUMN_WIDTH.index,
+  id: undefined,
+  name: undefined,
+  provinceType: undefined,
+  actions: COLUMN_WIDTH.actions,
+};
 
 function ProvinceMaster() {
   const [translate] = useTranslation();
@@ -33,10 +39,12 @@ function ProvinceMaster() {
         {
           title: translate(MASTER_KEYS.index),
           key: nameof(MASTER_KEYS.index),
+          width: columnWidth.index,
           dataIndex: nameof(list[0].id),
           children: [
             {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.index)),
+              width: columnWidth.index,
               dataIndex: nameof(list[0].id),
               render: renderMasterIndex<Province>(pagination),
             },
@@ -45,12 +53,14 @@ function ProvinceMaster() {
         {
           title: translate('province.id'),
           key: nameof(list[0].id),
+          width: columnWidth.id,
           dataIndex: nameof(list[0].id),
           sorter: true,
           sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].id), sorter),
           children: [
             {
               key: withTableFilterSuffix(nameof(list[0].id)),
+              width: columnWidth.id,
               dataIndex: nameof(list[0].id),
             },
           ],
@@ -58,12 +68,14 @@ function ProvinceMaster() {
         {
           title: translate('province.name'),
           key: nameof(list[0].name),
+          width: columnWidth.name,
           dataIndex: nameof(list[0].name),
           sorter: true,
           sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].name), sorter),
           children: [
             {
               key: withTableFilterSuffix(nameof(list[0].name)),
+              width: columnWidth.name,
               dataIndex: nameof(list[0].name),
             },
           ],
@@ -71,35 +83,39 @@ function ProvinceMaster() {
         {
           title: translate('province.provinceType'),
           key: nameof(list[0].provinceType),
+          width: columnWidth.provinceType,
           dataIndex: nameof(list[0].provinceType),
           sorter: true,
           sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].provinceType), sorter),
           children: [
             {
               key: withTableFilterSuffix(nameof(list[0].provinceType)),
+              width: columnWidth.provinceType,
               dataIndex: nameof(list[0].provinceType),
-              render(type: ProvinceType) {
-                return type?.name;
-              },
             },
           ],
         },
         {
           title: translate(MASTER_KEYS.actions),
           key: nameof(MASTER_KEYS.actions),
-          className: 'actions',
+          width: columnWidth.actions,
+          className: 'center actions',
           children: [
             {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.actions)),
               dataIndex: nameof(list[0].id),
-              className: 'actions filter-placeholder',
+              width: columnWidth.actions,
+              className: 'center actions filter-placeholder',
               render: (id: number, province: Province) => {
                 return (
-                  <MasterTableActions onEdit={handleEdit}
-                                      onDelete={handleDelete}
-                                      model={province}
-                                      id={id}
-                  />
+                  <>
+                    <Button htmlType="button" type="link" onClick={handleEdit(id)}>
+                      {translate('general.actions.edit')}
+                    </Button>
+                    <Button htmlType="button" type="link" onClick={handleDelete(province)}>
+                      {translate('general.actions.delete')}
+                    </Button>
+                  </>
                 );
               },
             },
@@ -114,6 +130,7 @@ function ProvinceMaster() {
   return (
     <Card title={translate('province.master.title')}>
       <Table
+        tableLayout="fixed"
         className="master-table province-master-table"
         rowKey="id"
         size="small"

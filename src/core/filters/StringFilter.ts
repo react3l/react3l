@@ -3,26 +3,33 @@ import {Filter} from './Filter';
 
 export class StringFilter extends Filter {
 
-  public static types(filter?: StringFilter): string[] {
+  public static types(): string[] {
+    const filter: StringFilter = new StringFilter();
     return [
-      nameof(filter.startsWith),
-      nameof(filter.endsWith),
-      nameof(filter.equalTo),
-      nameof(filter.notEqualTo),
-      nameof(filter.contains),
-      nameof(filter.notContains),
+      nameof(filter.startWith),
+      nameof(filter.notStartWith),
+      nameof(filter.endWith),
+      nameof(filter.notEndWith),
+      nameof(filter.equal),
+      nameof(filter.notEqual),
+      nameof(filter.contain),
+      nameof(filter.notContain),
     ];
   }
 
-  public startsWith?: string;
+  public startWith?: string;
 
-  public endsWith?: string;
+  public notStartWith?: string;
 
-  public equalTo?: string;
+  public endWith?: string;
 
-  public notEqualTo?: string;
+  public notEndWith?: string;
 
-  public contains?: string;
+  public equal?: string;
 
-  public notContains?: string;
+  public notEqual?: string;
+
+  public contain?: string;
+
+  public notContain?: string;
 }

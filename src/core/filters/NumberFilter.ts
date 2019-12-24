@@ -3,26 +3,27 @@ import nameof from 'ts-nameof.macro';
 
 export class NumberFilter extends Filter {
 
-  public static types(filter?: NumberFilter): string[] {
+  public static types(): string[] {
+    const filter: NumberFilter = new NumberFilter();
     return [
-      nameof(filter.equalTo),
-      nameof(filter.notEqualTo),
-      nameof(filter.greaterThan),
-      nameof(filter.greaterThanOrEqualTo),
-      nameof(filter.lessThan),
-      nameof(filter.lessThanOrEqualTo),
+      nameof(filter.equal),
+      nameof(filter.notEqual),
+      nameof(filter.greater),
+      nameof(filter.greaterEqual),
+      nameof(filter.less),
+      nameof(filter.lessEqual),
     ];
   }
 
-  public equalTo?: number;
+  public equal?: number;
 
-  public notEqualTo?: number;
+  public notEqual?: number;
 
-  public greaterThan?: number;
+  public greater?: number;
 
-  public greaterThanOrEqualTo?: number;
+  public greaterEqual?: number;
 
-  public lessThan?: number;
+  public less?: number;
 
-  public lessThanOrEqualTo?: number;
+  public lessEqual?: number;
 }

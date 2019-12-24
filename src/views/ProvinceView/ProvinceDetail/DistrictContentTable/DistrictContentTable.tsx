@@ -1,5 +1,8 @@
+import Button from 'antd/lib/button';
+import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
-import {MASTER_KEYS} from 'config/consts';
+import Select from 'components/Select/Select';
+import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {useEnumList, useLocalTable} from 'core/hooks';
@@ -15,10 +18,18 @@ import repository from 'views/ProvinceView/ProvinceDetail/ProvinceDetailReposito
 import {districtFilter} from 'views/ProvinceView/ProvinceHooks';
 import './DistrictContentTable.scss';
 
+const columnWidth = {
+  index: COLUMN_WIDTH.index,
+  id: undefined,
+  name: undefined,
+  districtType: undefined,
+  actions: COLUMN_WIDTH.actions,
+};
+
 function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
   const {model, setModel, field} = props;
 
-  const [districts] = useContentTable<Province, 'districts'>(model, setModel, field);
+  const [districts, setDistricts] = useContentTable<Province, 'districts'>(model, setModel, field);
 
   const [districtTypes] = useEnumList<DistrictType>(repository.listDistrictType);
 
@@ -26,15 +37,29 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
   // tslint:disable-next-line:max-line-length
   const [dataSource, pagination, , , handleChange] = useLocalTable<District, DistrictSearch>(districts, districtFilter);
 
+  const handleDelete = React.useCallback(
+    (id: number) => {
+      return () => {
+        const newDistricts: District[] = districts.filter((district: District) => district.id !== id);
+        setDistricts(newDistricts);
+      };
+    },
+    [districts, setDistricts],
+  );
+
   const columns: Array<ColumnProps<District>> = React.useMemo(
     () => {
       return [
         {
           title: translate(MASTER_KEYS.index),
           key: nameof(MASTER_KEYS.index),
+          width: columnWidth.index,
+          className: 'center',
           children: [
             {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.index)),
+              width: columnWidth.index,
+              className: 'center',
               render: renderMasterIndex<District>(pagination),
             },
           ],
@@ -42,46 +67,90 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
         {
           title: translate('district.id'),
           key: nameof(districts[0].id),
+          width: columnWidth.id,
           dataIndex: nameof(districts[0].id),
           children: [
             {
               key: withTableFilterSuffix(nameof(districts[0].id)),
+              width: columnWidth.id,
               dataIndex: nameof(districts[0].id),
+              render(id: number) {
+                return (
+                  <Input type="number" name={nameof(districts[0].id)} defaultValue={id}/>
+                );
+              },
             },
           ],
         },
         {
           title: translate('district.name'),
           key: nameof(districts[0].name),
+          width: columnWidth.name,
           dataIndex: nameof(districts[0].name),
           children: [
             {
               key: withTableFilterSuffix(nameof(districts[0].name)),
+              width: columnWidth.name,
               dataIndex: nameof(districts[0].name),
+              render(name: string) {
+                return (
+                  <Input type="text" name={nameof(districts[0].name)} defaultValue={name}/>
+                );
+              },
             },
           ],
         },
         {
           title: translate('district.districtType'),
           key: nameof(districts[0].districtType),
+          width: columnWidth.districtType,
           dataIndex: nameof(districts[0].districtTypeId),
           children: [
             {
               key: withTableFilterSuffix(nameof(districts[0].districtType)),
+              width: columnWidth.districtType,
               dataIndex: nameof(districts[0].districtTypeId),
               render(districtTypeId: number) {
-                return districtTypes.find((districtType: DistrictType) => districtType.id === districtTypeId)?.name;
+                return (
+                  <Select list={districtTypes}
+                          value={districtTypeId}
+                  />
+                );
+              },
+            },
+          ],
+        },
+        {
+          title: translate(MASTER_KEYS.actions),
+          key: nameof(MASTER_KEYS.actions),
+          width: columnWidth.actions,
+          className: 'center actions',
+          children: [
+            {
+              key: withTableFilterSuffix(nameof(MASTER_KEYS.actions)),
+              width: columnWidth.actions,
+              dataIndex: nameof(districts[0].id),
+              className: 'center actions filter-placeholder',
+              render: (id: number) => {
+                return (
+                  <>
+                    <Button htmlType="button" type="link" onClick={handleDelete(id)}>
+                      {translate('general.actions.delete')}
+                    </Button>
+                  </>
+                );
               },
             },
           ],
         },
       ];
     },
-    [districtTypes, districts, pagination, translate],
+    [districtTypes, districts, handleDelete, pagination, translate],
   );
 
   return (
     <Table bordered
+           tableLayout="fixed"
            size="small"
            dataSource={dataSource}
            rowKey={nameof(districts[0].id)}

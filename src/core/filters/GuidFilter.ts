@@ -3,18 +3,19 @@ import {Filter} from './Filter';
 
 export class GuidFilter extends Filter {
 
-  public static types(filter?: GuidFilter): string[] {
+  public static types(): string[] {
+    const filter: GuidFilter = new GuidFilter();
     return [
-      nameof(filter.equalTo),
-      nameof(filter.notEqualTo),
+      nameof(filter.equal),
+      nameof(filter.notEqual),
       nameof(filter.in),
       nameof(filter.notIn),
     ];
   }
 
-  public equalTo?: string;
+  public equal?: string;
 
-  public notEqualTo?: string;
+  public notEqual?: string;
 
   public in?: string[];
 
