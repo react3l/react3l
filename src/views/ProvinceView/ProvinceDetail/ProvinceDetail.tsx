@@ -15,7 +15,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
 import DistrictContentTable from 'views/ProvinceView/ProvinceDetail/DistrictContentTable/DistrictContentTable';
-import repository from 'views/ProvinceView/ProvinceRepository';
+import repository from 'views/ProvinceView/ProvinceDetail/ProvinceDetailRepository';
 import './ProvinceDetail.scss';
 
 function ProvinceDetail() {

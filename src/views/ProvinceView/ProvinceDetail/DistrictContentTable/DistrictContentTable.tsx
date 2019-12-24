@@ -11,8 +11,8 @@ import {Province} from 'models/Province';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
+import repository from 'views/ProvinceView/ProvinceDetail/ProvinceDetailRepository';
 import {districtFilter} from 'views/ProvinceView/ProvinceHooks';
-import repository from 'views/ProvinceView/ProvinceRepository';
 import './DistrictContentTable.scss';
 
 function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {

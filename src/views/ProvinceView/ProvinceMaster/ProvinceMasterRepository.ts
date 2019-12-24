@@ -1,4 +1,5 @@
 import {AxiosResponse} from 'axios';
+import {API_PROVINCE_MASTER_ROUTE} from 'config/api-consts';
 import {url} from 'core/helpers/url';
 import {Model} from 'core/models';
 import {Repository} from 'core/repositories';
@@ -9,13 +10,13 @@ import {ProvinceSearch} from 'models/ProvinceSearch';
 import {ProvinceType} from 'models/ProvinceType';
 import nameof from 'ts-nameof.macro';
 
-export class ProvinceRepository extends Repository {
+export class ProvinceMasterRepository extends Repository {
   constructor() {
     super();
-    this.setBaseURL(url('/api/province'));
+    this.setBaseURL(url(API_PROVINCE_MASTER_ROUTE));
   }
 
-  public list = (provinceSearch?: ProvinceSearch): Promise<Province[]> => {
+  public list = (provinceSearch: ProvinceSearch): Promise<Province[]> => {
     return this.http.post<Province[]>(kebabCase(nameof(this.list)), provinceSearch)
       .then((response: AxiosResponse<Province[]>) => {
         return response.data.map((province: Province) => {
@@ -33,7 +34,7 @@ export class ProvinceRepository extends Repository {
       });
   };
 
-  public count = (provinceSearch?: ProvinceSearch): Promise<number> => {
+  public count = (provinceSearch: ProvinceSearch): Promise<number> => {
     return this.http.post<number>(kebabCase(nameof(this.count)), provinceSearch)
       .then((response: AxiosResponse<number>) => {
         return response.data;
@@ -85,4 +86,4 @@ export class ProvinceRepository extends Repository {
   };
 }
 
-export default new ProvinceRepository();
+export default new ProvinceMasterRepository();

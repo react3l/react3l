@@ -14,7 +14,7 @@ import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
-import repository from 'views/ProvinceView/ProvinceRepository';
+import repository from 'views/ProvinceView/ProvinceMaster/ProvinceMasterRepository';
 import './ProvinceMaster.scss';
 
 function ProvinceMaster() {
