@@ -13,3 +13,11 @@
     }
   }
 }
+
+td {
+  .ant-row {
+    &.ant-form-item {
+      margin-bottom: unset;
+    }
+  }
+}

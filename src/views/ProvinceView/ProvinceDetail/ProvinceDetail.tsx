@@ -7,6 +7,7 @@ import CardTitle from 'components/CardTitle/CardTitle';
 import Select from 'components/Select/Select';
 import {formItemLayout} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
+import {hasError} from 'core/helpers/form';
 import {useDetail, useEnumList} from 'core/hooks';
 import {useChangeHandlers} from 'core/hooks/useChangeHandlers';
 import {Province} from 'models/Province';
@@ -62,7 +63,10 @@ function ProvinceDetail() {
           <Form {...formItemLayout}>
             <div className="row">
               <div className="col-6">
-                <Form.Item label={translate('province.id')}>
+                <Form.Item label={translate('province.id')}
+                           validateStatus={hasError<Province>(province, nameof(province.id))}
+                           help={province.errors?.id}
+                >
                   <Input
                     type="text"
                     name={nameof(province.id)}
@@ -70,7 +74,10 @@ function ProvinceDetail() {
                     onChange={handleUpdateSimpleField(nameof(province.id), false)}
                   />
                 </Form.Item>
-                <Form.Item label={translate('province.name')}>
+                <Form.Item label={translate('province.name')}
+                           validateStatus={hasError<Province>(province, nameof(province.name))}
+                           help={province.errors?.name}
+                >
                   <Input
                     type="text"
                     name={nameof(province.name)}
@@ -78,7 +85,10 @@ function ProvinceDetail() {
                     onChange={handleUpdateSimpleField(nameof(province.name), false)}
                   />
                 </Form.Item>
-                <Form.Item label={translate('province.provinceType')}>
+                <Form.Item label={translate('province.provinceType')}
+                           validateStatus={hasError<Province>(province, nameof(province.provinceType))}
+                           help={province.errors?.provinceType}
+                >
                   <Select
                     list={provinceTypes}
                     value={province?.provinceTypeId}
