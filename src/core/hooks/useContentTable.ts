@@ -1,30 +1,32 @@
 import {Model} from 'core/models';
 import React from 'react';
 
-export interface ContentTableProps<T extends Model, F extends keyof T> {
+export interface ContentTableProps<T extends Model, TContent extends Model> {
   model: T;
 
   setModel: (t: T) => void;
 
-  field: F;
+  field: string;
 
-  onChange?: (v: T[F]) => void;
+  onChange?: (v: TContent[]) => void;
 }
 
-type ContentTableHookResult<T extends Model, F extends keyof T> = [
-  T[F],
-  (v: T[F]) => void,
+type ContentTableHookResult<TContent extends Model> = [
+  TContent[],
+  (v: TContent[]) => void,
+  () => void,
+  (id: number) => () => void,
 ];
 
-export function useContentTable<T extends Model, F extends keyof T>(
+export function useContentTable<T extends Model, TContent extends Model>(
   model: T,
   setModel: (t: T) => void,
-  field: F,
-): ContentTableHookResult<T, F> {
-  const value: T[F] = model[field];
+  field: string,
+): ContentTableHookResult<TContent> {
+  const value: TContent[] = model[field];
 
   const setValue = React.useCallback(
-    (v: T[F]) => {
+    (v: TContent[]) => {
       setModel(Model.clone<T>({
         ...model,
         [field]: v,
@@ -33,5 +35,25 @@ export function useContentTable<T extends Model, F extends keyof T>(
     [field, model, setModel],
   );
 
-  return [value, setValue];
+  const handleDelete = React.useCallback(
+    (id: number) => {
+      return () => {
+        const newValue: TContent[] = value.filter((v: TContent) => v.id !== id);
+        setValue(newValue);
+      };
+    },
+    [value, setValue],
+  );
+
+  const handleAdd = React.useCallback(
+    () => {
+      setValue([
+        ...value,
+        new Model() as TContent,
+      ]);
+    },
+    [setValue, value],
+  );
+
+  return [value, setValue, handleAdd, handleDelete];
 }

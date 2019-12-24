@@ -102,7 +102,7 @@ function ProvinceDetail() {
 
         {isDetail && (
           <Card title={districtTableTitle}>
-            <DistrictContentTable model={province} setModel={setProvince} field="districts"/>
+            <DistrictContentTable model={province} setModel={setProvince} field={nameof(province.districts)}/>
             {actions}
           </Card>
         )}

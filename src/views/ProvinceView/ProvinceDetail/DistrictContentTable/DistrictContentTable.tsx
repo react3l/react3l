@@ -28,26 +28,16 @@ const columnWidth = {
   actions: COLUMN_WIDTH.actions,
 };
 
-function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
+function DistrictContentTable(props: ContentTableProps<Province, District>) {
   const {model, setModel, field} = props;
 
-  const [districts, setDistricts] = useContentTable<Province, 'districts'>(model, setModel, field);
+  const [districts, , handleAdd, handleDelete] = useContentTable<Province, District>(model, setModel, field);
 
   const [districtTypes] = useEnumList<DistrictType>(repository.listDistrictType);
 
   const [translate] = useTranslation();
   // tslint:disable-next-line:max-line-length
   const [dataSource, , , , handleChange] = useLocalTable<District, DistrictSearch>(districts, districtFilter);
-
-  const handleDelete = React.useCallback(
-    (id: number) => {
-      return () => {
-        const newDistricts: District[] = districts.filter((district: District) => district.id !== id);
-        setDistricts(newDistricts);
-      };
-    },
-    [districts, setDistricts],
-  );
 
   const columns: Array<ColumnProps<District>> = React.useMemo(
     () => {
@@ -171,6 +161,13 @@ function DistrictContentTable(props: ContentTableProps<Province, 'districts'>) {
            columns={columns}
            pagination={false}
            onChange={handleChange}
+           footer={() => (
+             <>
+               <Button htmlType="button" type="link" onClick={handleAdd}>
+                 {translate('general.actions.add')}
+               </Button>
+             </>
+           )}
     />
   );
 }
