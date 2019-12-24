@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {renderRoutes, RouteConfig} from 'react-router-config';
 import {Switch} from 'react-router-dom';
 

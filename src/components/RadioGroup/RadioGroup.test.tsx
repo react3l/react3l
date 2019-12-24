@@ -1,6 +1,6 @@
-import {MemoryRouter} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter} from 'react-router-dom';
 import RadioGroup from './RadioGroup';
 
 describe('RadioGroup', () => {
@@ -8,11 +8,10 @@ describe('RadioGroup', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-      <RadioGroup/>
+        <RadioGroup/>
       </MemoryRouter>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 });
-

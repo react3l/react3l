@@ -4,7 +4,7 @@ import Menu from 'antd/lib/menu';
 import classNames from 'classnames';
 import {APP_TITLE} from 'config/consts';
 import {menu} from 'config/menu';
-import * as React from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {renderRoutes, RouteConfig, RouteConfigComponentProps} from 'react-router-config';
 import {NavLink, Switch, withRouter} from 'react-router-dom';

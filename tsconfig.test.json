@@ -32,8 +32,5 @@
   "include": [
     "src/**/*.test.ts",
     "src/**/*.test.tsx"
-  ],
-  "exclude": [
-    "**/*"
   ]
 }

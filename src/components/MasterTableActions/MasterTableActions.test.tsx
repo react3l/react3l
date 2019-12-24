@@ -1,6 +1,6 @@
-import {MemoryRouter} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter} from 'react-router-dom';
 import MasterTableActions from './MasterTableActions';
 
 describe('MasterTableActions', () => {
@@ -8,11 +8,10 @@ describe('MasterTableActions', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-      <MasterTableActions/>
+        <MasterTableActions/>
       </MemoryRouter>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 });
-
