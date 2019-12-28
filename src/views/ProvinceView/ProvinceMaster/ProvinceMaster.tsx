@@ -5,10 +5,11 @@ import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
-import {useDeleteHandler, useMaster} from 'core/hooks';
+import {useDeleteHandler, useEnumList, useMaster} from 'core/hooks';
 import {useMasterTable} from 'core/hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
+import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
@@ -19,7 +20,7 @@ const columnWidth = {
   index: COLUMN_WIDTH.index,
   id: undefined,
   name: undefined,
-  provinceType: undefined,
+  provinceTypeId: undefined,
   actions: COLUMN_WIDTH.actions,
 };
 
@@ -33,6 +34,8 @@ function ProvinceMaster() {
 
   const handleDelete = useDeleteHandler<Province, ProvinceSearch>(repository.delete, setLoading, search, setSearch);
 
+  const [provinceTypes] = useEnumList<ProvinceType>(repository.listProvinceType);
+
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => {
       return [
@@ -40,11 +43,13 @@ function ProvinceMaster() {
           title: translate(MASTER_KEYS.index),
           key: nameof(MASTER_KEYS.index),
           width: columnWidth.index,
+          className: 'center',
           dataIndex: nameof(list[0].id),
           children: [
             {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.index)),
               width: columnWidth.index,
+              className: 'center',
               dataIndex: nameof(list[0].id),
               render: renderMasterIndex<Province>(pagination),
             },
@@ -82,16 +87,19 @@ function ProvinceMaster() {
         },
         {
           title: translate('province.provinceType'),
-          key: nameof(list[0].provinceType),
-          width: columnWidth.provinceType,
-          dataIndex: nameof(list[0].provinceType),
+          key: nameof(list[0].provinceTypeId),
+          width: columnWidth.provinceTypeId,
+          dataIndex: nameof(list[0].provinceTypeId),
           sorter: true,
-          sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].provinceType), sorter),
+          sortOrder: ProvinceSearch.getOrderTypeForTable<Province>(nameof(list[0].provinceTypeId), sorter),
           children: [
             {
-              key: withTableFilterSuffix(nameof(list[0].provinceType)),
-              width: columnWidth.provinceType,
-              dataIndex: nameof(list[0].provinceType),
+              key: withTableFilterSuffix(nameof(list[0].provinceTypeId)),
+              width: columnWidth.provinceTypeId,
+              dataIndex: nameof(list[0].provinceTypeId),
+              render(provinceTypeId: number) {
+                return provinceTypes.find((provinceType: ProvinceType) => provinceType.id === provinceTypeId)?.name;
+              },
             },
           ],
         },
@@ -124,7 +132,7 @@ function ProvinceMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleDelete, handleEdit, list, pagination, sorter, translate],
+    [handleDelete, handleEdit, list, pagination, provinceTypes, sorter, translate],
   );
 
   return (

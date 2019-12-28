@@ -108,8 +108,10 @@
     }
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-js": "react-scripts start",
+    "build-js": "react-scripts build",
+    "start": "run-s merge start-js",
+    "build": "run-s merge build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "tslint --fix ./src/**/*.{ts,tsx} -e ./src/**/*.test.{ts,tsx}",

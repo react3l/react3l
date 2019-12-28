@@ -3,21 +3,3 @@
 
 @import "page-master";
 @import "page-detail";
-
-.center {
-  text-align: center;
-
-  .ant-table-header-column {
-    > div {
-      text-align: center;
-    }
-  }
-}
-
-td {
-  .ant-row {
-    &.ant-form-item {
-      margin-bottom: unset;
-    }
-  }
-}

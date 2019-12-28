@@ -35,6 +35,24 @@
   }
 
   .ant-table-thead {
+    tr {
+      th {
+        &.actions {
+          @include column-actions;
+        }
+
+        &.center {
+          text-align: center;
+
+          .ant-table-header-column {
+            > div {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
     > tr {
       > th {
         &[colspan] {
@@ -56,14 +74,6 @@
         }
       }
     }
-
-    tr {
-      th {
-        &.actions {
-          @include column-actions;
-        }
-      }
-    }
   }
 
   .ant-table-tbody {
@@ -71,6 +81,12 @@
       td {
         &.actions {
           @include column-actions;
+        }
+
+        .ant-row {
+          &.ant-form-item {
+            margin-bottom: unset;
+          }
         }
       }
     }
