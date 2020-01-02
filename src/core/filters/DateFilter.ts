@@ -3,18 +3,6 @@ import {Filter} from '../filters/Filter';
 
 export class DateFilter extends Filter {
 
-  public equal?: Date;
-
-  public notEqual?: Date;
-
-  public greater?: Date;
-
-  public greaterEqual?: Date;
-
-  public less?: Date;
-
-  public lessEqual?: Date;
-
   public static types(): string[] {
     const filter: DateFilter = new DateFilter();
     return [
@@ -26,4 +14,16 @@ export class DateFilter extends Filter {
       nameof(filter.lessEqual),
     ];
   }
+
+  public equal?: Date;
+
+  public notEqual?: Date;
+
+  public greater?: Date;
+
+  public greaterEqual?: Date;
+
+  public less?: Date;
+
+  public lessEqual?: Date;
 }

@@ -3,18 +3,6 @@ import {Filter} from '../filters/Filter';
 
 export class NumberFilter extends Filter {
 
-  public equal?: number;
-
-  public notEqual?: number;
-
-  public greater?: number;
-
-  public greaterEqual?: number;
-
-  public less?: number;
-
-  public lessEqual?: number;
-
   public static types(): string[] {
     const filter: NumberFilter = new NumberFilter();
     return [
@@ -26,4 +14,16 @@ export class NumberFilter extends Filter {
       nameof(filter.lessEqual),
     ];
   }
+
+  public equal?: number;
+
+  public notEqual?: number;
+
+  public greater?: number;
+
+  public greaterEqual?: number;
+
+  public less?: number;
+
+  public lessEqual?: number;
 }

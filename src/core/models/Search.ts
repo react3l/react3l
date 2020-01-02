@@ -6,14 +6,6 @@ import {Cloneable} from './Cloneable';
 
 export class Search extends Cloneable {
 
-  public skip?: number = 0;
-
-  public take?: number = DEFAULT_TAKE;
-
-  public orderBy?: string;
-
-  public orderType?: string;
-
   public static setOrderType(search: Search, orderType: string | null | undefined | boolean) {
     if (typeof orderType === 'undefined') {
       search.orderType = undefined;
@@ -50,4 +42,12 @@ export class Search extends Cloneable {
   public static getOrderTypeForTable<T extends Model>(field: string, sorter: SorterResult<T>) {
     return (field === sorter.field) ? sorter.order : undefined;
   }
+
+  public skip?: number = 0;
+
+  public take?: number = DEFAULT_TAKE;
+
+  public orderBy?: string;
+
+  public orderType?: string;
 }

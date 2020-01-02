@@ -3,14 +3,6 @@ import {Filter} from './Filter';
 
 export class IdFilter extends Filter {
 
-  public equal?: number;
-
-  public notEqual?: number;
-
-  public in?: number[];
-
-  public notIn?: number[];
-
   public static types(): string[] {
     const filter: IdFilter = new IdFilter();
     return [
@@ -20,4 +12,12 @@ export class IdFilter extends Filter {
       nameof(filter.notIn),
     ];
   }
+
+  public equal?: number;
+
+  public notEqual?: number;
+
+  public in?: number[];
+
+  public notIn?: number[];
 }
