@@ -1,7 +1,6 @@
 import {AxiosResponse} from 'axios';
 import {API_PRODUCT_DETAIL_ROUTE} from 'config/api-consts';
 import {url} from 'core/helpers/url';
-import {Model} from 'core/models';
 import {Repository} from 'core/repositories';
 import kebabCase from 'lodash/kebabCase';
 import {DistrictType} from 'models/DistrictType';
@@ -45,7 +44,7 @@ export class ProductDetailRepository extends Repository {
   public delete = (product: Product): Promise<Product> => {
     return this.http.post<Product>(kebabCase(nameof(this.delete)), product)
       .then((response: AxiosResponse<Product>) => {
-        return Model.clone<Product>(response.data);
+        return Product.clone<Product>(response.data);
       });
   };
 
