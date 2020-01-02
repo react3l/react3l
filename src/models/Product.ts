@@ -1,5 +1,4 @@
-import {Model} from 'core';
-
+import {Model, PureModelData} from 'core';
 import {Brand} from 'models/Brand';
 import {Category} from 'models/Category';
 import {EVoucher} from 'models/EVoucher';
@@ -11,7 +10,8 @@ import {VariationGrouping} from 'models/VariationGrouping';
 import moment, {Moment} from 'moment';
 
 export class Product extends Model {
-  public static clone<T extends Model = Product>(product?: T): T | null | undefined {
+
+  public static clone<T extends Model = Product>(product?: PureModelData<Product>): T | null {
     const instance: T = new Model() as T;
     if (typeof product !== 'undefined' && product !== null) {
       Object.assign(instance, {
@@ -22,7 +22,7 @@ export class Product extends Model {
       });
       return instance;
     }
-    return product;
+    return null;
   }
 
   public id?: number;
@@ -47,7 +47,7 @@ export class Product extends Model {
 
   public returnPolicy?: string;
 
-  public expiredDate?: Moment | string;
+  public expiredDate?: Moment;
 
   public conditionOfUse?: string;
 
