@@ -1,6 +1,6 @@
-import {debounce} from 'core/helpers/debounce';
-import {Model} from 'core/models';
 import React from 'react';
+import {debounce} from '../helpers/debounce';
+import {Model} from '../models';
 
 export function useChangeHandlers<T extends Model>(model?: T, setModel?: (t: T) => void) {
   const handleSetInputValue = React.useCallback(

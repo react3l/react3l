@@ -1,9 +1,9 @@
 import {DETAIL_KEYS} from 'config/consts';
-import {Model, Search} from 'core/models';
 import {join} from 'path';
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 import nameof from 'ts-nameof.macro';
+import {Model, Search} from '../models';
 
 export type MasterHookResult<T extends Model, TSearch extends Search> = [
   T[],

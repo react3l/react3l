@@ -1,5 +1,5 @@
-import {Model} from 'core/models';
 import React from 'reactn';
+import {Model} from '../models';
 
 export function useEnumList<T extends Model>(
   list: () => Promise<T[]>,

@@ -1,9 +1,9 @@
 import message from 'antd/lib/message';
 import Modal from 'antd/lib/modal';
-import {translate} from 'core/helpers';
-import {Model, Search} from 'core/models';
 import {useTranslation} from 'react-i18next';
 import React from 'reactn';
+import {translate} from '../helpers';
+import {Model, Search} from '../models';
 
 const DEFAULT_SUCCESS_MESSAGE: string = translate('general.delete.success');
 const DEFAULT_FAILURE_MESSAGE: string = translate('general.delete.failure');

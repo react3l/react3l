@@ -1,19 +1,7 @@
-import {Filter} from 'core/filters/Filter';
 import nameof from 'ts-nameof.macro';
+import {Filter} from '../filters/Filter';
 
 export class DateFilter extends Filter {
-
-  public static types(): string[] {
-    const filter: DateFilter = new DateFilter();
-    return [
-      nameof(filter.equal),
-      nameof(filter.notEqual),
-      nameof(filter.greater),
-      nameof(filter.greaterEqual),
-      nameof(filter.less),
-      nameof(filter.lessEqual),
-    ];
-  }
 
   public equal?: Date;
 
@@ -26,4 +14,16 @@ export class DateFilter extends Filter {
   public less?: Date;
 
   public lessEqual?: Date;
+
+  public static types(): string[] {
+    const filter: DateFilter = new DateFilter();
+    return [
+      nameof(filter.equal),
+      nameof(filter.notEqual),
+      nameof(filter.greater),
+      nameof(filter.greaterEqual),
+      nameof(filter.less),
+      nameof(filter.lessEqual),
+    ];
+  }
 }

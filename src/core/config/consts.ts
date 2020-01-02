@@ -1,5 +1,5 @@
 import {FormProps} from 'antd/lib/form';
-import {translate} from '../helpers';
+import {translate} from '../helpers/translate';
 
 export const MASTER_KEYS: { [key: string]: string } = {
   index: translate('general.master.index'),
@@ -33,3 +33,7 @@ export const SORT_TYPES: SortType = {
 };
 
 export const DEFAULT_TAKE: number = 10;
+
+export const BASE_URL: string = process.env.REACT_APP_BASE_URL || '';
+
+export const INPUT_DEBOUNCE_TIME: number = parseInt(process.env.INPUT_DEBOUNCE_TIME, 10) || 400;

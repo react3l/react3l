@@ -1,5 +1,5 @@
-import {Model} from 'core/models';
 import React from 'react';
+import {Model} from '../models';
 
 export interface ContentTableProps<T extends Model, TContent extends Model> {
   model: T;

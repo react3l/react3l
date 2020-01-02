@@ -1,6 +1,6 @@
 import {PaginationProps} from 'antd/lib/pagination';
-import {DEFAULT_TAKE} from 'core/config';
-import {Model} from 'core/models';
+import {DEFAULT_TAKE} from '../config';
+import {Model} from '../models';
 
 export function renderMasterIndex<T extends Model>(pagination?: PaginationProps) {
   return (...[, , index]: [any, T, number]) => {

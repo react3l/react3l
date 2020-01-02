@@ -1,8 +1,8 @@
-import {DEFAULT_TAKE} from 'core/config';
-import {Search} from 'core/models/Search';
 import QueryString, {ParsedQuery} from 'query-string';
 import React from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
+import {DEFAULT_TAKE} from '../config';
+import {Search} from '../models/Search';
 
 /**
  * Sync search entity with query string
@@ -38,7 +38,7 @@ function parseSearch<TSearch extends Search>(search: string): TSearch {
             break;
 
           default:
-            tSearch[key] = value;
+            (tSearch as any)[key] = value;
             break;
         }
         return;

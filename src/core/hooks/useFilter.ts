@@ -1,5 +1,5 @@
-import {Search} from 'core/models';
 import React from 'react';
+import {Search} from '../models';
 
 export type FilterHookResult<TSearch extends Search, P extends keyof TSearch> = [
   TSearch[P],

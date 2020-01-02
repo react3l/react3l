@@ -3,6 +3,14 @@ import {Filter} from './Filter';
 
 export class GuidFilter extends Filter {
 
+  public equal?: string;
+
+  public notEqual?: string;
+
+  public in?: string[];
+
+  public notIn?: string[];
+
   public static types(): string[] {
     const filter: GuidFilter = new GuidFilter();
     return [
@@ -12,12 +20,4 @@ export class GuidFilter extends Filter {
       nameof(filter.notIn),
     ];
   }
-
-  public equal?: string;
-
-  public notEqual?: string;
-
-  public in?: string[];
-
-  public notIn?: string[];
 }

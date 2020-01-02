@@ -1,12 +1,12 @@
 import message from 'antd/lib/message';
 import {DETAIL_KEYS} from 'config/consts';
-import {translate} from 'core/helpers';
-import {Model} from 'core/models';
 import {join} from 'path';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {useHistory, useParams} from 'react-router-dom';
 import nameof from 'ts-nameof.macro';
+import {translate} from '../helpers';
+import {Model} from '../models';
 
 const DEFAULT_SAVING_SUCCESS_MESSAGE: string = translate('general.saving.success');
 const DEFAULT_SAVING_FAILURE_MESSAGE: string = translate('general.saving.failure');
@@ -17,7 +17,7 @@ export type DetailHookResult<T extends Model> = [
   boolean,
   boolean,
   () => void,
-  (t: T) => void,
+  () => void,
 ];
 
 interface DetailParams {

@@ -1,4 +1,4 @@
-import {DISTRICT_ROUTE, PROVINCE_ROUTE, WARD_ROUTE} from 'config/route-consts';
+import {DISTRICT_ROUTE, PRODUCT_ROUTE, PROVINCE_ROUTE, WARD_ROUTE} from 'config/route-consts';
 import {translate} from 'core/helpers';
 import {RouteConfig} from 'react-router-config';
 
@@ -17,5 +17,10 @@ export const menu: RouteConfig[] = [
     title: translate('menu.ward'),
     matIcon: 'location_city',
     path: WARD_ROUTE,
+  },
+  {
+    title: translate('menu.product'),
+    matIcon: 'location_city',
+    path: PRODUCT_ROUTE,
   },
 ];

@@ -1,5 +1,11 @@
 export class Filter {
 
+  constructor(filter?: Filter) {
+    if (!!filter) {
+      Object.assign(this, filter);
+    }
+  }
+
   public get type(): string {
     let type: string = null;
     Object
@@ -18,10 +24,5 @@ export class Filter {
 
   public static types(filter?: Filter): string[] {
     return Object.keys(filter);
-  }
-  constructor(filter?: Filter) {
-    if (!!filter) {
-      Object.assign(this, filter);
-    }
   }
 }

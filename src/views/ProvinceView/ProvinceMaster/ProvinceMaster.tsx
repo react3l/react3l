@@ -5,11 +5,10 @@ import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
-import {useDeleteHandler, useEnumList, useMaster} from 'core/hooks';
+import {useDeleteHandler, useMaster} from 'core/hooks';
 import {useMasterTable} from 'core/hooks/useMasterTable';
 import {Province} from 'models/Province';
 import {ProvinceSearch} from 'models/ProvinceSearch';
-import {ProvinceType} from 'models/ProvinceType';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
@@ -33,8 +32,6 @@ function ProvinceMaster() {
   const [pagination, sorter, handleTableChange] = useMasterTable<Province, ProvinceSearch>(search, setSearch, total);
 
   const handleDelete = useDeleteHandler<Province, ProvinceSearch>(repository.delete, setLoading, search, setSearch);
-
-  const [provinceTypes] = useEnumList<ProvinceType>(repository.listProvinceType);
 
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => {
@@ -86,7 +83,7 @@ function ProvinceMaster() {
           ],
         },
         {
-          title: translate('province.provinceType'),
+          title: translate('province.orderNumber'),
           key: nameof(list[0].provinceTypeId),
           width: columnWidth.provinceTypeId,
           dataIndex: nameof(list[0].provinceTypeId),
@@ -97,9 +94,6 @@ function ProvinceMaster() {
               key: withTableFilterSuffix(nameof(list[0].provinceTypeId)),
               width: columnWidth.provinceTypeId,
               dataIndex: nameof(list[0].provinceTypeId),
-              render(provinceTypeId: number) {
-                return provinceTypes.find((provinceType: ProvinceType) => provinceType.id === provinceTypeId)?.name;
-              },
             },
           ],
         },
@@ -132,7 +126,7 @@ function ProvinceMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleDelete, handleEdit, list, pagination, provinceTypes, sorter, translate],
+    [handleDelete, handleEdit, list, pagination, sorter, translate],
   );
 
   return (

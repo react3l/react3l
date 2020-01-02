@@ -5,3 +5,5 @@ export const DISTRICT_ROUTE: string = '/districts';
 export const WARD_ROUTE: string = '/wards';
 
 export const HOME_ROUTE: string = '/';
+
+export const PRODUCT_ROUTE: string = '/products';

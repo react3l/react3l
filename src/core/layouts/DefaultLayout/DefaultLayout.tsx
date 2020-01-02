@@ -2,8 +2,6 @@ import Icon from 'antd/lib/icon';
 import Layout from 'antd/lib/layout';
 import Menu from 'antd/lib/menu';
 import classNames from 'classnames';
-import {APP_TITLE} from 'config/consts';
-import {menu} from 'config/menu';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {renderRoutes, RouteConfig, RouteConfigComponentProps} from 'react-router-config';
@@ -14,7 +12,7 @@ const {Header, Sider, Content, Footer} = Layout;
 
 const {SubMenu} = Menu;
 
-interface DefaultLayoutProps extends RouteConfigComponentProps {
+export interface DefaultLayoutProps extends RouteConfigComponentProps {
   className?: string;
 
   headerClassName?: string;
@@ -22,6 +20,10 @@ interface DefaultLayoutProps extends RouteConfigComponentProps {
   contentClassName?: string;
 
   mainClassName?: string;
+
+  title?: string;
+
+  menu?: RouteConfig[];
 }
 
 function renderMenu(menu: RouteConfig[], translate: (key: string, data?: any) => string) {
@@ -52,14 +54,14 @@ function renderMenu(menu: RouteConfig[], translate: (key: string, data?: any) =>
 }
 
 function DefaultLayout(props: DefaultLayoutProps) {
-  const {route, className, contentClassName, headerClassName, mainClassName} = props;
+  const {route, className, contentClassName, headerClassName, mainClassName, menu, title} = props;
   const [translate] = useTranslation();
 
   return (
     <Layout className={classNames('default-layout', className)}>
       <Header className={headerClassName}>
         <div className="logo">
-          {APP_TITLE}
+          {title}
         </div>
       </Header>
       <Layout className={mainClassName}>
