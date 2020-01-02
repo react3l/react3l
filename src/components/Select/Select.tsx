@@ -37,7 +37,7 @@ export interface SelectProps<T extends Model, TSearch extends Search> {
 
   setSearch?: (search?: TSearch) => void;
 
-  searchField?: string;
+  searchField?: keyof TSearch;
 
   allowSearch?: boolean;
 

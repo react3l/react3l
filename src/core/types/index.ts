@@ -39,4 +39,4 @@ export type PureModelData<T extends Model> = {
             T[P] extends Model ? T[P] :
               T[P] extends Moment ? string :
                 any;
-};
+} | T;
