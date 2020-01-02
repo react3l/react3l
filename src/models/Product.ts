@@ -17,7 +17,7 @@ export class Product extends Model {
       Object.assign(instance, {
         ...product,
         expiredDate: moment(product.expiredDate), // Optional
-        items: product.items.map((item: Item) => Item.clone<Item>(item)),
+        items: product.items?.map((item: Item) => Item.clone<Item>(item)),
         type: ProductType.clone<ProductType>(product.type),
       });
       return instance;

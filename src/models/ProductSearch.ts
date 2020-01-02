@@ -1,6 +1,18 @@
 import {Search} from 'core/models/Search';
+import {PureModelData} from 'core/types';
 
 export class ProductSearch extends Search {
+
+  public static clone<T extends Search = ProductSearch>(
+    productSearch?: PureModelData<T>,
+  ): T | null {
+    const instance: T = new Search() as T;
+    if (typeof productSearch !== 'undefined' && productSearch !== null) {
+      Object.assign(instance, productSearch);
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -31,5 +43,4 @@ export class ProductSearch extends Search {
   public maximumPurchaseQuantity?: number;
 
   public disabled?: boolean;
-
 }
