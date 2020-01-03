@@ -21,9 +21,9 @@ function defaultRenderObject<T extends Model>(t: T) {
 type DefaultSelectChange<T extends Model> = (value: string | number, subject?: T) => void;
 
 export interface SelectProps<T extends Model, TSearch extends Search> {
-  value?: number;
+  value?: number | string;
 
-  defaultValue?: number;
+  defaultValue?: number | string;
 
   children?: ReactElement<SelectOptionProps<T>> | Array<ReactElement<SelectOptionProps<T>>>;
 

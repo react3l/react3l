@@ -1,42 +1,101 @@
 import Input from 'antd/lib/input';
 import Select from 'components/Select/Select';
-import {StringFilter} from 'core/filters';
+import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import {FilterType} from 'core/types';
 import React, {ChangeEvent} from 'react';
 import './AdvancedFilter.scss';
 
 interface AdvancedFilterProps {
-  filter: StringFilter;
+  filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
 
-  defaultType?: keyof StringFilter;
+  defaultType?: string;
+
+  onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
-const types: FilterType[] = StringFilter
-  .types()
-  .map((type: string, index: number) => {
-    return {
-      id: index,
-      name: type,
-    };
-  });
-
 function AdvancedFilter(props: AdvancedFilterProps) {
-  const [type, setType] = React.useState<string>(StringFilter.types()[0]);
+  const {filter, defaultType, onChange} = props;
 
-  const {filter, defaultType} = props;
+  const types: FilterType[] = React.useMemo(
+    () => {
+      if (filter instanceof StringFilter) {
+        return StringFilter
+          .types()
+          .map((type: string, index: number) => {
+            return {
+              id: index,
+              name: type,
+            };
+          });
+      }
+      if (filter instanceof NumberFilter) {
+        return NumberFilter
+          .types()
+          .map((type: string, index: number) => {
+            return {
+              id: index,
+              name: type,
+            };
+          });
+      }
+      if (filter instanceof DateFilter) {
+        return DateFilter
+          .types()
+          .map((type: string, index: number) => {
+            return {
+              id: index,
+              name: type,
+            };
+          });
+      }
+      if (filter instanceof IdFilter) {
+        return NumberFilter
+          .types()
+          .map((type: string, index: number) => {
+            return {
+              id: index,
+              name: type,
+            };
+          });
+      }
+      if (filter instanceof GuidFilter) {
+        return GuidFilter
+          .types()
+          .map((type: string, index: number) => {
+            return {
+              id: index,
+              name: type,
+            };
+          });
+      }
+      return [];
+    },
+    [filter],
+  );
+
+  const [type, setType] = React.useState<string>(defaultType || types[0].name);
+
+  const ref = React.createRef<Input>();
 
   const handleChange = React.useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      filter[type] = event.target.value;
+      if (event.target.value !== '') {
+        filter[type] = event.target.value;
+      } else {
+        filter[type] = null;
+      }
+      if (typeof onChange === 'function') {
+        onChange(filter);
+      }
     },
-    [filter, type],
+    [filter, onChange, type],
   );
 
   const handleChangeType = React.useCallback(
     (id: number) => {
       setType(types[id].name);
     },
-    [],
+    [types],
   );
 
   const addonBefore = React.useMemo(
@@ -50,13 +109,15 @@ function AdvancedFilter(props: AdvancedFilterProps) {
       }
       return null;
     },
-    [defaultType, handleChangeType],
+    [defaultType, handleChangeType, types],
   );
 
   return (
-    <Input defaultValue={filter[type]}
-           onChange={handleChange}
-           addonBefore={addonBefore}
+    <Input
+      ref={ref}
+      defaultValue={filter[type]}
+      onChange={handleChange}
+      addonBefore={addonBefore}
     />
   );
 }

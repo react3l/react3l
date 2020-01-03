@@ -1,3 +1,4 @@
+import {Moment} from 'moment';
 import nameof from 'ts-nameof.macro';
 import {Filter} from '../filters/Filter';
 
@@ -15,15 +16,15 @@ export class DateFilter extends Filter {
     ];
   }
 
-  public equal?: Date;
+  public equal?: Moment;
 
-  public notEqual?: Date;
+  public notEqual?: Moment;
 
-  public greater?: Date;
+  public greater?: Moment;
 
-  public greaterEqual?: Date;
+  public greaterEqual?: Moment;
 
-  public less?: Date;
+  public less?: Moment;
 
-  public lessEqual?: Date;
+  public lessEqual?: Moment;
 }
