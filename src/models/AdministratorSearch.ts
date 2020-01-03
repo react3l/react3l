@@ -1,13 +1,12 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class AdministratorSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public username?: StringFilter = new StringFilter();
 
-  public username?: string;
+  public displayName?: StringFilter = new StringFilter();
 
-  public displayName?: string;
-
-  public picture?: string;
-
+  public picture?: StringFilter = new StringFilter();
 }

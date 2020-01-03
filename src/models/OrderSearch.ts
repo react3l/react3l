@@ -1,32 +1,30 @@
-import {Search} from 'core/models/Search';
-import {Moment} from 'moment';
+import {DateFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class OrderSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public customerId?: IdFilter = new IdFilter();
 
-  public customerId?: number;
+  public createdDate?: DateFilter = new DateFilter();
 
-  public createdDate?: string | Date | Moment;
+  public couponCode?: StringFilter = new StringFilter();
 
-  public couponCode?: string;
+  public total?: NumberFilter = new NumberFilter();
 
-  public totalPrice?: number;
+  public couponAmount?: NumberFilter = new NumberFilter();
 
-  public discountPrice?: number;
+  public statusId?: IdFilter = new IdFilter();
 
-  public statusId?: number;
+  public address?: StringFilter = new StringFilter();
 
-  public address?: string;
+  public provinceId?: IdFilter = new IdFilter();
 
-  public provinceId?: number;
+  public districtId?: IdFilter = new IdFilter();
 
-  public districtId?: number;
+  public wardId?: IdFilter = new IdFilter();
 
-  public wardId?: number;
+  public phoneNumber?: StringFilter = new StringFilter();
 
-  public phoneNumber?: string;
-
-  public paymentMethodId?: number;
-
+  public paymentMethodId?: IdFilter = new IdFilter();
 }

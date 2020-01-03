@@ -1,15 +1,33 @@
-import {Model} from 'core';
-
-import {ImageFile} from 'models/ImageFile';
-import {Product} from 'models/Product';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import {Brand} from './Brand';
+import {ImageFile} from './ImageFile';
 
 export class Category extends Model {
 
+  public static clone<T extends Model = Category>(category?: PureModelData<Category>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof category !== 'undefined' && category !== null) {
+      Object.assign(instance, {
+        ...category,
+
+        image: ImageFile.clone<ImageFile>(category.image),
+
+      });
+      return instance;
+    }
+    return null;
+  }
+
   public id?: number;
 
-  public code?: string;
-
   public name?: string;
+
+  public slug?: string;
+
+  public pathId?: string;
+
+  public level?: number;
 
   public parentId?: number;
 
@@ -17,15 +35,13 @@ export class Category extends Model {
 
   public disabled?: boolean;
 
+  public title?: string;
+
+  public description?: string;
+
   public image?: ImageFile;
 
-  public parent?: Category;
+  public brands?: Brand[];
 
-  public inverseParent?: Category[];
-
-  public products?: Product[];
-
-  public constructor(category?: Category) {
-    super(category);
-  }
+  public errors?: ErrorMap<Category>;
 }

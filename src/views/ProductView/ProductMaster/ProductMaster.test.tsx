@@ -1,6 +1,6 @@
-import {MemoryRouter} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter} from 'react-router-dom';
 import ProductMaster from './';
 
 describe('ProductMaster', () => {
@@ -15,4 +15,3 @@ describe('ProductMaster', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 });
-

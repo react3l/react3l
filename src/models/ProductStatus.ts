@@ -1,8 +1,19 @@
-import {Model} from 'core';
-
-import {Product} from 'models/Product';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
 
 export class ProductStatus extends Model {
+
+  public static clone<T extends Model = ProductStatus>(productStatus?: PureModelData<ProductStatus>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof productStatus !== 'undefined' && productStatus !== null) {
+      Object.assign(instance, {
+        ...productStatus,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -10,9 +21,5 @@ export class ProductStatus extends Model {
 
   public name?: string;
 
-  public products?: Product[];
-
-  public constructor(productStatus?: ProductStatus) {
-    super(productStatus);
-  }
+  public errors?: ErrorMap<ProductStatus>;
 }

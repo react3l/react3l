@@ -1,11 +1,10 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class ProvinceSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
-
-  public orderNumber?: number;
-
+  public orderNumber?: NumberFilter = new NumberFilter();
 }

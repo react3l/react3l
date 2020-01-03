@@ -1,11 +1,10 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class MerchantStatusSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public code?: StringFilter = new StringFilter();
 
-  public code?: string;
-
-  public name?: string;
-
+  public name?: StringFilter = new StringFilter();
 }

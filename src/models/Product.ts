@@ -1,13 +1,14 @@
-import {Model, PureModelData} from 'core';
-import {Brand} from 'models/Brand';
-import {Category} from 'models/Category';
-import {EVoucher} from 'models/EVoucher';
-import {Item} from 'models/Item';
-import {Merchant} from 'models/Merchant';
-import {ProductStatus} from 'models/ProductStatus';
-import {ProductType} from 'models/ProductType';
-import {VariationGrouping} from 'models/VariationGrouping';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
 import moment, {Moment} from 'moment';
+import {Brand} from './Brand';
+import {Category} from './Category';
+import {ImageFile} from './ImageFile';
+import {Merchant} from './Merchant';
+import {MerchantAddress} from './MerchantAddress';
+import {PaymentMethod} from './PaymentMethod';
+import {ProductStatus} from './ProductStatus';
+import {ProductType} from './ProductType';
 
 export class Product extends Model {
 
@@ -16,9 +17,19 @@ export class Product extends Model {
     if (typeof product !== 'undefined' && product !== null) {
       Object.assign(instance, {
         ...product,
-        expiredDate: moment(product.expiredDate), // Optional
-        items: product.items?.map((item: Item) => Item.clone<Item>(item)),
+
+        expiredDate: moment(product.expiredDate),
+
+        brand: Brand.clone<Brand>(product.brand),
+
+        category: Category.clone<Category>(product.category),
+
+        merchant: Merchant.clone<Merchant>(product.merchant),
+
+        status: ProductStatus.clone<ProductStatus>(product.status),
+
         type: ProductType.clone<ProductType>(product.type),
+
       });
       return instance;
     }
@@ -27,9 +38,9 @@ export class Product extends Model {
 
   public id?: number;
 
-  public code?: string;
-
   public name?: string;
+
+  public slug?: string;
 
   public description?: string;
 
@@ -43,6 +54,8 @@ export class Product extends Model {
 
   public brandId?: number;
 
+  public keyFeatures?: string;
+
   public warrantyPolicy?: string;
 
   public returnPolicy?: string;
@@ -55,6 +68,14 @@ export class Product extends Model {
 
   public disabled?: boolean;
 
+  public firstVariationGroupingName?: string;
+
+  public firstVariationGroupingValue?: string;
+
+  public secondVariationGroupingName?: string;
+
+  public secondVariationGroupingValue?: string;
+
   public brand?: Brand;
 
   public category?: Category;
@@ -65,13 +86,11 @@ export class Product extends Model {
 
   public type?: ProductType;
 
-  public eVouchers?: EVoucher[];
+  public imageFiles?: ImageFile[];
 
-  public items?: Item[];
+  public merchantAddresses?: MerchantAddress[];
 
-  public variationGroupings?: VariationGrouping[];
+  public paymentMethods?: PaymentMethod[];
 
-  public constructor(product?: Product) {
-    super(product);
-  }
+  public errors?: ErrorMap<Product>;
 }

@@ -1,22 +1,20 @@
-import {Search} from 'core/models/Search';
-import {Moment} from 'moment';
+import {DateFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class DiscountSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public start?: DateFilter = new DateFilter();
 
-  public start?: string | Date | Moment;
+  public end?: DateFilter = new DateFilter();
 
-  public end?: string | Date | Moment;
+  public typeId?: IdFilter = new IdFilter();
 
-  public typeId?: number;
+  public statusId?: IdFilter = new IdFilter();
 
-  public statusId?: number;
+  public value?: NumberFilter = new NumberFilter();
 
-  public value?: number;
-
-  public customerGroupingId?: number;
-
+  public customerGroupingId?: IdFilter = new IdFilter();
 }

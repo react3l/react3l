@@ -1,18 +1,40 @@
-import {Model} from 'core';
-import {CouponType} from 'models/CouponType';
-
-import {ImageFile} from 'models/ImageFile';
-import {Moment} from 'moment';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import moment, {Moment} from 'moment';
+import {CouponType} from './CouponType';
+import {Customer} from './Customer';
+import {ImageFile} from './ImageFile';
+import {Item} from './Item';
 
 export class Coupon extends Model {
+
+  public static clone<T extends Model = Coupon>(coupon?: PureModelData<Coupon>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof coupon !== 'undefined' && coupon !== null) {
+      Object.assign(instance, {
+        ...coupon,
+
+        start: moment(coupon.start),
+
+        end: moment(coupon.end),
+
+        image: ImageFile.clone<ImageFile>(coupon.image),
+
+        type: CouponType.clone<CouponType>(coupon.type),
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
   public code?: string;
 
-  public start?: string | Date | Moment;
+  public start?: Moment;
 
-  public end?: string | Date | Moment;
+  public end?: Moment;
 
   public typeId?: number;
 
@@ -36,7 +58,9 @@ export class Coupon extends Model {
 
   public type?: CouponType;
 
-  public constructor(coupon?: Coupon) {
-    super(coupon);
-  }
+  public customers?: Customer[];
+
+  public items?: Item[];
+
+  public errors?: ErrorMap<Coupon>;
 }

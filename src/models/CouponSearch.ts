@@ -1,32 +1,26 @@
-import {Search} from 'core/models/Search';
-import {Moment} from 'moment';
+import {DateFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class CouponSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public code?: StringFilter = new StringFilter();
 
-  public code?: string;
+  public start?: DateFilter = new DateFilter();
 
-  public start?: string | Date | Moment;
+  public end?: DateFilter = new DateFilter();
 
-  public end?: string | Date | Moment;
+  public typeId?: IdFilter = new IdFilter();
 
-  public typeId?: number;
+  public value?: NumberFilter = new NumberFilter();
 
-  public value?: number;
+  public maxAmount?: NumberFilter = new NumberFilter();
 
-  public maxAmount?: number;
+  public quantity?: NumberFilter = new NumberFilter();
 
-  public quantity?: number;
+  public usageLimitPerCustomer?: NumberFilter = new NumberFilter();
 
-  public usageLimitPerCustomer?: number;
+  public description?: StringFilter = new StringFilter();
 
-  public description?: string;
-
-  public appliedAllCustomers?: boolean;
-
-  public appliedAllItems?: boolean;
-
-  public imageId?: number;
-
+  public imageId?: IdFilter = new IdFilter();
 }

@@ -1,17 +1,16 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class ImageFileSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public key?: StringFilter = new StringFilter();
 
-  public key?: string;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public url?: StringFilter = new StringFilter();
 
-  public url?: string;
+  public thumbUrl?: StringFilter = new StringFilter();
 
-  public thumbUrl?: string;
-
-  public originUrl?: string;
-
+  public originUrl?: StringFilter = new StringFilter();
 }

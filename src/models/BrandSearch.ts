@@ -1,11 +1,14 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class BrandSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public slug?: StringFilter = new StringFilter();
 
-  public disabled?: boolean;
+  public title?: StringFilter = new StringFilter();
 
+  public description?: StringFilter = new StringFilter();
 }

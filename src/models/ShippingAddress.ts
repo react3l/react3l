@@ -1,11 +1,30 @@
-import {Model} from 'core';
-
-import {Customer} from 'models/Customer';
-import {District} from 'models/District';
-import {Province} from 'models/Province';
-import {Ward} from 'models/Ward';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import {Customer} from './Customer';
+import {District} from './District';
+import {Province} from './Province';
+import {Ward} from './Ward';
 
 export class ShippingAddress extends Model {
+
+  public static clone<T extends Model = ShippingAddress>(shippingAddress?: PureModelData<ShippingAddress>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof shippingAddress !== 'undefined' && shippingAddress !== null) {
+      Object.assign(instance, {
+        ...shippingAddress,
+
+        customer: Customer.clone<Customer>(shippingAddress.customer),
+
+        district: District.clone<District>(shippingAddress.district),
+
+        province: Province.clone<Province>(shippingAddress.province),
+
+        ward: Ward.clone<Ward>(shippingAddress.ward),
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -35,7 +54,5 @@ export class ShippingAddress extends Model {
 
   public ward?: Ward;
 
-  public constructor(shippingAddress?: ShippingAddress) {
-    super(shippingAddress);
-  }
+  public errors?: ErrorMap<ShippingAddress>;
 }

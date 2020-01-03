@@ -17,3 +17,5 @@ export {useMaster} from './useMaster';
 export {useMasterTable} from './useMasterTable';
 
 export {useQuery} from './useQuery';
+
+export {useSelect} from './useSelect';

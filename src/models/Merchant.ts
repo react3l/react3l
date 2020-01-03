@@ -1,11 +1,28 @@
-import {Model} from 'core';
-import {MerchantAddress} from 'models/MerchantAddress';
-import {MerchantContact} from 'models/MerchantContact';
-
-import {MerchantStatus} from 'models/MerchantStatus';
-import {Product} from 'models/Product';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import {MerchantAddress} from './MerchantAddress';
+import {MerchantContact} from './MerchantContact';
+import {MerchantStatus} from './MerchantStatus';
 
 export class Merchant extends Model {
+
+  public static clone<T extends Model = Merchant>(merchant?: PureModelData<Merchant>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof merchant !== 'undefined' && merchant !== null) {
+      Object.assign(instance, {
+        ...merchant,
+
+        status: MerchantStatus.clone<MerchantStatus>(merchant.status),
+
+        merchantAddresses: merchant.merchantAddresses?.map((merchantAddress: MerchantAddress) => MerchantAddress.clone<MerchantAddress>(merchantAddress)),
+
+        merchantContacts: merchant.merchantContacts?.map((merchantContact: MerchantContact) => MerchantContact.clone<MerchantContact>(merchantContact)),
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -29,9 +46,5 @@ export class Merchant extends Model {
 
   public merchantContacts?: MerchantContact[];
 
-  public products?: Product[];
-
-  public constructor(merchant?: Merchant) {
-    super(merchant);
-  }
+  public errors?: ErrorMap<Merchant>;
 }

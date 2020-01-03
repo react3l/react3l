@@ -1,17 +1,22 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class CategorySearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public code?: string;
+  public slug?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public pathId?: StringFilter = new StringFilter();
 
-  public parentId?: number;
+  public level?: NumberFilter = new NumberFilter();
 
-  public imageId?: number;
+  public parentId?: IdFilter = new IdFilter();
 
-  public disabled?: boolean;
+  public imageId?: IdFilter = new IdFilter();
 
+  public title?: StringFilter = new StringFilter();
+
+  public description?: StringFilter = new StringFilter();
 }

@@ -3,11 +3,14 @@ import {API_PRODUCT_DETAIL_ROUTE} from 'config/api-consts';
 import {url} from 'core/helpers/url';
 import {Repository} from 'core/repositories';
 import kebabCase from 'lodash/kebabCase';
-import {DistrictType} from 'models/DistrictType';
+import {Merchant} from 'models/Merchant';
+import {MerchantSearch} from 'models/MerchantSearch';
 import {Product} from 'models/Product';
 import {ProductSearch} from 'models/ProductSearch';
 import {ProductStatus} from 'models/ProductStatus';
+import {ProductStatusSearch} from 'models/ProductStatusSearch';
 import {ProductType} from 'models/ProductType';
+import {ProductTypeSearch} from 'models/ProductTypeSearch';
 import nameof from 'ts-nameof.macro';
 
 export class ProductDetailRepository extends Repository {
@@ -55,17 +58,8 @@ export class ProductDetailRepository extends Repository {
       });
   };
 
-  public listDistrictType = (): Promise<DistrictType[]> => {
-    return this.http.post<DistrictType[]>(kebabCase(nameof(this.listDistrictType)))
-      .then((response: AxiosResponse<DistrictType[]>) => {
-        return response.data.map((productType: DistrictType) => {
-          return DistrictType.clone<DistrictType>(productType);
-        });
-      });
-  };
-
   public singleListProductStatus = (): Promise<ProductStatus[]> => {
-    return this.http.post<ProductStatus[]>(kebabCase(nameof(this.singleListProductStatus)), {})
+    return this.http.post<ProductStatus[]>(kebabCase(nameof(this.singleListProductStatus)), new ProductStatusSearch())
       .then((response: AxiosResponse<ProductStatus[]>) => {
         return response.data.map((productType: ProductStatus) => {
           return ProductStatus.clone<ProductStatus>(productType);
@@ -74,10 +68,19 @@ export class ProductDetailRepository extends Repository {
   };
 
   public singleListProductType = (): Promise<ProductType[]> => {
-    return this.http.post<ProductType[]>(kebabCase(nameof(this.singleListProductType)), {})
+    return this.http.post<ProductType[]>(kebabCase(nameof(this.singleListProductType)), new ProductTypeSearch())
       .then((response: AxiosResponse<ProductType[]>) => {
         return response.data.map((productType: ProductType) => {
           return ProductType.clone<ProductType>(productType);
+        });
+      });
+  };
+
+  public singleListMerchant = (merchantSearch: MerchantSearch): Promise<Merchant[]> => {
+    return this.http.post<Merchant[]>(kebabCase(nameof(this.singleListMerchant)), merchantSearch)
+      .then((response: AxiosResponse<Merchant[]>) => {
+        return response.data.map((merchant: Merchant) => {
+          return Merchant.clone<Merchant>(merchant);
         });
       });
   };

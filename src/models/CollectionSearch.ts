@@ -1,16 +1,20 @@
-import {Search} from 'core/models/Search';
-import {Moment} from 'moment';
+import {DateFilter, IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class CollectionSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public slug?: StringFilter = new StringFilter();
 
-  public start?: string | Date | Moment;
+  public start?: DateFilter = new DateFilter();
 
-  public end?: string | Date | Moment;
+  public end?: DateFilter = new DateFilter();
 
-  public statusId?: number;
+  public statusId?: IdFilter = new IdFilter();
 
+  public title?: StringFilter = new StringFilter();
+
+  public description?: StringFilter = new StringFilter();
 }

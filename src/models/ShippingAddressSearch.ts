@@ -1,25 +1,22 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class ShippingAddressSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public customerId?: IdFilter = new IdFilter();
 
-  public customerId?: number;
+  public fullName?: StringFilter = new StringFilter();
 
-  public fullName?: string;
+  public companyName?: StringFilter = new StringFilter();
 
-  public companyName?: string;
+  public phoneNumber?: StringFilter = new StringFilter();
 
-  public phoneNumber?: string;
+  public provinceId?: IdFilter = new IdFilter();
 
-  public provinceId?: number;
+  public districtId?: IdFilter = new IdFilter();
 
-  public districtId?: number;
+  public wardId?: IdFilter = new IdFilter();
 
-  public wardId?: number;
-
-  public address?: string;
-
-  public isDefault?: boolean;
-
+  public address?: StringFilter = new StringFilter();
 }

@@ -1,8 +1,19 @@
-import {Model} from 'core';
-
-import {Collection} from 'models/Collection';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
 
 export class CollectionStatus extends Model {
+
+  public static clone<T extends Model = CollectionStatus>(collectionStatus?: PureModelData<CollectionStatus>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof collectionStatus !== 'undefined' && collectionStatus !== null) {
+      Object.assign(instance, {
+        ...collectionStatus,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -10,9 +21,5 @@ export class CollectionStatus extends Model {
 
   public name?: string;
 
-  public collections?: Collection[];
-
-  public constructor(collectionStatus?: CollectionStatus) {
-    super(collectionStatus);
-  }
+  public errors?: ErrorMap<CollectionStatus>;
 }

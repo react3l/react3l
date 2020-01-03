@@ -1,16 +1,14 @@
-import {Search} from 'core/models/Search';
-import {Moment} from 'moment';
+import {DateFilter, IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class EVoucherContentSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public eVoucherId?: IdFilter = new IdFilter();
 
-  public eVoucherId?: number;
+  public usedCode?: StringFilter = new StringFilter();
 
-  public usedCode?: string;
+  public merchantCode?: StringFilter = new StringFilter();
 
-  public merchantCode?: string;
-
-  public usedDate?: string | Date | Moment;
-
+  public usedDate?: DateFilter = new DateFilter();
 }

@@ -1,9 +1,19 @@
-import {Model} from 'core';
-
-import {Customer} from 'models/Customer';
-import {Discount} from 'models/Discount';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
 
 export class CustomerGrouping extends Model {
+
+  public static clone<T extends Model = CustomerGrouping>(customerGrouping?: PureModelData<CustomerGrouping>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof customerGrouping !== 'undefined' && customerGrouping !== null) {
+      Object.assign(instance, {
+        ...customerGrouping,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -11,11 +21,5 @@ export class CustomerGrouping extends Model {
 
   public name?: string;
 
-  public customers?: Customer[];
-
-  public discounts?: Discount[];
-
-  public constructor(customerGrouping?: CustomerGrouping) {
-    super(customerGrouping);
-  }
+  public errors?: ErrorMap<CustomerGrouping>;
 }

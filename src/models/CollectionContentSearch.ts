@@ -1,13 +1,12 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class CollectionContentSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public collectionId?: IdFilter = new IdFilter();
 
-  public collectionId?: number;
+  public priority?: NumberFilter = new NumberFilter();
 
-  public orderNumber?: number;
-
-  public itemId?: number;
-
+  public productId?: IdFilter = new IdFilter();
 }

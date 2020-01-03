@@ -28,7 +28,8 @@
       "ignore-bound-class-methods"
     ],
     "no-shadowed-variable": false,
-    "interface-name": false
+    "interface-name": false,
+    "max-line-length": false
   },
   "rulesDirectory": [
     "tslint-eslint-rules",

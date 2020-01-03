@@ -1,19 +1,16 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class CustomerSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public username?: StringFilter = new StringFilter();
 
-  public username?: string;
+  public displayName?: StringFilter = new StringFilter();
 
-  public displayName?: string;
+  public phoneNumber?: StringFilter = new StringFilter();
 
-  public phoneNumber?: string;
+  public email?: StringFilter = new StringFilter();
 
-  public email?: string;
-
-  public customerGroupingId?: number;
-
-  public disabled?: boolean;
-
+  public customerGroupingId?: IdFilter = new IdFilter();
 }

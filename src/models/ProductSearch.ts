@@ -1,46 +1,42 @@
-import {Search} from 'core/models/Search';
-import {PureModelData} from 'core/types';
+import {DateFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class ProductSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public static clone<T extends Search = ProductSearch>(
-    productSearch?: PureModelData<T>,
-  ): T | null {
-    const instance: T = new Search() as T;
-    if (typeof productSearch !== 'undefined' && productSearch !== null) {
-      Object.assign(instance, productSearch);
-      return instance;
-    }
-    return null;
-  }
+  public name?: StringFilter = new StringFilter();
 
-  public id?: number;
+  public slug?: StringFilter = new StringFilter();
 
-  public code?: string;
+  public description?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public typeId?: IdFilter = new IdFilter();
 
-  public description?: string;
+  public statusId?: IdFilter = new IdFilter();
 
-  public typeId?: number;
+  public merchantId?: IdFilter = new IdFilter();
 
-  public statusId?: number;
+  public categoryId?: IdFilter = new IdFilter();
 
-  public merchantId?: number;
+  public brandId?: IdFilter = new IdFilter();
 
-  public categoryId?: number;
+  public keyFeatures?: StringFilter = new StringFilter();
 
-  public brandId?: number;
+  public warrantyPolicy?: StringFilter = new StringFilter();
 
-  public warrantyPolicy?: string;
+  public returnPolicy?: StringFilter = new StringFilter();
 
-  public returnPolicy?: string;
+  public expiredDate?: DateFilter = new DateFilter();
 
-  public expiredDate?: string;
+  public conditionOfUse?: StringFilter = new StringFilter();
 
-  public conditionOfUse?: string;
+  public maximumPurchaseQuantity?: NumberFilter = new NumberFilter();
 
-  public maximumPurchaseQuantity?: number;
+  public firstVariationGroupingName?: StringFilter = new StringFilter();
 
-  public disabled?: boolean;
+  public firstVariationGroupingValue?: StringFilter = new StringFilter();
+
+  public secondVariationGroupingName?: StringFilter = new StringFilter();
+
+  public secondVariationGroupingValue?: StringFilter = new StringFilter();
 }

@@ -1,7 +1,7 @@
-import AntSelect, {ModeOption, OptionProps} from 'antd/lib/select';
+import AntSelect, {OptionProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
 import classNames from 'classnames';
-import {debounce} from 'core/helpers/debounce';
+import {useSelect} from 'core/hooks';
 import {Model, Search} from 'core/models';
 import React, {ReactElement, Ref} from 'react';
 import './Select.scss';
@@ -25,8 +25,6 @@ export interface SelectProps<T extends Model, TSearch extends Search> {
 
   defaultValue?: number;
 
-  mode?: ModeOption;
-
   children?: ReactElement<SelectOptionProps<T>> | Array<ReactElement<SelectOptionProps<T>>>;
 
   list?: T[];
@@ -37,9 +35,7 @@ export interface SelectProps<T extends Model, TSearch extends Search> {
 
   setSearch?: (search?: TSearch) => void;
 
-  searchField?: keyof TSearch;
-
-  allowSearch?: boolean;
+  searchField?: string;
 
   allowClear?: boolean;
 
@@ -57,63 +53,28 @@ export interface SelectProps<T extends Model, TSearch extends Search> {
 const Select = React.forwardRef(
   <T extends Model, TSearch extends Search>(props: SelectProps<T, TSearch>, ref: Ref<any>) => {
     const {
+      search,
+      setSearch,
       className,
       list: defaultList,
       children,
       getList,
-      search,
-      setSearch,
       onSearchError,
       allowClear,
-      allowSearch,
       onChange,
       searchField,
-      mode,
       value,
       defaultValue,
       render,
     } = props;
 
-    const [list, setList] = React.useState<T[]>([]);
-    const [loading, setLoading] = React.useState<boolean>(false);
-
-    React.useEffect(
-      () => {
-        if (defaultList) {
-          setList(defaultList);
-        }
-      },
-      [defaultList],
-    );
-
-    const handleLoadList = React.useCallback(
-      () => {
-        setLoading(true);
-        getList(search)
-          .then((list: T[]) => {
-            setList(list);
-          })
-          .catch(onSearchError)
-          .finally(() => {
-            setLoading(false);
-          });
-      },
-      [getList, onSearchError, search],
-    );
-
-    React.useEffect(
-      () => {
-        if (getList) {
-          handleLoadList();
-        }
-      },
-      [getList, handleLoadList],
-    );
+    // tslint:disable-next-line:max-line-length
+    const [list, handleLoadList, loading, handleSearch] = useSelect<T, TSearch>(defaultList, getList, search, setSearch, searchField, onSearchError);
 
     const handleToggle = React.useCallback(
-      (visible: boolean) => {
+      async (visible: boolean) => {
         if (visible && getList) {
-          handleLoadList();
+          await handleLoadList();
         }
       },
       [getList, handleLoadList],
@@ -134,27 +95,17 @@ const Select = React.forwardRef(
       [onChange],
     );
 
-    const handleSearch = React.useMemo(
-      () => debounce((value: string) => {
-        setSearch(Search.clone<TSearch>({
-          ...search,
-          [searchField]: value,
-        }));
-      }),
-      [search, searchField, setSearch],
-    );
-
     return React.useMemo(
       () => (
         <AntSelect
           ref={ref}
           className={classNames('w-100', className)}
           onDropdownVisibleChange={handleToggle}
-          mode={mode}
+          mode="default"
           onChange={handleChange}
           loading={loading}
           allowClear={allowClear}
-          showSearch={allowSearch}
+          showSearch={!!getList}
           onSearch={handleSearch}
           defaultValue={defaultValue}
           value={value}
@@ -168,7 +119,7 @@ const Select = React.forwardRef(
         </AntSelect>
       ),
       // tslint:disable-next-line:max-line-length
-      [allowClear, allowSearch, children, className, defaultValue, handleChange, handleSearch, handleToggle, list, loading, mode, ref, render, value],
+      [allowClear, children, className, defaultValue, getList, handleChange, handleSearch, handleToggle, list, loading, ref, render, value],
     );
   },
 );

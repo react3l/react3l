@@ -1,9 +1,21 @@
-import {Model} from 'core';
-
-import {Category} from 'models/Category';
-import {Coupon} from 'models/Coupon';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import {Brand} from './Brand';
+import {Product} from './Product';
 
 export class ImageFile extends Model {
+
+  public static clone<T extends Model = ImageFile>(imageFile?: PureModelData<ImageFile>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof imageFile !== 'undefined' && imageFile !== null) {
+      Object.assign(instance, {
+        ...imageFile,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -17,11 +29,9 @@ export class ImageFile extends Model {
 
   public originUrl?: string;
 
-  public categories?: Category[];
+  public brands?: Brand[];
 
-  public coupons?: Coupon[];
+  public products?: Product[];
 
-  public constructor(imageFile?: ImageFile) {
-    super(imageFile);
-  }
+  public errors?: ErrorMap<ImageFile>;
 }

@@ -1,8 +1,20 @@
-import {Model} from 'core';
-
-import {Order} from 'models/Order';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import {Product} from './Product';
 
 export class PaymentMethod extends Model {
+
+  public static clone<T extends Model = PaymentMethod>(paymentMethod?: PureModelData<PaymentMethod>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof paymentMethod !== 'undefined' && paymentMethod !== null) {
+      Object.assign(instance, {
+        ...paymentMethod,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -12,9 +24,7 @@ export class PaymentMethod extends Model {
 
   public description?: string;
 
-  public orders?: Order[];
+  public products?: Product[];
 
-  public constructor(paymentMethod?: PaymentMethod) {
-    super(paymentMethod);
-  }
+  public errors?: ErrorMap<PaymentMethod>;
 }

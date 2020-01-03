@@ -1,10 +1,19 @@
-import {Model} from 'core';
-
-import {District} from 'models/District';
-import {Order} from 'models/Order';
-import {ShippingAddress} from 'models/ShippingAddress';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
 
 export class Province extends Model {
+
+  public static clone<T extends Model = Province>(province?: PureModelData<Province>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof province !== 'undefined' && province !== null) {
+      Object.assign(instance, {
+        ...province,
+
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -12,13 +21,5 @@ export class Province extends Model {
 
   public orderNumber?: number;
 
-  public districts?: District[];
-
-  public orders?: Order[];
-
-  public shippingAddresses?: ShippingAddress[];
-
-  public constructor(province?: Province) {
-    super(province);
-  }
+  public errors?: ErrorMap<Province>;
 }

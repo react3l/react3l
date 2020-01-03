@@ -1,19 +1,16 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class OrderContentSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public orderId?: IdFilter = new IdFilter();
 
-  public orderId?: number;
+  public itemId?: IdFilter = new IdFilter();
 
-  public itemId?: number;
+  public discountPrice?: NumberFilter = new NumberFilter();
 
-  public price?: number;
+  public quantity?: NumberFilter = new NumberFilter();
 
-  public discountPrice?: number;
-
-  public quantity?: number;
-
-  public disabled?: boolean;
-
+  public voucherCode?: StringFilter = new StringFilter();
 }

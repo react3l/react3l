@@ -1,20 +1,43 @@
-import {Model} from 'core';
-
-import {CustomerGrouping} from 'models/CustomerGrouping';
-import {DiscountContent} from 'models/DiscountContent';
-import {DiscountStatus} from 'models/DiscountStatus';
-import {DiscountType} from 'models/DiscountType';
-import {Moment} from 'moment';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import moment, {Moment} from 'moment';
+import {CustomerGrouping} from './CustomerGrouping';
+import {DiscountContent} from './DiscountContent';
+import {DiscountStatus} from './DiscountStatus';
+import {DiscountType} from './DiscountType';
 
 export class Discount extends Model {
+
+  public static clone<T extends Model = Discount>(discount?: PureModelData<Discount>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof discount !== 'undefined' && discount !== null) {
+      Object.assign(instance, {
+        ...discount,
+
+        start: moment(discount.start),
+
+        end: moment(discount.end),
+
+        customerGrouping: CustomerGrouping.clone<CustomerGrouping>(discount.customerGrouping),
+
+        status: DiscountStatus.clone<DiscountStatus>(discount.status),
+
+        type: DiscountType.clone<DiscountType>(discount.type),
+
+        discountContents: discount.discountContents.map((discountContent: DiscountContent) => DiscountContent.clone<DiscountContent>(discountContent)),
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
   public name?: string;
 
-  public start?: string | Date | Moment;
+  public start?: Moment;
 
-  public end?: string | Date | Moment;
+  public end?: Moment;
 
   public typeId?: number;
 
@@ -32,7 +55,5 @@ export class Discount extends Model {
 
   public discountContents?: DiscountContent[];
 
-  public constructor(discount?: Discount) {
-    super(discount);
-  }
+  public errors?: ErrorMap<Discount>;
 }

@@ -1,11 +1,32 @@
-import {Model} from 'core';
-
-import {Customer} from 'models/Customer';
-import {EVoucherContent} from 'models/EVoucherContent';
-import {Product} from 'models/Product';
-import {Moment} from 'moment';
+import {Model} from 'core/models';
+import {ErrorMap, PureModelData} from 'core/types';
+import moment, {Moment} from 'moment';
+import {Customer} from './Customer';
+import {EVoucherContent} from './EVoucherContent';
+import {Product} from './Product';
 
 export class EVoucher extends Model {
+
+  public static clone<T extends Model = EVoucher>(eVoucher?: PureModelData<EVoucher>): T | null {
+    const instance: T = new Model() as T;
+    if (typeof eVoucher !== 'undefined' && eVoucher !== null) {
+      Object.assign(instance, {
+        ...eVoucher,
+
+        start: moment(eVoucher.start),
+
+        end: moment(eVoucher.end),
+
+        customer: Customer.clone<Customer>(eVoucher.customer),
+
+        product: Product.clone<Product>(eVoucher.product),
+
+        eVoucherContents: eVoucher.eVoucherContents.map((eVoucherContent: EVoucherContent) => EVoucherContent.clone<EVoucherContent>(eVoucherContent)),
+      });
+      return instance;
+    }
+    return null;
+  }
 
   public id?: number;
 
@@ -15,9 +36,9 @@ export class EVoucher extends Model {
 
   public name?: string;
 
-  public start?: string | Date | Moment;
+  public start?: Moment;
 
-  public end?: string | Date | Moment;
+  public end?: Moment;
 
   public quantity?: number;
 
@@ -27,7 +48,5 @@ export class EVoucher extends Model {
 
   public eVoucherContents?: EVoucherContent[];
 
-  public constructor(eVoucher?: EVoucher) {
-    super(eVoucher);
-  }
+  public errors?: ErrorMap<EVoucher>;
 }

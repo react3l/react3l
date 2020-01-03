@@ -1,19 +1,16 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class MerchantContactSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public merchantId?: IdFilter = new IdFilter();
 
-  public merchantId?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public email?: StringFilter = new StringFilter();
 
-  public email?: string;
+  public phone?: StringFilter = new StringFilter();
 
-  public phone?: string;
-
-  public note?: string;
-
-  public disabled?: boolean;
-
+  public note?: StringFilter = new StringFilter();
 }

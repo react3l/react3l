@@ -1,13 +1,12 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class WardSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public name?: StringFilter = new StringFilter();
 
-  public name?: string;
+  public orderNumber?: NumberFilter = new NumberFilter();
 
-  public orderNumber?: number;
-
-  public districtId?: number;
-
+  public districtId?: IdFilter = new IdFilter();
 }

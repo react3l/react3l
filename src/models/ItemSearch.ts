@@ -1,23 +1,24 @@
-import {Search} from 'core/models/Search';
+import {IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import {Search} from 'core/models';
 
 export class ItemSearch extends Search {
+  public id?: IdFilter = new IdFilter();
 
-  public id?: number;
+  public productId?: IdFilter = new IdFilter();
 
-  public productId?: number;
+  public firstVariation?: StringFilter = new StringFilter();
 
-  public firstVariation?: string;
+  public secondVariation?: StringFilter = new StringFilter();
 
-  public secondVariation?: string;
+  public sKU?: StringFilter = new StringFilter();
 
-  public sKU?: string;
+  public price?: NumberFilter = new NumberFilter();
 
-  public price?: number;
+  public minPrice?: NumberFilter = new NumberFilter();
 
-  public minPrice?: number;
+  public userPrice?: NumberFilter = new NumberFilter();
 
-  public quantity?: number;
+  public customerPrice?: NumberFilter = new NumberFilter();
 
-  public disabled?: boolean;
-
+  public quantity?: NumberFilter = new NumberFilter();
 }
