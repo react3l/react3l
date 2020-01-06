@@ -7,7 +7,7 @@ import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
-import {useDeleteHandler, useEnumList, useMaster} from 'core/hooks';
+import * as Core from 'core/hooks';
 import {useMasterTable} from 'core/hooks/useMasterTable';
 import {Merchant} from 'models/Merchant';
 import {MerchantSearch} from 'models/MerchantSearch';
@@ -35,17 +35,15 @@ function ProductMaster() {
   const [search, setSearch] = React.useState<ProductSearch>(new ProductSearch());
 
   // tslint:disable-next-line:max-line-length
-  const [list, total, loading, setLoading, handleAdd, handleReset, handleEdit, handleFilter] = useMaster<Product, ProductSearch>(PROVINCE_ROUTE, repository.list, repository.count, search, setSearch);
+  const [list, total, loading, , handleAdd, handleReset, handleEdit, handleFilter] = Core.useMaster<Product, ProductSearch>(PROVINCE_ROUTE, repository.list, repository.count, search, setSearch);
 
   const [pagination, sorter, handleTableChange] = useMasterTable<Product, ProductSearch>(search, setSearch, total);
-
-  const handleDelete = useDeleteHandler<Product, ProductSearch>(repository.delete, setLoading, search, setSearch);
 
   /**
    * -------------------------------------------------------------------------------------------------------------------
    * Enums
    */
-  const [productTypes] = useEnumList<ProductType>(repository.singleListProductType);
+  const [productTypes] = Core.useEnumList<ProductType>(repository.singleListProductType);
   // const [productStatus] = useEnumList<ProductStatus>(repository.singleListProductStatus);
   /**
    * -------------------------------------------------------------------------------------------------------------------
@@ -187,14 +185,11 @@ function ProductMaster() {
               dataIndex: nameof(list[0].id),
               width: columnWidth.actions,
               className: 'center actions filter-placeholder',
-              render: (id: number, product: Product) => {
+              render: (id: number) => {
                 return (
                   <>
                     <Button htmlType="button" type="link" onClick={handleEdit(id)}>
                       {translate('general.actions.edit')}
-                    </Button>
-                    <Button htmlType="button" type="link" onClick={handleDelete(product)}>
-                      {translate('general.actions.delete')}
                     </Button>
                   </>
                 );
@@ -205,7 +200,7 @@ function ProductMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleDelete, handleEdit, handleFilter, list, merchantSearch, pagination, productTypes, search.id, search.merchantId, search.name, search.typeId, sorter, translate],
+    [handleEdit, handleFilter, list, merchantSearch, pagination, productTypes, search.id, search.merchantId, search.name, search.typeId, sorter, translate],
   );
 
   return (

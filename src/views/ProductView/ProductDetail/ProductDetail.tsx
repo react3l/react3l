@@ -10,7 +10,7 @@ import Select from 'components/Select/Select';
 import {formItemLayout} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {hasError} from 'core/helpers/form';
-import {useDetail, useEnumList} from 'core/hooks';
+import * as CoreHooks from 'core/hooks';
 import {useChangeHandlers} from 'core/hooks/useChangeHandlers';
 import {Merchant} from 'models/Merchant';
 import {MerchantSearch} from 'models/MerchantSearch';
@@ -27,7 +27,7 @@ function ProductDetail() {
   const [translate] = useTranslation();
 
   // tslint:disable-next-line:max-line-length
-  const [product, setProduct, loading, isDetail, handleGoBack, handleSave] = useDetail<Product>(PROVINCE_ROUTE, repository.get, repository.save);
+  const [product, setProduct, loading, isDetail, handleGoBack, handleSave] = CoreHooks.useDetail<Product>(PROVINCE_ROUTE, repository.get, repository.save);
 
   // Detail change handlers
   // tslint:disable-next-line:max-line-length
@@ -37,9 +37,9 @@ function ProductDetail() {
    * -------------------------------------------------------------------------------------------------------------------
    * This section is to place enum lists
    */
-  const [productStatus] = useEnumList<ProductStatus>(repository.singleListProductStatus);
+  const [productStatus] = CoreHooks.useEnumList<ProductStatus>(repository.singleListProductStatus);
 
-  const [productTypes] = useEnumList<ProductType>(repository.singleListProductType);
+  const [productTypes] = CoreHooks.useEnumList<ProductType>(repository.singleListProductType);
   /**
    * End of enum lists
    * -------------------------------------------------------------------------------------------------------------------

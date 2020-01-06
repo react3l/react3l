@@ -1,6 +1,6 @@
 import {menu} from 'config/menu';
 import {HOME_ROUTE, PRODUCT_ROUTE} from 'config/route-consts';
-import DefaultLayout, {DefaultLayoutProps} from 'core/layouts/DefaultLayout/DefaultLayout';
+import DefaultLayout, {DefaultLayoutProps} from 'layouts/DefaultLayout/DefaultLayout';
 import {join} from 'path';
 import React from 'react';
 import {RouteConfig} from 'react-router-config';
