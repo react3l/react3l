@@ -1,20 +1,15 @@
-import message from 'antd/lib/message';
 import {DETAIL_KEYS} from 'config/consts';
 import {join} from 'path';
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 import {useHistory, useParams} from 'react-router-dom';
 import nameof from 'ts-nameof.macro';
-import {translate} from '../helpers';
 import {Model} from '../models';
-
-const DEFAULT_SAVING_SUCCESS_MESSAGE: string = translate('general.saving.success');
-const DEFAULT_SAVING_FAILURE_MESSAGE: string = translate('general.saving.failure');
 
 export type DetailHookResult<T extends Model> = [
   T,
   (t: T) => void,
   boolean,
+  (loading: boolean) => void,
   boolean,
   () => void,
   () => void,
@@ -30,8 +25,6 @@ interface DetailParams {
  * @param {(t?: T) => Promise<T>} getDetail
  * @param {(t?: T) => Promise<T>} saveDetail
  * @param {(error: Error) => void} onSavingError
- * @param {string} successMessage
- * @param {string} failureMessage
  * @returns {DetailHookResult<T>}
  */
 export function useDetail<T extends Model>(
@@ -39,15 +32,12 @@ export function useDetail<T extends Model>(
   getDetail?: (t?: T) => Promise<T>,
   saveDetail?: (t?: T) => Promise<T>,
   onSavingError?: (error: Error) => void,
-  successMessage: string = DEFAULT_SAVING_SUCCESS_MESSAGE,
-  failureMessage: string = DEFAULT_SAVING_FAILURE_MESSAGE,
 ): DetailHookResult<T> {
   const [t, setT] = React.useState<T>(new Model() as T);
   const {id} = useParams<DetailParams>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const isDetail: boolean = id !== nameof(DETAIL_KEYS.add);
   const history = useHistory();
-  const [translate] = useTranslation();
 
   const handleGoBack = React.useCallback(
     () => {
@@ -60,17 +50,20 @@ export function useDetail<T extends Model>(
     async () => {
       setLoading(true);
       try {
-        setT(await saveDetail(t));
-        message.info(translate(successMessage, t));
+        const newT: T = await saveDetail(t);
+        if (t?.id) {
+          setT(newT);
+        } else {
+          history.push(join(baseRoute, newT.id));
+        }
       } catch (error) {
-        message.error(translate(failureMessage, {error, ...t}));
         if (onSavingError) {
           onSavingError(error);
         }
       }
       setLoading(false);
     },
-    [failureMessage, onSavingError, saveDetail, successMessage, t, translate],
+    [baseRoute, history, onSavingError, saveDetail, t],
   );
 
   React.useEffect(
@@ -92,5 +85,5 @@ export function useDetail<T extends Model>(
     [getDetail, id, isDetail],
   );
 
-  return [t, setT, loading, isDetail, handleGoBack, handleSave];
+  return [t, setT, loading, setLoading, isDetail, handleGoBack, handleSave];
 }

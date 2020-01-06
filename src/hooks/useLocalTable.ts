@@ -1,7 +1,7 @@
 import {PaginationConfig, PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
 import React from 'react';
-import {Model, Search} from '../models';
+import {Model, Search} from 'core/models';
 
 export type LocalTableHookResult<T extends Model, TSearch extends Search> = [
   T[],

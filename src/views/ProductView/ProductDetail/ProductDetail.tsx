@@ -8,10 +8,11 @@ import Switch from 'antd/lib/switch';
 import CardTitle from 'components/CardTitle/CardTitle';
 import Select from 'components/Select/Select';
 import {formItemLayout} from 'config/consts';
-import {PROVINCE_ROUTE} from 'config/route-consts';
+import {PRODUCT_ROUTE} from 'config/route-consts';
 import {hasError} from 'core/helpers/form';
 import * as CoreHooks from 'core/hooks';
 import {useChangeHandlers} from 'core/hooks/useChangeHandlers';
+import {useDeleteHandler} from 'hooks/useDeleteHandler';
 import {Merchant} from 'models/Merchant';
 import {MerchantSearch} from 'models/MerchantSearch';
 import {Product} from 'models/Product';
@@ -27,11 +28,13 @@ function ProductDetail() {
   const [translate] = useTranslation();
 
   // tslint:disable-next-line:max-line-length
-  const [product, setProduct, loading, isDetail, handleGoBack, handleSave] = CoreHooks.useDetail<Product>(PROVINCE_ROUTE, repository.get, repository.save);
+  const [product, setProduct, loading, setLoading, isDetail, handleGoBack, handleSave] = CoreHooks.useDetail<Product>(PRODUCT_ROUTE, repository.get, repository.save);
 
   // Detail change handlers
   // tslint:disable-next-line:max-line-length
   const [handleUpdateSimpleField, handleUpdateObjectField, handleUpdateDateField] = useChangeHandlers<Product>(product, setProduct);
+
+  const handleDelete = useDeleteHandler<Product>(repository.delete, setLoading, product, setProduct);
 
   /**
    * -------------------------------------------------------------------------------------------------------------------
@@ -59,17 +62,7 @@ function ProductDetail() {
    * -------------------------------------------------------------------------------------------------------------------
    * Default lists of select boxes
    */
-  const defaultMerchantList: Merchant[] = React.useMemo(
-    () => {
-      const {merchant} = product;
-      if (merchant) {
-        return [merchant];
-      }
-      return [];
-    },
-    [product],
-  );
-
+  const defaultMerchantList: Merchant[] = CoreHooks.useDefaultList<Product, Merchant>(product, nameof(product.merchant));
   /**
    * End of default lists
    * -------------------------------------------------------------------------------------------------------------------
@@ -94,7 +87,7 @@ function ProductDetail() {
           </div>
           <Form {...formItemLayout}>
             <div className="row">
-              <div className="col-6">
+              <div className="col-6 offset-2">
                 <Form.Item
                   label={translate('product.id')}
                   validateStatus={hasError<Product>(product, nameof(product.id))}
@@ -179,6 +172,14 @@ function ProductDetail() {
               </div>
             </div>
           </Form>
+          <div className="page-detail-actions">
+            <Button htmlType="button" type="link" className="page-detail-delete" onClick={handleDelete}>
+              {translate('general.actions.delete')}
+            </Button>
+            <Button htmlType="button" type="primary" onClick={handleSave}>
+              {translate('general.actions.save')}
+            </Button>
+          </div>
         </Card>
       </div>
     </Spin>

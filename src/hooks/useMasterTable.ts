@@ -1,8 +1,8 @@
 import {PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
 import React from 'react';
-import {DEFAULT_TAKE} from '../config';
-import {Model, Search} from '../models';
+import {DEFAULT_TAKE} from 'core/config';
+import {Model, Search} from 'core/models';
 
 export type UseMasterTableResult<T extends Model> = [
   PaginationProps,

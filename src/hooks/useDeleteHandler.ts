@@ -1,44 +1,48 @@
 import message from 'antd/lib/message';
 import Modal from 'antd/lib/modal';
+import {AxiosError} from 'axios';
+import {translate} from 'core/helpers';
+import {Model} from 'core/models';
 import {useTranslation} from 'react-i18next';
 import React from 'reactn';
-import {translate} from '../helpers';
-import {Model, Search} from '../models';
 
 const DEFAULT_SUCCESS_MESSAGE: string = translate('general.delete.success');
 const DEFAULT_FAILURE_MESSAGE: string = translate('general.delete.failure');
 const DEFAULT_TITLE_MESSAGE: string = translate('general.delete.title');
 const DEFAULT_CONTENT_MESSAGE: string = translate('general.delete.content');
 
-export function useDeleteHandler<T extends Model, TSearch extends Search>(
+export function useDeleteHandler<T extends Model>(
   onDelete: (t: T) => Promise<T>,
   onSetLoading: (loading: boolean) => void,
-  search: TSearch,
-  setSearch: (search: TSearch) => void,
+  model: T,
+  setModel: (t: T) => void,
   onSuccess?: (t?: T) => void,
   onError?: (error: Error) => void,
   onCancel?: () => void,
 ) {
   const [translate] = useTranslation();
-  return React.useCallback(
-    (t: T) => {
+  return React.useMemo(
+    () => {
       return () => {
         Modal.confirm({
-          title: translate(DEFAULT_TITLE_MESSAGE, t),
-          content: translate(DEFAULT_CONTENT_MESSAGE, t),
+          title: translate(DEFAULT_TITLE_MESSAGE, model),
+          content: translate(DEFAULT_CONTENT_MESSAGE, model),
           okType: 'danger',
           onOk: () => {
             onSetLoading(true);
-            onDelete(t)
+            onDelete(model)
               .then(() => {
-                message.info(translate(DEFAULT_SUCCESS_MESSAGE, t));
-                setSearch(Search.clone<TSearch>(search));
+                message.info(translate(DEFAULT_SUCCESS_MESSAGE, model));
                 if (typeof onSuccess === 'function') {
                   onSuccess();
                 }
               })
-              .catch((error: Error) => {
-                message.error(translate(DEFAULT_FAILURE_MESSAGE, {error, ...t}));
+              .catch((error: AxiosError<T>) => {
+                message.error(translate(DEFAULT_FAILURE_MESSAGE, {error, ...model}));
+                setModel(Model.clone<T>({
+                  ...model,
+                  errors: error.response.data,
+                }));
                 if (typeof onError === 'function') {
                   onError(error);
                 }
@@ -54,6 +58,6 @@ export function useDeleteHandler<T extends Model, TSearch extends Search>(
       };
     },
     // tslint:disable-next-line:max-line-length
-    [onCancel, onDelete, onError, onSetLoading, onSuccess, search, setSearch, translate],
+    [model, onCancel, onDelete, onError, onSetLoading, onSuccess, setModel, translate],
   );
 }

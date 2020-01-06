@@ -7,8 +7,8 @@ import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PRODUCT_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
-import * as Core from 'core/hooks';
-import {useMasterTable} from 'core/hooks/useMasterTable';
+import * as CoreHooks from 'core/hooks';
+import {useMasterTable} from 'hooks/useMasterTable';
 import {Merchant} from 'models/Merchant';
 import {MerchantSearch} from 'models/MerchantSearch';
 import {Product} from 'models/Product';
@@ -35,7 +35,7 @@ function ProductMaster() {
   const [search, setSearch] = React.useState<ProductSearch>(new ProductSearch());
 
   // tslint:disable-next-line:max-line-length
-  const [list, total, loading, , handleAdd, handleReset, handleEdit, handleFilter] = Core.useMaster<Product, ProductSearch>(PRODUCT_ROUTE, repository.list, repository.count, search, setSearch);
+  const [list, total, loading, , handleAdd, handleReset, handleEdit, handleFilter] = CoreHooks.useMaster<Product, ProductSearch>(PRODUCT_ROUTE, repository.list, repository.count, search, setSearch);
 
   const [pagination, sorter, handleTableChange] = useMasterTable<Product, ProductSearch>(search, setSearch, total);
 
@@ -43,7 +43,7 @@ function ProductMaster() {
    * -------------------------------------------------------------------------------------------------------------------
    * Enums
    */
-  const [productTypes] = Core.useEnumList<ProductType>(repository.singleListProductType);
+  const [productTypes] = CoreHooks.useEnumList<ProductType>(repository.singleListProductType);
   // const [productStatus] = useEnumList<ProductStatus>(repository.singleListProductStatus);
   /**
    * -------------------------------------------------------------------------------------------------------------------
