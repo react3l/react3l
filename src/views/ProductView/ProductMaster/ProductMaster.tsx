@@ -9,6 +9,8 @@ import {withTableFilterSuffix} from 'core/helpers/string';
 import {renderMasterIndex} from 'core/helpers/view';
 import {useDeleteHandler, useEnumList, useMaster} from 'core/hooks';
 import {useMasterTable} from 'core/hooks/useMasterTable';
+import {Merchant} from 'models/Merchant';
+import {MerchantSearch} from 'models/MerchantSearch';
 import {Product} from 'models/Product';
 import {ProductSearch} from 'models/ProductSearch';
 import {ProductType} from 'models/ProductType';
@@ -23,6 +25,7 @@ const columnWidth = {
   id: undefined,
   name: undefined,
   type: undefined,
+  merchant: undefined,
   actions: COLUMN_WIDTH.actions,
 };
 
@@ -45,7 +48,16 @@ function ProductMaster() {
   const [productTypes] = useEnumList<ProductType>(repository.singleListProductType);
   // const [productStatus] = useEnumList<ProductStatus>(repository.singleListProductStatus);
   /**
-   *
+   * -------------------------------------------------------------------------------------------------------------------
+   */
+
+  /**
+   * -------------------------------------------------------------------------------------------------------------------
+   * Reference search
+   */
+  const [merchantSearch, setMerchantSearch] = React.useState<MerchantSearch>(new MerchantSearch());
+  /**
+   * End of reference search
    * -------------------------------------------------------------------------------------------------------------------
    */
 
@@ -123,7 +135,7 @@ function ProductMaster() {
             {
               title: (
                 <DropdownFilter
-                  options={productTypes}
+                  list={productTypes}
                   filter={search.typeId}
                   onChange={handleFilter(nameof(search.typeId))}
                 />
@@ -133,6 +145,33 @@ function ProductMaster() {
               dataIndex: nameof(list[0].type),
               render(productType: ProductType) {
                 return productType?.name;
+              },
+            },
+          ],
+        },
+        {
+          title: translate('product.merchant'),
+          key: nameof(list[0].merchant),
+          width: columnWidth.merchant,
+          dataIndex: nameof(list[0].merchant),
+          sorter: true,
+          sortOrder: ProductSearch.getOrderTypeForTable<Product>(nameof(list[0].merchantId), sorter),
+          children: [
+            {
+              title: (
+                <DropdownFilter
+                  filter={search.merchantId}
+                  getList={repository.singleListMerchant}
+                  search={merchantSearch}
+                  setSearch={setMerchantSearch}
+                  onChange={handleFilter(nameof(search.merchantId))}
+                />
+              ),
+              key: withTableFilterSuffix(nameof(list[0].merchant)),
+              width: columnWidth.merchant,
+              dataIndex: nameof(list[0].merchant),
+              render(merchant: Merchant) {
+                return merchant?.name;
               },
             },
           ],
@@ -166,7 +205,7 @@ function ProductMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleDelete, handleEdit, list, pagination, sorter, translate],
+    [handleDelete, handleEdit, handleFilter, list, merchantSearch, pagination, productTypes, search.id, search.merchantId, search.name, search.typeId, sorter, translate],
   );
 
   return (

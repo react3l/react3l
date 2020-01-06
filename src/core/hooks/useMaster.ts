@@ -56,7 +56,7 @@ export function useMaster<T extends Model, TSearch extends Search>(
 
   const handleReset = React.useCallback(
     () => {
-      setSearch(new Search() as TSearch);
+      setSearch(Search.clone<TSearch>());
     },
     [setSearch],
   );

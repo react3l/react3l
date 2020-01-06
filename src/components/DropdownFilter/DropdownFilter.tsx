@@ -1,19 +1,19 @@
-import Select from 'components/Select/Select';
+import Select, {SelectProps} from 'components/Select/Select';
 import {GuidFilter, IdFilter} from 'core/filters';
-import {Model} from 'core/models';
+import {Model, Search} from 'core/models';
 import React from 'react';
 import './DropdownFilter.scss';
 
-interface DropdownFilterProps<T extends Model> {
+interface DropdownFilterProps<T extends Model, TSearch extends Search> extends SelectProps<T, TSearch> {
   filter: IdFilter | GuidFilter;
 
-  options: T[];
-
-  onChange?(filter: IdFilter | GuidFilter): void;
+  onChange?: any;
 }
 
-function DropdownFilter<T extends Model>(props: DropdownFilterProps<T>) {
-  const {options, filter, onChange} = props;
+function DropdownFilter<T extends Model, TSearch extends Search>(props: DropdownFilterProps<T, TSearch>) {
+  const {list, filter} = props;
+
+  const onChange: (filter: IdFilter | GuidFilter) => void = props.onChange;
 
   const handleChange = React.useCallback(
     (id: string | number) => {
@@ -27,10 +27,11 @@ function DropdownFilter<T extends Model>(props: DropdownFilterProps<T>) {
 
   return (
     <Select
-      list={options}
+      list={list}
       value={filter.equal}
       onChange={handleChange}
       allowClear={true}
+      {...props}
     />
   );
 }

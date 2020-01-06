@@ -10,6 +10,7 @@ import {Merchant} from 'models/Merchant';
 import {Product} from 'models/Product';
 import {ProductSearch} from 'models/ProductSearch';
 import {ProductStatus} from 'models/ProductStatus';
+import {ProductStatusSearch} from 'models/ProductStatusSearch';
 import {ProductType} from 'models/ProductType';
 import {ProductTypeSearch} from 'models/ProductTypeSearch';
 import nameof from 'ts-nameof.macro';
@@ -78,7 +79,7 @@ export class ProductMasterRepository extends Repository {
   };
 
   public singleListProductStatus = (): Promise<ProductStatus[]> => {
-    return this.http.post<ProductStatus[]>(kebabCase(nameof(this.singleListProductStatus)))
+    return this.http.post<ProductStatus[]>(kebabCase(nameof(this.singleListProductStatus)), new ProductStatusSearch())
       .then((response: AxiosResponse<ProductStatus[]>) => {
         return response.data.map((productStatus: ProductStatus) => {
           return ProductStatus.clone<ProductStatus>(productStatus);
