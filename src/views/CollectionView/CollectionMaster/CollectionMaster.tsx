@@ -1,8 +1,8 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
-import DatePicker from 'antd/lib/date-picker';
 import Table, {ColumnProps} from 'antd/lib/table';
 import AdvancedFilter from 'components/AdvancedFilter/AdvancedFilter';
+import DatePickerFilter from 'components/DatePickerFilter/DatePickerFilter';
 import DropdownFilter from 'components/DropdownFilter/DropdownFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {COLLECTION_ROUTE} from 'config/route-consts';
@@ -26,7 +26,7 @@ const columnWidth = {
   name: 250,
   slug: 250,
   start: 250,
-  end: 500,
+  end: 250,
   statusId: 250,
   title: 250,
   description: 250,
@@ -143,7 +143,9 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <DatePicker/>
+                <DatePickerFilter filter={search.start}
+                                  onChange={handleFilter(nameof(search.start))}
+                />
               ),
               key: withTableFilterSuffix(nameof(list[0].start)),
               width: columnWidth.start,
@@ -161,7 +163,9 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <DatePicker.RangePicker/>
+                <DatePickerFilter filter={search.end}
+                                  onChange={handleFilter(nameof(search.end))}
+                />
               ),
               key: withTableFilterSuffix(nameof(list[0].end)),
               width: columnWidth.end,

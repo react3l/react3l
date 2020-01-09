@@ -13,6 +13,7 @@ export class DateFilter extends Filter {
       nameof(filter.greaterEqual),
       nameof(filter.less),
       nameof(filter.lessEqual),
+      nameof(filter.range),
     ];
   }
 
@@ -27,4 +28,6 @@ export class DateFilter extends Filter {
   public less?: Moment;
 
   public lessEqual?: Moment;
+
+  public range?: [Moment | null | undefined, Moment | null | undefined];
 }
