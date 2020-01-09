@@ -47,10 +47,16 @@ export function useContentTable<T extends Model, TContent extends Model>(
 
   const handleAdd = React.useCallback(
     () => {
-      setValue([
-        ...value,
-        new Model() as TContent,
-      ]);
+      if (value instanceof Array) {
+        setValue([
+          ...value,
+          new Model() as TContent,
+        ]);
+      } else {
+        setValue([
+          new Model() as TContent,
+        ]);
+      }
     },
     [setValue, value],
   );

@@ -9,34 +9,41 @@
       background: #ffffff;
     }
 
-    .ant-layout-sider {
-      .ant-menu-inline {
-        .ant-menu-item:first-of-type {
-          margin-top: unset;
-        }
-      }
-
-      .material-icons {
-        font-size: 1rem;
-        margin-right: 0.5rem;
-      }
-
-      a {
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-
     > .ant-layout {
-      display: flex;
-      overflow-y: auto;
-      overflow-x: hidden;
-
       &.ant-layout-has-sider {
+        flex-grow: 1;
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .ant-layout-sider {
+          height: 100%;
+          min-height: 100%;
+          float: left;
+          clear: unset;
+
+          .ant-menu-inline {
+            .ant-menu-item:first-of-type {
+              margin-top: unset;
+            }
+          }
+
+          .material-icons {
+            font-size: 1rem;
+            margin-right: 0.5rem;
+          }
+
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+
         .ant-layout-content {
-          flex-grow: 1;
-          padding: 1rem 1rem;
+          width: calc(100% - 200px - 1rem);
+          float: right;
+          padding: 1rem 0;
 
           .ant-card {
             margin-bottom: 1rem;

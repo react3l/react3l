@@ -12,11 +12,11 @@ import {hasError} from 'core/helpers/form';
 import * as CoreHooks from 'core/hooks';
 import * as Hooks from 'hooks';
 import {Collection} from 'models/Collection';
-
 import {CollectionStatus} from 'models/CollectionStatus';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
+import CollectionContentTable from 'views/CollectionView/CollectionDetail/CollectionContentTable/CollectionContentTable';
 import './CollectionDetail.scss';
 
 import repository from './CollectionDetailRepository';
@@ -153,6 +153,11 @@ function CollectionDetail() {
               </div>
             </div>
           </Form>
+          <Form.Item
+            label={translate('collection.collectionContents')}
+          >
+            <CollectionContentTable model={collection} setModel={setCollection} field={nameof(collection.collectionContents)}/>
+          </Form.Item>
           <div className="page-detail-actions">
             <Button htmlType="button" type="link" className="page-detail-delete" onClick={handleDelete}>
               {translate('general.actions.delete')}

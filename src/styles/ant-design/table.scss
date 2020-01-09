@@ -1,4 +1,25 @@
 .ant-table {
+  &.ant-table-small {
+    > .ant-table-content {
+      > .ant-table-body {
+        margin-left: unset;
+        margin-right: unset;
+
+        > table {
+          > .ant-table-thead {
+            > tr {
+              > th {
+                &:last-child {
+                  border-right: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .ant-table-fixed {
     .ant-table-thead,
     .ant-table-tbody {
@@ -11,7 +32,7 @@
   .ant-table-scroll {
     .ant-table-body {
       &:focus {
-        outline: none!important;
+        outline: none !important;
       }
     }
   }
