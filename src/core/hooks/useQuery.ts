@@ -3,6 +3,7 @@ import {JSONObject} from 'core/helpers/json';
 import QueryString from 'query-string';
 import React from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
+import nameof from 'ts-nameof.macro';
 import {DEFAULT_TAKE} from '../config';
 import {Search} from '../models';
 
@@ -18,19 +19,19 @@ function parseSearch<TSearch extends Search>(search: string, defaultSearch: TSea
     .entries(queryString)
     .forEach(([key, value]) => {
       switch (key) {
-        case 'skip':
+        case nameof(defaultSearch.skip):
           if (typeof value === 'string') {
             defaultSearch.skip = parseInt(value, 10) || 0;
           }
           break;
 
-        case 'take':
+        case nameof(defaultSearch.take):
           if (typeof value === 'string') {
             defaultSearch.take = parseInt(value, 10) || DEFAULT_TAKE;
           }
           break;
 
-        case 'orderType':
+        case nameof(defaultSearch.orderType):
           if (typeof value === 'string') {
             Search.setOrderType(defaultSearch, value);
           }
