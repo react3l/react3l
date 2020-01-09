@@ -1,5 +1,6 @@
-import {flatten} from 'core/helpers';
-import QueryString, {ParsedQuery} from 'query-string';
+import {flatten, unflatten} from 'core/helpers';
+import {JSONObject} from 'core/helpers/json';
+import QueryString from 'query-string';
 import React from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import {DEFAULT_TAKE} from '../config';
@@ -10,45 +11,48 @@ import {Search} from '../models';
  *
  * @param search
  */
-function parseSearch<TSearch extends Search>(search: string): TSearch {
-  const queryString: ParsedQuery<string | number> = QueryString.parse(search);
-
-  const tSearch: TSearch = new Search() as TSearch;
+function parseSearch<TSearch extends Search>(search: string, defaultSearch: TSearch): TSearch {
+  const queryString: JSONObject = unflatten(QueryString.parse(search) as { [key: string]: string });
 
   Object
     .entries(queryString)
     .forEach(([key, value]) => {
-      if (typeof value !== 'object') {
-        switch (key) {
-          case 'skip':
-            if (typeof value === 'string') {
-              tSearch.skip = parseInt(value, 10) || 0;
-            }
-            break;
+      switch (key) {
+        case 'skip':
+          if (typeof value === 'string') {
+            defaultSearch.skip = parseInt(value, 10) || 0;
+          }
+          break;
 
-          case 'take':
-            if (typeof value === 'string') {
-              tSearch.take = parseInt(value, 10) || DEFAULT_TAKE;
-            }
-            break;
+        case 'take':
+          if (typeof value === 'string') {
+            defaultSearch.take = parseInt(value, 10) || DEFAULT_TAKE;
+          }
+          break;
 
-          case 'orderType':
-            if (typeof value === 'string') {
-              Search.setOrderType(tSearch, value);
-            }
-            break;
+        case 'orderType':
+          if (typeof value === 'string') {
+            Search.setOrderType(defaultSearch, value);
+          }
+          break;
 
-          default:
-            (tSearch as any)[key] = value;
-            break;
-        }
-        return;
-      }
-      if (value !== null) {
-        // Do something here
+        default:
+          if (typeof value === 'object' && value !== null) {
+            const isIdFilter: boolean = key.endsWith('Id') || key === 'id';
+            Object
+              .entries(value)
+              .forEach(([k, v]) => {
+                if (isIdFilter && typeof v === 'string' && v.match(/^[0-9]+$/)) {
+                  defaultSearch[key][k] = parseInt(v as string, 10);
+                } else {
+                  defaultSearch[key][k] = v;
+                }
+              });
+          }
+          break;
       }
     });
-  return tSearch;
+  return defaultSearch;
 }
 
 export function useQuery<TSearch extends Search>(defaultTSearch: TSearch, setTSearch: (tSearch: TSearch) => void): [TSearch, (tSearch: TSearch) => void] {
@@ -58,8 +62,7 @@ export function useQuery<TSearch extends Search>(defaultTSearch: TSearch, setTSe
   const tSearch = React.useMemo(
     () => {
       return Search.clone<TSearch>({
-        ...defaultTSearch,
-        ...parseSearch<TSearch>(search),
+        ...parseSearch<TSearch>(search, defaultTSearch),
       });
     },
     [defaultTSearch, search],

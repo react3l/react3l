@@ -2,7 +2,7 @@ import Input from 'antd/lib/input';
 import Select from 'components/Select/Select';
 import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import {FilterType} from 'core/types';
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import './AdvancedFilter.scss';
 
 interface AdvancedFilterProps {
@@ -77,10 +77,11 @@ function AdvancedFilter(props: AdvancedFilterProps) {
 
   const ref = React.createRef<Input>();
 
-  const handleChange = React.useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value !== '') {
-        filter[type] = event.target.value;
+  const handleSubmitChange = React.useCallback(
+    () => {
+      const {value} = ref.current.input;
+      if (value !== '') {
+        filter[type] = value;
       } else {
         filter[type] = null;
       }
@@ -88,7 +89,17 @@ function AdvancedFilter(props: AdvancedFilterProps) {
         onChange(filter);
       }
     },
-    [filter, onChange, type],
+    [filter, onChange, ref, type],
+  );
+
+  const handleCheckClear = React.useCallback(
+    () => {
+      const {value} = ref.current.input;
+      if (value === '') {
+        handleSubmitChange();
+      }
+    },
+    [handleSubmitChange, ref],
   );
 
   const handleChangeType = React.useCallback(
@@ -125,8 +136,9 @@ function AdvancedFilter(props: AdvancedFilterProps) {
   return (
     <Input
       ref={ref}
-      value={defaultValue}
-      onChange={handleChange}
+      defaultValue={defaultValue}
+      onChange={handleCheckClear}
+      onPressEnter={handleSubmitChange}
       addonBefore={addonBefore}
     />
   );
