@@ -14,4 +14,6 @@ export {useMaster} from './useMaster';
 
 export {useQuery} from './useQuery';
 
+export {usePreloadList} from './usePreloadList';
+
 export {useSelect} from './useSelect';

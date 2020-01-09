@@ -4,15 +4,13 @@ import React from 'react';
 
 export function usePreloadList<T extends Model, TSearch extends Search>(
   getList: (search: TSearch) => Promise<T[]>,
-  id: number,
+  id: IdFilter,
 ): T[] {
   const [list, setList] = React.useState<T[]>([]);
 
   React.useEffect(
     () => {
-      const idFilter: IdFilter = new IdFilter();
-      idFilter.equal = id;
-      getList({id: idFilter, ...new Search() as TSearch})
+      getList({id, ...new Search() as TSearch})
         .then(setList);
     },
     [getList, id],

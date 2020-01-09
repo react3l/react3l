@@ -73,7 +73,7 @@ const Select = React.forwardRef(
 
     const handleToggle = React.useCallback(
       async (visible: boolean) => {
-        if (visible && getList) {
+        if (visible && typeof getList === 'function') {
           await handleLoadList();
         }
       },
@@ -95,31 +95,27 @@ const Select = React.forwardRef(
       [onChange],
     );
 
-    return React.useMemo(
-      () => (
-        <AntSelect
-          ref={ref}
-          className={classNames('w-100', className)}
-          onDropdownVisibleChange={handleToggle}
-          mode="default"
-          onChange={handleChange}
-          loading={loading}
-          allowClear={allowClear}
-          showSearch={!!getList}
-          onSearch={handleSearch}
-          defaultValue={defaultValue}
-          value={value}
-        >
-          {list.map((t: T) => (
-            <Option key={t.id} data-content={t} value={t.id}>
-              {render(t)}
-            </Option>
-          ))}
-          {children}
-        </AntSelect>
-      ),
-      // tslint:disable-next-line:max-line-length
-      [allowClear, children, className, defaultValue, getList, handleChange, handleSearch, handleToggle, list, loading, ref, render, value],
+    return (
+      <AntSelect
+        ref={ref}
+        className={classNames('w-100', className)}
+        onDropdownVisibleChange={handleToggle}
+        mode="default"
+        onChange={handleChange}
+        loading={loading}
+        allowClear={allowClear}
+        showSearch={typeof getList === 'function'}
+        onSearch={handleSearch}
+        defaultValue={defaultValue}
+        value={value}
+      >
+        {list.map((t: T) => (
+          <Option key={t.id} data-content={t} value={t.id}>
+            {render(t)}
+          </Option>
+        ))}
+        {children}
+      </AntSelect>
     );
   },
 );

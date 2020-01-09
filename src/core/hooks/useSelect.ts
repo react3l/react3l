@@ -31,26 +31,15 @@ export function useSelect<T extends Model, TSearch extends Search = Search>(
 
   const handleLoadList = React.useCallback(
     async () => {
-      setLoading(true);
-      getList(search)
-        .then((list: T[]) => {
-          setList(list);
-        })
-        .catch(handleError)
-        .finally(() => {
-          setLoading(false);
-        });
+      try {
+        setLoading(true);
+        setList(await getList(search));
+      } catch (error) {
+        handleError(error);
+      }
+      setLoading(false);
     },
     [getList, handleError, search],
-  );
-
-  React.useEffect(
-    () => {
-      if (getList) {
-        handleLoadList();
-      }
-    },
-    [getList, handleLoadList],
   );
 
   const handleSearch = React.useMemo(

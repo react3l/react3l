@@ -32,7 +32,7 @@ const columnWidth = {
 function ProductMaster() {
   const [translate] = useTranslation();
 
-  const [search, setSearch] = React.useState<ProductSearch>(new ProductSearch());
+  const [search, setSearch] = CoreHooks.useQuery<ProductSearch>(...React.useState<ProductSearch>(new ProductSearch()));
 
   // tslint:disable-next-line:max-line-length
   const [list, total, loading, , handleAdd, handleReset, handleEdit, handleFilter] = CoreHooks.useMaster<Product, ProductSearch>(PRODUCT_ROUTE, repository.list, repository.count, search, setSearch);
@@ -51,11 +51,12 @@ function ProductMaster() {
 
   /**
    * -------------------------------------------------------------------------------------------------------------------
-   * Reference search
+   * Reference search and preloading
    */
   const [merchantSearch, setMerchantSearch] = React.useState<MerchantSearch>(new MerchantSearch());
+  const defaultMerchantList = CoreHooks.usePreloadList<Merchant, MerchantSearch>(repository.singleListMerchant, search.merchantId);
   /**
-   * End of reference search
+   * End of reference search and preloading
    * -------------------------------------------------------------------------------------------------------------------
    */
 
@@ -158,6 +159,7 @@ function ProductMaster() {
             {
               title: (
                 <DropdownFilter
+                  list={defaultMerchantList}
                   filter={search.merchantId}
                   getList={repository.singleListMerchant}
                   search={merchantSearch}
@@ -200,7 +202,7 @@ function ProductMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [handleEdit, handleFilter, list, merchantSearch, pagination, productTypes, search.id, search.merchantId, search.name, search.typeId, sorter, translate],
+    [defaultMerchantList, handleEdit, handleFilter, list, merchantSearch, pagination, productTypes, search.id, search.merchantId, search.name, search.typeId, sorter, translate],
   );
 
   return (
