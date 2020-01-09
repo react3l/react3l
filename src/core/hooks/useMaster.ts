@@ -1,4 +1,4 @@
-import {DETAIL_KEYS} from 'config/consts';
+import {DEFAULT_TAKE, DETAIL_KEYS} from 'config/consts';
 import {Filter} from 'core/filters';
 import {join} from 'path';
 import React from 'react';
@@ -56,9 +56,41 @@ export function useMaster<T extends Model, TSearch extends Search>(
 
   const handleReset = React.useCallback(
     () => {
-      setSearch(Search.clone<TSearch>());
+      const newSearch: TSearch = Search.clone<TSearch>(search);
+      Object
+        .entries(newSearch)
+        .forEach(([key, value]) => {
+          switch (key) {
+            case nameof(newSearch.skip):
+              newSearch.skip = 0;
+              break;
+
+            case nameof(newSearch.take):
+              newSearch.take = DEFAULT_TAKE;
+              break;
+
+            case nameof(newSearch.orderBy):
+              newSearch.orderBy = undefined;
+              break;
+
+            case nameof(newSearch.orderType):
+              newSearch.orderBy = undefined;
+              break;
+
+            default:
+              if (typeof value === 'object' && value !== null) {
+                Object
+                  .entries(value)
+                  .forEach(([filterKey]) => {
+                    delete value[filterKey];
+                  });
+              }
+              break;
+          }
+        });
+      setSearch(newSearch);
     },
-    [setSearch],
+    [search, setSearch],
   );
 
   const handleFilter = React.useCallback(

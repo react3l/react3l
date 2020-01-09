@@ -1,5 +1,6 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
+import DatePicker from 'antd/lib/date-picker';
 import Table, {ColumnProps} from 'antd/lib/table';
 import AdvancedFilter from 'components/AdvancedFilter/AdvancedFilter';
 import DropdownFilter from 'components/DropdownFilter/DropdownFilter';
@@ -25,7 +26,7 @@ const columnWidth = {
   name: 250,
   slug: 250,
   start: 250,
-  end: 250,
+  end: 500,
   statusId: 250,
   title: 250,
   description: 250,
@@ -141,6 +142,9 @@ function CollectionMaster() {
           sortOrder: CollectionSearch.getOrderTypeForTable<Collection>(nameof(list[0].start), sorter),
           children: [
             {
+              title: (
+                <DatePicker/>
+              ),
               key: withTableFilterSuffix(nameof(list[0].start)),
               width: columnWidth.start,
               dataIndex: nameof(list[0].start),
@@ -156,6 +160,9 @@ function CollectionMaster() {
           sortOrder: CollectionSearch.getOrderTypeForTable<Collection>(nameof(list[0].end), sorter),
           children: [
             {
+              title: (
+                <DatePicker.RangePicker/>
+              ),
               key: withTableFilterSuffix(nameof(list[0].end)),
               width: columnWidth.end,
               dataIndex: nameof(list[0].end),
