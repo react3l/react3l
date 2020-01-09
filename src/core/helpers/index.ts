@@ -13,3 +13,5 @@ export {translate} from './translate';
 export {url} from './url';
 
 export {renderMasterIndex} from './view';
+
+export {flatten, unflatten} from './json';

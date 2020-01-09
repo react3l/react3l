@@ -1,11 +1,10 @@
 import {SorterResult} from 'antd/lib/table';
 import nameof from 'ts-nameof.macro';
 import {DEFAULT_TAKE, SORT_TYPES} from '../config';
-import {Model} from '../models/Model';
 import {Cloneable} from './Cloneable';
+import {Model} from './Model';
 
 export class Search extends Cloneable {
-
   public static setOrderType(search: Search, orderType: string | null | undefined | boolean) {
     if (typeof orderType === 'undefined') {
       search.orderType = undefined;

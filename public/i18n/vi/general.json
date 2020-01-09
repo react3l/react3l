@@ -16,10 +16,6 @@
     "master": {
       "actions": "Tác vụ",
       "index": "STT"
-    },
-    "saving": {
-      "failure": "Cập nhật thất bại {{name}}",
-      "success": "Cập nhật thành công {{name}}"
     }
   }
 }

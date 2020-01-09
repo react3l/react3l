@@ -112,10 +112,20 @@ function AdvancedFilter(props: AdvancedFilterProps) {
     [defaultType, handleChangeType, types],
   );
 
+  const defaultValue = React.useMemo(
+    () => {
+      if (filter) {
+        return filter[type];
+      }
+      return undefined;
+    },
+    [filter, type],
+  );
+
   return (
     <Input
       ref={ref}
-      defaultValue={filter[type]}
+      value={defaultValue}
       onChange={handleChange}
       addonBefore={addonBefore}
     />

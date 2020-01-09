@@ -10,5 +10,5 @@ export const COLUMN_WIDTH = {
   index: 50,
   checkbox: 50,
   expand: 50,
-  actions: 150,
+  actions: 100,
 };

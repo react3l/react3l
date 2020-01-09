@@ -1,8 +1,9 @@
+import {flatten} from 'core/helpers';
 import QueryString, {ParsedQuery} from 'query-string';
 import React from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import {DEFAULT_TAKE} from '../config';
-import {Search} from '../models/Search';
+import {Search} from '../models';
 
 /**
  * Sync search entity with query string
@@ -50,22 +51,29 @@ function parseSearch<TSearch extends Search>(search: string): TSearch {
   return tSearch;
 }
 
-export function useQuery<TSearch extends Search>() {
-  const {search, pathname, hash} = useLocation();
-
+export function useQuery<TSearch extends Search>(defaultTSearch: TSearch, setTSearch: (tSearch: TSearch) => void): [TSearch, (tSearch: TSearch) => void] {
+  const {pathname, search} = useLocation();
   const history = useHistory();
 
-  const tSearch = Search.clone<TSearch>(parseSearch<TSearch>(search));
+  const tSearch = React.useMemo(
+    () => {
+      return Search.clone<TSearch>({
+        ...defaultTSearch,
+        ...parseSearch<TSearch>(search),
+      });
+    },
+    [defaultTSearch, search],
+  );
 
   const setTSearchWithQueryString = React.useCallback(
     (newTSearch: TSearch) => {
+      setTSearch(newTSearch);
       history.replace({
         pathname,
-        search: QueryString.stringify(newTSearch),
-        hash,
+        search: QueryString.stringify(flatten(newTSearch)),
       });
     },
-    [hash, history, pathname],
+    [history, pathname, setTSearch],
   );
 
   return [tSearch, setTSearchWithQueryString];

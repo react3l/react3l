@@ -28,7 +28,7 @@ function DropdownFilter<T extends Model, TSearch extends Search>(props: Dropdown
   return (
     <Select
       list={list}
-      value={filter.equal}
+      value={filter?.equal}
       onChange={handleChange}
       allowClear={true}
       {...props}

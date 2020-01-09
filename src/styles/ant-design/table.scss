@@ -8,22 +8,20 @@
     }
   }
 
-  &.ant-table-small {
-    &.ant-table-bordered {
-      @mixin last-cell {
-        &:last-of-type {
-          border-right: none;
-        }
+  .ant-table-scroll {
+    .ant-table-body {
+      &:focus {
+        outline: none!important;
       }
+    }
+  }
 
-      .ant-table-fixed-right {
-        border-right: none;
-      }
-
+  &.ant-table-bordered {
+    .ant-table-fixed-right {
       .ant-table-thead {
-        tr {
-          th {
-            @include last-cell;
+        th {
+          &:last-child {
+            border-right: none;
           }
         }
       }
@@ -31,7 +29,7 @@
   }
 
   @mixin column-actions {
-    width: 150px;
+    width: 100px;
   }
 
   .ant-table-thead {
@@ -49,6 +47,10 @@
               text-align: center;
             }
           }
+        }
+
+        .ant-table-header-column {
+          min-height: 32px;
         }
       }
     }
@@ -79,6 +81,9 @@
   .ant-table-tbody {
     tr {
       td {
+        min-height: 49px;
+        height: 49px;
+
         &.actions {
           @include column-actions;
         }
@@ -104,6 +109,28 @@
 
       &:last-of-type {
         margin-right: unset;
+      }
+    }
+  }
+
+  @mixin no-break-cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .ant-table-thead {
+    tr {
+      th {
+        @include no-break-cell;
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    tr {
+      td {
+        @include no-break-cell;
       }
     }
   }

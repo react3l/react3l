@@ -1,4 +1,22 @@
 {
+  "collection": {
+    "description": "Mô tả",
+    "detail": {
+      "newTitle": "Thêm bộ sưu tập mới",
+      "title": "Bộ sưu tập {{name}}"
+    },
+    "end": "Kết thúc",
+    "id": "Mã",
+    "master": {
+      "title": "Danh sách bộ sưu tập"
+    },
+    "name": "Tên",
+    "slug": "Đường dẫn",
+    "start": "Bắt đầu",
+    "status": "Trạng thái",
+    "statusId": "Mã trạng thái",
+    "title": "Bộ sưu tập"
+  },
   "district": {
     "actions": {
       "add": "Thêm",
@@ -37,16 +55,53 @@
     "master": {
       "actions": "Tác vụ",
       "index": "STT"
-    },
-    "saving": {
-      "failure": "Cập nhật thất bại {{name}}",
-      "success": "Cập nhật thành công {{name}}"
     }
   },
   "menu": {
+    "administrator": "Người quản trị",
+    "banner": "Banner",
+    "brand": "Thương hiệu",
+    "category": "Danh mục",
+    "collection": "Bộ sưu tập",
+    "collectionContent": "Nội dung bộ sưu tập",
+    "coupon": "Chiết khấu",
+    "customer": "Khách hàng",
+    "discount": "Chính sách giá",
     "district": "Quận/huyện",
+    "eVoucher": "eVoucher",
+    "eVoucherContent": "eVoucher Content",
+    "imageFile": "Hình ảnh",
+    "item": "Sản phẩm",
+    "itemHistory": "Lịch sử sản phẩm",
+    "itemVoucher": "Voucher sản phẩm",
+    "itemVoucherStatus": "Trạng thái voucher sản phẩm",
+    "mail": "Mail",
+    "merchant": "Đối tác",
+    "merchantAddress": "Địa chỉ đối tác",
+    "merchantContact": "Địa chỉ liên hệ đối tác",
+    "notification": "Thông báo",
+    "order": "Đơn hàng",
+    "orderContent": "Nội dung đơn hàng",
+    "product": "Sản phẩm",
     "province": "Tỉnh/thành",
+    "shippingAddress": "Địa chỉ giao hàng",
     "ward": "Phường/xã"
+  },
+  "product": {
+    "detail": {
+      "newTitle": "Thêm sản phẩm mới",
+      "title": "Sản phẩm {{name}}"
+    },
+    "disabled": "Ngưng hoạt động",
+    "expiredDate": "Ngày hết hạn",
+    "id": "Mã",
+    "master": {
+      "title": "Danh sách sản phẩm"
+    },
+    "merchant": "Đối tác",
+    "name": "Tên",
+    "status": "Trạng thái",
+    "type": "Loại"
   },
   "province": {
     "detail": {

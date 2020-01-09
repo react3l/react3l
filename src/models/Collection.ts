@@ -18,7 +18,7 @@ export class Collection extends Model {
 
         status: CollectionStatus.clone<CollectionStatus>(collection.status),
 
-        collectionContents: collection.collectionContents.map((collectionContent: CollectionContent) => CollectionContent.clone<CollectionContent>(collectionContent)),
+        collectionContents: collection.collectionContents?.map((collectionContent: CollectionContent) => CollectionContent.clone<CollectionContent>(collectionContent)),
       });
       return instance;
     }
