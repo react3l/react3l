@@ -43,10 +43,14 @@
         .ant-layout-content {
           width: calc(100% - 200px - 1rem);
           float: right;
-          padding: 1rem 0;
+          padding: 1rem 1rem 1rem 0;
 
-          .ant-card {
+          > .ant-card {
             margin-bottom: 1rem;
+
+            &:first-of-type {
+              min-height: calc(100vh - 60px - 2rem);
+            }
 
             &:last-of-type {
               margin-bottom: unset;
