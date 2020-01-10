@@ -2,12 +2,11 @@
   "name": "react3l",
   "version": "0.1.0-pre-release.2019.12.28-1",
   "private": false,
-  "main": "index.js",
   "license": "MIT",
   "author": {
     "email": "ht@thanhtunguet.info",
     "name": "thanhtunguet",
-    "url": "https://thanhtunguet.info"
+    "url": "https://github.com/thanhtunguet/react3l/wiki"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

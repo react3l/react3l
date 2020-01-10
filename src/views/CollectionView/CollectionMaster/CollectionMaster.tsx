@@ -144,6 +144,7 @@ function CollectionMaster() {
             {
               title: (
                 <DatePickerFilter filter={search.start}
+                                  defaultType={nameof(search.start.equal)}
                                   onChange={handleFilter(nameof(search.start))}
                 />
               ),
@@ -164,6 +165,7 @@ function CollectionMaster() {
             {
               title: (
                 <DatePickerFilter filter={search.end}
+                                  defaultType={nameof(search.end.equal)}
                                   onChange={handleFilter(nameof(search.end))}
                 />
               ),
@@ -285,7 +287,7 @@ function CollectionMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [translate, list, pagination, sorter, search.name, search.slug, search.title, search.description, search.statusId, handleFilter, statuses, handleEdit],
+    [translate, list, pagination, sorter, search.name, search.slug, search.start, search.end, search.title, search.description, search.statusId, handleFilter, statuses, handleEdit],
   );
 
   return (

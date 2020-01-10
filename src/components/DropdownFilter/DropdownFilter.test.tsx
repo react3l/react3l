@@ -1,6 +1,7 @@
-import {MemoryRouter} from 'react-router-dom';
+import {IdFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter} from 'react-router-dom';
 import DropdownFilter from './DropdownFilter';
 
 describe('DropdownFilter', () => {
@@ -8,11 +9,10 @@ describe('DropdownFilter', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-      <DropdownFilter/>
+        <DropdownFilter filter={new IdFilter()}/>
       </MemoryRouter>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 });
-

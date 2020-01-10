@@ -17,22 +17,49 @@ function DatePickerFilter(props: DatePickerFilterProps) {
   const {
     filter,
     defaultType,
+    onChange,
   } = props;
 
   const [type] = React.useState<keyof DateFilter>((defaultType || DateFilter.types()[0]) as keyof DateFilter);
 
+  const handleChangeRange = React.useCallback(
+    (range) => {
+      filter.greaterEqual = range[0];
+      filter.lessEqual = range[1];
+      if (onChange) {
+        onChange(filter);
+      }
+    },
+    [filter, onChange],
+  );
+
+  const handleChange = React.useCallback(
+    (value: Moment) => {
+      filter[type as any] = value;
+      if (onChange) {
+        onChange(filter);
+      }
+    },
+    [filter, onChange, type],
+  );
+
   return React.useMemo(
     () => {
       if (type === nameof(filter.range)) {
+        const dateFilterRange: [Moment | null | undefined, Moment | null | undefined] = [filter.greaterEqual, filter.lessEqual];
         return (
-          <DatePicker.RangePicker value={filter[type] as DateFilter['range']}/>
+          <DatePicker.RangePicker value={dateFilterRange}
+                                  onChange={handleChangeRange}
+          />
         );
       }
       return (
-        <DatePicker value={filter[type] as Moment}/>
+        <DatePicker value={filter[type] as Moment}
+                    onChange={handleChange}
+        />
       );
     },
-    [filter, type],
+    [filter, handleChange, handleChangeRange, type],
   );
 }
 
