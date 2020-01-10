@@ -2,13 +2,17 @@ import Button from 'antd/lib/button';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
+import AdvancedFilter from 'components/AdvancedFilter/AdvancedFilter';
+import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {hasError} from 'core/helpers/form';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {ContentTableProps, useContentTable} from 'core/hooks/useContentTable';
+import * as Hooks from 'hooks';
 import {Collection} from 'models/Collection';
 import {CollectionContent} from 'models/CollectionContent';
+import {CollectionContentSearch} from 'models/CollectionContentSearch';
 import {District} from 'models/District';
 import {Province} from 'models/Province';
 import React from 'react';
@@ -20,6 +24,7 @@ const columnWidth = {
   index: COLUMN_WIDTH.index,
   id: undefined,
   name: undefined,
+  productId: undefined,
   collectionContentType: undefined,
   actions: COLUMN_WIDTH.actions,
 };
@@ -34,6 +39,10 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
   const [collectionContents, , handleAdd, handleDelete] = useContentTable<Collection, CollectionContent>(collection, setCollection, field);
 
   const [translate] = useTranslation();
+
+  const [search, setSearch] = React.useState<CollectionContentSearch>(new CollectionContentSearch());
+
+  const [dataSource, , sorter, handleTableChange, handleFilter] = Hooks.useLocalTable(collectionContents, search, setSearch);
 
   const columns: Array<ColumnProps<District>> = React.useMemo(
     () => {
@@ -57,8 +66,16 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
           key: nameof(collectionContents[0].id),
           width: columnWidth.id,
           dataIndex: nameof(collectionContents[0].id),
+          sorter: true,
+          sortOrder: CollectionContentSearch.getOrderTypeForTable<Collection>(nameof(collectionContents[0].id), sorter),
           children: [
             {
+              title: (
+                <AdvancedNumberFilter filter={search.id}
+                                      defaultType={nameof(search.id.equal)}
+                                      onChange={handleFilter(nameof(search.id))}
+                />
+              ),
               key: withTableFilterSuffix(nameof(collectionContents[0].id)),
               width: columnWidth.id,
               dataIndex: nameof(collectionContents[0].id),
@@ -75,12 +92,20 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
           ],
         },
         {
-          title: translate('collectionContent.name'),
-          key: nameof(collectionContents[0].name),
-          width: columnWidth.name,
-          dataIndex: nameof(collectionContents[0].name),
+          title: translate('collectionContent.productId'),
+          key: nameof(collectionContents[0].productId),
+          width: columnWidth.productId,
+          dataIndex: nameof(collectionContents[0].productId),
+          sorter: true,
+          sortOrder: CollectionContentSearch.getOrderTypeForTable<Collection>(nameof(collectionContents[0].productId), sorter),
           children: [
             {
+              title: (
+                <AdvancedFilter filter={search.productId}
+                                defaultType={nameof(search.productId.equal)}
+                                onChange={handleFilter(nameof(search.productId))}
+                />
+              ),
               key: withTableFilterSuffix(nameof(collectionContents[0].name)),
               width: columnWidth.name,
               dataIndex: nameof(collectionContents[0].name),
@@ -121,14 +146,15 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
         },
       ];
     },
-    [collectionContents, handleDelete, translate],
+    [collectionContents, handleDelete, handleFilter, search.id, search.productId, sorter, translate],
   );
 
   return (
     <Table bordered
            tableLayout="fixed"
+           onChange={handleTableChange}
            size="small"
-           dataSource={collectionContents}
+           dataSource={dataSource}
            rowKey={nameof(collectionContents[0].id)}
            columns={columns}
            pagination={false}

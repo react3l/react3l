@@ -1,28 +1,32 @@
 import {PaginationConfig, PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
+import {Filter} from 'core/filters';
 import {Model, Search} from 'core/models';
 import React from 'react';
 
 export type LocalTableHookResult<T extends Model, TSearch extends Search> = [
   T[],
   PaginationProps,
-  TSearch,
   SorterResult<TSearch>,
   (newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
+  (field: string) => (filter: Filter) => void,
 ];
 
-export type FilterHandlerType<TSearch extends Search> = (list: any[], search: TSearch) => any[];
+export type FilterHandlerType<TSearch extends Search> = (list: any[], search?: TSearch) => any[];
 
-function defaultFilterHandler(list: any[]) {
+function defaultFilterHandler<TSearch extends Search>(list: any[], search?: TSearch) {
+  if (search) {
+    return list;
+  }
   return list;
 }
 
 export function useLocalTable<T extends Model, TSearch extends Search>(
   list: T[],
+  search: TSearch,
+  setSearch: (search: TSearch) => void,
   filterHandler: FilterHandlerType<TSearch> = defaultFilterHandler,
 ): LocalTableHookResult<T, TSearch> {
-  const [search, setSearch] = React.useState<TSearch>(new Search() as TSearch);
-
   const sorter: SorterResult<TSearch> = React.useMemo(
     () => ({
       field: search.orderBy,
@@ -92,8 +96,20 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
         ...filters,
       }));
     },
-    [search, sorter],
+    [search, setSearch, sorter],
   );
 
-  return [dataSource, pagination, search, sorter, handleTableChange];
+  const handleFilter = React.useCallback(
+    (field: string) => {
+      return (filter: Filter) => {
+        setSearch(Search.clone<TSearch>({
+          ...search,
+          [field]: filter,
+        }));
+      };
+    },
+    [search, setSearch],
+  );
+
+  return [dataSource, pagination, sorter, handleTableChange, handleFilter];
 }
