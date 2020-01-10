@@ -13,8 +13,6 @@ import * as Hooks from 'hooks';
 import {Collection} from 'models/Collection';
 import {CollectionContent} from 'models/CollectionContent';
 import {CollectionContentSearch} from 'models/CollectionContentSearch';
-import {District} from 'models/District';
-import {Province} from 'models/Province';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
@@ -29,7 +27,7 @@ const columnWidth = {
   actions: COLUMN_WIDTH.actions,
 };
 
-function CollectionContentTable(props: ContentTableProps<Province, District>) {
+function CollectionContentTable(props: ContentTableProps<Collection, CollectionContent>) {
   const {
     model: collection,
     setModel: setCollection,
@@ -44,7 +42,7 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
 
   const [dataSource, , sorter, handleTableChange, handleFilter] = Hooks.useLocalTable(collectionContents, search, setSearch);
 
-  const columns: Array<ColumnProps<District>> = React.useMemo(
+  const columns: Array<ColumnProps<CollectionContent>> = React.useMemo(
     () => {
       return [
         {
@@ -57,7 +55,7 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
               key: withTableFilterSuffix(nameof(MASTER_KEYS.index)),
               width: columnWidth.index,
               className: 'center',
-              render: renderMasterIndex<District>(),
+              render: renderMasterIndex<CollectionContent>(),
             },
           ],
         },
@@ -79,10 +77,11 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
               key: withTableFilterSuffix(nameof(collectionContents[0].id)),
               width: columnWidth.id,
               dataIndex: nameof(collectionContents[0].id),
-              render(id: number, collectionContent: District) {
+              render(id: number, collectionContent: CollectionContent) {
                 return (
-                  <Form.Item validateStatus={hasError<District>(collectionContent, nameof(collectionContent.id))}
-                             help={collectionContent?.errors?.id}
+                  <Form.Item
+                    validateStatus={hasError<CollectionContent>(collectionContent, nameof(collectionContent.id))}
+                    help={collectionContent?.errors?.id}
                   >
                     <Input type="number" name={nameof(collectionContents[0].id)} defaultValue={id}/>
                   </Form.Item>
@@ -109,10 +108,11 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
               key: withTableFilterSuffix(nameof(collectionContents[0].name)),
               width: columnWidth.name,
               dataIndex: nameof(collectionContents[0].name),
-              render(name: string, collectionContent: District) {
+              render(name: string, collectionContent: CollectionContent) {
                 return (
-                  <Form.Item validateStatus={hasError<District>(collectionContent, nameof(collectionContent.name))}
-                             help={collectionContent?.errors?.name}
+                  <Form.Item
+                    validateStatus={hasError<CollectionContent>(collectionContent, nameof(collectionContent.name))}
+                    help={collectionContent?.errors?.name}
                   >
                     <Input type="text" name={nameof(collectionContents[0].name)} defaultValue={name}/>
                   </Form.Item>

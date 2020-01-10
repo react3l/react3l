@@ -156,7 +156,9 @@ function CollectionDetail() {
           <Form.Item
             label={translate('collection.collectionContents')}
           >
-            <CollectionContentTable model={collection} setModel={setCollection} field={nameof(collection.collectionContents)}/>
+            <CollectionContentTable model={collection}
+                                    setModel={setCollection}
+                                    field={nameof(collection.collectionContents)}/>
           </Form.Item>
           <div className="page-detail-actions">
             <Button htmlType="button" type="link" className="page-detail-delete" onClick={handleDelete}>
