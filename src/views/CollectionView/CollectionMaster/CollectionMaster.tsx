@@ -4,7 +4,7 @@ import Table, {ColumnProps} from 'antd/lib/table';
 import DatePickerFilter from 'components/AdvancedDateFilter';
 import DropdownFilter from 'components/AdvancedIdFilter';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
-import AdvancedFilter from 'components/AdvancedStringFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {COLLECTION_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
@@ -100,7 +100,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.name}
                   defaultType={nameof(search.name.startWith)}
                   onChange={handleFilter(nameof(search.name))}
@@ -122,7 +122,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.slug}
                   defaultType={nameof(search.slug.startWith)}
                   onChange={handleFilter(nameof(search.slug))}
@@ -208,7 +208,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.title}
                   defaultType={nameof(search.title.startWith)}
                   onChange={handleFilter(nameof(search.title))}
@@ -230,7 +230,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.description}
                   defaultType={nameof(search.description.startWith)}
                   onChange={handleFilter(nameof(search.description))}
