@@ -1,9 +1,9 @@
 import Input from 'antd/lib/input';
+import 'components/AdvancedStringFilter/AdvancedStringFilter.scss';
 import Select from 'components/Select/Select';
 import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import {FilterType} from 'core/types';
 import React from 'react';
-import 'components/AdvancedStringFilter/AdvancedStringFilter.scss';
 
 interface AdvancedFilterProps {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;

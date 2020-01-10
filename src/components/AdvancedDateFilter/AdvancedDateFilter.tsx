@@ -1,9 +1,9 @@
 import DatePicker from 'antd/lib/date-picker';
+import 'components/AdvancedDateFilter/AdvancedDateFilter.scss';
 import {DateFilter} from 'core/filters';
 import {Moment} from 'moment';
 import React from 'react';
 import nameof from 'ts-nameof.macro';
-import 'components/AdvancedDateFilter/AdvancedDateFilter.scss';
 
 interface DatePickerFilterProps {
   filter: DateFilter;
