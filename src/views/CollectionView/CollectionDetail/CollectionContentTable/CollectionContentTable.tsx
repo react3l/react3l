@@ -4,6 +4,7 @@ import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
+import InputNumber from 'components/InputNumber/InputNumber';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {hasError} from 'core/helpers/form';
@@ -83,7 +84,7 @@ function CollectionContentTable(props: ContentTableProps<Collection, CollectionC
                     validateStatus={hasError<CollectionContent>(collectionContent, nameof(collectionContent.id))}
                     help={collectionContent?.errors?.id}
                   >
-                    <Input type="number" name={nameof(collectionContents[0].id)} defaultValue={id}/>
+                    <InputNumber name={nameof(collectionContents[0].id)} defaultValue={id}/>
                   </Form.Item>
                 );
               },
