@@ -1,8 +1,8 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
-import AdvancedIdFilter from 'components/AdvancedIdFilter';
-import AdvancedStringFilter from 'components/AdvancedStringFilter';
+import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PRODUCT_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';

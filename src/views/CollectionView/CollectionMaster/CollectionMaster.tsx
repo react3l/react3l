@@ -1,10 +1,10 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
-import AdvancedDateFilter from 'components/AdvancedDateFilter';
-import AdvancedIdFilter from 'components/AdvancedIdFilter';
+import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter';
+import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
-import AdvancedStringFilter from 'components/AdvancedStringFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {COLLECTION_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
@@ -145,8 +145,8 @@ function CollectionMaster() {
             {
               title: (
                 <AdvancedDateFilter filter={search.start}
-                                  defaultType={nameof(search.start.equal)}
-                                  onChange={handleFilter(nameof(search.start))}
+                                    defaultType={nameof(search.start.equal)}
+                                    onChange={handleFilter(nameof(search.start))}
                 />
               ),
               key: withTableFilterSuffix(nameof(list[0].start)),
@@ -166,8 +166,8 @@ function CollectionMaster() {
             {
               title: (
                 <AdvancedDateFilter filter={search.end}
-                                  defaultType={nameof(search.end.equal)}
-                                  onChange={handleFilter(nameof(search.end))}
+                                    defaultType={nameof(search.end.equal)}
+                                    onChange={handleFilter(nameof(search.end))}
                 />
               ),
               key: withTableFilterSuffix(nameof(list[0].end)),
