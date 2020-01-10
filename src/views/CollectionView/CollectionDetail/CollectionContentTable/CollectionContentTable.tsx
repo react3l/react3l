@@ -2,7 +2,7 @@ import Button from 'antd/lib/button';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
-import AdvancedFilter from 'components/AdvancedFilter/AdvancedFilter';
+import AdvancedFilter from 'components/AdvancedStringFilter';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';

@@ -3,7 +3,7 @@ import {DateFilter} from 'core/filters';
 import {Moment} from 'moment';
 import React from 'react';
 import nameof from 'ts-nameof.macro';
-import './DatePickerFilter.scss';
+import 'components/AdvancedDateFilter/AdvancedDateFilter.scss';
 
 interface DatePickerFilterProps {
   filter: DateFilter;
@@ -13,7 +13,7 @@ interface DatePickerFilterProps {
   onChange?(filter: DateFilter);
 }
 
-function DatePickerFilter(props: DatePickerFilterProps) {
+function AdvancedDateFilter(props: DatePickerFilterProps) {
   const {
     filter,
     defaultType,
@@ -63,4 +63,4 @@ function DatePickerFilter(props: DatePickerFilterProps) {
   );
 }
 
-export default DatePickerFilter;
+export default AdvancedDateFilter;

@@ -3,7 +3,7 @@ import Select from 'components/Select/Select';
 import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import {FilterType} from 'core/types';
 import React from 'react';
-import './AdvancedFilter.scss';
+import 'components/AdvancedStringFilter/AdvancedStringFilter.scss';
 
 interface AdvancedFilterProps {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
@@ -15,7 +15,7 @@ interface AdvancedFilterProps {
   onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
-function AdvancedFilter(props: AdvancedFilterProps) {
+function AdvancedStringFilter(props: AdvancedFilterProps) {
   const {filter, defaultType, onChange, type: inputType} = props;
 
   const types: FilterType[] = React.useMemo(
@@ -147,8 +147,8 @@ function AdvancedFilter(props: AdvancedFilterProps) {
   );
 }
 
-AdvancedFilter.defaultProps = {
+AdvancedStringFilter.defaultProps = {
   type: 'text',
 };
 
-export default AdvancedFilter;
+export default AdvancedStringFilter;

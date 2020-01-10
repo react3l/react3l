@@ -1,15 +1,15 @@
-import {IdFilter} from 'core/filters';
+import {DateFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import DropdownFilter from './DropdownFilter';
+import DatePickerFilter from './';
 
-describe('DropdownFilter', () => {
+describe('DatePickerFilter', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-        <DropdownFilter filter={new IdFilter()}/>
+        <DatePickerFilter filter={new DateFilter()}/>
       </MemoryRouter>,
       div,
     );
