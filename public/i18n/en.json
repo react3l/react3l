@@ -1,5 +1,10 @@
 {
+  "collectionContent": {
+    "id": "",
+    "name": ""
+  },
   "collection": {
+    "collectionContents": "",
     "description": "",
     "detail": {
       "newTitle": "",
@@ -55,6 +60,10 @@
     "master": {
       "actions": "",
       "index": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
     }
   },
   "menu": {

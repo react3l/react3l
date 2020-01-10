@@ -1,5 +1,10 @@
 {
+  "collectionContent": {
+    "id": "",
+    "name": ""
+  },
   "collection": {
+    "collectionContents": "",
     "description": "Mô tả",
     "detail": {
       "newTitle": "Thêm bộ sưu tập mới",
@@ -55,6 +60,10 @@
     "master": {
       "actions": "Tác vụ",
       "index": "STT"
+    },
+    "numberRange": {
+      "from": "Từ",
+      "to": "đến"
     }
   },
   "menu": {

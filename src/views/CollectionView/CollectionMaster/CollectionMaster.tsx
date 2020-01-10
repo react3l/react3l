@@ -188,7 +188,7 @@ function CollectionMaster() {
               title: (
                 <AdvancedNumberFilter
                   filter={search.statusId}
-                  defaultType={nameof(search.statusId.equal)}
+                  defaultType={nameof(search.statusId.range)}
                   onChange={handleFilter(nameof(search.statusId))}
                 />
               ),

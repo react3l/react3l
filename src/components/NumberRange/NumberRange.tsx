@@ -1,5 +1,6 @@
 import InputNumber from 'components/InputNumber/InputNumber';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import './NumberRange.scss';
 
 interface NumberRangeProps {
@@ -9,6 +10,8 @@ interface NumberRangeProps {
 }
 
 function NumberRange(props: NumberRangeProps) {
+  const [translate] = useTranslation();
+
   const {
     value: [
       minValue,
@@ -37,9 +40,13 @@ function NumberRange(props: NumberRangeProps) {
 
   return (
     <div className="number-range">
-      <InputNumber defaultValue={minValue} onChange={handleChangeMinValue}/>
+      <InputNumber defaultValue={minValue}
+                   onChange={handleChangeMinValue}
+                   placeholder={translate('general.numberRange.from')}/>
       <span className="separator"/>
-      <InputNumber defaultValue={maxValue} onChange={handleChangeMaxValue}/>
+      <InputNumber defaultValue={maxValue}
+                   onChange={handleChangeMaxValue}
+                   placeholder={translate('general.numberRange.to')}/>
     </div>
   );
 }

@@ -16,6 +16,10 @@
     "master": {
       "actions": "Tác vụ",
       "index": "STT"
+    },
+    "numberRange": {
+      "from": "Từ",
+      "to": "đến"
     }
   }
 }

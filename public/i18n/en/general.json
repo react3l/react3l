@@ -16,6 +16,10 @@
     "master": {
       "actions": "",
       "index": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
     }
   }
 }
