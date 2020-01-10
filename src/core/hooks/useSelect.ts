@@ -17,7 +17,7 @@ export function useSelect<T extends Model, TSearch extends Search = Search>(
   searchField?: string,
   handleError?: (error: Error) => void,
 ): SelectHookResult<T> {
-  const [list, setList] = React.useState<T[]>(defaultList || []);
+  const [list, setList] = React.useState<T[]>(defaultList ?? []);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(

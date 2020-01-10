@@ -22,13 +22,13 @@ function parseSearch<TSearch extends Search>(search: string, defaultSearch: TSea
       switch (key) {
         case nameof(defaultSearch.skip):
           if (typeof value === 'string') {
-            defaultSearch.skip = parseInt(value, 10) || 0;
+            defaultSearch.skip = parseInt(value, 10) ?? 0;
           }
           break;
 
         case nameof(defaultSearch.take):
           if (typeof value === 'string') {
-            defaultSearch.take = parseInt(value, 10) || DEFAULT_TAKE;
+            defaultSearch.take = parseInt(value, 10) ?? DEFAULT_TAKE;
           }
           break;
 
@@ -40,7 +40,7 @@ function parseSearch<TSearch extends Search>(search: string, defaultSearch: TSea
 
         default:
           if (typeof value === 'object' && value !== null) {
-            const isIdFilter: boolean = key.endsWith('Id') || key === 'id';
+            const isIdFilter: boolean = key.endsWith('Id') ?? key === 'id';
             Object
               .entries(value)
               .forEach(([k, v]) => {

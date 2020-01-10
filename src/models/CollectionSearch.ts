@@ -1,4 +1,4 @@
-import {DateFilter, IdFilter, StringFilter} from 'core/filters';
+import {DateFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import {Search} from 'core/models';
 
 export class CollectionSearch extends Search {
@@ -12,7 +12,7 @@ export class CollectionSearch extends Search {
 
   public end?: DateFilter = new DateFilter();
 
-  public statusId?: IdFilter = new IdFilter();
+  public statusId?: NumberFilter = new NumberFilter();
 
   public title?: StringFilter = new StringFilter();
 

@@ -2,6 +2,7 @@ import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
 import AdvancedFilter from 'components/AdvancedFilter/AdvancedFilter';
+import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import DatePickerFilter from 'components/DatePickerFilter/DatePickerFilter';
 import DropdownFilter from 'components/DropdownFilter/DropdownFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
@@ -184,6 +185,13 @@ function CollectionMaster() {
           sortOrder: CollectionSearch.getOrderTypeForTable<Collection>(nameof(list[0].statusId), sorter),
           children: [
             {
+              title: (
+                <AdvancedNumberFilter
+                  filter={search.statusId}
+                  defaultType={nameof(search.statusId.equal)}
+                  onChange={handleFilter(nameof(search.statusId))}
+                />
+              ),
               key: withTableFilterSuffix(nameof(list[0].statusId)),
               width: columnWidth.statusId,
               dataIndex: nameof(list[0].statusId),

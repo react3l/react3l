@@ -10,11 +10,13 @@ interface AdvancedFilterProps {
 
   defaultType?: string;
 
+  type?: 'text' | 'number';
+
   onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
 function AdvancedFilter(props: AdvancedFilterProps) {
-  const {filter, defaultType, onChange} = props;
+  const {filter, defaultType, onChange, type: inputType} = props;
 
   const types: FilterType[] = React.useMemo(
     () => {
@@ -73,7 +75,7 @@ function AdvancedFilter(props: AdvancedFilterProps) {
     [filter],
   );
 
-  const [type, setType] = React.useState<string>(defaultType || types[0].name);
+  const [type, setType] = React.useState<string>(defaultType ?? types[0].name);
 
   const ref = React.createRef<Input>();
 
@@ -136,6 +138,7 @@ function AdvancedFilter(props: AdvancedFilterProps) {
   return (
     <Input
       ref={ref}
+      type={inputType}
       defaultValue={defaultValue}
       onChange={handleCheckClear}
       onPressEnter={handleSubmitChange}
@@ -143,5 +146,9 @@ function AdvancedFilter(props: AdvancedFilterProps) {
     />
   );
 }
+
+AdvancedFilter.defaultProps = {
+  type: 'text',
+};
 
 export default AdvancedFilter;

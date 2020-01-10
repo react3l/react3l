@@ -117,7 +117,8 @@
     "extract": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ extract",
     "merge": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ merge",
     "watch:lib": "NODE_ENV=development webpack --watch",
-    "build:lib": "NODE_ENV=production  webpack"
+    "build:lib": "NODE_ENV=production  webpack",
+    "storybook": "start-storybook -p 6006"
   },
   "proxy": "http://localhost"
 }

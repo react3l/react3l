@@ -20,7 +20,7 @@ function DatePickerFilter(props: DatePickerFilterProps) {
     onChange,
   } = props;
 
-  const [type] = React.useState<keyof DateFilter>((defaultType || DateFilter.types()[0]) as keyof DateFilter);
+  const [type] = React.useState<keyof DateFilter>((defaultType ?? DateFilter.types()[0]) as keyof DateFilter);
 
   const handleChangeRange = React.useCallback(
     (range) => {

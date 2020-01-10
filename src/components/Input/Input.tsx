@@ -4,7 +4,7 @@ import './Input.scss';
 
 const Input = React.forwardRef(
   (props: InputProps) => {
-    const {defaultValue} = props;
+    const {defaultValue, ...restProps} = props;
 
     const [value, setValue] = React.useState<string | number | string[]>(defaultValue);
 
@@ -22,8 +22,8 @@ const Input = React.forwardRef(
     return (
       <AntInput
         ref={ref}
-        {...props}
-        defaultValue={value}
+        {...restProps}
+        defaultValue={value as string}
       />
     );
   },

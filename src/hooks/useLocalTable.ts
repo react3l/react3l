@@ -47,7 +47,7 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
         take,
       } = search;
 
-      const {length} = dataSource || [];
+      const {length} = dataSource ?? [];
 
       return {
         current: (skip / take) + 1,
@@ -67,7 +67,7 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
       const {pageSize: take} = newPagination;
       const skip: number = (newPagination.current - 1) * newPagination.pageSize;
 
-      if (skip !== search.skip || take !== search.take) {
+      if (skip !== search.skip ?? take !== search.take) {
         setSearch(Search.clone<TSearch>({
           ...search,
           skip,
@@ -78,7 +78,7 @@ export function useLocalTable<T extends Model, TSearch extends Search>(
 
       const {field, order} = sorter;
 
-      if (newSorter.field !== field || newSorter.order !== order) {
+      if (newSorter.field !== field ?? newSorter.order !== order) {
         setSearch(Search.clone<TSearch>({
           ...search,
           orderBy: newSorter.field,

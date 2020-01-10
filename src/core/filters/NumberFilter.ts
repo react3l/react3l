@@ -12,6 +12,7 @@ export class NumberFilter extends Filter {
       nameof(filter.greaterEqual),
       nameof(filter.less),
       nameof(filter.lessEqual),
+      nameof(filter.range),
     ];
   }
 
@@ -26,4 +27,6 @@ export class NumberFilter extends Filter {
   public less?: number;
 
   public lessEqual?: number;
+
+  public range?: [number | undefined, number | undefined];
 }
