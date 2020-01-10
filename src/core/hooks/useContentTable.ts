@@ -1,4 +1,5 @@
 import React from 'react';
+import v4 from 'uuid/v4';
 import {Model} from '../models';
 
 export interface ContentTableProps<T extends Model, TContent extends Model> {
@@ -23,7 +24,24 @@ export function useContentTable<T extends Model, TContent extends Model>(
   setModel: (t: T) => void,
   field: string,
 ): ContentTableHookResult<TContent> {
-  const value: TContent[] = model[field];
+  const value: TContent[] = React.useMemo(
+    () => {
+      if (model[field]) {
+        model[field]?.forEach((t: T) => {
+          if (!t?.key) {
+            if (t?.id) {
+              t.key = t.id;
+            } else {
+              t.key = v4();
+            }
+          }
+        });
+        return model[field];
+      }
+      return [];
+    },
+    [field, model],
+  );
 
   const setValue = React.useCallback(
     (v: TContent[]) => {
@@ -47,14 +65,16 @@ export function useContentTable<T extends Model, TContent extends Model>(
 
   const handleAdd = React.useCallback(
     () => {
+      const newContent: TContent = new Model() as TContent;
+      newContent.key = v4();
       if (value instanceof Array) {
         setValue([
           ...value,
-          new Model() as TContent,
+          newContent,
         ]);
       } else {
         setValue([
-          new Model() as TContent,
+          newContent,
         ]);
       }
     },

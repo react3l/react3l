@@ -155,7 +155,6 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
            onChange={handleTableChange}
            size="small"
            dataSource={dataSource}
-           rowKey={nameof(collectionContents[0].id)}
            columns={columns}
            pagination={false}
            footer={() => (
