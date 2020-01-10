@@ -5,7 +5,7 @@ import {Moment} from 'moment';
 import React from 'react';
 import nameof from 'ts-nameof.macro';
 
-interface DatePickerFilterProps {
+interface AdvancedDateFilterProps {
   filter: DateFilter;
 
   defaultType?: string;
@@ -13,7 +13,7 @@ interface DatePickerFilterProps {
   onChange?(filter: DateFilter);
 }
 
-function AdvancedDateFilter(props: DatePickerFilterProps) {
+function AdvancedDateFilter(props: AdvancedDateFilterProps) {
   const {
     filter,
     defaultType,

@@ -1,8 +1,8 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
-import DatePickerFilter from 'components/AdvancedDateFilter';
-import DropdownFilter from 'components/AdvancedIdFilter';
+import AdvancedDateFilter from 'components/AdvancedDateFilter';
+import AdvancedIdFilter from 'components/AdvancedIdFilter';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import AdvancedStringFilter from 'components/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
@@ -144,7 +144,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <DatePickerFilter filter={search.start}
+                <AdvancedDateFilter filter={search.start}
                                   defaultType={nameof(search.start.equal)}
                                   onChange={handleFilter(nameof(search.start))}
                 />
@@ -165,7 +165,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <DatePickerFilter filter={search.end}
+                <AdvancedDateFilter filter={search.end}
                                   defaultType={nameof(search.end.equal)}
                                   onChange={handleFilter(nameof(search.end))}
                 />
@@ -252,7 +252,7 @@ function CollectionMaster() {
           children: [
             {
               title: (
-                <DropdownFilter
+                <AdvancedIdFilter
                   list={statuses}
                   filter={search.statusId}
                   onChange={handleFilter(nameof(search.statusId))}

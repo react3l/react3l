@@ -1,7 +1,7 @@
 import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
-import DropdownFilter from 'components/AdvancedIdFilter';
+import AdvancedIdFilter from 'components/AdvancedIdFilter';
 import AdvancedStringFilter from 'components/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PRODUCT_ROUTE} from 'config/route-consts';
@@ -133,7 +133,7 @@ function ProductMaster() {
           children: [
             {
               title: (
-                <DropdownFilter
+                <AdvancedIdFilter
                   list={productTypes}
                   filter={search.typeId}
                   onChange={handleFilter(nameof(search.typeId))}
@@ -158,7 +158,7 @@ function ProductMaster() {
           children: [
             {
               title: (
-                <DropdownFilter
+                <AdvancedIdFilter
                   list={defaultMerchantList}
                   filter={search.merchantId}
                   getList={repository.singleListMerchant}

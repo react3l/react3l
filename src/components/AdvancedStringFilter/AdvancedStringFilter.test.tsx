@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import AdvancedStringFilter from './';
+import AdvancedStringFilter from './AdvancedStringFilter';
 
 describe('AdvancedStringFilter', () => {
   it('renders without crashing', () => {

@@ -2,14 +2,14 @@ import {IdFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import DropdownFilter from './';
+import AdvancedIdFilter from './AdvancedIdFilter';
 
-describe('DropdownFilter', () => {
+describe('AdvancedIdFilter', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-        <DropdownFilter filter={new IdFilter()}/>
+        <AdvancedIdFilter filter={new IdFilter()}/>
       </MemoryRouter>,
       div,
     );
