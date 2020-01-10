@@ -3,7 +3,7 @@ import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
-import AdvancedFilter from 'components/AdvancedStringFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {hasError} from 'core/helpers/form';
@@ -101,9 +101,9 @@ function CollectionContentTable(props: ContentTableProps<Province, District>) {
           children: [
             {
               title: (
-                <AdvancedFilter filter={search.productId}
-                                defaultType={nameof(search.productId.equal)}
-                                onChange={handleFilter(nameof(search.productId))}
+                <AdvancedStringFilter filter={search.productId}
+                                      defaultType={nameof(search.productId.equal)}
+                                      onChange={handleFilter(nameof(search.productId))}
                 />
               ),
               key: withTableFilterSuffix(nameof(collectionContents[0].name)),

@@ -2,7 +2,7 @@ import Button from 'antd/lib/button';
 import Card from 'antd/lib/card';
 import Table, {ColumnProps} from 'antd/lib/table';
 import DropdownFilter from 'components/AdvancedIdFilter';
-import AdvancedFilter from 'components/AdvancedStringFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {PRODUCT_ROUTE} from 'config/route-consts';
 import {withTableFilterSuffix} from 'core/helpers/string';
@@ -89,7 +89,7 @@ function ProductMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.id}
                   defaultType={nameof(search.id.equal)}
                   onChange={handleFilter(nameof(search.id))}
@@ -111,7 +111,7 @@ function ProductMaster() {
           children: [
             {
               title: (
-                <AdvancedFilter
+                <AdvancedStringFilter
                   filter={search.name}
                   defaultType={nameof(search.name.startWith)}
                   onChange={handleFilter(nameof(search.name))}

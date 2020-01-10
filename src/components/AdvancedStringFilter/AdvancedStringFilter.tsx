@@ -5,7 +5,7 @@ import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core
 import {FilterType} from 'core/types';
 import React from 'react';
 
-interface AdvancedFilterProps {
+interface AdvancedStringFilterProps {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
 
   defaultType?: string;
@@ -15,7 +15,7 @@ interface AdvancedFilterProps {
   onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
-function AdvancedStringFilter(props: AdvancedFilterProps) {
+function AdvancedStringFilter(props: AdvancedStringFilterProps) {
   const {filter, defaultType, onChange, type: inputType} = props;
 
   const types: FilterType[] = React.useMemo(

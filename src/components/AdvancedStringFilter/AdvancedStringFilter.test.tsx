@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import AdvancedFilter from './';
+import AdvancedStringFilter from './';
 
-describe('AdvancedFilter', () => {
+describe('AdvancedStringFilter', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-        <AdvancedFilter/>
+        <AdvancedStringFilter/>
       </MemoryRouter>,
       div,
     );
