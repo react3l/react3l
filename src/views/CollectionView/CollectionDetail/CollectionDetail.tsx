@@ -71,6 +71,12 @@ function CollectionDetail() {
                            validateStatus={hasError<Collection>(collection, nameof(collection.id))}
                            help={collection.errors?.id}
                 >
+                  <Input
+                    type="text"
+                    name={nameof(collection.id)}
+                    value={collection?.id}
+                    onChange={handleUpdateSimpleField(nameof(collection.id))}
+                  />
                 </Form.Item>
                 <Form.Item label={translate('collection.name')}
                            validateStatus={hasError<Collection>(collection, nameof(collection.name))}
@@ -111,11 +117,6 @@ function CollectionDetail() {
                     defaultValue={collection.end}
                     onChange={handleUpdateDateField(nameof(collection.end))}
                   />
-                </Form.Item>
-                <Form.Item label={translate('collection.statusId')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.statusId))}
-                           help={collection.errors?.statusId}
-                >
                 </Form.Item>
                 <Form.Item label={translate('collection.title')}
                            validateStatus={hasError<Collection>(collection, nameof(collection.title))}
