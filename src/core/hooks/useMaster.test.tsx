@@ -2,12 +2,19 @@ import {renderHook} from '@testing-library/react-hooks';
 import {HOME_ROUTE} from 'config/route-consts';
 import {useMaster} from 'core/hooks/useMaster';
 import {configTests} from 'helpers/config-tests';
+import React from 'react';
+import {MemoryRouter} from 'react-router-dom';
+import {create} from 'react-test-renderer';
 import {Model, Search} from '../models';
 
 describe('useMaster', () => {
   it('useMaster works', () => {
     configTests()
       .then(() => {
+        create(
+          <MemoryRouter>
+          </MemoryRouter>,
+        );
         const model: Model = new Model();
         const masterList = jest.fn().mockResolvedValue([model]);
         const masterCount = jest.fn().mockResolvedValue(1);
