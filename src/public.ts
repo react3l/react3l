@@ -1,5 +1,3 @@
-export * from 'core/components';
-
 export * from 'core/config';
 
 export * from 'core/helpers';
