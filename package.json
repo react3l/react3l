@@ -41,6 +41,7 @@
     "npm-run-all": "^4.1.5",
     "react-i18next-extract": "^0.3.2",
     "react-scripts": "3.3.0",
+    "react-snap": "^1.23.0",
     "react-test-renderer": "^16.12.0",
     "react3l-cli": "^0.4.0",
     "sass-loader": "^8.0.0",
@@ -87,6 +88,7 @@
     "build-js": "react-scripts build",
     "start": "run-s merge start-js",
     "build": "run-s merge build-js",
+    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "tslint --fix ./src/**/*.{ts,tsx} -e ./src/**/*.test.{ts,tsx}",
@@ -96,7 +98,7 @@
     "build:lib": "NODE_ENV=production  webpack",
     "storybook": "start-storybook -p 6006"
   },
-  "proxy": "http://localhost",
+  "proxy": "https://code-generator-api.thanhtunguet.info",
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint"

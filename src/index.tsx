@@ -1,7 +1,7 @@
+import App from 'components/App/App';
 import AppLoading from 'components/AppLoading/AppLoading';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
-import {App} from 'core/components';
 import initialGlobalState, {GlobalState} from 'core/config/global';
 import {changeLanguage} from 'core/helpers';
 import i18next from 'i18next';
@@ -21,14 +21,26 @@ Promise.all([
   setGlobal<GlobalState>(initialGlobalState),
 ])
   .then(() => {
-    ReactDOM.render(
-      <BrowserRouter>
-        <AppLoading>
-          <App routes={routes}/>
-        </AppLoading>
-      </BrowserRouter>,
-      document.getElementById('root'),
-    );
+    const root: HTMLDivElement = document.getElementById('root') as HTMLDivElement;
+    if (root.hasChildNodes()) {
+      ReactDOM.hydrate(
+        <BrowserRouter>
+          <AppLoading>
+            <App routes={routes}/>
+          </AppLoading>
+        </BrowserRouter>,
+        root,
+      );
+    } else {
+      ReactDOM.render(
+        <BrowserRouter>
+          <AppLoading>
+            <App routes={routes}/>
+          </AppLoading>
+        </BrowserRouter>,
+        root,
+      );
+    }
   });
 
 // If you want your app to work offline and load faster, you can change
