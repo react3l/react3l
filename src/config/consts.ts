@@ -2,7 +2,9 @@ export * from 'core/config';
 
 export const INPUT_DEBOUNCE_TIME: number = 400;
 
-export const BASE_URL: string = process.env.REACT_APP_BASE_URL ?? window.location.origin;
+export const __DEV__: boolean = process.env.NODE_ENV === 'development';
+
+export const BASE_URL: string = __DEV__ ? window.location.origin : process.env.REACT_APP_BASE_URL;
 
 export const APP_TITLE: string = process.env.REACT_APP_TITLE ?? '';
 

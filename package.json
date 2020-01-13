@@ -33,12 +33,15 @@
     "@types/ts-nameof": "^4.2.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "babel-plugin-import": "^1.13.0",
     "css-loader": "^3.4.0",
+    "customize-cra": "^0.9.1",
     "husky": "^3.1.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "node-sass": "^4.13.0",
     "npm-run-all": "^4.1.5",
+    "react-app-rewired": "^2.1.5",
     "react-i18next-extract": "^0.3.2",
     "react-scripts": "3.3.0",
     "react-snap": "^1.23.0",
@@ -84,8 +87,8 @@
     ]
   },
   "scripts": {
-    "start-js": "react-scripts start",
-    "build-js": "react-scripts build",
+    "start-js": "react-app-rewired start",
+    "build-js": "react-app-rewired build",
     "start": "run-s merge start-js",
     "build": "run-s merge build-js",
     "postbuild": "react-snap",
@@ -98,6 +101,7 @@
     "build:lib": "NODE_ENV=production  webpack",
     "storybook": "start-storybook -p 6006"
   },
+  "proxy": "https://code-generator-api.thanhtunguet.info",
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint"
