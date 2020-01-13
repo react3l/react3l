@@ -1,6 +1,6 @@
 {
   "name": "react3l",
-  "version": "0.1.0-pre-release.2019.12.28-1",
+  "version": "0.1.0-pre-release.2020.01.13",
   "private": false,
   "license": "MIT",
   "author": {
@@ -12,7 +12,6 @@
     "thanhtunguet"
   ],
   "homepage": "https://github.com/thanhtunguet/react3l/wiki",
-  "lint-staged": {},
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -82,11 +81,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
   },
   "scripts": {
     "start-js": "react-scripts start",
