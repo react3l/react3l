@@ -20,10 +20,6 @@ describe('Helper tests', () => {
     }, 400);
   });
 
-  it('url works', () => {
-    expect(url('abc')).toEqual('abc');
-  });
-
   it('numbers', () => {
     expect(isValidNumbers(1)).toBeTruthy();
     expect(isValidNumbers(NaN)).toBeFalsy();
