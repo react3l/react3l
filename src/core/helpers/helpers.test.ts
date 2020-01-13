@@ -1,4 +1,8 @@
 import {debounce} from 'core/helpers/debounce';
+import {isValidNumbers} from 'core/helpers/number';
+import {withTableFilterSuffix} from 'core/helpers/string';
+import {translate} from 'core/helpers/translate';
+import {renderMasterIndex} from 'core/helpers/view';
 import {url} from './url';
 
 describe('Helper tests', () => {
@@ -17,5 +21,24 @@ describe('Helper tests', () => {
 
   it('url works', () => {
     expect(url('abc')).toEqual('abc');
+  });
+
+  it('numbers', () => {
+    expect(isValidNumbers(1)).toBeTruthy();
+    expect(isValidNumbers(NaN)).toBeFalsy();
+    expect(isValidNumbers(undefined)).toBeFalsy();
+    expect(isValidNumbers(null)).toBeFalsy();
+  });
+
+  it('string works', () => {
+    expect(withTableFilterSuffix('id')).toEqual('id-filter');
+  });
+
+  it('translate', () => {
+    expect(translate('key.subKey')).toEqual('key.subKey');
+  });
+
+  it('renderMasterIndex works', () => {
+    expect(renderMasterIndex({})(1, {}, 1)).toEqual(2);
   });
 });

@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
-export async function configureI18Next() {
+export async function configTests() {
   await i18n
     .use(initReactI18next)
     .init({

@@ -16,7 +16,8 @@ import {CollectionStatus} from 'models/CollectionStatus';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
-import CollectionContentTable from 'views/CollectionView/CollectionDetail/CollectionContentTable/CollectionContentTable';
+import CollectionContentTable
+  from 'views/CollectionView/CollectionDetail/CollectionContentTable/CollectionContentTable';
 import './CollectionDetail.scss';
 
 import repository from './CollectionDetailRepository';
