@@ -1,3 +1,4 @@
+import {formatDate, formatDateTime, formatTime} from 'core/helpers/date-time';
 import {debounce} from 'core/helpers/debounce';
 import {flatten, unflatten} from 'core/helpers/json';
 import {isValidNumbers} from 'core/helpers/number';
@@ -50,5 +51,14 @@ describe('Helper tests', () => {
       'a.b.c': 'string',
     };
     expect((unflatten(flattenObject) as any).a.b.c).toEqual('string');
+  });
+
+  it('date-time helpers', () => {
+    const dateStr: string = '2019-11-01';
+    const date: Date = new Date(dateStr);
+    date.setTime(date.getTime() + date.getTimezoneOffset() * 60000);
+    expect(formatDate(date)).toEqual(dateStr);
+    expect(formatDateTime(date)).toEqual(`${dateStr} 00:00:00`);
+    expect(formatTime(date)).toEqual('00:00:00');
   });
 });
