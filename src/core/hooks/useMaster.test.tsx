@@ -2,6 +2,8 @@ import {renderHook} from '@testing-library/react-hooks';
 import {HOME_ROUTE} from 'config/route-consts';
 import {useMaster} from 'core/hooks/useMaster';
 import {configTests} from 'helpers/config-tests';
+import {createMemoryHistory} from 'history';
+import React from 'react';
 import {Model, Search} from '../models';
 
 describe('useMaster', () => {
@@ -9,17 +11,25 @@ describe('useMaster', () => {
     jest.mock('react-router-dom', () => ({
       useHistory: () => ({
         push: jest.fn(),
+        replace: jest.fn(),
       }),
     }));
+    (global as any).window = {
+      history: createMemoryHistory(),
+    };
     configTests()
       .then(() => {
         const model: Model = new Model();
         const masterList = jest.fn().mockResolvedValue([model]);
         const masterCount = jest.fn().mockResolvedValue(1);
-        let search: Search = new Search();
-        const setSearch = () => {
-          search = null;
-        };
+        const {
+          result: {
+            current: [
+              search,
+              setSearch,
+            ],
+          },
+        } = renderHook(() => React.useState<Search>(new Search()));
         const {
           result:
             {
