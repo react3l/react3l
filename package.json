@@ -11,7 +11,7 @@
   "maintainers": [
     "thanhtunguet"
   ],
-  "homepage": "https://github.com/thanhtunguet/react3l/wiki",
+  "homepage": "https://react3l.thanhtunguet.info",
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
