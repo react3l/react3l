@@ -4,6 +4,8 @@ export {createHttpService} from './http';
 
 export {changeLanguage} from './i18next';
 
+export * from './date-time';
+
 export {isValidNumbers} from './number';
 
 export {withTableFilterSuffix} from './string';

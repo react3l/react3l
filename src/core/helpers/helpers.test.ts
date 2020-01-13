@@ -4,7 +4,6 @@ import {isValidNumbers} from 'core/helpers/number';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {translate} from 'core/helpers/translate';
 import {renderMasterIndex} from 'core/helpers/view';
-import {url} from './url';
 
 describe('Helper tests', () => {
   it('debounce works', () => {
@@ -48,8 +47,8 @@ describe('Helper tests', () => {
     expect(flatten(nestedObject)['a.b']).toEqual(1);
 
     const flattenObject = {
-      'a.b.c': 'correctly',
+      'a.b.c': 'string',
     };
-    expect((unflatten(flattenObject) as any).a.b.c).toEqual('correctly');
+    expect((unflatten(flattenObject) as any).a.b.c).toEqual('string');
   });
 });

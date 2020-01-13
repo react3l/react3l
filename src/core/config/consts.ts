@@ -39,3 +39,7 @@ export const BASE_URL: string = process.env.REACT_APP_BASE_URL ?? '';
 export const INPUT_DEBOUNCE_TIME: number = parseInt(process.env.INPUT_DEBOUNCE_TIME, 10) ?? 400;
 
 export const DATE_FORMAT: string = 'YYYY-MM-DD';
+
+export const TIME_FORMAT: string = 'HH:mm:ss';
+
+export const DATE_TIME_FORMAT: string = `${DATE_FORMAT} ${TIME_FORMAT}`;
