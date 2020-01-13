@@ -14,9 +14,7 @@ describe('useMaster', () => {
         replace: jest.fn(),
       }),
     }));
-    (global as any).window = {
-      history: createMemoryHistory(),
-    };
+    (global as any).history = createMemoryHistory();
     configTests()
       .then(() => {
         const model: Model = new Model();
