@@ -1,5 +1,4 @@
-import {GlobalState} from 'core/config';
-import initialGlobalState from 'core/config/global';
+import {configTests} from 'helpers/config-tests';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
 import React from 'reactn';
@@ -7,7 +6,7 @@ import AppLoading from './AppLoading';
 
 describe('AppLoading', () => {
   it('renders without crashing', () => {
-    React.setGlobal<GlobalState>(initialGlobalState)
+    configTests()
       .then(() => {
         const div = document.createElement('div');
         ReactDOM.render(

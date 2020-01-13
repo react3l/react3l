@@ -18,7 +18,7 @@ export function sort(json: JSONObject) {
   return result;
 }
 
-export function unflatten(jsonTable: { [key: string]: string }) {
+export function unflatten(jsonTable: { [key: string]: string }): JSONObject {
   if (jsonTable) {
     const result: { [key: string]: any } = {};
     Object

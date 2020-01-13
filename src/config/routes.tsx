@@ -1,8 +1,6 @@
-import {menu} from 'config/menu';
 import {COLLECTION_ROUTE, HOME_ROUTE, PRODUCT_ROUTE} from 'config/route-consts';
-import DefaultLayout, {DefaultLayoutProps} from 'layouts/DefaultLayout/DefaultLayout';
+import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
 import {join} from 'path';
-import React from 'react';
 import {RouteConfig} from 'react-router-config';
 import CollectionView, {CollectionDetail, CollectionMaster} from 'views/CollectionView/CollectionView';
 import ProductDetail from 'views/ProductView/ProductDetail/ProductDetail';
@@ -12,11 +10,7 @@ import ProductView from 'views/ProductView/ProductView';
 export const routes: RouteConfig[] = [
   {
     path: HOME_ROUTE,
-    render: (props: DefaultLayoutProps) => {
-      return (
-        <DefaultLayout {...props} menu={menu}/>
-      );
-    },
+    component: DefaultLayout,
     children: [
       {
         path: PRODUCT_ROUTE,

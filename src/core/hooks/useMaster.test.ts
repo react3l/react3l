@@ -1,7 +1,7 @@
 import {renderHook} from '@testing-library/react-hooks';
 import {HOME_ROUTE} from 'config/route-consts';
 import {useMaster} from 'core/hooks/useMaster';
-import {configTests} from '../../helpers/config-tests';
+import {configTests} from 'helpers/config-tests';
 import {Model, Search} from '../models';
 
 describe('useMaster', () => {

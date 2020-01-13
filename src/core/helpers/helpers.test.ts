@@ -1,4 +1,5 @@
 import {debounce} from 'core/helpers/debounce';
+import {flatten, unflatten} from 'core/helpers/json';
 import {isValidNumbers} from 'core/helpers/number';
 import {withTableFilterSuffix} from 'core/helpers/string';
 import {translate} from 'core/helpers/translate';
@@ -40,5 +41,19 @@ describe('Helper tests', () => {
 
   it('renderMasterIndex works', () => {
     expect(renderMasterIndex({})(1, {}, 1)).toEqual(2);
+  });
+
+  it('json works', () => {
+    const nestedObject = {
+      a: {
+        b: 1,
+      },
+    };
+    expect(flatten(nestedObject)['a.b']).toEqual(1);
+
+    const flattenObject = {
+      'a.b.c': 'correctly',
+    };
+    expect((unflatten(flattenObject) as any).a.b.c).toEqual('correctly');
   });
 });

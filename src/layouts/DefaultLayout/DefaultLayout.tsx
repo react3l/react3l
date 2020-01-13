@@ -2,6 +2,7 @@ import Icon from 'antd/lib/icon';
 import Layout from 'antd/lib/layout';
 import Menu from 'antd/lib/menu';
 import classNames from 'classnames';
+import {menu} from 'config/menu';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {renderRoutes, RouteConfig, RouteConfigComponentProps} from 'react-router-config';
@@ -80,5 +81,9 @@ function DefaultLayout(props: DefaultLayoutProps) {
     </Layout>
   );
 }
+
+DefaultLayout.defaultProps = {
+  menu,
+};
 
 export default withRouter(DefaultLayout);

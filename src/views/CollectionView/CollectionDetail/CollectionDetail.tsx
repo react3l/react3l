@@ -6,18 +6,17 @@ import Input from 'antd/lib/input';
 import Spin from 'antd/lib/spin';
 import CardTitle from 'components/CardTitle/CardTitle';
 import Select from 'components/Select/Select';
-import {formItemLayout} from 'config/consts';
-import {COLLECTION_ROUTE} from 'config/route-consts';
-import {hasError} from 'core/helpers/form';
+import { formItemLayout } from 'config/consts';
+import { COLLECTION_ROUTE } from 'config/route-consts';
+import { hasError } from 'core/helpers/form';
 import * as CoreHooks from 'core/hooks';
 import * as Hooks from 'hooks';
-import {Collection} from 'models/Collection';
-import {CollectionStatus} from 'models/CollectionStatus';
+import { Collection } from 'models/Collection';
+import { CollectionStatus } from 'models/CollectionStatus';
 import React from 'react';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import nameof from 'ts-nameof.macro';
-import CollectionContentTable
-  from 'views/CollectionView/CollectionDetail/CollectionContentTable/CollectionContentTable';
+import CollectionContentTable from 'views/CollectionView/CollectionDetail/CollectionContentTable/CollectionContentTable';
 import './CollectionDetail.scss';
 
 import repository from './CollectionDetailRepository';
@@ -63,14 +62,14 @@ function CollectionDetail() {
   return (
     <Spin spinning={loading}>
       <div className="container-fluid page-detail product-detail">
-        <Card title={<CardTitle title={pageTitle} onBack={handleGoBack}/>}>
+        <Card title={<CardTitle title={pageTitle} onBack={handleGoBack} />}>
           {actions}
           <Form {...formItemLayout}>
             <div className="row">
               <div className="col-6">
                 <Form.Item label={translate('collection.id')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.id))}
-                           help={collection.errors?.id}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.id))}
+                  help={collection.errors?.id}
                 >
                   <Input
                     type="text"
@@ -80,8 +79,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.name')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.name))}
-                           help={collection.errors?.name}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.name))}
+                  help={collection.errors?.name}
                 >
                   <Input
                     type="text"
@@ -91,8 +90,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.slug')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.slug))}
-                           help={collection.errors?.slug}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.slug))}
+                  help={collection.errors?.slug}
                 >
                   <Input
                     type="text"
@@ -102,8 +101,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.start')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.start))}
-                           help={collection.errors?.start}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.start))}
+                  help={collection.errors?.start}
                 >
                   <DatePicker
                     defaultValue={collection.start}
@@ -111,8 +110,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.end')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.end))}
-                           help={collection.errors?.end}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.end))}
+                  help={collection.errors?.end}
                 >
                   <DatePicker
                     defaultValue={collection.end}
@@ -120,8 +119,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.title')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.title))}
-                           help={collection.errors?.title}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.title))}
+                  help={collection.errors?.title}
                 >
                   <Input
                     type="text"
@@ -131,8 +130,8 @@ function CollectionDetail() {
                   />
                 </Form.Item>
                 <Form.Item label={translate('collection.description')}
-                           validateStatus={hasError<Collection>(collection, nameof(collection.description))}
-                           help={collection.errors?.description}
+                  validateStatus={hasError<Collection>(collection, nameof(collection.description))}
+                  help={collection.errors?.description}
                 >
                   <Input
                     type="text"
@@ -159,8 +158,8 @@ function CollectionDetail() {
             label={translate('collection.collectionContents')}
           >
             <CollectionContentTable model={collection}
-                                    setModel={setCollection}
-                                    field={nameof(collection.collectionContents)}/>
+              setModel={setCollection}
+              field={nameof(collection.collectionContents)} />
           </Form.Item>
           <div className="page-detail-actions">
             <Button htmlType="button" type="link" className="page-detail-delete" onClick={handleDelete}>
