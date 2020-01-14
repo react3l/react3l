@@ -295,7 +295,7 @@ function CollectionMaster() {
       ];
     },
     // tslint:disable-next-line:max-line-length
-    [translate, list, pagination, sorter, search.name, search.slug, search.start, search.end, search.title, search.description, search.statusId, handleFilter, statuses, handleEdit],
+    [translate, list, pagination, sorter, handleFilter, search, statuses, handleEdit],
   );
 
   return (

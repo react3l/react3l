@@ -40,7 +40,7 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
       newSorter: SorterResult<T>,
     ) => {
       const {field, order} = sorter;
-      if (newSorter.field !== field ?? newSorter.order !== order) {
+      if (newSorter.field !== field || newSorter.order !== order) {
         const newSearch: TSearch = Search.clone<TSearch>({
           ...search,
           orderBy: newSorter.field,
@@ -55,7 +55,7 @@ export function useMasterTable<T extends Model, TSearch extends Search>(
         pageSize = DEFAULT_TAKE,
         total = 0,
       } = newPagination;
-      if (pagination.current !== current ?? pagination.pageSize !== pageSize ?? pagination.total !== total) {
+      if (pagination.current !== current || pagination.pageSize !== pageSize || pagination.total !== total) {
         setSearch(Search.clone<TSearch>({
           ...search,
           take: pageSize,

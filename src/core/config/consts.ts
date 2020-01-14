@@ -28,8 +28,8 @@ interface SortType {
 }
 
 export const SORT_TYPES: SortType = {
-  ASC: 'ASC',
-  DESC: 'DESC',
+  ASC: 'ascend',
+  DESC: 'descend',
 };
 
 export const DEFAULT_TAKE: number = 10;

@@ -1,32 +1,6 @@
 {
   "menu": {
-    "administrator": "",
-    "banner": "",
-    "brand": "",
-    "category": "",
     "collection": "",
-    "collectionContent": "",
-    "coupon": "",
-    "customer": "",
-    "discount": "",
-    "district": "",
-    "eVoucher": "",
-    "eVoucherContent": "",
-    "imageFile": "",
-    "item": "",
-    "itemHistory": "",
-    "itemVoucher": "",
-    "itemVoucherStatus": "",
-    "mail": "",
-    "merchant": "",
-    "merchantAddress": "",
-    "merchantContact": "",
-    "notification": "",
-    "order": "",
-    "orderContent": "",
-    "product": "",
-    "province": "",
-    "shippingAddress": "",
-    "ward": ""
+    "product": ""
   }
 }

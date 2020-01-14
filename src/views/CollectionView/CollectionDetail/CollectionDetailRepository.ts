@@ -10,6 +10,8 @@ import {Collection} from 'models/Collection';
 import {CollectionStatus} from 'models/CollectionStatus';
 import {CollectionStatusSearch} from 'models/CollectionStatusSearch';
 import nameof from 'ts-nameof.macro';
+import {Product} from '../../../models/Product';
+import {ProductSearch} from '../../../models/ProductSearch';
 
 export class CollectionDetailRepository extends Repository {
   constructor() {
@@ -57,6 +59,15 @@ export class CollectionDetailRepository extends Repository {
       .then((response: AxiosResponse<Array<PureModelData<CollectionStatus>>>) => {
         return response.data.map((collectionStatus: PureModelData<CollectionStatus>) => {
           return CollectionStatus.clone<CollectionStatus>(collectionStatus);
+        });
+      });
+  };
+
+  public singleListProduct = (productSearch: ProductSearch): Promise<Product[]> => {
+    return this.http.post<CollectionStatus[]>(kebabCase(nameof(this.singleListProduct)), productSearch)
+      .then((response: AxiosResponse<Array<PureModelData<Product>>>) => {
+        return response.data.map((collectionStatus: PureModelData<Product>) => {
+          return Product.clone<Product>(collectionStatus);
         });
       });
   };

@@ -1,32 +1,6 @@
 {
   "menu": {
-    "administrator": "Người quản trị",
-    "banner": "Banner",
-    "brand": "Thương hiệu",
-    "category": "Danh mục",
     "collection": "Bộ sưu tập",
-    "collectionContent": "Nội dung bộ sưu tập",
-    "coupon": "Chiết khấu",
-    "customer": "Khách hàng",
-    "discount": "Chính sách giá",
-    "district": "Quận/huyện",
-    "eVoucher": "eVoucher",
-    "eVoucherContent": "eVoucher Content",
-    "imageFile": "Hình ảnh",
-    "item": "Sản phẩm",
-    "itemHistory": "Lịch sử sản phẩm",
-    "itemVoucher": "Voucher sản phẩm",
-    "itemVoucherStatus": "Trạng thái voucher sản phẩm",
-    "mail": "Mail",
-    "merchant": "Đối tác",
-    "merchantAddress": "Địa chỉ đối tác",
-    "merchantContact": "Địa chỉ liên hệ đối tác",
-    "notification": "Thông báo",
-    "order": "Đơn hàng",
-    "orderContent": "Nội dung đơn hàng",
-    "product": "Sản phẩm",
-    "province": "Tỉnh/thành",
-    "shippingAddress": "Địa chỉ giao hàng",
-    "ward": "Phường/xã"
+    "product": "Sản phẩm"
   }
 }

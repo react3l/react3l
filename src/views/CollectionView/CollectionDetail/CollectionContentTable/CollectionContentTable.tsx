@@ -1,10 +1,10 @@
 import Button from 'antd/lib/button';
 import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
 import Table, {ColumnProps} from 'antd/lib/table';
+import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
-import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import InputNumber from 'components/InputNumber/InputNumber';
+import Select from 'components/Select/Select';
 import {COLUMN_WIDTH, MASTER_KEYS} from 'config/consts';
 import {renderMasterIndex} from 'core/helpers';
 import {hasError} from 'core/helpers/form';
@@ -14,16 +14,19 @@ import * as Hooks from 'hooks';
 import {Collection} from 'models/Collection';
 import {CollectionContent} from 'models/CollectionContent';
 import {CollectionContentSearch} from 'models/CollectionContentSearch';
+import {Product} from 'models/Product';
+import {ProductSearch} from 'models/ProductSearch';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
+import collectionDetailRepository from 'views/CollectionView/CollectionDetail/CollectionDetailRepository';
 import './CollectionContentTable.scss';
 
 const columnWidth = {
   index: COLUMN_WIDTH.index,
   id: undefined,
   name: undefined,
-  productId: undefined,
+  product: undefined,
   collectionContentType: undefined,
   actions: COLUMN_WIDTH.actions,
 };
@@ -42,6 +45,8 @@ function CollectionContentTable(props: ContentTableProps<Collection, CollectionC
   const [search, setSearch] = React.useState<CollectionContentSearch>(new CollectionContentSearch());
 
   const [dataSource, , sorter, handleTableChange, handleFilter] = Hooks.useLocalTable(collectionContents, search, setSearch);
+
+  const [productSearch, setProductSearch] = React.useState<ProductSearch>(new ProductSearch());
 
   const columns: Array<ColumnProps<CollectionContent>> = React.useMemo(
     () => {
@@ -92,30 +97,37 @@ function CollectionContentTable(props: ContentTableProps<Collection, CollectionC
           ],
         },
         {
-          title: translate('collectionContent.productId'),
+          title: translate('collectionContent.product'),
           key: nameof(collectionContents[0].productId),
-          width: columnWidth.productId,
+          width: columnWidth.product,
           dataIndex: nameof(collectionContents[0].productId),
           sorter: true,
           sortOrder: CollectionContentSearch.getOrderTypeForTable<Collection>(nameof(collectionContents[0].productId), sorter),
           children: [
             {
               title: (
-                <AdvancedStringFilter filter={search.productId}
-                                      defaultType={nameof(search.productId.equal)}
-                                      onChange={handleFilter(nameof(search.productId))}
+                <AdvancedIdFilter
+                  filter={search.productId}
+                  getList={collectionDetailRepository.singleListProduct}
+                  search={productSearch}
+                  setSearch={setProductSearch}
                 />
               ),
-              key: withTableFilterSuffix(nameof(collectionContents[0].name)),
-              width: columnWidth.name,
-              dataIndex: nameof(collectionContents[0].name),
-              render(name: string, collectionContent: CollectionContent) {
+              key: withTableFilterSuffix(nameof(collectionContents[0].product)),
+              width: columnWidth.product,
+              dataIndex: nameof(collectionContents[0].product),
+              render(product: Product, collectionContent: CollectionContent) {
                 return (
                   <Form.Item
-                    validateStatus={hasError<CollectionContent>(collectionContent, nameof(collectionContent.name))}
+                    validateStatus={hasError<CollectionContent>(collectionContent, nameof(collectionContent.product))}
                     help={collectionContent?.errors?.name}
                   >
-                    <Input type="text" name={nameof(collectionContents[0].name)} defaultValue={name}/>
+                    <Select
+                      value={product?.id}
+                      getList={collectionDetailRepository.singleListProduct}
+                      search={productSearch}
+                      setSearch={setProductSearch}
+                    />
                   </Form.Item>
                 );
               },
@@ -147,7 +159,7 @@ function CollectionContentTable(props: ContentTableProps<Collection, CollectionC
         },
       ];
     },
-    [collectionContents, handleDelete, handleFilter, search.id, search.productId, sorter, translate],
+    [collectionContents, handleDelete, handleFilter, productSearch, search.id, search.productId, sorter, translate],
   );
 
   return (

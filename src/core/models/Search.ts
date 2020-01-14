@@ -28,7 +28,7 @@ export class Search extends Cloneable {
     search.orderType = undefined;
   }
 
-  public static getOrderType(search: Search) {
+  public static getOrderType(search: Search): 'ascend' | 'descend' | undefined {
     if (search.orderType) {
       if (search.orderType === nameof(SORT_TYPES.ASC)) {
         return 'ascend';
