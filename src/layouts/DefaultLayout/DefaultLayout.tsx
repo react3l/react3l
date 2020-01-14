@@ -66,8 +66,8 @@ function DefaultLayout(props: DefaultLayoutProps) {
         </div>
       </Header>
       <Layout className={mainClassName}>
-        <Sider theme="dark">
-          <Menu mode="inline" theme="dark">
+        <Sider theme="light">
+          <Menu mode="inline" theme="light">
             {renderMenu(menu, translate)}
           </Menu>
         </Sider>
