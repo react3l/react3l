@@ -73,7 +73,7 @@ function DefaultLayout(props: DefaultLayoutProps) {
         </Sider>
         <Content className={contentClassName}>
           <Switch>
-            {renderRoutes(route?.children)}
+            {renderRoutes(route?.routes)}
           </Switch>
           <Footer/>
         </Content>

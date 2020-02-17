@@ -1,4 +1,4 @@
-import {configTests} from 'helpers/config-tests';
+import {configTests} from 'config/config-tests';
 import {Model} from 'core/models';
 import React from 'react';
 import ReactDOM from 'react-dom';

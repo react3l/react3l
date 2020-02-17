@@ -1,6 +1,6 @@
 import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
+import {configTests} from 'config/config-tests';
 import {NumberFilter} from 'core/filters';
-import {configTests} from 'helpers/config-tests';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';

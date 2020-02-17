@@ -1,5 +1,5 @@
 import CardTitle from 'components/CardTitle/CardTitle';
-import {configTests} from 'helpers/config-tests';
+import {configTests} from 'config/config-tests';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';

@@ -2,7 +2,7 @@ export * from 'core/config';
 
 export * from 'core/helpers';
 
-export * from 'core/hooks';
+export * from 'core/services';
 
 export * from 'core/models';
 
