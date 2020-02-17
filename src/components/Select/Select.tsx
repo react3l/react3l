@@ -1,8 +1,8 @@
 import AntSelect, {OptionProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
 import classNames from 'classnames';
-import {Model, Search} from 'core/models';
 import {useSelect} from 'core/services';
+import {Model, Search} from 'core/models';
 import React, {ReactElement, Ref} from 'react';
 import './Select.scss';
 

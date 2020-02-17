@@ -1,5 +1,5 @@
 import {FormProps} from 'antd/lib/form';
-import {translate} from '../helpers/translate';
+import {translate} from 'core/helpers/translate';
 
 export const MASTER_KEYS: { [key: string]: string } = {
   index: translate('general.master.index'),

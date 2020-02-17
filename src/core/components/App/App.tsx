@@ -1,7 +1,7 @@
-import React from 'react';
+import {GlobalState} from 'config/consts';
 import {renderRoutes, RouteConfig} from 'react-router-config';
 import {Switch} from 'react-router-dom';
-import {APP_TITLE} from '../../config/consts';
+import React from 'reactn';
 
 export interface AppProps {
   routes?: RouteConfig[];
@@ -10,11 +10,13 @@ export interface AppProps {
 function App(props: AppProps) {
   const {routes} = props;
 
+  const [title] = React.useGlobal<GlobalState, 'title'>('title');
+
   React.useEffect(
     () => {
-      document.title = APP_TITLE;
+      document.title = title;
     },
-    [],
+    [title],
   );
 
   return (

@@ -1,7 +1,7 @@
-import App from 'components/App/App';
-import AppLoading from 'components/AppLoading/AppLoading';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
+import App from 'core/components/App/App';
+import AppLoading from 'core/components/AppLoading/AppLoading';
 import initialGlobalState, {GlobalState} from 'core/config/global';
 import {changeLanguage} from 'core/helpers';
 import i18next from 'i18next';

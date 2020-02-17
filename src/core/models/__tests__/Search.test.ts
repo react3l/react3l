@@ -1,4 +1,4 @@
-import {Search} from './Search';
+import {Search} from '../Search';
 
 class TestSearch extends Search {
   public name: string;

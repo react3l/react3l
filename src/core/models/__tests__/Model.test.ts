@@ -1,4 +1,4 @@
-import {Model} from './Model';
+import {Model} from '../Model';
 
 class TestModel extends Model {
   public name?: string;
