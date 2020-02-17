@@ -1,0 +1,22 @@
+{
+  "general": {
+    "actions": {
+      "delete": "",
+      "edit": ""
+    },
+    "delete": {
+      "content": "",
+      "failure": "",
+      "success": "",
+      "title": ""
+    },
+    "master": {
+      "actions": "",
+      "index": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
+    }
+  }
+}
