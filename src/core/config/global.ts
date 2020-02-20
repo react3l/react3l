@@ -1,4 +1,4 @@
-import {APP_TITLE} from '../../config/consts';
+import {APP_TITLE} from 'core/config/consts';
 
 export type LanguageType = 'en' | 'vi';
 

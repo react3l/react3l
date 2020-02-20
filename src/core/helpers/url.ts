@@ -1,4 +1,4 @@
-import {BASE_URL} from 'config/consts';
+import {BASE_URL} from 'core/config/consts';
 import {join} from 'path';
 
 export function url(...segments: string[]) {

@@ -1,8 +1,8 @@
 import AntSelect, {OptionProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
 import classNames from 'classnames';
+import {debounce} from 'core/helpers';
 import {Model, Search} from 'core/models';
-import {useSelect} from 'core/services';
 import React, {ReactElement, Ref} from 'react';
 import './Select.scss';
 
@@ -68,8 +68,40 @@ const Select = React.forwardRef(
       render,
     } = props;
 
-    // tslint:disable-next-line:max-line-length
-    const [list, handleLoadList, loading, handleSearch] = useSelect<T, TSearch>(defaultList, getList, search, setSearch, searchField, onSearchError);
+    const [list, setList] = React.useState<T[]>(defaultList ?? []);
+    const [loading, setLoading] = React.useState<boolean>(false);
+
+    React.useEffect(
+      () => {
+        if (defaultList) {
+          setList(defaultList);
+        }
+      },
+      [defaultList],
+    );
+
+    const handleLoadList = React.useCallback(
+      async () => {
+        try {
+          setLoading(true);
+          setList(await getList(search));
+        } catch (error) {
+          onSearchError(error);
+        }
+        setLoading(false);
+      },
+      [getList, onSearchError, search],
+    );
+
+    const handleSearch = React.useMemo(
+      () => debounce((value: string) => {
+        setSearch(Search.clone<TSearch>({
+          ...search,
+          [searchField]: value,
+        }));
+      }),
+      [search, searchField, setSearch],
+    );
 
     const handleToggle = React.useCallback(
       async (visible: boolean) => {

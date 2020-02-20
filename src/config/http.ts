@@ -17,6 +17,6 @@ export function defaultRequestInterceptor(config: AxiosRequestConfig): AxiosRequ
   return config;
 }
 
-export function defaultResponseInterceptor(response: AxiosResponse<any>) {
+export function defaultResponseInterceptor<T>(response: AxiosResponse<T>) {
   return response;
 }

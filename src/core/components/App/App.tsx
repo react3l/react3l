@@ -1,4 +1,4 @@
-import {GlobalState} from 'config/consts';
+import {GlobalState} from 'core/config';
 import {renderRoutes, RouteConfig} from 'react-router-config';
 import {Switch} from 'react-router-dom';
 import React from 'reactn';

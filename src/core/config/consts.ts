@@ -1,16 +1,20 @@
 import {FormProps} from 'antd/lib/form';
 import {translate} from 'core/helpers/translate';
+import {AntSortType, TableKeys} from 'react3l';
 
-export const MASTER_KEYS: { [key: string]: string } = {
+export const DEFAULT_TABLE_KEYS: TableKeys = {
   index: translate('general.master.index'),
   actions: translate('general.master.actions'),
+  add: translate('general.actions.add'),
 };
 
-export const DETAIL_KEYS: { [key: string]: string } = {
-  add: 'add',
-};
+export const __DEV__: boolean = process.env.NODE_ENV === 'development';
 
-export const formItemLayout: FormProps = {
+export const BASE_URL: string = __DEV__ ? window.location.origin : process.env.REACT_APP_BASE_URL;
+
+export const APP_TITLE: string = process.env.REACT_APP_TITLE ?? '';
+
+export const FORM_ITEM_LAYOUT: FormProps = {
   labelCol: {
     xs: {span: 24},
     sm: {span: 8},
@@ -21,20 +25,12 @@ export const formItemLayout: FormProps = {
   },
 };
 
-interface SortType {
-  ASC: string;
-
-  DESC: string;
-}
-
-export const SORT_TYPES: SortType = {
+export const ANT_SORT_TYPES: AntSortType = {
   ASC: 'ascend',
   DESC: 'descend',
 };
 
 export const DEFAULT_TAKE: number = 10;
-
-export const BASE_URL: string = process.env.REACT_APP_BASE_URL ?? '';
 
 export const INPUT_DEBOUNCE_TIME: number = parseInt(process.env.INPUT_DEBOUNCE_TIME, 10) ?? 400;
 

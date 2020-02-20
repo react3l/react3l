@@ -1,6 +1,6 @@
 import {SorterResult} from 'antd/lib/table';
 import nameof from 'ts-nameof.macro';
-import {DEFAULT_TAKE, SORT_TYPES} from '../config';
+import {DEFAULT_TAKE, ANT_SORT_TYPES} from '../config';
 import {Cloneable} from './Cloneable';
 import {Model} from './Model';
 
@@ -11,26 +11,26 @@ export class Search extends Cloneable {
       return;
     }
     if (typeof orderType === 'string') {
-      if (orderType.toUpperCase().startsWith(nameof(SORT_TYPES.ASC))) {
-        search.orderType = nameof(SORT_TYPES.ASC);
+      if (orderType.toUpperCase().startsWith(nameof(ANT_SORT_TYPES.ASC))) {
+        search.orderType = nameof(ANT_SORT_TYPES.ASC);
         return;
       }
-      search.orderType = nameof(SORT_TYPES.DESC);
+      search.orderType = nameof(ANT_SORT_TYPES.DESC);
       return;
     }
     if (typeof orderType === 'boolean') {
       if (orderType) {
-        return nameof(SORT_TYPES.ASC);
+        return nameof(ANT_SORT_TYPES.ASC);
       }
-      search.orderType = nameof(SORT_TYPES.DESC);
-      return nameof(SORT_TYPES.DESC);
+      search.orderType = nameof(ANT_SORT_TYPES.DESC);
+      return nameof(ANT_SORT_TYPES.DESC);
     }
     search.orderType = undefined;
   }
 
   public static getOrderType(search: Search): 'ascend' | 'descend' | undefined {
     if (search.orderType) {
-      if (search.orderType === nameof(SORT_TYPES.ASC)) {
+      if (search.orderType === nameof(ANT_SORT_TYPES.ASC)) {
         return 'ascend';
       }
       return 'descend';

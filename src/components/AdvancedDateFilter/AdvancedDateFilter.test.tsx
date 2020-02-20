@@ -1,4 +1,4 @@
-import {configTests} from 'config/config-tests';
+import {configTests} from 'core/config/config-tests';
 import {DateFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
