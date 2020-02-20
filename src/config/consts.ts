@@ -2,9 +2,6 @@ import {ColumnWidth} from 'react3l';
 
 export * from 'core/config';
 
-
-
-
 export const defaultColumnWidth: ColumnWidth = {
   index: 50,
   checkbox: 50,

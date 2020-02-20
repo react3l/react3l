@@ -1,6 +1,6 @@
 import {SorterResult} from 'antd/lib/table';
 import nameof from 'ts-nameof.macro';
-import {DEFAULT_TAKE, ANT_SORT_TYPES} from '../config';
+import {ANT_SORT_TYPES, DEFAULT_TAKE} from '../config';
 import {Cloneable} from './Cloneable';
 import {Model} from './Model';
 
