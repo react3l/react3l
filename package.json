@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": {
     "email": "ht@thanhtunguet.info",
-    "name": "Thanh Tùng",
+    "name": "thanhtunguet",
     "url": "https://github.com/thanhtunguet/react3l/wiki"
   },
   "maintainers": [
@@ -13,6 +13,12 @@
   ],
   "homepage": "https://react3l.thanhtunguet.info",
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.13",
+    "@storybook/addon-links": "^5.3.13",
+    "@storybook/addons": "^5.3.13",
+    "@storybook/cli": "^5.3.13",
+    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/react": "^5.3.13",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/react-hooks": "^3.2.1",
@@ -101,7 +107,8 @@
     "merge": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ merge",
     "watch:lib": "NODE_ENV=development webpack --watch",
     "build:lib": "NODE_ENV=production  webpack",
-    "storybook": "start-storybook -p 6006"
+    "start-storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "proxy": "https://code-generator-api.thanhtunguet.info",
   "husky": {
