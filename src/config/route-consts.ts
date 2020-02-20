@@ -1,3 +1,3 @@
-export default 'route-conts';
+export default 'route-consts';
 
 export const ROOT_ROUTE: string = '/';

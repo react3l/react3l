@@ -9,14 +9,14 @@ export const httpConfig: AxiosRequestConfig = {
   },
 };
 
-Repository.defaultRequestInterceptor = defaultRequestInterceptor;
+Repository.defaultRequestInterceptor = requestInterceptor;
 
-Repository.defaultResponseInterceptor = defaultResponseInterceptor;
+Repository.defaultResponseInterceptor = responseInterceptor;
 
-export function defaultRequestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig {
+export function requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig {
   return config;
 }
 
-export function defaultResponseInterceptor<T>(response: AxiosResponse<T>) {
+export function responseInterceptor<T>(response: AxiosResponse<T>) {
   return response;
 }

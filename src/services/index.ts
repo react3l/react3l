@@ -1,1 +1,1 @@
-export * from './AntTableService';
+export {antTableService} from './AntTableService';

@@ -17,20 +17,6 @@ const DEFAULT_FAILURE_MESSAGE: string = translate('general.delete.failure');
 const DEFAULT_TITLE_MESSAGE: string = translate('general.delete.title');
 const DEFAULT_CONTENT_MESSAGE: string = translate('general.delete.content');
 
-export type LocalTableHookResult<T extends Model, TSearch extends Search> = [
-  T[],
-  PaginationProps,
-  SorterResult<TSearch>,
-  (newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
-  (field: string) => (filter: Filter) => void,
-];
-
-export type UseMasterTableResult<T extends Model> = [
-  PaginationProps,
-  SorterResult<T>,
-  (pagination: PaginationProps, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
-];
-
 export type FilterHandlerType<TSearch extends Search> = (list: any[], search?: TSearch) => any[];
 
 export class AntTableService {
@@ -95,7 +81,13 @@ export class AntTableService {
     search: TSearch,
     setSearch: (search: TSearch) => void,
     filterHandler: FilterHandlerType<TSearch> = this.defaultFilterHandler,
-  ): LocalTableHookResult<T, TSearch> {
+  ): [
+    T[],
+    PaginationProps,
+    SorterResult<TSearch>,
+    (newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
+    (field: string) => (filter: Filter) => void,
+  ] {
     const sorter: SorterResult<TSearch> = React.useMemo(
       () => ({
         field: search.orderBy,
@@ -187,7 +179,11 @@ export class AntTableService {
     search: TSearch,
     setSearch: (search: TSearch) => void,
     total: number,
-  ): UseMasterTableResult<T> {
+  ): [
+    PaginationProps,
+    SorterResult<T>,
+    (pagination: PaginationProps, filters: Record<string, any>, newSorter: SorterResult<T>) => void,
+  ] {
 
     const pagination: PaginationProps = React.useMemo(
       () => ({
