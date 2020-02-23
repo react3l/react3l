@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
 import {GlobalState, LanguageType} from 'core/config';
 import i18next from 'i18next';
-import {join} from "path";
+import {join} from 'path';
 import {setGlobal} from 'reactn';
 
 /**

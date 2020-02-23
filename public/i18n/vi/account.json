@@ -1,0 +1,14 @@
+{
+  "account": {
+    "detail": {
+      "newTitle": "Thêm mới tài khoản",
+      "title": "Thông tin tài khoản {{name}}"
+    },
+    "id": "ID",
+    "master": {
+      "title": "Danh sách tài khoản"
+    },
+    "name": "Tên",
+    "orders": "Đơn hàng"
+  }
+}
