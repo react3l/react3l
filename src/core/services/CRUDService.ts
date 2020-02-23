@@ -5,7 +5,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {DetailParams} from 'react3l';
 import nameof from 'ts-nameof.macro';
 import v4 from 'uuid/v4';
-import {DEFAULT_TABLE_KEYS, DEFAULT_TAKE} from '../config';
+import {DEFAULT_TAKE, defaultKeys} from '../config';
 import {Filter, IdFilter} from '../filters';
 import {debounce} from '../helpers';
 import {Model, Search} from '../models';
@@ -189,7 +189,7 @@ export class CRUDService {
     const [t, setT] = React.useState<T>(new Model() as T);
     const {id} = useParams<DetailParams>();
     const [loading, setLoading] = React.useState<boolean>(false);
-    const isDetail: boolean = id !== nameof(DEFAULT_TABLE_KEYS.add);
+    const isDetail: boolean = id !== nameof(defaultKeys.add);
     const history = useHistory();
 
     const handleGoBack = React.useCallback(
@@ -293,10 +293,11 @@ export class CRUDService {
     baseRoute: string,
     masterList: (tSearch?: TSearch) => Promise<T[]>,
     masterCount: (tSearch?: TSearch) => Promise<number>,
-    search: TSearch,
-    setSearch: (search: TSearch) => void,
+    tSearch: new () => TSearch,
   ): [
     T[],
+    TSearch,
+    (tSearch: TSearch) => void,
     number,
     boolean,
     (loading: boolean) => void,
@@ -305,6 +306,7 @@ export class CRUDService {
     (id: number) => () => void,
     (field: string) => (filter: Filter) => void,
   ] {
+    const [search, setSearch] = React.useState<TSearch>(new tSearch());
     const [list, setList] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
     const [total, setTotal] = React.useState<number>(0);
@@ -312,7 +314,7 @@ export class CRUDService {
 
     const handleAdd = React.useCallback(
       () => {
-        history.push(join(baseRoute, nameof(DEFAULT_TABLE_KEYS.add)));
+        history.push(join(baseRoute, nameof(defaultKeys.add)));
       },
       [history, baseRoute],
     );
@@ -397,6 +399,8 @@ export class CRUDService {
 
     return [
       list,
+      search,
+      setSearch,
       total,
       loading,
       setLoading,

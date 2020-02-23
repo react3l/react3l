@@ -20,7 +20,6 @@ const DEFAULT_CONTENT_MESSAGE: string = translate('general.delete.content');
 export type FilterHandlerType<TSearch extends Search> = (list: any[], search?: TSearch) => any[];
 
 export class AntTableService {
-
   public static hasType(filter: Filter) {
     return Object.keys(filter).length > 0;
   }

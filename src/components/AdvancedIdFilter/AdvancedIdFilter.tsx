@@ -4,7 +4,7 @@ import {GuidFilter, IdFilter} from 'core/filters';
 import {Model, Search} from 'core/models';
 import React from 'react';
 
-interface AdvancedIdFilterProps<T extends Model, TSearch extends Search> extends SelectProps<T, TSearch> {
+export interface AdvancedIdFilterProps<T extends Model, TSearch extends Search> extends SelectProps<T, TSearch> {
   filter: IdFilter | GuidFilter;
 
   onChange?: any;

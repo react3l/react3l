@@ -3,7 +3,7 @@ import {GlobalState} from 'core/config/global';
 import {ReactNode} from 'react';
 import React, {useGlobal} from 'reactn';
 
-interface AppLoadingProps {
+export interface AppLoadingProps {
   children?: ReactNode | ReactNode[];
 }
 

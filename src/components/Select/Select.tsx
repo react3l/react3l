@@ -18,7 +18,7 @@ function defaultRenderObject<T extends Model>(t: T) {
   return t.name;
 }
 
-type DefaultSelectChange<T extends Model> = (value: string | number, subject?: T) => void;
+export type DefaultSelectChange<T extends Model> = (value: string | number, subject?: T) => void;
 
 export interface SelectProps<T extends Model, TSearch extends Search> {
   value?: number | string;

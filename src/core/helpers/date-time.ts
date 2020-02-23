@@ -21,3 +21,15 @@ export function formatDateTime(time: Date | Moment, dateTimeFormat: string = DAT
   }
   return moment(time).format(dateTimeFormat);
 }
+
+export function isDateValue(date?: string) {
+  return date?.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
+}
+
+export function isTimeValue(time?: string) {
+  return time?.match(/[0-9]{2}:[0-9]{2}/);
+}
+
+export function isDateTimeValue(dateTime?: string) {
+  return isDateValue(dateTime) || isTimeValue(dateTime);
+}

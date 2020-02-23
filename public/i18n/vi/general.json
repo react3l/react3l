@@ -1,8 +1,7 @@
 {
   "general": {
     "actions": {
-      "delete": "",
-      "edit": ""
+      "add": "Thêm mới"
     },
     "delete": {
       "content": "",
@@ -10,13 +9,15 @@
       "success": "",
       "title": ""
     },
-    "master": {
-      "actions": "",
-      "index": ""
+    "keys": {
+      "actions": "Tác vụ",
+      "checkbox": "Chọn",
+      "expand": "Mở rộng",
+      "index": "STT"
     },
     "numberRange": {
-      "from": "",
-      "to": ""
+      "from": "Từ",
+      "to": "Đến"
     }
   }
 }

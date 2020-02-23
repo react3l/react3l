@@ -7,7 +7,7 @@ import React from 'react';
 import nameof from 'ts-nameof.macro';
 import './AdvancedNumberFilter.scss';
 
-interface AdvancedNumberFilterProps {
+export interface AdvancedNumberFilterProps {
   filter: NumberFilter;
 
   defaultType?: string;

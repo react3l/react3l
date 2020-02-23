@@ -4,8 +4,6 @@ export * from './debounce';
 
 export * from './http';
 
-export * from './i18next';
-
 export * from './json';
 
 export * from './number';

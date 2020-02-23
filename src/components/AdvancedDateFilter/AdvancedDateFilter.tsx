@@ -5,7 +5,7 @@ import {Moment} from 'moment';
 import React from 'react';
 import nameof from 'ts-nameof.macro';
 
-interface AdvancedDateFilterProps {
+export interface AdvancedDateFilterProps {
   filter: DateFilter;
 
   defaultType?: string;

@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import './NumberRange.scss';
 
-interface NumberRangeProps {
+export interface NumberRangeProps {
   value?: [number | undefined, number | undefined];
 
   onChange?(value: [number | undefined, number | undefined]);

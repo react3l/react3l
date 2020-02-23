@@ -1,3 +1,4 @@
+import {ROOT_ID} from 'config/consts';
 import initialI18NextConfig from 'config/i18next';
 import {routes} from 'config/routes';
 import App from 'core/components/App/App';
@@ -21,7 +22,7 @@ Promise.all([
   setGlobal<GlobalState>(initialGlobalState),
 ])
   .then(() => {
-    const root: HTMLDivElement = document.getElementById('root') as HTMLDivElement;
+    const root: HTMLDivElement = document.getElementById(ROOT_ID) as HTMLDivElement;
     (root.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render)(
       <BrowserRouter>
         <AppLoading>

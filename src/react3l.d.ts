@@ -1,4 +1,4 @@
-import {Model} from './core/models';
+import {Model} from 'core/models';
 
 declare module 'react3l' {
   export interface ColumnWidth {

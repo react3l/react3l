@@ -32,16 +32,19 @@ function renderMenu(menu: RouteConfig[], translate: (key: string, data?: any) =>
     <React.Fragment key={item.path as string}>
       <NavLink
         to={item.path as string}
-        className="ant-menu-item"
+        className={classNames('ant-menu-item', 'sidebar-link')}
         activeClassName="ant-menu-item-selected"
         exact={item.exact}
         role="menuitem"
       >
-        {item.icon && (
-          <Icon type={item.icon}/>
+        {item.antIcon && (
+          <Icon type={item.antIcon}/>
         )}
         {item.matIcon && (
           <i className="material-icons">{item.matIcon}</i>
+        )}
+        {item.icon && (
+          <i className={item.icon}/>
         )}
         {translate(item.title)}
       </NavLink>

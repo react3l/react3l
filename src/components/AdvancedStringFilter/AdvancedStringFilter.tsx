@@ -5,7 +5,7 @@ import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core
 import {FilterType} from 'core/types';
 import React from 'react';
 
-interface AdvancedStringFilterProps {
+export interface AdvancedStringFilterProps {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
 
   defaultType?: string;

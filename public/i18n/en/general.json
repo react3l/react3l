@@ -1,8 +1,7 @@
 {
   "general": {
     "actions": {
-      "delete": "",
-      "edit": ""
+      "add": ""
     },
     "delete": {
       "content": "",
@@ -10,8 +9,10 @@
       "success": "",
       "title": ""
     },
-    "master": {
+    "keys": {
       "actions": "",
+      "checkbox": "",
+      "expand": "",
       "index": ""
     },
     "numberRange": {
