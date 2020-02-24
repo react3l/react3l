@@ -336,7 +336,7 @@ export class CRUDService {
 
     const handleAdd = React.useCallback(
       () => {
-        history.push(join(baseRoute, defaultActions.add));
+        history.push(join(baseRoute, nameof(defaultActions.add)));
       },
       [history, baseRoute],
     );
