@@ -1,5 +1,5 @@
 import {translate} from 'core/helpers/translate';
-import {AntSortType, TableKeys} from 'react3l';
+import {TableKeys} from 'react3l';
 
 export const defaultKeys: TableKeys = {
   index: translate('general.keys.index'),
@@ -17,11 +17,6 @@ export const __DEV__: boolean = process.env.NODE_ENV === 'development';
 export const BASE_URL: string = __DEV__ ? window.location.origin : process.env.REACT_APP_BASE_URL;
 
 export const APP_TITLE: string = process.env.REACT_APP_TITLE ?? '';
-
-export const antSortType: AntSortType = {
-  ASC: 'ascend',
-  DESC: 'descend',
-};
 
 export const DEFAULT_TAKE: number = 10;
 

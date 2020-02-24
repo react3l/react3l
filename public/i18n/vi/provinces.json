@@ -1,0 +1,10 @@
+{
+  "provinces": {
+    "code": "Mã tỉnh thành",
+    "id": "ID",
+    "master": {
+      "title": "Danh sách tỉnh thành"
+    },
+    "name": "Tên tỉnh thành"
+  }
+}

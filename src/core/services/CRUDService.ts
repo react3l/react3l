@@ -5,7 +5,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {DetailParams} from 'react3l';
 import nameof from 'ts-nameof.macro';
 import v4 from 'uuid/v4';
-import {DEFAULT_TAKE, defaultKeys} from '../config';
+import {DEFAULT_TAKE, defaultActions, defaultKeys} from '../config';
 import {Filter, IdFilter} from '../filters';
 import {debounce} from '../helpers';
 import {Model, Search} from '../models';
@@ -300,21 +300,43 @@ export class CRUDService {
     (tSearch: TSearch) => void,
     number,
     boolean,
-    (loading: boolean) => void,
     () => void,
     () => void,
     (id: number) => () => void,
     (field: string) => (filter: Filter) => void,
+    boolean,
+    T,
+    (t: T) => () => void,
+    () => void,
   ] {
     const [search, setSearch] = React.useState<TSearch>(new tSearch());
     const [list, setList] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
     const [total, setTotal] = React.useState<number>(0);
     const history = useHistory();
+    const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
+    const [previewModel, setPreviewModel] = React.useState<T>(Model.clone<T>());
+
+    const handlePreview = React.useCallback(
+      (t: T) => {
+        return () => {
+          setPreviewModel(t);
+          setPreviewVisible(true);
+        };
+      },
+      [],
+    );
+
+    const handleClosePreview = React.useCallback(
+      () => {
+        setPreviewVisible(false);
+      },
+      [],
+    );
 
     const handleAdd = React.useCallback(
       () => {
-        history.push(join(baseRoute, nameof(defaultKeys.add)));
+        history.push(join(baseRoute, defaultActions.add));
       },
       [history, baseRoute],
     );
@@ -403,11 +425,14 @@ export class CRUDService {
       setSearch,
       total,
       loading,
-      setLoading,
       handleAdd,
       handleReset,
       handleEdit,
       handleFilter,
+      previewVisible,
+      previewModel,
+      handlePreview,
+      handleClosePreview,
     ];
   }
 

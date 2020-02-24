@@ -1,0 +1,13 @@
+/* Style for CoreUILayout.tsx */
+
+#root {
+  &.app {
+    .app-body {
+      > .main {
+        > .container-fluid {
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
+}

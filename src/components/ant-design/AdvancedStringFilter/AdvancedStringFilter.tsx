@@ -12,63 +12,34 @@ export interface AdvancedStringFilterProps {
 
   type?: 'text' | 'number';
 
+  className?: string;
+
   onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
 function AdvancedStringFilter(props: AdvancedStringFilterProps) {
-  const {filter, defaultType, onChange, type: inputType} = props;
+  const {filter, defaultType, onChange, type: inputType, className} = props;
 
   const types: FilterType[] = React.useMemo(
     () => {
-      if (filter instanceof StringFilter) {
-        return StringFilter
-          .types()
-          .map((type: string, index: number) => {
-            return {
-              id: index,
-              name: type,
-            };
-          });
-      }
-      if (filter instanceof NumberFilter) {
-        return NumberFilter
-          .types()
-          .map((type: string, index: number) => {
-            return {
-              id: index,
-              name: type,
-            };
-          });
-      }
-      if (filter instanceof DateFilter) {
-        return DateFilter
-          .types()
-          .map((type: string, index: number) => {
-            return {
-              id: index,
-              name: type,
-            };
-          });
-      }
-      if (filter instanceof IdFilter) {
-        return NumberFilter
-          .types()
-          .map((type: string, index: number) => {
-            return {
-              id: index,
-              name: type,
-            };
-          });
-      }
-      if (filter instanceof GuidFilter) {
-        return GuidFilter
-          .types()
-          .map((type: string, index: number) => {
-            return {
-              id: index,
-              name: type,
-            };
-          });
+      const filterClasses = [
+        StringFilter,
+        NumberFilter,
+        IdFilter,
+        GuidFilter,
+        DateFilter,
+      ];
+      for (const FilterClass of filterClasses) {
+        if (filter instanceof FilterClass) {
+          return FilterClass
+            .types()
+            .map((type: string, index: number) => {
+              return {
+                id: index,
+                name: type,
+              };
+            }) as FilterType[];
+        }
       }
       return [];
     },
@@ -130,9 +101,20 @@ function AdvancedStringFilter(props: AdvancedStringFilterProps) {
       if (filter) {
         return filter[type];
       }
-      return undefined;
+      return '';
     },
     [filter, type],
+  );
+
+  React.useEffect(
+    () => {
+      if (typeof defaultType === 'string' && defaultType === '') {
+        ref.current.setState({
+          value: '',
+        });
+      }
+    },
+    [defaultType, ref],
   );
 
   return (
@@ -143,6 +125,7 @@ function AdvancedStringFilter(props: AdvancedStringFilterProps) {
       onChange={handleCheckClear}
       onPressEnter={handleSubmitChange}
       addonBefore={addonBefore}
+      className={className}
     />
   );
 }

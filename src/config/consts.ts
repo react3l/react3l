@@ -8,5 +8,5 @@ export const defaultColumnWidth: ColumnWidth = {
   index: 50,
   checkbox: 50,
   expand: 50,
-  actions: 100,
+  actions: 120,
 };

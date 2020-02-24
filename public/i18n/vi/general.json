@@ -1,19 +1,27 @@
 {
   "general": {
     "actions": {
-      "add": "Thêm mới"
+      "add": "Thêm mới",
+      "close": "Đóng",
+      "filter": "Tìm kiếm",
+      "label": "Tác vụ",
+      "reset": "Bỏ lọc"
     },
     "delete": {
-      "content": "",
-      "failure": "",
-      "success": "",
-      "title": ""
+      "content": "Thao tác này không thể khôi phục",
+      "failure": "Xóa {{name}} thành công",
+      "success": "Xóa {{name}} thất bại",
+      "title": "Bạn đang chuẩn bị xóa {{name}}?"
     },
     "keys": {
       "actions": "Tác vụ",
       "checkbox": "Chọn",
       "expand": "Mở rộng",
       "index": "STT"
+    },
+    "master": {
+      "defaultPreviewTitle": "Xem chi tiết {{name}}",
+      "pagination": "Hiển thị {{pageSize}} / {{total}} bản ghi"
     },
     "numberRange": {
       "from": "Từ",

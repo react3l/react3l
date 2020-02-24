@@ -1,5 +1,11 @@
 {
   "menu": {
-    "province": ""
+    "provinces": {
+      "add": "",
+      "detail": "",
+      "master": "",
+      "name": ""
+    },
+    "root": ""
   }
 }

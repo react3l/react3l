@@ -86,7 +86,9 @@ const Select = React.forwardRef(
           setLoading(true);
           setList(await getList(search));
         } catch (error) {
-          onSearchError(error);
+          if (typeof onSearchError === 'function') {
+            onSearchError(error);
+          }
         }
         setLoading(false);
       },

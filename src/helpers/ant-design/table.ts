@@ -1,6 +1,7 @@
 import {PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
-import {antSortType, DEFAULT_TAKE} from 'core/config';
+import {antSortType} from 'config/ant-design';
+import {DEFAULT_TAKE} from 'core/config';
 import {Model, Search} from 'core/models';
 import nameof from 'ts-nameof.macro';
 

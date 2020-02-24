@@ -12,6 +12,8 @@ export interface AdvancedNumberFilterProps {
 
   defaultType?: string;
 
+  className?: string;
+
   onChange?(filter: NumberFilter);
 }
 
@@ -22,6 +24,7 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
     filter,
     defaultType,
     onChange,
+    className,
   } = props;
 
   const [type] = React.useState<keyof NumberFilter>((defaultType ?? types[0]) as keyof NumberFilter);
@@ -73,6 +76,7 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
   return (
     <InputNumber defaultValue={filter[type] as number}
                  onChange={handleChange}
+                 className={className}
     />
   );
 }
