@@ -12,6 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // CoreUI
 import '@coreui/coreui/dist/css/coreui.min.css';
 
-// Admin pages
-import './page-detail.scss';
-import './page-master.scss';
+// Metronic theme
+// import './metronic/sass/style.react.scss';
+import './index.scss';

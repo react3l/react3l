@@ -13,5 +13,3 @@ export * from './string';
 export * from './translate';
 
 export * from './url';
-
-export * from './view';

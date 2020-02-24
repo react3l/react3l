@@ -1,4 +1,3 @@
-import {FormProps} from 'antd/lib/form';
 import {translate} from 'core/helpers/translate';
 import {AntSortType, TableKeys} from 'react3l';
 
@@ -18,17 +17,6 @@ export const __DEV__: boolean = process.env.NODE_ENV === 'development';
 export const BASE_URL: string = __DEV__ ? window.location.origin : process.env.REACT_APP_BASE_URL;
 
 export const APP_TITLE: string = process.env.REACT_APP_TITLE ?? '';
-
-export const formItemLayout: FormProps = {
-  labelCol: {
-    xs: {span: 24},
-    sm: {span: 8},
-  },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 16},
-  },
-};
 
 export const antSortType: AntSortType = {
   ASC: 'ascend',

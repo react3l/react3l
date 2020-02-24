@@ -1,0 +1,88 @@
+// 3rd-party Plugins
+@import "~highlight.js/styles/googlecode.css";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+// Theme Styles
+@import "metronic/sass/style.react.scss";
+
+// Default Layout Skins
+@import "metronic/sass/global/layout/header/skins/base/light.scss";
+@import "metronic/sass/global/layout/header/skins/menu/light.scss";
+@import "metronic/sass/global/layout/brand/skins/dark.scss";
+@import "metronic/sass/global/layout/aside/skins/dark.scss";
+
+// Header Skins
+.kt-header-base-light {
+  @import "metronic/sass/global/layout/header/skins/base/light.scss";
+}
+
+.kt-header-base-dark {
+  @import "metronic/sass/global/layout/header/skins/base/dark.scss";
+}
+
+// Header Menu Skins
+.kt-header-menu-light {
+  @import "metronic/sass/global/layout/header/skins/menu/light.scss";
+}
+.kt-header-menu-dark {
+  @import "metronic/sass/global/layout/header/skins/menu/dark.scss";
+}
+
+// Brand Skins
+.kt-brand-dark {
+  @import "metronic/sass/global/layout/brand/skins/dark.scss";
+}
+
+.kt-brand-light {
+  @import "metronic/sass/global/layout/brand/skins/light.scss";
+}
+
+// Aside skins
+.kt-aside-dark {
+  @import "metronic/sass/global/layout/aside/skins/dark.scss";
+}
+
+.kt-aside-light {
+  @import "metronic/sass/global/layout/aside/skins/light.scss";
+}
+
+// Web Icon fonts
+// @import "~socicon/css/socicon.css";
+// @import "~@fortawesome/fontawesome-free/css/all.min.css";
+// @import "metronic/plugins/line-awesome/css/line-awesome.css";
+// @import "metronic/plugins/flaticon/flaticon.css";
+// @import "metronic/plugins/flaticon2/flaticon.css";
+
+
+@-webkit-keyframes fadeInUpContent {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -5%, 0);
+    transform: translate3d(0, -5%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUpContent {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -5%, 0);
+    transform: translate3d(0, -5%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUpContent {
+  -webkit-animation-name: fadeInUpContent;
+  animation-name: fadeInUpContent;
+}

@@ -1,0 +1,23 @@
+@import "src/styles/mixins";
+
+.ant-table {
+  &.master-table {
+    .actions {
+      width: 200px;
+    }
+
+    td {
+      .ant-btn {
+        &.ant-btn-link {
+          padding-left: unset;
+          padding-right: unset;
+          margin-right: 0.5rem;
+
+          &:last-of-type {
+            margin-right: unset;
+          }
+        }
+      }
+    }
+  }
+}
