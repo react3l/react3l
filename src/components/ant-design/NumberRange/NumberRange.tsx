@@ -1,7 +1,7 @@
 import InputNumber from 'components/ant-design/InputNumber/InputNumber';
+import 'components/ant-design/NumberRange/NumberRange.scss';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import 'components/ant-design/NumberRange/NumberRange.scss';
 
 export interface NumberRangeProps {
   value?: [number | undefined, number | undefined];

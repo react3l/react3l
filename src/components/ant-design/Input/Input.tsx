@@ -1,6 +1,6 @@
 import AntInput, {InputProps} from 'antd/lib/input';
-import React from 'react';
 import 'components/ant-design/Input/Input.scss';
+import React from 'react';
 
 function Input(props: InputProps) {
   const {defaultValue, ...restProps} = props;

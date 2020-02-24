@@ -1,7 +1,7 @@
 import AntInputNumber, {InputNumberProps} from 'antd/lib/input-number';
+import 'components/ant-design/InputNumber/InputNumber.scss';
 import {debounce} from 'core/helpers';
 import React, {LegacyRef, ReactText} from 'react';
-import 'components/ant-design/InputNumber/InputNumber.scss';
 
 function formatter(x: ReactText) {
   if (typeof x === 'string') {

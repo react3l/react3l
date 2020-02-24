@@ -1,10 +1,10 @@
 import AntSelect, {OptionProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
 import classNames from 'classnames';
+import 'components/ant-design/Select/Select.scss';
 import {debounce} from 'core/helpers';
 import {Model, Search} from 'core/models';
 import React, {ReactElement, Ref} from 'react';
-import 'components/ant-design/Select/Select.scss';
 
 const {Option} = AntSelect;
 

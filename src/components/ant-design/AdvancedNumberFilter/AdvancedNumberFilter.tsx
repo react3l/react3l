@@ -1,3 +1,4 @@
+import 'components/ant-design/AdvancedNumberFilter/AdvancedNumberFilter.scss';
 import InputNumber from 'components/ant-design/InputNumber/InputNumber';
 import NumberRange from 'components/ant-design/NumberRange/NumberRange';
 import {NumberFilter} from 'core/filters';
@@ -5,7 +6,6 @@ import {debounce} from 'core/helpers';
 import {Moment} from 'moment';
 import React from 'react';
 import nameof from 'ts-nameof.macro';
-import 'components/ant-design/AdvancedNumberFilter/AdvancedNumberFilter.scss';
 
 export interface AdvancedNumberFilterProps {
   filter: NumberFilter;
