@@ -1,0 +1,9 @@
+.page {
+  &.detail-page {
+    .ant-form-item {
+      .form-control {
+        width: 250px;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import Empty from 'antd/lib/empty';
 import Form from 'antd/lib/form';
 import {Col, Row} from 'antd/lib/grid';
 import Table, {ColumnProps} from 'antd/lib/table';
-import AdvancedStringFilter from 'components/ant-design/AdvancedStringFilter/AdvancedStringFilter';
+import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import MasterPreview from 'components/MasterPreview/MasterPreview';
 import {formItemLayout} from 'config/ant-design';
 import {defaultColumnWidth} from 'config/consts';
@@ -98,9 +98,9 @@ function ProvinceMaster() {
   );
 
   return (
-    <>
+    <div className="page master-page">
       <Card title={translate('provinces.master.title')}>
-        <Card className="mb-2">
+        <Card className="mb-4">
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
@@ -168,7 +168,7 @@ function ProvinceMaster() {
           <Empty/>
         </MasterPreview>
       </Card>
-    </>
+    </div>
   );
 }
 

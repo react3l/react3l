@@ -5,7 +5,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {DetailParams} from 'react3l';
 import nameof from 'ts-nameof.macro';
 import v4 from 'uuid/v4';
-import {DEFAULT_TAKE, defaultActions, defaultKeys} from '../config';
+import {DEFAULT_TAKE, defaultActions} from '../config';
 import {Filter, IdFilter} from '../filters';
 import {debounce} from '../helpers';
 import {Model, Search} from '../models';
@@ -186,10 +186,10 @@ export class CRUDService {
     () => void,
     () => void,
   ] {
-    const [t, setT] = React.useState<T>(new Model() as T);
     const {id} = useParams<DetailParams>();
+    const [t, setT] = React.useState<T>(new Model() as T);
     const [loading, setLoading] = React.useState<boolean>(false);
-    const isDetail: boolean = id !== nameof(defaultKeys.add);
+    const isDetail: boolean = typeof id === 'string';
     const history = useHistory();
 
     const handleGoBack = React.useCallback(
@@ -210,7 +210,7 @@ export class CRUDService {
             history.push(join(baseRoute, newT.id));
           }
         } catch (error) {
-          if (onSavingError) {
+          if (typeof onSavingError === 'function') {
             onSavingError(error);
           }
         }
@@ -221,7 +221,7 @@ export class CRUDService {
 
     React.useEffect(
       () => {
-        if (!!getDetail && isDetail) {
+        if (typeof getDetail === 'function' && isDetail) {
           setLoading(true);
           const t: T = Model.clone<Model>({
             id,
@@ -378,8 +378,9 @@ export class CRUDService {
                   Object
                     .entries(value)
                     .forEach(([filterKey]) => {
-                      delete value[filterKey];
+                      value[filterKey] = undefined;
                     });
+                  newSearch[key] = {...value};
                 }
                 break;
             }

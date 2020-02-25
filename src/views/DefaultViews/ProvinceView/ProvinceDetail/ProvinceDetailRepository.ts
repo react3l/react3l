@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios';
 
-import {API_PROVINCE_MASTER_ROUTE} from 'config/api-consts';
+import {API_PROVINCE_DETAIL_ROUTE} from 'config/api-consts';
 import {url} from 'core/helpers/url';
 import {Model} from 'core/models';
 import {Repository} from 'core/repositories';
@@ -12,7 +12,7 @@ import nameof from 'ts-nameof.macro';
 export class ProvinceDetailRepository extends Repository {
   constructor() {
     super();
-    this.setBaseURL(url(API_PROVINCE_MASTER_ROUTE));
+    this.setBaseURL(url(API_PROVINCE_DETAIL_ROUTE));
   }
 
   public get = (province: Province): Promise<Province> => {

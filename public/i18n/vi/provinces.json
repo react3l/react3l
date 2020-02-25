@@ -1,6 +1,12 @@
 {
   "provinces": {
+    "add": {
+      "title": "Thêm mới tỉnh thành"
+    },
     "code": "Mã tỉnh thành",
+    "detail": {
+      "title": "Thông tin chi tiết của {{name}}"
+    },
     "id": "ID",
     "master": {
       "title": "Danh sách tỉnh thành"

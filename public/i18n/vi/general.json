@@ -3,9 +3,11 @@
     "actions": {
       "add": "Thêm mới",
       "close": "Đóng",
+      "delete": "Xóa",
       "filter": "Tìm kiếm",
       "label": "Tác vụ",
-      "reset": "Bỏ lọc"
+      "reset": "Bỏ lọc",
+      "save": "Lưu"
     },
     "delete": {
       "content": "Thao tác này không thể khôi phục",

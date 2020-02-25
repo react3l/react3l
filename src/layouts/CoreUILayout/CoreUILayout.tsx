@@ -1,11 +1,10 @@
-import Breadcrumb from '@coreui/react/lib/Breadcrumb';
+import Header from '@coreui/react/lib/Header';
 import NavbarBrand from '@coreui/react/lib/NavbarBrand';
 import Sidebar from '@coreui/react/lib/Sidebar';
 import SidebarMinimizer from '@coreui/react/lib/SidebarMinimizer';
 import SidebarNav from '@coreui/react/lib/SidebarNav';
 import SidebarToggler from '@coreui/react/lib/SidebarToggler';
 import {menu} from 'config/menu';
-import {translateBreadcrumbs} from 'helpers/coreui/breadcrumbs';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Switch, withRouter} from 'react-router';
@@ -49,30 +48,22 @@ function CoreUILayout(props: RouteConfigComponentProps) {
     [translate],
   );
 
-  const translatedRoutes: RouteConfig[] = React.useMemo(
-    () => {
-      return translateBreadcrumbs(route?.routes, translate);
-    },
-    [route, translate],
-  );
-
   return (
     <>
-      <header className="app-header navbar">
+      <Header fixed className="navbar">
         <NavbarBrand
           full={navbarBrandFull}
           minimized={navbarBrandMinimized}
         />
         <SidebarToggler className="d-md-down-none" display="lg"/>
-      </header>
+      </Header>
       <div className="app-body">
-        <Sidebar display="lg">
+        <Sidebar display="lg" fixed>
           <SidebarNav navConfig={translatedMenu} router={ReactRouterDOM}/>
           <SidebarMinimizer/>
         </Sidebar>
         <main className="main">
-          <Breadcrumb appRoutes={translatedRoutes} router={ReactRouterDOM}/>
-          <div className="container-fluid">
+          <div className="app-content">
             <Switch>
               {route?.routes instanceof Array && renderRoutes(route.routes)}
             </Switch>

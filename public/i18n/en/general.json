@@ -3,9 +3,11 @@
     "actions": {
       "add": "",
       "close": "",
+      "delete": "",
       "filter": "",
       "label": "",
-      "reset": ""
+      "reset": "",
+      "save": ""
     },
     "delete": {
       "content": "",

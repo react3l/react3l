@@ -31,10 +31,9 @@ function MasterPreview(props: MasterPreviewProps) {
   return (
     <Modal {...restProps}
            className={classNames('master-preview', className)}
-           unmountOnClose={true}
-    >
+           unmountOnClose={true}>
       <ModalHeader title={translate(title)}>
-        {title}
+        {translate(title)}
       </ModalHeader>
       <ModalBody>
         {children}

@@ -1,6 +1,7 @@
 /* tslint:disable:ordered-imports */
 // Ant Design
 import 'antd/dist/antd.less';
+import './ant-design/message.scss';
 // Font Awesome
 import 'font-awesome/css/font-awesome.min.css';
 // Bootstrap
