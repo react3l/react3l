@@ -1,4 +1,5 @@
 import AntInputNumber, {InputNumberProps} from 'antd/lib/input-number';
+import classNames from 'classnames';
 import 'components/ant-design/InputNumber/InputNumber.scss';
 import {debounce} from 'core/helpers';
 import React, {LegacyRef, ReactText} from 'react';
@@ -22,7 +23,7 @@ function parser(x: string) {
 }
 
 function InputNumber(props: InputNumberProps) {
-  const {defaultValue, onChange, ...restProps} = props;
+  const {defaultValue, onChange, className, ...restProps} = props;
 
   const ref: LegacyRef<any> = React.useRef();
 
@@ -55,6 +56,7 @@ function InputNumber(props: InputNumberProps) {
       onChange={debouncedHandleChange}
       value={value}
       {...restProps}
+      className={classNames('form-control', className)}
     />
   );
 }

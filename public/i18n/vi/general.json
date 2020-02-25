@@ -4,7 +4,9 @@
       "add": "Thêm mới",
       "close": "Đóng",
       "delete": "Xóa",
+      "export": "Xuất Excel",
       "filter": "Tìm kiếm",
+      "import": "Nhập Excel",
       "label": "Tác vụ",
       "reset": "Bỏ lọc",
       "save": "Lưu"

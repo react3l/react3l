@@ -31,4 +31,6 @@ export const defaultActions = {
   reset: translate('general.actions.reset'),
   save: translate('general.actions.save'),
   delete: translate('general.actions.delete'),
+  import: translate('general.actions.import'),
+  export: translate('general.actions.export'),
 };

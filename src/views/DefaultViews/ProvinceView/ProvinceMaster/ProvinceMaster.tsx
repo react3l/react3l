@@ -35,6 +35,7 @@ function ProvinceMaster() {
     handleReset,
     handleEdit,
     handleFilter,
+    handleSearch,
     visible,
     province,
     handlePreview,
@@ -51,6 +52,8 @@ function ProvinceMaster() {
     sorter,
     handleTableChange,
   ] = antTableService.useMasterTable(search, setSearch, total);
+
+  const [selectedRowKeys, onSelectionChange, hasSelected] = antTableService.useRowSelection();
 
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => [
@@ -133,8 +136,8 @@ function ProvinceMaster() {
                 </FormItem>
               </Col>
             </Row>
-            <div className="d-flex justify-content-end">
-              <button className="btn btn-primary mr-2">
+            <div className="d-flex justify-content-end mt-2">
+              <button className="btn btn-primary mr-2" onClick={handleSearch}>
                 {translate(defaultActions.filter)}
               </button>
               <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
@@ -152,6 +155,10 @@ function ProvinceMaster() {
                loading={loading}
                rowKey={nameof(province.id)}
                pagination={pagination}
+               rowSelection={{
+                 onChange: onSelectionChange,
+                 selectedRowKeys,
+               }}
                onChange={handleTableChange}
                title={() => (
                  <>
@@ -160,6 +167,18 @@ function ProvinceMaster() {
                        <button className="btn btn-primary mr-2" onClick={handleAdd}>
                          <i className="fa mr-2 fa-plus"/>
                          {translate(defaultActions.add)}
+                       </button>
+                       <button className="btn btn-danger mr-2" disabled={!hasSelected}>
+                         <i className="fa mr-2 fa-trash"/>
+                         {translate(defaultActions.delete)}
+                       </button>
+                       <button className="btn btn-outline-primary mr-2">
+                         <i className="fa mr-2 fa-upload"/>
+                         {translate(defaultActions.import)}
+                       </button>
+                       <button className="btn btn-outline-primary mr-2">
+                         <i className="fa mr-2 fa-download"/>
+                         {translate(defaultActions.export)}
                        </button>
                      </div>
                      <div className="flex-shrink-1 d-flex align-items-center">

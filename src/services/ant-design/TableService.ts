@@ -190,6 +190,7 @@ export class TableService {
         total,
         current: search.skip / search.take + 1,
         pageSize: search.take,
+        showSizeChanger: true,
       }),
       [search.skip, search.take, total],
     );
@@ -240,6 +241,20 @@ export class TableService {
       [pagination, search, setSearch, sorter],
     );
     return [pagination, sorter, handleTableChange];
+  }
+
+  public useRowSelection(): [
+    any[],
+    (selectedRowKeys: any[]) => void,
+    boolean,
+  ] {
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<any[]>([]);
+
+    return [
+      selectedRowKeys,
+      setSelectedRowKeys,
+      selectedRowKeys.length > 0,
+    ];
   }
 
   private defaultFilterHandler<T extends Model, TSearch extends Search>(list: T[], search?: TSearch) {

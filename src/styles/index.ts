@@ -3,6 +3,7 @@
 // Ant Design
 import 'antd/dist/antd.less';
 import './ant-design/message.scss';
+import './ant-design/table.scss';
 
 // CoreUI
 import '@coreui/coreui/dist/css/coreui.min.css';

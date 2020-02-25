@@ -304,6 +304,7 @@ export class CRUDService {
     () => void,
     (id: number) => () => void,
     (field: string) => (filter: Filter) => void,
+    () => void,
     boolean,
     T,
     (t: T) => () => void,
@@ -408,6 +409,13 @@ export class CRUDService {
       [search, setSearch],
     );
 
+    const handleSearch = React.useCallback(
+      () => {
+        setSearch(Search.clone<TSearch>(search));
+      },
+      [search],
+    );
+
     React.useEffect(
       () => {
         setLoading(true);
@@ -436,6 +444,7 @@ export class CRUDService {
       handleReset,
       handleEdit,
       handleFilter,
+      handleSearch,
       previewVisible,
       previewModel,
       handleOpenPreview,
