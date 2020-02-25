@@ -56,7 +56,7 @@ function InputNumber(props: InputNumberProps) {
       onChange={debouncedHandleChange}
       value={value}
       {...restProps}
-      className={classNames('form-control', className)}
+      className={classNames('input-number', className)}
     />
   );
 }

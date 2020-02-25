@@ -1,5 +1,5 @@
+import {Descriptions} from 'antd';
 import Card from 'antd/lib/card';
-import Empty from 'antd/lib/empty';
 import Form from 'antd/lib/form';
 import {Col, Row} from 'antd/lib/grid';
 import Table, {ColumnProps} from 'antd/lib/table';
@@ -108,7 +108,7 @@ function ProvinceMaster() {
   return (
     <div className="page master-page">
       <Card title={translate('provinces.master.title')}>
-        <Card className="mb-4">
+        <Card className="mb-4" title={translate(defaultActions.search)}>
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
@@ -168,14 +168,17 @@ function ProvinceMaster() {
                          <i className="fa mr-2 fa-plus"/>
                          {translate(defaultActions.add)}
                        </button>
+                       {/* TODO: add batch delete handler */}
                        <button className="btn btn-danger mr-2" disabled={!hasSelected}>
                          <i className="fa mr-2 fa-trash"/>
                          {translate(defaultActions.delete)}
                        </button>
+                       {/* TODO: add import handler */}
                        <button className="btn btn-outline-primary mr-2">
                          <i className="fa mr-2 fa-upload"/>
                          {translate(defaultActions.import)}
                        </button>
+                       {/* TODO: add export handler */}
                        <button className="btn btn-outline-primary mr-2">
                          <i className="fa mr-2 fa-download"/>
                          {translate(defaultActions.export)}
@@ -189,7 +192,17 @@ function ProvinceMaster() {
                )}
         />
         <MasterPreview isOpen={visible} onClose={handleClosePreview} size="xl">
-          <Empty/>
+          <Descriptions title={province.name} bordered>
+            <Descriptions.Item label={translate('provinces.id')}>
+              {province.id}
+            </Descriptions.Item>
+            <Descriptions.Item label={translate('provinces.code')}>
+              {province.code}
+            </Descriptions.Item>
+            <Descriptions.Item label={translate('provinces.name')}>
+              {province.name}
+            </Descriptions.Item>
+          </Descriptions>
         </MasterPreview>
       </Card>
     </div>

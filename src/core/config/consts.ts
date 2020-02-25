@@ -33,4 +33,5 @@ export const defaultActions = {
   delete: translate('general.actions.delete'),
   import: translate('general.actions.import'),
   export: translate('general.actions.export'),
+  search: translate('general.actions.search'),
 };
