@@ -10,11 +10,7 @@ export const defaultKeyTransformFunction = (key?: string | number) => {
   return key;
 };
 
-export function transformAPIContent(
-  data: any,
-  transformKey: KeyTransformer = defaultKeyTransformFunction,
-  transformValue: ValueTransformer = defaultValueTransformFunction,
-) {
+export function transformAPIContent(data: any, transformKey: KeyTransformer = defaultKeyTransformFunction, transformValue: ValueTransformer = defaultValueTransformFunction) {
   if (typeof data === 'object' && data !== null) {
     if (data instanceof Array) {
       return data.map((e) => transformAPIContent(e, transformKey, transformValue));

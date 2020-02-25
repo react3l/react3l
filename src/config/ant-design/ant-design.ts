@@ -3,20 +3,20 @@ import {AntSortType} from 'core/types';
 
 export const formItemLayout: FormProps = {
   labelCol: {
-    xs: {span: 24},
-    sm: {span: 24},
-    md: {span: 12},
-    lg: {span: 8},
+    xs: {span: 24}, sm: {span: 24}, md: {span: 12}, lg: {span: 8},
+  }, wrapperCol: {
+    xs: {span: 24}, sm: {span: 24}, md: {span: 12}, lg: {span: 16},
   },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 24},
-    md: {span: 12},
-    lg: {span: 16},
+};
+
+export const defaultDetailFormLayout: FormProps = {
+  labelCol: {
+    xs: {span: 24}, sm: {span: 24}, md: {span: 12}, lg: {span: 8},
+  }, wrapperCol: {
+    xs: {span: 24}, sm: {span: 24}, md: {span: 12}, lg: {span: 8},
   },
 };
 
 export const antSortType: AntSortType = {
-  ASC: 'ascend',
-  DESC: 'descend',
+  ASC: 'ascend', DESC: 'descend',
 };

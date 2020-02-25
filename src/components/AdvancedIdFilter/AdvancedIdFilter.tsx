@@ -15,25 +15,20 @@ function AdvancedIdFilter<T extends Model, TSearch extends Search>(props: Advanc
 
   const onChange: (filter: IdFilter | GuidFilter) => void = props.onChange;
 
-  const handleChange = React.useCallback(
-    (id: string | number) => {
-      filter.equal = id;
-      if (typeof onChange === 'function') {
-        onChange(filter);
-      }
-    },
-    [filter, onChange],
-  );
+  const handleChange = React.useCallback((id: string | number) => {
+    filter.equal = id;
+    if (typeof onChange === 'function') {
+      onChange(filter);
+    }
+  }, [filter, onChange]);
 
-  return (
-    <Select
+  return (<Select
       list={list}
       value={filter?.equal}
       onChange={handleChange}
       allowClear={true}
       {...props}
-    />
-  );
+    />);
 }
 
 export default AdvancedIdFilter;

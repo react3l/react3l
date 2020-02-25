@@ -23,33 +23,24 @@ interface NavbarBrandLogoProps {
 }
 
 const navbarBrandFull: NavbarBrandLogoProps = {
-  src: '/assets/img/brand/logo.svg',
-  width: 89,
-  height: 25,
+  src: '/assets/img/brand/logo.svg', width: 89, height: 25,
 };
 
 const navbarBrandMinimized: NavbarBrandLogoProps = {
-  src: '/assets/img/brand/sygnet.svg',
-  width: 30,
-  height: 30,
+  src: '/assets/img/brand/sygnet.svg', width: 30, height: 30,
 };
 
 function CoreUILayout(props: RouteConfigComponentProps) {
   const {route} = props;
   const [translate] = useTranslation();
 
-  const translatedMenu = React.useMemo(
-    () => ({
-      items: menu.items.map((route: RouteConfig) => ({
-        ...route,
-        name: translate(route.name),
-      })),
-    }),
-    [translate],
-  );
+  const translatedMenu = React.useMemo(() => ({
+    items: menu.items.map((route: RouteConfig) => ({
+      ...route, name: translate(route.name),
+    })),
+  }), [translate]);
 
-  return (
-    <>
+  return (<>
       <Header fixed className="navbar">
         <NavbarBrand
           full={navbarBrandFull}
@@ -70,8 +61,7 @@ function CoreUILayout(props: RouteConfigComponentProps) {
           </div>
         </main>
       </div>
-    </>
-  );
+    </>);
 }
 
 export default withRouter(CoreUILayout);

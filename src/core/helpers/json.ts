@@ -57,13 +57,11 @@ export function flatten(json: { [key: string]: any }, parentKey: string = '') {
         const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
         if (typeof json[key] !== 'object') {
           result = {
-            ...result,
-            [combinedKey]: json[key],
+            ...result, [combinedKey]: json[key],
           };
         } else {
           result = {
-            ...result,
-            ...flatten(json[key], combinedKey),
+            ...result, ...flatten(json[key], combinedKey),
           };
         }
       });

@@ -10,10 +10,7 @@ const i18nextConfig: InitOptions = {
   nsSeparator: false,
   keySeparator: '.',
   interpolation: {
-    escapeValue: false,
-    nestingSuffixEscaped: '.',
-    prefix: '{{',
-    suffix: '}}',
+    escapeValue: false, nestingSuffixEscaped: '.', prefix: '{{', suffix: '}}',
   },
 };
 

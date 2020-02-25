@@ -9,12 +9,9 @@ describe('Input', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
-        ReactDOM.render(
-          <MemoryRouter>
-            <Input/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <Input/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

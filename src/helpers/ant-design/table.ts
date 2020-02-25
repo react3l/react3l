@@ -46,8 +46,7 @@ export function renderMasterIndex<T extends Model>(pagination?: PaginationProps)
   return (...[, , index]: [any, T, number]) => {
     if (pagination) {
       const {
-        current = 1,
-        pageSize = DEFAULT_TAKE,
+        current = 1, pageSize = DEFAULT_TAKE,
       } = pagination;
       return index + 1 + (current - 1) * pageSize;
     }

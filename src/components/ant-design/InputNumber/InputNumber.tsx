@@ -29,27 +29,20 @@ function InputNumber(props: InputNumberProps) {
 
   const [value, setValue] = React.useState<number>(defaultValue);
 
-  React.useEffect(
-    () => {
-      if (typeof defaultValue === 'undefined') {
-        setValue(undefined);
-      }
-    },
-    [defaultValue],
-  );
+  React.useEffect(() => {
+    if (typeof defaultValue === 'undefined') {
+      setValue(undefined);
+    }
+  }, [defaultValue]);
 
-  const debouncedHandleChange = React.useCallback(
-    debounce((value: number) => {
-      setValue(value);
-      if (typeof onChange === 'function') {
-        onChange(value);
-      }
-    }),
-    [onChange],
-  );
+  const debouncedHandleChange = React.useCallback(debounce((value: number) => {
+    setValue(value);
+    if (typeof onChange === 'function') {
+      onChange(value);
+    }
+  }), [onChange]);
 
-  return (
-    <AntInputNumber
+  return (<AntInputNumber
       ref={ref}
       formatter={formatter}
       defaultValue={defaultValue}
@@ -57,14 +50,11 @@ function InputNumber(props: InputNumberProps) {
       value={value}
       {...restProps}
       className={classNames('input-number', className)}
-    />
-  );
+    />);
 }
 
 InputNumber.defaultProps = {
-  allowNegative: true,
-  onlyInteger: false,
-  step: 1,
+  allowNegative: true, onlyInteger: false, step: 1,
 };
 
 export default InputNumber;

@@ -9,22 +9,17 @@ function Input(props: InputProps) {
 
   const ref = React.createRef<AntInput>();
 
-  React.useEffect(
-    () => {
-      if (ref.current.input.value !== defaultValue) {
-        setValue(defaultValue);
-      }
-    },
-    [defaultValue, ref],
-  );
+  React.useEffect(() => {
+    if (ref.current.input.value !== defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue, ref]);
 
-  return (
-    <AntInput
+  return (<AntInput
       ref={ref}
       {...restProps}
       defaultValue={value as string}
-    />
-  );
+    />);
 }
 
 export default Input;

@@ -11,12 +11,9 @@ describe('AdvancedStringFilter', () => {
       .then(() => {
         const div = document.createElement('div');
         const filter: StringFilter = new StringFilter();
-        ReactDOM.render(
-          <MemoryRouter>
-            <AdvancedStringFilter filter={filter}/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <AdvancedStringFilter filter={filter}/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

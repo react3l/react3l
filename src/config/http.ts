@@ -26,8 +26,7 @@ export function responseInterceptor<T>(response: AxiosResponse<T>) {
 }
 
 export const httpConfig: AxiosRequestConfig = {
-  baseURL: BASE_URL,
-  headers: {
+  baseURL: BASE_URL, headers: {
     'Content-Type': 'application/json',
   },
 };

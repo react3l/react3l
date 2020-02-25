@@ -13,10 +13,7 @@ export interface GlobalState {
 }
 
 const initialGlobalState: GlobalState = {
-  language: 'vi',
-  fallbackLanguage: 'vi',
-  loading: true,
-  title: APP_TITLE,
+  language: 'vi', fallbackLanguage: 'vi', loading: true, title: APP_TITLE,
 };
 
 export default initialGlobalState;

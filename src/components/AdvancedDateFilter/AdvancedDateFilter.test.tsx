@@ -10,12 +10,9 @@ describe('AdvancedDateFilter', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
-        ReactDOM.render(
-          <MemoryRouter>
-            <AdvancedDateFilter filter={new DateFilter()}/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <AdvancedDateFilter filter={new DateFilter()}/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

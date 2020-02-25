@@ -6,11 +6,9 @@ import 'views/DefaultViews/ProvinceView/ProvinceView.scss';
 function ProvinceView(props: RouteConfigComponentProps) {
   const {route} = props;
 
-  return (
-    <Switch>
+  return (<Switch>
       {route?.routes instanceof Array && renderRoutes(route.routes)}
-    </Switch>
-  );
+    </Switch>);
 }
 
 export default withRouter(ProvinceView);

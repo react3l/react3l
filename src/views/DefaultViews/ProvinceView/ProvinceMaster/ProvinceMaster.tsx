@@ -25,88 +25,50 @@ const {Item: FormItem} = Form;
 
 function ProvinceMaster() {
   const [translate] = useTranslation();
-  const [
-    provinces,
-    search,
-    setSearch,
-    total,
-    loading,
-    handleAdd,
-    handleReset,
-    handleEdit,
-    handleFilter,
-    handleSearch,
-    visible,
-    province,
-    handlePreview,
-    handleClosePreview,
-  ] = crudService.useMaster<Province, ProvinceFilter>(
-    PROVINCE_ROUTE,
-    provinceMasterRepository.list,
-    provinceMasterRepository.count,
-    ProvinceFilter,
-  );
+  const [provinces, search, setSearch, total, loading, handleAdd, handleReset, handleEdit, handleFilter, handleSearch, visible, province, handlePreview, handleClosePreview] = crudService.useMaster<Province, ProvinceFilter>(PROVINCE_ROUTE, provinceMasterRepository.list, provinceMasterRepository.count, ProvinceFilter);
 
-  const [
-    pagination,
-    sorter,
-    handleTableChange,
-  ] = antTableService.useMasterTable(search, setSearch, total);
+  const [pagination, sorter, handleTableChange] = antTableService.useMasterTable(search, setSearch, total);
 
   const [selectedRowKeys, onSelectionChange, hasSelected] = antTableService.useRowSelection();
 
-  const columns: Array<ColumnProps<Province>> = React.useMemo(
-    () => [
-      {
-        title: translate(defaultKeys.index),
-        key: nameof(defaultKeys.index),
-        width: defaultColumnWidth.index,
-        render: renderMasterIndex<Province>(pagination),
-      },
-      {
-        title: translate('provinces.id'),
-        key: nameof(province.id),
-        sorter: true,
-        sortOrder: getOrderTypeForTable<Province>(nameof(province.id), sorter),
-        dataIndex: nameof(province.id),
-      },
-      {
-        title: translate('provinces.code'),
-        sorter: true,
-        sortOrder: getOrderTypeForTable<Province>(nameof(province.code), sorter),
-      },
-      {
-        title: translate('provinces.name'),
-        key: nameof(province.name),
-        dataIndex: nameof(province.name),
-        sorter: true,
-        sortOrder: getOrderTypeForTable<Province>(nameof(province.name), sorter),
-      },
-      {
-        title: translate(defaultActions.label),
-        key: nameof(defaultKeys.actions),
-        dataIndex: nameof(province.id),
-        width: defaultColumnWidth.actions,
-        align: 'center',
-        render(id: number, province: Province) {
-          return (
-            <div className="d-flex justify-content-center">
-              <button className="btn btn-link text-warning" onClick={handlePreview(province)}>
-                <i className="fa fa-eye"/>
-              </button>
-              <button className="btn btn-link" onClick={handleEdit(id)}>
-                <i className="fa fa-edit"/>
-              </button>
-            </div>
-          );
-        },
-      },
-    ],
-    [handleEdit, handlePreview, pagination, province.code, province.id, province.name, sorter, translate],
-  );
+  const columns: Array<ColumnProps<Province>> = React.useMemo(() => [{
+    title: translate(defaultKeys.index),
+    key: nameof(defaultKeys.index),
+    width: defaultColumnWidth.index,
+    render: renderMasterIndex<Province>(pagination),
+  }, {
+    title: translate('provinces.id'),
+    key: nameof(province.id),
+    sorter: true,
+    sortOrder: getOrderTypeForTable<Province>(nameof(province.id), sorter),
+    dataIndex: nameof(province.id),
+  }, {
+    title: translate('provinces.code'), sorter: true, sortOrder: getOrderTypeForTable<Province>(nameof(province.code), sorter),
+  }, {
+    title: translate('provinces.name'),
+    key: nameof(province.name),
+    dataIndex: nameof(province.name),
+    sorter: true,
+    sortOrder: getOrderTypeForTable<Province>(nameof(province.name), sorter),
+  }, {
+    title: translate(defaultActions.label),
+    key: nameof(defaultKeys.actions),
+    dataIndex: nameof(province.id),
+    width: defaultColumnWidth.actions,
+    align: 'center',
+    render(id: number, province: Province) {
+      return (<div className="d-flex justify-content-center">
+          <button className="btn btn-link text-warning" onClick={handlePreview(province)}>
+            <i className="fa fa-eye"/>
+          </button>
+          <button className="btn btn-link" onClick={handleEdit(id)}>
+            <i className="fa fa-edit"/>
+          </button>
+        </div>);
+    },
+  }], [handleEdit, handlePreview, pagination, province.code, province.id, province.name, sorter, translate]);
 
-  return (
-    <div className="page master-page">
+  return (<div className="page master-page">
       <Card title={translate('provinces.master.title')}>
         <Card className="mb-4" title={translate(defaultActions.search)}>
           <Form {...formItemLayout}>
@@ -156,12 +118,10 @@ function ProvinceMaster() {
                rowKey={nameof(province.id)}
                pagination={pagination}
                rowSelection={{
-                 onChange: onSelectionChange,
-                 selectedRowKeys,
+                 onChange: onSelectionChange, selectedRowKeys,
                }}
                onChange={handleTableChange}
-               title={() => (
-                 <>
+               title={() => (<>
                    <div className="d-flex justify-content-between">
                      <div className="flex-shrink-1 d-flex align-items-center">
                        <button className="btn btn-primary mr-2" onClick={handleAdd}>
@@ -188,8 +148,7 @@ function ProvinceMaster() {
                        {translate('general.master.pagination', {pageSize: pagination.pageSize, total})}
                      </div>
                    </div>
-                 </>
-               )}
+                 </>)}
         />
         <MasterPreview isOpen={visible} onClose={handleClosePreview} size="xl">
           <Descriptions title={province.name} bordered>
@@ -205,8 +164,7 @@ function ProvinceMaster() {
           </Descriptions>
         </MasterPreview>
       </Card>
-    </div>
-  );
+    </div>);
 }
 
 export default ProvinceMaster;

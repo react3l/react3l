@@ -19,17 +19,12 @@ export interface MasterPreviewProps extends ModalProps {
 function MasterPreview(props: MasterPreviewProps) {
   const [translate] = useTranslation();
   const {
-    title,
-    children,
-    className,
-    onClose,
-    ...restProps
+    title, children, className, onClose, ...restProps
   } = props;
 
-  return (
-    <Modal {...restProps}
-           className={classNames('master-preview', className)}
-           unmountOnClose={true}>
+  return (<Modal {...restProps}
+                 className={classNames('master-preview', className)}
+                 unmountOnClose={true}>
       <ModalHeader title={translate(title)}>
         {translate(title)}
       </ModalHeader>
@@ -41,8 +36,7 @@ function MasterPreview(props: MasterPreviewProps) {
           {translate('general.actions.close')}
         </button>
       </ModalFooter>
-    </Modal>
-  );
+    </Modal>);
 }
 
 MasterPreview.defaultProps = {

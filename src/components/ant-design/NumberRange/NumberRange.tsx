@@ -13,33 +13,22 @@ function NumberRange(props: NumberRangeProps) {
   const [translate] = useTranslation();
 
   const {
-    value: [
-      minValue,
-      maxValue,
-    ] = [],
-    onChange,
+    value: [minValue, maxValue] = [], onChange,
   } = props ?? {};
 
-  const handleChangeMinValue = React.useCallback(
-    (value: number) => {
-      if (typeof onChange === 'function') {
-        onChange([value, maxValue]);
-      }
-    },
-    [maxValue, onChange],
-  );
+  const handleChangeMinValue = React.useCallback((value: number) => {
+    if (typeof onChange === 'function') {
+      onChange([value, maxValue]);
+    }
+  }, [maxValue, onChange]);
 
-  const handleChangeMaxValue = React.useCallback(
-    (value: number) => {
-      if (typeof onChange === 'function') {
-        onChange([minValue, value]);
-      }
-    },
-    [minValue, onChange],
-  );
+  const handleChangeMaxValue = React.useCallback((value: number) => {
+    if (typeof onChange === 'function') {
+      onChange([minValue, value]);
+    }
+  }, [minValue, onChange]);
 
-  return (
-    <div className="number-range">
+  return (<div className="number-range">
       <InputNumber defaultValue={minValue}
                    onChange={handleChangeMinValue}
                    placeholder={translate('general.numberRange.from')}/>
@@ -47,8 +36,7 @@ function NumberRange(props: NumberRangeProps) {
       <InputNumber defaultValue={maxValue}
                    onChange={handleChangeMaxValue}
                    placeholder={translate('general.numberRange.to')}/>
-    </div>
-  );
+    </div>);
 }
 
 export default NumberRange;

@@ -1,10 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
-export function createHttpService(
-  config: AxiosRequestConfig,
-  requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig,
-  responseInterceptor?: (response: AxiosResponse) => any,
-): AxiosInstance {
+export function createHttpService(config: AxiosRequestConfig, requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig, responseInterceptor?: (response: AxiosResponse) => any): AxiosInstance {
   const instance: AxiosInstance = axios.create(config);
   if (requestInterceptor) {
     instance.interceptors.request.use(requestInterceptor);

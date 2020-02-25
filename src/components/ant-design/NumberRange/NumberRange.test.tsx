@@ -9,12 +9,9 @@ describe('NumberRange', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
-        ReactDOM.render(
-          <MemoryRouter>
-            <NumberRange/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <NumberRange/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

@@ -1,5 +1,4 @@
 import {AxiosResponse} from 'axios';
-
 import {API_PROVINCE_MASTER_ROUTE} from 'config/api-consts';
 import {url} from 'core/helpers/url';
 import {Repository} from 'core/repositories';
@@ -38,6 +37,21 @@ export class ProvinceMasterRepository extends Repository {
       });
   };
 
+  public delete = (province: Province): Promise<Province> => {
+    return this.http.post<Province>(kebabCase(nameof(this.delete)), province)
+      .then((response: AxiosResponse<PureModelData<Province>>) => {
+        return Province.clone<Province>(response.data);
+      });
+  };
+
+  public batchDelete = (idList: number[]): Promise<void> => {
+    return this.http.post<void>(kebabCase(nameof(this.batchDelete)), {
+      idList,
+    })
+      .then((response: AxiosResponse<void>) => {
+        return response.data;
+      });
+  };
 }
 
 export const provinceMasterRepository: ProvinceMasterRepository = new ProvinceMasterRepository();

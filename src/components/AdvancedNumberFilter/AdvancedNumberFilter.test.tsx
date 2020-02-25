@@ -11,12 +11,9 @@ describe('AdvancedNumberFilter', () => {
       .then(() => {
         const div = document.createElement('div');
         const filter: NumberFilter = new NumberFilter();
-        ReactDOM.render(
-          <MemoryRouter>
-            <AdvancedNumberFilter filter={filter}/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <AdvancedNumberFilter filter={filter}/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

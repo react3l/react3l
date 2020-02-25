@@ -10,12 +10,9 @@ describe('AdvancedIdFilter', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
-        ReactDOM.render(
-          <MemoryRouter>
-            <AdvancedIdFilter filter={new IdFilter()}/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <AdvancedIdFilter filter={new IdFilter()}/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });

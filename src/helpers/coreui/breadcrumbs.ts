@@ -5,19 +5,11 @@ export function translateBreadcrumbs(routes: RouteConfig[], translate: (str: str
   let translatedRoutes: RouteConfig[] = [];
   routes?.forEach((route: RouteConfig) => {
     if (route?.routes instanceof Array) {
-      translatedRoutes = [
-        ...translatedRoutes,
-        ...translateBreadcrumbs(route.routes, translate),
-      ];
+      translatedRoutes = [...translatedRoutes, ...translateBreadcrumbs(route.routes, translate)];
     }
-    translatedRoutes = [
-      ...translatedRoutes,
-      {
-        path: route.path,
-        name: translate(route.name),
-        exact: route.exact,
-      },
-    ];
+    translatedRoutes = [...translatedRoutes, {
+      path: route.path, name: translate(route.name), exact: route.exact,
+    }];
   });
   return translatedRoutes;
 }

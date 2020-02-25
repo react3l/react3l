@@ -13,18 +13,13 @@ function App(props: AppProps) {
 
   const [title] = React.useGlobal<GlobalState, 'title'>('title');
 
-  React.useEffect(
-    () => {
-      document.title = title;
-    },
-    [title],
-  );
+  React.useEffect(() => {
+    document.title = title;
+  }, [title]);
 
-  return (
-    <Switch>
+  return (<Switch>
       {renderRoutes(routes)}
-    </Switch>
-  );
+    </Switch>);
 }
 
 export default App;

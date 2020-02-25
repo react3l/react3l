@@ -1,16 +1,17 @@
-import Select from 'components/ant-design/Select/Select';
-import {configTests} from 'core/config/config-tests';
+import {configTests} from 'core/config';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
 
-describe('Select', () => {
+import DistrictContentTable from './DistrictContentTable';
+
+describe('DistrictContentTable', () => {
   it('renders without crashing', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
         ReactDOM.render(<MemoryRouter>
-          <Select/>
+          <DistrictContentTable/>
         </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });

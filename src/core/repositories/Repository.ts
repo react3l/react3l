@@ -10,11 +10,7 @@ export class Repository {
 
   protected http: AxiosInstance;
 
-  constructor(
-    config?: AxiosRequestConfig,
-    requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig,
-    responseInterceptor?: (response: AxiosResponse) => any,
-  ) {
+  constructor(config?: AxiosRequestConfig, requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig, responseInterceptor?: (response: AxiosResponse) => any) {
     this.http = createHttpService(config, requestInterceptor, responseInterceptor);
     if (typeof Repository._defaultRequestInterceptor === 'function') {
       this.http.interceptors.request.use(Repository._defaultRequestInterceptor);

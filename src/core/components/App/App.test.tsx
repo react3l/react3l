@@ -9,12 +9,9 @@ describe('App', () => {
     configTests()
       .then(() => {
         const div = document.createElement('div');
-        ReactDOM.render(
-          <MemoryRouter>
-            <App/>
-          </MemoryRouter>,
-          div,
-        );
+        ReactDOM.render(<MemoryRouter>
+          <App/>
+        </MemoryRouter>, div);
         ReactDOM.unmountComponentAtNode(div);
       });
   });
