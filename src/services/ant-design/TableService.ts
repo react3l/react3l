@@ -73,7 +73,7 @@ export class TableService {
 
     const handleSearch = React.useCallback(() => {
       setSearch(Search.clone<TSearch>(search));
-    }, [search]);
+    }, [search, setSearch]);
 
     const handleReset = React.useCallback(() => {
       const newSearch: TSearch = Search.clone<TSearch>(search);
