@@ -11,8 +11,6 @@ import './MasterPreview.scss';
 export interface MasterPreviewProps extends ModalProps {
   children?: any;
 
-  className?: string;
-
   title?: string;
 
   onClose?(): void;

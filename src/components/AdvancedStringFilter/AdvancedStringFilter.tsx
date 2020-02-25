@@ -1,137 +1,62 @@
-import Input from 'antd/lib/input';
+import classNames from 'classnames';
 import 'components/AdvancedStringFilter/AdvancedStringFilter.scss';
-import Select from 'components/ant-design/Select/Select';
-import {DateFilter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
-import {FilterType} from 'core/types';
-import React from 'react';
+import {GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
+import React, {ChangeEvent, ComponentProps, RefObject} from 'react';
 
-export interface AdvancedStringFilterProps {
+export interface AdvancedStringFilterProps extends ComponentProps<any> {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
 
-  defaultType?: string;
+  filterType?: keyof StringFilter | keyof NumberFilter | keyof IdFilter | keyof GuidFilter | string;
 
-  type?: 'text' | 'number';
-
-  className?: string;
-
-  onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
+  onChange(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
 function AdvancedStringFilter(props: AdvancedStringFilterProps) {
-  const {filter, defaultType, onChange, type: inputType, className} = props;
+  const {filter, filterType, onChange, className} = props;
 
-  const types: FilterType[] = React.useMemo(
-    () => {
-      const filterClasses = [
-        StringFilter,
-        NumberFilter,
-        IdFilter,
-        GuidFilter,
-        DateFilter,
-      ];
-      for (const FilterClass of filterClasses) {
-        if (filter instanceof FilterClass) {
-          return FilterClass
-            .types()
-            .map((type: string, index: number) => {
-              return {
-                id: index,
-                name: type,
-              };
-            }) as FilterType[];
-        }
-      }
-      return [];
-    },
-    [filter],
-  );
+  const ref: RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
 
-  const [type, setType] = React.useState<string>(defaultType ?? types[0].name);
+  const {
+    [filterType]: value,
+  } = filter as any;
 
-  const ref = React.createRef<Input>();
-
-  const handleSubmitChange = React.useCallback(
-    () => {
-      const {value} = ref.current.input;
-      if (value !== '') {
-        filter[type] = value;
-      } else {
-        filter[type] = null;
-      }
-      if (typeof onChange === 'function') {
+  const handleChange = React.useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      filter[filterType] = event.target.value;
+      if (event.target.value === '' && typeof onChange === 'function') {
         onChange(filter);
       }
     },
-    [filter, onChange, ref, type],
-  );
-
-  const handleCheckClear = React.useCallback(
-    () => {
-      const {value} = ref.current.input;
-      if (value === '') {
-        handleSubmitChange();
-      }
-    },
-    [handleSubmitChange, ref],
-  );
-
-  const handleChangeType = React.useCallback(
-    (id: number) => {
-      setType(types[id].name);
-    },
-    [types],
-  );
-
-  const addonBefore = React.useMemo(
-    () => {
-      if (typeof defaultType === 'undefined') {
-        return (
-          <Select list={types}
-                  onChange={handleChangeType}
-          />
-        );
-      }
-      return null;
-    },
-    [defaultType, handleChangeType, types],
-  );
-
-  const defaultValue = React.useMemo(
-    () => {
-      if (filter) {
-        return filter[type];
-      }
-      return '';
-    },
-    [filter, type],
+    [filter, filterType, onChange],
   );
 
   React.useEffect(
     () => {
-      if (typeof defaultType === 'string' && defaultType === '') {
-        ref.current.setState({
-          value: '',
-        });
+      if (typeof filter[filterType] === 'undefined') {
+        ref.current.value = '';
       }
     },
-    [defaultType, ref],
+    [filter, filterType],
+  );
+
+  const handlePressEnter = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === 'Enter' && typeof onChange === 'function') {
+        onChange(filter);
+      }
+    },
+    [filter, onChange],
   );
 
   return (
-    <Input
-      ref={ref}
-      type={inputType}
-      defaultValue={defaultValue}
-      onChange={handleCheckClear}
-      onPressEnter={handleSubmitChange}
-      addonBefore={addonBefore}
-      className={className}
+    <input type="text"
+           ref={ref}
+           className={classNames('form-control', className)}
+           defaultValue={value}
+           onKeyPress={handlePressEnter}
+           onChange={handleChange}
     />
   );
 }
-
-AdvancedStringFilter.defaultProps = {
-  type: 'text',
-};
 
 export default AdvancedStringFilter;

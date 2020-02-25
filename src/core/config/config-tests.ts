@@ -20,5 +20,3 @@ export async function configTests() {
       }),
   ]);
 }
-
-export default i18n;

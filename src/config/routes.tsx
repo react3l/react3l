@@ -11,29 +11,29 @@ import ProvinceView from 'views/DefaultViews/ProvinceView/ProvinceView';
 
 export const routes: RouteConfig[] = [
   {
+    name: translate('menu.root'),
     path: ROOT_ROUTE,
     component: CoreUILayout,
-    name: translate('menu.root'),
     routes: [
       {
+        name: translate('menu.provinces.name'),
         path: PROVINCE_ROUTE,
         component: ProvinceView,
-        name: translate('menu.provinces.name'),
         routes: [
           {
+            name: translate('menu.provinces.add'),
             path: path.join(PROVINCE_ROUTE, nameof(defaultActions.add)),
             component: ProvinceDetail,
-            name: translate('menu.provinces.add'),
           },
           {
+            name: translate('menu.provinces.detail'),
             path: path.join(PROVINCE_ROUTE, ':id'),
             component: ProvinceDetail,
-            name: translate('menu.provinces.detail'),
           },
           {
+            name: translate('menu.provinces.master'),
             path: path.join(PROVINCE_ROUTE),
             component: ProvinceMaster,
-            name: translate('menu.provinces.master'),
             exact: true,
           },
         ],

@@ -1,4 +1,4 @@
-import {ColumnWidth} from 'react3l';
+import {ColumnWidth} from 'core/types';
 
 export * from 'core/config';
 

@@ -1,5 +1,5 @@
 import {translate} from 'core/helpers/translate';
-import {TableKeys} from 'react3l';
+import {TableKeys} from 'core/types';
 
 export const __DEV__: boolean = process.env.NODE_ENV === 'development';
 
@@ -25,5 +25,10 @@ export const defaultKeys: TableKeys = {
 };
 
 export const defaultActions = {
+  label: translate('general.actions.label'),
   add: translate('general.actions.add'),
+  filter: translate('general.actions.filter'),
+  reset: translate('general.actions.reset'),
+  save: translate('general.actions.save'),
+  delete: translate('general.actions.delete'),
 };

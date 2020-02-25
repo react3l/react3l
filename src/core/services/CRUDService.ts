@@ -1,8 +1,8 @@
+import {DetailParams} from 'core/types';
 import {Moment} from 'moment';
 import {join} from 'path';
 import React from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {DetailParams} from 'react3l';
 import nameof from 'ts-nameof.macro';
 import v4 from 'uuid/v4';
 import {DEFAULT_TAKE, defaultActions} from '../config';
@@ -310,14 +310,20 @@ export class CRUDService {
     () => void,
   ] {
     const [search, setSearch] = React.useState<TSearch>(new tSearch());
+
     const [list, setList] = React.useState<T[]>([]);
+
     const [loading, setLoading] = React.useState<boolean>(false);
+
     const [total, setTotal] = React.useState<number>(0);
+
     const history = useHistory();
+
     const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
+
     const [previewModel, setPreviewModel] = React.useState<T>(Model.clone<T>());
 
-    const handlePreview = React.useCallback(
+    const handleOpenPreview = React.useCallback(
       (t: T) => {
         return () => {
           setPreviewModel(t);
@@ -432,7 +438,7 @@ export class CRUDService {
       handleFilter,
       previewVisible,
       previewModel,
-      handlePreview,
+      handleOpenPreview,
       handleClosePreview,
     ];
   }

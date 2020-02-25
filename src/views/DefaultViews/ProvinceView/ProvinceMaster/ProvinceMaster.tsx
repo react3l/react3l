@@ -3,10 +3,11 @@ import Empty from 'antd/lib/empty';
 import Form from 'antd/lib/form';
 import {Col, Row} from 'antd/lib/grid';
 import Table, {ColumnProps} from 'antd/lib/table';
+import AdvancedNumberFilter from 'components/AdvancedNumberFilter/AdvancedNumberFilter';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import MasterPreview from 'components/MasterPreview/MasterPreview';
-import {formItemLayout} from 'config/ant-design';
-import {defaultColumnWidth} from 'config/consts';
+import {formItemLayout} from 'config/ant-design/ant-design';
+import {defaultActions, defaultColumnWidth} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
 import {defaultKeys} from 'core/config';
 import {crudService} from 'core/services';
@@ -45,12 +46,16 @@ function ProvinceMaster() {
     ProvinceFilter,
   );
 
-  const [pagination, sorter, handleTableChange] = antTableService.useMasterTable(search, setSearch, total);
+  const [
+    pagination,
+    sorter,
+    handleTableChange,
+  ] = antTableService.useMasterTable(search, setSearch, total);
 
   const columns: Array<ColumnProps<Province>> = React.useMemo(
     () => [
       {
-        title: translate('general.keys.index'),
+        title: translate(defaultKeys.index),
         key: nameof(defaultKeys.index),
         width: defaultColumnWidth.index,
         render: renderMasterIndex<Province>(pagination),
@@ -75,7 +80,7 @@ function ProvinceMaster() {
         sortOrder: getOrderTypeForTable<Province>(nameof(province.name), sorter),
       },
       {
-        title: translate('general.actions.label'),
+        title: translate(defaultActions.label),
         key: nameof(defaultKeys.actions),
         dataIndex: nameof(province.id),
         width: defaultColumnWidth.actions,
@@ -105,36 +110,36 @@ function ProvinceMaster() {
             <Row>
               <Col className="pl-1" span={8}>
                 <FormItem className="mb-0" label={translate('provinces.id')}>
-                  <AdvancedStringFilter defaultType={nameof(search.id.equal)}
-                                        onChange={handleFilter(nameof(province.id))}
+                  <AdvancedNumberFilter filterType={nameof(search.id.equal)}
                                         filter={search.id}
+                                        onChange={handleFilter(nameof(province.id))}
                                         className="w-100"/>
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
                 <FormItem className="mb-0" label={translate('provinces.code')}>
-                  <AdvancedStringFilter defaultType={nameof(search.code.startWith)}
-                                        onChange={handleFilter(nameof(province.code))}
+                  <AdvancedStringFilter filterType={nameof(search.code.startWith)}
                                         filter={search.code}
+                                        onChange={handleFilter(nameof(province.code))}
                                         className="w-100"/>
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
                 <FormItem className="mb-0" label={translate('provinces.name')}>
-                  <AdvancedStringFilter defaultType={nameof(search.name.startWith)}
-                                        onChange={handleFilter(nameof(province.name))}
+                  <AdvancedStringFilter filterType={nameof(search.name.startWith)}
                                         filter={search.name}
+                                        onChange={handleFilter(nameof(province.name))}
                                         className="w-100"/>
                 </FormItem>
               </Col>
             </Row>
             <div className="d-flex justify-content-end">
               <button className="btn btn-primary mr-2">
-                {translate('general.actions.filter')}
+                {translate(defaultActions.filter)}
               </button>
               <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
                 <i className="fa mr-2 fa-times"/>
-                {translate('general.actions.reset')}
+                {translate(defaultActions.reset)}
               </button>
             </div>
           </Form>
@@ -154,7 +159,7 @@ function ProvinceMaster() {
                      <div className="flex-shrink-1 d-flex align-items-center">
                        <button className="btn btn-primary mr-2" onClick={handleAdd}>
                          <i className="fa mr-2 fa-plus"/>
-                         {translate('general.actions.add')}
+                         {translate(defaultActions.add)}
                        </button>
                      </div>
                      <div className="flex-shrink-1 d-flex align-items-center">

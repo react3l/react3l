@@ -1,29 +1,30 @@
 import DatePicker from 'antd/lib/date-picker';
 import 'components/AdvancedDateFilter/AdvancedDateFilter.scss';
 import {DateFilter} from 'core/filters';
+import {FilterType} from 'core/types';
 import {Moment} from 'moment';
-import React from 'react';
+import React, {ComponentProps} from 'react';
 import nameof from 'ts-nameof.macro';
 
-export interface AdvancedDateFilterProps {
+export interface AdvancedDateFilterProps extends ComponentProps<any> {
   filter: DateFilter;
 
-  defaultType?: string;
-
-  className?: string;
+  filterType?: keyof DateFilter | string;
 
   onChange?(filter: DateFilter);
 }
 
+const dateFilterTypes: Array<FilterType<DateFilter>> = DateFilter.types();
+
 function AdvancedDateFilter(props: AdvancedDateFilterProps) {
   const {
     filter,
-    defaultType,
+    filterType,
     onChange,
     className,
   } = props;
 
-  const [type] = React.useState<keyof DateFilter>((defaultType ?? DateFilter.types()[0]) as keyof DateFilter);
+  const [type] = React.useState<keyof DateFilter>((filterType ?? dateFilterTypes[0].key as any));
 
   const handleChangeRange = React.useCallback(
     (range) => {

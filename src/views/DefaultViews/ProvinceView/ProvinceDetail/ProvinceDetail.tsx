@@ -1,8 +1,9 @@
 import Card from 'antd/lib/card';
 import Form from 'antd/lib/form';
 import Spin from 'antd/lib/spin';
-import {formItemLayout} from 'config/ant-design';
+import {formItemLayout} from 'config/ant-design/ant-design';
 import {PROVINCE_ROUTE} from 'config/route-consts';
+import {defaultActions} from 'core/config';
 import {crudService} from 'core/services';
 import {Province} from 'models/Province';
 import React from 'react';
@@ -36,6 +37,7 @@ function ProvinceDetail() {
     setLoading,
     province,
     setProvince,
+    handleGoBack,
   );
 
   return (
@@ -52,7 +54,7 @@ function ProvinceDetail() {
           <div className="d-flex justify-content-end align-items-center mb-4">
             <button className="btn btn-primary" onClick={handleSave}>
               <i className="fa fa-save mr-2"/>
-              {translate('general.actions.save')}
+              {translate(defaultActions.save)}
             </button>
           </div>
           <Form {...formItemLayout}>
@@ -80,13 +82,17 @@ function ProvinceDetail() {
             </FormItem>
           </Form>
           <div className="d-flex justify-content-between mt-4">
-            <button className="btn btn-danger" onClick={handleDelete}>
-              <i className="fa fa-trash mr-2"/>
-              {translate('general.actions.delete')}
-            </button>
+            <div className="flex-grow-1">
+              {isDetail && (
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  <i className="fa fa-trash mr-2"/>
+                  {translate(defaultActions.delete)}
+                </button>
+              )}
+            </div>
             <button className="btn btn-primary" onClick={handleSave}>
               <i className="fa fa-save mr-2"/>
-              {translate('general.actions.save')}
+              {translate(defaultActions.save)}
             </button>
           </div>
         </Card>

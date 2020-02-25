@@ -21,12 +21,14 @@ export type ErrorMap<T> = {
   [P in keyof T]: string | ErrorMap<T[P]>;
 };
 
-export type PrimitiveValue = number | string | boolean | null | undefined;
+export type PrimitiveValue = number | string | boolean;
 
-export interface FilterType {
-  id: number;
+export interface FilterType<T> {
+  id?: number;
 
-  name: string;
+  key: keyof T | string;
+
+  label: string;
 }
 
 export type PureModelData<T extends Model> = {
@@ -40,3 +42,43 @@ export type PureModelData<T extends Model> = {
               T[P] extends Moment ? string :
                 any;
 } | T;
+
+export interface ColumnWidth {
+  index?: number;
+
+  checkbox?: number;
+
+  expand?: number;
+
+  actions?: number;
+
+  [key: string]: number;
+}
+
+export interface TableKeys {
+  index?: string;
+
+  actions?: string;
+
+  [key: string]: string;
+}
+
+export interface AntSortType {
+  ASC: string;
+
+  DESC: string;
+}
+
+export interface ContentTableProps<T extends Model, TContent extends Model> {
+  model: T;
+
+  setModel: (t: T) => void;
+
+  field: string;
+
+  onChange?: (v: TContent[]) => void;
+}
+
+export interface DetailParams {
+  id?: string;
+}

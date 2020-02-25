@@ -5,14 +5,14 @@ import {MemoryRouter} from 'react-router-dom';
 import ProvinceMaster from 'views/DefaultViews/ProvinceView/ProvinceMaster/ProvinceMaster';
 
 describe('ProvinceMaster', () => {
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(
-            <MemoryRouter>
-                <ProvinceMaster/>
-            </MemoryRouter>,
-            div,
-        );
-        ReactDOM.unmountComponentAtNode(div);
-    });
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <MemoryRouter>
+        <ProvinceMaster/>
+      </MemoryRouter>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });

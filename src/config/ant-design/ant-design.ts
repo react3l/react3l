@@ -1,5 +1,5 @@
 import {FormProps} from 'antd/lib/form';
-import {AntSortType} from 'react3l';
+import {AntSortType} from 'core/types';
 
 export const formItemLayout: FormProps = {
   labelCol: {

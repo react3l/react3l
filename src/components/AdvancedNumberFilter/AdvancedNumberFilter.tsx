@@ -3,37 +3,42 @@ import InputNumber from 'components/ant-design/InputNumber/InputNumber';
 import NumberRange from 'components/ant-design/NumberRange/NumberRange';
 import {NumberFilter} from 'core/filters';
 import {debounce} from 'core/helpers';
-import {Moment} from 'moment';
-import React from 'react';
+import {FilterType} from 'core/types';
+import React, {ComponentProps} from 'react';
 import nameof from 'ts-nameof.macro';
 
-export interface AdvancedNumberFilterProps {
+export interface AdvancedNumberFilterProps extends ComponentProps<any> {
   filter: NumberFilter;
 
-  defaultType?: string;
-
-  className?: string;
+  filterType?: keyof NumberFilter | string;
 
   onChange?(filter: NumberFilter);
 }
 
-const types: string[] = NumberFilter.types();
+const types: Array<FilterType<NumberFilter>> = NumberFilter.types();
 
 function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
   const {
     filter,
-    defaultType,
+    filterType,
     onChange,
     className,
   } = props;
 
-  const [type] = React.useState<keyof NumberFilter>((defaultType ?? types[0]) as keyof NumberFilter);
+  const handleSubmitChange = React.useCallback(
+    () => {
+      if (typeof onChange === 'function') {
+        onChange(filter);
+      }
+    },
+    [filter, onChange],
+  );
 
   const handleChangeRange = React.useCallback(
     (range) => {
-      types.forEach((type: string) => {
-        if (filter.hasOwnProperty(type)) {
-          switch (type) {
+      types.forEach((type: FilterType<NumberFilter>) => {
+        if (filter.hasOwnProperty(type.key)) {
+          switch (type.key) {
             case nameof(filter.greaterEqual):
               filter.greaterEqual = range[0];
               break;
@@ -41,31 +46,28 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
               filter.lessEqual = range[1];
               break;
             default:
-              if (filter.hasOwnProperty(type)) {
-                filter[type] = undefined;
+              if (filter.hasOwnProperty(type.key)) {
+                filter[type.key] = undefined;
               }
               break;
           }
         }
       });
-      if (onChange) {
-        onChange({...filter});
-      }
     },
-    [filter, onChange],
+    [filter],
   );
 
   const handleChange = React.useCallback(
-    debounce((value: Moment) => {
-      filter[type as any] = value;
-      if (onChange) {
-        onChange({...filter});
+    debounce((value: number | string) => {
+      filter[filterType] = value;
+      if (value === '' && typeof onChange === 'function') {
+        handleSubmitChange();
       }
     }),
-    [filter, onChange, type],
+    [filter, onChange, filterType],
   );
 
-  if (type === nameof(filter.range)) {
+  if (filterType === nameof(filter.range)) {
     const numberFilterRange: [number | undefined, number | undefined] = [filter.greaterEqual, filter.lessEqual];
     return (
       <NumberRange value={numberFilterRange}
@@ -74,9 +76,10 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
     );
   }
   return (
-    <InputNumber defaultValue={filter[type] as number}
+    <InputNumber defaultValue={filter[filterType] as number}
                  onChange={handleChange}
                  className={className}
+                 onPressEnter={handleSubmitChange}
     />
   );
 }

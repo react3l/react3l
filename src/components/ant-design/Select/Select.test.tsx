@@ -1,8 +1,8 @@
+import Select from 'components/ant-design/Select/Select';
 import {configTests} from 'core/config/config-tests';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import Select from 'components/ant-design/Select/Select';
 
 describe('Select', () => {
   it('renders without crashing', () => {

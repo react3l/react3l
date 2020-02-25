@@ -1,9 +1,9 @@
+import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import {configTests} from 'core/config/config-tests';
 import {StringFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 
 describe('AdvancedStringFilter', () => {
   it('renders without crashing', () => {

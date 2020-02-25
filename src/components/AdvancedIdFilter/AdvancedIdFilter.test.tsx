@@ -1,9 +1,9 @@
+import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import {configTests} from 'core/config/config-tests';
 import {IdFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 
 describe('AdvancedIdFilter', () => {
   it('renders without crashing', () => {

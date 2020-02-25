@@ -1,9 +1,9 @@
+import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter';
 import {configTests} from 'core/config/config-tests';
 import {DateFilter} from 'core/filters';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter';
 
 describe('AdvancedDateFilter', () => {
   it('renders without crashing', () => {

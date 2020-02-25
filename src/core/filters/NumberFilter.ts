@@ -1,18 +1,39 @@
+import {translate} from 'core/helpers';
+import {FilterType} from 'core/types';
 import nameof from 'ts-nameof.macro';
 import {Filter} from '../filters/Filter';
 
 export class NumberFilter extends Filter {
-
-  public static types(): string[] {
-    const filter: NumberFilter = new NumberFilter();
+  public static types(filter?: NumberFilter): Array<FilterType<NumberFilter>> {
     return [
-      nameof(filter.equal),
-      nameof(filter.notEqual),
-      nameof(filter.greater),
-      nameof(filter.greaterEqual),
-      nameof(filter.less),
-      nameof(filter.lessEqual),
-      nameof(filter.range),
+      {
+        key: nameof(filter.equal),
+        label: translate('filters.numberFilter.equal'),
+      },
+      {
+        key: nameof(filter.notEqual),
+        label: translate('filters.numberFilter.notEqual'),
+      },
+      {
+        key: nameof(filter.greater),
+        label: translate('filters.numberFilter.greater'),
+      },
+      {
+        key: nameof(filter.greaterEqual),
+        label: translate('filters.numberFilter.greaterEqual'),
+      },
+      {
+        key: nameof(filter.less),
+        label: translate('filters.numberFilter.less'),
+      },
+      {
+        key: nameof(filter.lessEqual),
+        label: translate('filters.numberFilter.lessEqual'),
+      },
+      {
+        key: nameof(filter.range),
+        label: translate('filters.numberFilter.range'),
+      },
     ];
   }
 

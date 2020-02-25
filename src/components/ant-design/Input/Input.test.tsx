@@ -1,8 +1,8 @@
+import Input from 'components/ant-design/Input/Input';
 import {configTests} from 'core/config/config-tests';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import Input from 'components/ant-design/Input/Input';
 
 describe('Input', () => {
   it('renders without crashing', () => {
