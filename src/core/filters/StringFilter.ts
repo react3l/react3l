@@ -40,20 +40,20 @@ export class StringFilter extends Filter {
       },
     ];
   }
-  
+
   public startWith?: string;
-  
+
   public notStartWith?: string;
-  
+
   public endWith?: string;
-  
+
   public notEndWith?: string;
-  
+
   public equal?: string;
-  
+
   public notEqual?: string;
-  
+
   public contain?: string;
-  
+
   public notContain?: string;
 }

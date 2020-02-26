@@ -25,18 +25,18 @@ function MasterPreview(props: MasterPreviewProps) {
   return (<Modal {...restProps}
                  className={classNames('master-preview', className)}
                  unmountOnClose={true}>
-      <ModalHeader title={translate(title)}>
-        {translate(title)}
-      </ModalHeader>
-      <ModalBody>
-        {children}
-      </ModalBody>
-      <ModalFooter>
-        <button className="btn btn-primary" onClick={onClose}>
-          {translate('general.actions.close')}
-        </button>
-      </ModalFooter>
-    </Modal>);
+    <ModalHeader title={translate(title)}>
+      {translate(title)}
+    </ModalHeader>
+    <ModalBody>
+      {children}
+    </ModalBody>
+    <ModalFooter>
+      <button className="btn btn-primary" onClick={onClose}>
+        {translate('general.actions.close')}
+      </button>
+    </ModalFooter>
+  </Modal>);
 }
 
 MasterPreview.defaultProps = {

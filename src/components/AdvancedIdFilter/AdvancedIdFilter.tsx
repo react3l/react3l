@@ -23,12 +23,12 @@ function AdvancedIdFilter<T extends Model, TSearch extends Search>(props: Advanc
   }, [filter, onChange]);
 
   return (<Select
-      list={list}
-      value={filter?.equal}
-      onChange={handleChange}
-      allowClear={true}
-      {...props}
-    />);
+    list={list}
+    value={filter?.equal}
+    onChange={handleChange}
+    allowClear={true}
+    {...props}
+  />);
 }
 
 export default AdvancedIdFilter;

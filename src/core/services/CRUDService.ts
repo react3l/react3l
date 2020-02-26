@@ -278,13 +278,13 @@ export class CRUDService {
     React.useEffect(() => {
       setLoading(true);
       Promise.all([masterList(search), masterCount(search)])
-        .then(([list, total]: [T[], number]) => {
-          setList(list);
-          setTotal(total);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+             .then(([list, total]: [T[], number]) => {
+               setList(list);
+               setTotal(total);
+             })
+             .finally(() => {
+               setLoading(false);
+             });
     }, [masterCount, masterList, search]);
 
     return [list, search, setSearch, total, loading, handleAdd, handleReset, handleEdit, handleFilter, handleSearch, previewVisible, previewModel, handleOpenPreview, handleClosePreview];

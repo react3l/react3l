@@ -4,11 +4,11 @@ export type LanguageType = 'en' | 'vi';
 
 export interface GlobalState {
   language?: LanguageType;
-  
+
   fallbackLanguage?: LanguageType;
-  
+
   loading?: boolean;
-  
+
   title?: string;
 }
 

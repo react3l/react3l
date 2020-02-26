@@ -58,113 +58,113 @@ function ProvinceMaster() {
     align: 'center',
     render(id: number, province: Province) {
       return (<div className="d-flex justify-content-center">
-          <button className="btn btn-link text-warning" onClick={handlePreview(province)}>
-            <i className="fa fa-eye"/>
-          </button>
-          <button className="btn btn-link" onClick={handleEdit(id)}>
-            <i className="fa fa-edit"/>
-          </button>
-        </div>);
+        <button className="btn btn-link text-warning" onClick={handlePreview(province)}>
+          <i className="fa fa-eye"/>
+        </button>
+        <button className="btn btn-link" onClick={handleEdit(id)}>
+          <i className="fa fa-edit"/>
+        </button>
+      </div>);
     },
   }], [handleEdit, handlePreview, pagination, province.code, province.id, province.name, sorter, translate]);
 
   return (<div className="page master-page">
-      <Card title={translate('provinces.master.title')}>
-        <Card className="mb-4" title={translate(defaultActions.search)}>
-          <Form {...formItemLayout}>
-            <Row>
-              <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.id')}>
-                  <AdvancedNumberFilter filterType={nameof(search.id.equal)}
-                                        filter={search.id}
-                                        onChange={handleFilter(nameof(province.id))}
-                                        className="w-100"/>
-                </FormItem>
-              </Col>
-              <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.code')}>
-                  <AdvancedStringFilter filterType={nameof(search.code.startWith)}
-                                        filter={search.code}
-                                        onChange={handleFilter(nameof(province.code))}
-                                        className="w-100"/>
-                </FormItem>
-              </Col>
-              <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.name')}>
-                  <AdvancedStringFilter filterType={nameof(search.name.startWith)}
-                                        filter={search.name}
-                                        onChange={handleFilter(nameof(province.name))}
-                                        className="w-100"/>
-                </FormItem>
-              </Col>
-            </Row>
-            <div className="d-flex justify-content-end mt-2">
-              <button className="btn btn-primary mr-2" onClick={handleSearch}>
-                {translate(defaultActions.filter)}
-              </button>
-              <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
-                <i className="fa mr-2 fa-times"/>
-                {translate(defaultActions.reset)}
-              </button>
-            </div>
-          </Form>
-        </Card>
-        <Table dataSource={provinces}
-               columns={columns}
-               bordered
-               size="small"
-               tableLayout="fixed"
-               loading={loading}
-               rowKey={nameof(province.id)}
-               pagination={pagination}
-               rowSelection={{
-                 onChange: onSelectionChange, selectedRowKeys,
-               }}
-               onChange={handleTableChange}
-               title={() => (<>
-                   <div className="d-flex justify-content-between">
-                     <div className="flex-shrink-1 d-flex align-items-center">
-                       <button className="btn btn-primary mr-2" onClick={handleAdd}>
-                         <i className="fa mr-2 fa-plus"/>
-                         {translate(defaultActions.add)}
-                       </button>
-                       {/* TODO: add batch delete handler */}
-                       <button className="btn btn-danger mr-2" disabled={!hasSelected}>
-                         <i className="fa mr-2 fa-trash"/>
-                         {translate(defaultActions.delete)}
-                       </button>
-                       {/* TODO: add import handler */}
-                       <button className="btn btn-outline-primary mr-2">
-                         <i className="fa mr-2 fa-upload"/>
-                         {translate(defaultActions.import)}
-                       </button>
-                       {/* TODO: add export handler */}
-                       <button className="btn btn-outline-primary mr-2">
-                         <i className="fa mr-2 fa-download"/>
-                         {translate(defaultActions.export)}
-                       </button>
-                     </div>
-                     <div className="flex-shrink-1 d-flex align-items-center">
-                       {translate('general.master.pagination', {pageSize: pagination.pageSize, total})}
-                     </div>
-                   </div>
-                 </>)}
-        />
-        <MasterPreview isOpen={visible} onClose={handleClosePreview} size="xl">
-          <Descriptions title={province.name} bordered>
-            <Descriptions.Item label={translate('provinces.id')}>
-              {province.id}
-            </Descriptions.Item>
-            <Descriptions.Item label={translate('provinces.code')}>
-              {province.code}
-            </Descriptions.Item>
-            <Descriptions.Item label={translate('provinces.name')}>
-              {province.name}
-            </Descriptions.Item>
-          </Descriptions>
-        </MasterPreview>
+    <Card title={translate('provinces.master.title')}>
+      <Card className="mb-4" title={translate(defaultActions.search)}>
+        <Form {...formItemLayout}>
+          <Row>
+            <Col className="pl-1" span={8}>
+              <FormItem className="mb-0" label={translate('provinces.id')}>
+                <AdvancedNumberFilter filterType={nameof(search.id.equal)}
+                                      filter={search.id}
+                                      onChange={handleFilter(nameof(province.id))}
+                                      className="w-100"/>
+              </FormItem>
+            </Col>
+            <Col className="pl-1" span={8}>
+              <FormItem className="mb-0" label={translate('provinces.code')}>
+                <AdvancedStringFilter filterType={nameof(search.code.startWith)}
+                                      filter={search.code}
+                                      onChange={handleFilter(nameof(province.code))}
+                                      className="w-100"/>
+              </FormItem>
+            </Col>
+            <Col className="pl-1" span={8}>
+              <FormItem className="mb-0" label={translate('provinces.name')}>
+                <AdvancedStringFilter filterType={nameof(search.name.startWith)}
+                                      filter={search.name}
+                                      onChange={handleFilter(nameof(province.name))}
+                                      className="w-100"/>
+              </FormItem>
+            </Col>
+          </Row>
+          <div className="d-flex justify-content-end mt-2">
+            <button className="btn btn-primary mr-2" onClick={handleSearch}>
+              {translate(defaultActions.filter)}
+            </button>
+            <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
+              <i className="fa mr-2 fa-times"/>
+              {translate(defaultActions.reset)}
+            </button>
+          </div>
+        </Form>
       </Card>
-    </div>);
+      <Table dataSource={provinces}
+             columns={columns}
+             bordered
+             size="small"
+             tableLayout="fixed"
+             loading={loading}
+             rowKey={nameof(province.id)}
+             pagination={pagination}
+             rowSelection={{
+               onChange: onSelectionChange, selectedRowKeys,
+             }}
+             onChange={handleTableChange}
+             title={() => (<>
+               <div className="d-flex justify-content-between">
+                 <div className="flex-shrink-1 d-flex align-items-center">
+                   <button className="btn btn-primary mr-2" onClick={handleAdd}>
+                     <i className="fa mr-2 fa-plus"/>
+                     {translate(defaultActions.add)}
+                   </button>
+                   {/* TODO: add batch delete handler */}
+                   <button className="btn btn-danger mr-2" disabled={!hasSelected}>
+                     <i className="fa mr-2 fa-trash"/>
+                     {translate(defaultActions.delete)}
+                   </button>
+                   {/* TODO: add import handler */}
+                   <button className="btn btn-outline-primary mr-2">
+                     <i className="fa mr-2 fa-upload"/>
+                     {translate(defaultActions.import)}
+                   </button>
+                   {/* TODO: add export handler */}
+                   <button className="btn btn-outline-primary mr-2">
+                     <i className="fa mr-2 fa-download"/>
+                     {translate(defaultActions.export)}
+                   </button>
+                 </div>
+                 <div className="flex-shrink-1 d-flex align-items-center">
+                   {translate('general.master.pagination', {pageSize: pagination.pageSize, total})}
+                 </div>
+               </div>
+             </>)}
+      />
+      <MasterPreview isOpen={visible} onClose={handleClosePreview} size="xl">
+        <Descriptions title={province.name} bordered>
+          <Descriptions.Item label={translate('provinces.id')}>
+            {province.id}
+          </Descriptions.Item>
+          <Descriptions.Item label={translate('provinces.code')}>
+            {province.code}
+          </Descriptions.Item>
+          <Descriptions.Item label={translate('provinces.name')}>
+            {province.name}
+          </Descriptions.Item>
+        </Descriptions>
+      </MasterPreview>
+    </Card>
+  </div>);
 }
 
 export default ProvinceMaster;

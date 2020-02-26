@@ -98,23 +98,23 @@ const Select = React.forwardRef(<T extends Model, TSearch extends Search>(props:
   }, [onChange]);
 
   return (<AntSelect
-      ref={ref}
-      className={classNames('w-100', className)}
-      onDropdownVisibleChange={handleToggle}
-      mode="default"
-      onChange={handleChange}
-      loading={loading}
-      allowClear={allowClear}
-      showSearch={typeof getList === 'function'}
-      onSearch={handleSearch}
-      defaultValue={defaultValue}
-      value={value}
-    >
-      {list.map((t: T) => (<Option key={t.id} data-content={t} value={t.id}>
-          {render(t)}
-        </Option>))}
-      {children}
-    </AntSelect>);
+    ref={ref}
+    className={classNames('w-100', className)}
+    onDropdownVisibleChange={handleToggle}
+    mode="default"
+    onChange={handleChange}
+    loading={loading}
+    allowClear={allowClear}
+    showSearch={typeof getList === 'function'}
+    onSearch={handleSearch}
+    defaultValue={defaultValue}
+    value={value}
+  >
+    {list.map((t: T) => (<Option key={t.id} data-content={t} value={t.id}>
+      {render(t)}
+    </Option>))}
+    {children}
+  </AntSelect>);
 });
 
 Select.defaultProps = {

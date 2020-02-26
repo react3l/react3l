@@ -17,30 +17,30 @@ export class ProvinceDetailRepository extends Repository {
 
   public get = (province: Province): Promise<Province> => {
     return this.http.post<Province>(kebabCase(nameof(this.get)), province)
-      .then((response: AxiosResponse<PureModelData<Province>>) => {
-        return Province.clone<Province>(response.data);
-      });
+               .then((response: AxiosResponse<PureModelData<Province>>) => {
+                 return Province.clone<Province>(response.data);
+               });
   };
 
   public create = (province: Province): Promise<Province> => {
     return this.http.post<Province>(kebabCase(nameof(this.create)), province)
-      .then((response: AxiosResponse<PureModelData<Province>>) => {
-        return Province.clone<Province>(response.data);
-      });
+               .then((response: AxiosResponse<PureModelData<Province>>) => {
+                 return Province.clone<Province>(response.data);
+               });
   };
 
   public update = (province: Province): Promise<Province> => {
     return this.http.post<Province>(kebabCase(nameof(this.update)), province)
-      .then((response: AxiosResponse<PureModelData<Province>>) => {
-        return Province.clone<Province>(response.data);
-      });
+               .then((response: AxiosResponse<PureModelData<Province>>) => {
+                 return Province.clone<Province>(response.data);
+               });
   };
 
   public delete = (province: Province): Promise<Province> => {
     return this.http.post<Province>(kebabCase(nameof(this.delete)), province)
-      .then((response: AxiosResponse<PureModelData<Province>>) => {
-        return Model.clone<Province>(response.data);
-      });
+               .then((response: AxiosResponse<PureModelData<Province>>) => {
+                 return Model.clone<Province>(response.data);
+               });
   };
 
   public save = (province: Province): Promise<Province> => {

@@ -16,10 +16,10 @@ function Input(props: InputProps) {
   }, [defaultValue, ref]);
 
   return (<AntInput
-      ref={ref}
-      {...restProps}
-      defaultValue={value as string}
-    />);
+    ref={ref}
+    {...restProps}
+    defaultValue={value as string}
+  />);
 }
 
 export default Input;

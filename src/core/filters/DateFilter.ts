@@ -37,18 +37,18 @@ export class DateFilter extends Filter {
       },
     ];
   }
-  
+
   public equal?: Moment;
-  
+
   public notEqual?: Moment;
-  
+
   public greater?: Moment;
-  
+
   public greaterEqual?: Moment;
-  
+
   public less?: Moment;
-  
+
   public lessEqual?: Moment;
-  
+
   public range?: [Moment | null | undefined, Moment | null | undefined];
 }

@@ -44,12 +44,12 @@ function AdvancedDateFilter(props: AdvancedDateFilterProps) {
       return (<DatePicker.RangePicker value={dateFilterRange}
                                       onChange={handleChangeRange}
                                       className={className}
-        />);
+      />);
     }
     return (<DatePicker value={filter[type] as Moment}
                         onChange={handleChange}
                         className={className}
-      />);
+    />);
   }, [className, filter, handleChange, handleChangeRange, type]);
 }
 

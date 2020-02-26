@@ -41,27 +41,27 @@ function CoreUILayout(props: RouteConfigComponentProps) {
   }), [translate]);
 
   return (<>
-      <Header fixed className="navbar">
-        <NavbarBrand
-          full={navbarBrandFull}
-          minimized={navbarBrandMinimized}
-        />
-        <SidebarToggler className="d-md-down-none" display="lg"/>
-      </Header>
-      <div className="app-body">
-        <Sidebar display="lg" fixed>
-          <SidebarNav navConfig={translatedMenu} router={ReactRouterDOM}/>
-          <SidebarMinimizer/>
-        </Sidebar>
-        <main className="main">
-          <div className="app-content">
-            <Switch>
-              {route?.routes instanceof Array && renderRoutes(route.routes)}
-            </Switch>
-          </div>
-        </main>
-      </div>
-    </>);
+    <Header fixed className="navbar">
+      <NavbarBrand
+        full={navbarBrandFull}
+        minimized={navbarBrandMinimized}
+      />
+      <SidebarToggler className="d-md-down-none" display="lg"/>
+    </Header>
+    <div className="app-body">
+      <Sidebar display="lg" fixed>
+        <SidebarNav navConfig={translatedMenu} router={ReactRouterDOM}/>
+        <SidebarMinimizer/>
+      </Sidebar>
+      <main className="main">
+        <div className="app-content">
+          <Switch>
+            {route?.routes instanceof Array && renderRoutes(route.routes)}
+          </Switch>
+        </div>
+      </main>
+    </div>
+  </>);
 }
 
 export default withRouter(CoreUILayout);

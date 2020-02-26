@@ -45,7 +45,7 @@ function AdvancedStringFilter(props: AdvancedStringFilterProps) {
                  defaultValue={value}
                  onKeyPress={handlePressEnter}
                  onChange={handleChange}
-    />);
+  />);
 }
 
 export default AdvancedStringFilter;

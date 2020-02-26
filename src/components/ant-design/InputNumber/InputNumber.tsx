@@ -43,14 +43,14 @@ function InputNumber(props: InputNumberProps) {
   }), [onChange]);
 
   return (<AntInputNumber
-      ref={ref}
-      formatter={formatter}
-      defaultValue={defaultValue}
-      onChange={debouncedHandleChange}
-      value={value}
-      {...restProps}
-      className={classNames('input-number', className)}
-    />);
+    ref={ref}
+    formatter={formatter}
+    defaultValue={defaultValue}
+    onChange={debouncedHandleChange}
+    value={value}
+    {...restProps}
+    className={classNames('input-number', className)}
+  />);
 }
 
 InputNumber.defaultProps = {

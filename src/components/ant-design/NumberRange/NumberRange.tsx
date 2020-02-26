@@ -29,14 +29,14 @@ function NumberRange(props: NumberRangeProps) {
   }, [minValue, onChange]);
 
   return (<div className="number-range">
-      <InputNumber defaultValue={minValue}
-                   onChange={handleChangeMinValue}
-                   placeholder={translate('general.numberRange.from')}/>
-      <span className="separator"/>
-      <InputNumber defaultValue={maxValue}
-                   onChange={handleChangeMaxValue}
-                   placeholder={translate('general.numberRange.to')}/>
-    </div>);
+    <InputNumber defaultValue={minValue}
+                 onChange={handleChangeMinValue}
+                 placeholder={translate('general.numberRange.from')}/>
+    <span className="separator"/>
+    <InputNumber defaultValue={maxValue}
+                 onChange={handleChangeMaxValue}
+                 placeholder={translate('general.numberRange.to')}/>
+  </div>);
 }
 
 export default NumberRange;

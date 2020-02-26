@@ -58,54 +58,54 @@ function DistrictContentTable(props: ContentTableProps<Province, District>) {
   }], [districts, pagination, sorter, translate]);
 
   return (<>
-      <Card title={translate(defaultActions.search)}>
-        <Form {...formItemLayout}>
-          <Row>
-            <Col className="pl-1" span={8}>
-              <FormItem className="mb-0" label={translate('provinces.id')}>
-                <AdvancedNumberFilter filterType={nameof(search.id.equal)}
-                                      filter={search.id}
-                                      onChange={handleFilter(nameof(districts[0].id))}
-                                      className="w-100"/>
-              </FormItem>
-            </Col>
-            <Col className="pl-1" span={8}>
-              <FormItem className="mb-0" label={translate('provinces.code')}>
-                <AdvancedStringFilter filterType={nameof(search.code.startWith)}
-                                      filter={search.code}
-                                      onChange={handleFilter(nameof(districts[0].code))}
-                                      className="w-100"/>
-              </FormItem>
-            </Col>
-            <Col className="pl-1" span={8}>
-              <FormItem className="mb-0" label={translate('provinces.name')}>
-                <AdvancedStringFilter filterType={nameof(search.name.startWith)}
-                                      filter={search.name}
-                                      onChange={handleFilter(nameof(districts[0].name))}
-                                      className="w-100"/>
-              </FormItem>
-            </Col>
-          </Row>
-          <div className="d-flex justify-content-end mt-2">
-            <button className="btn btn-primary mr-2" onClick={handleSearch}>
-              {translate(defaultActions.filter)}
-            </button>
-            <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
-              <i className="fa mr-2 fa-times"/>
-              {translate(defaultActions.reset)}
-            </button>
-          </div>
-        </Form>
-      </Card>
-      <Table size="small"
-             bordered
-             tableLayout="fixed"
-             dataSource={dataSource}
-             columns={columns}
-             pagination={pagination}
-             onChange={handleTableChange}
-      />
-    </>);
+    <Card title={translate(defaultActions.search)}>
+      <Form {...formItemLayout}>
+        <Row>
+          <Col className="pl-1" span={8}>
+            <FormItem className="mb-0" label={translate('provinces.id')}>
+              <AdvancedNumberFilter filterType={nameof(search.id.equal)}
+                                    filter={search.id}
+                                    onChange={handleFilter(nameof(districts[0].id))}
+                                    className="w-100"/>
+            </FormItem>
+          </Col>
+          <Col className="pl-1" span={8}>
+            <FormItem className="mb-0" label={translate('provinces.code')}>
+              <AdvancedStringFilter filterType={nameof(search.code.startWith)}
+                                    filter={search.code}
+                                    onChange={handleFilter(nameof(districts[0].code))}
+                                    className="w-100"/>
+            </FormItem>
+          </Col>
+          <Col className="pl-1" span={8}>
+            <FormItem className="mb-0" label={translate('provinces.name')}>
+              <AdvancedStringFilter filterType={nameof(search.name.startWith)}
+                                    filter={search.name}
+                                    onChange={handleFilter(nameof(districts[0].name))}
+                                    className="w-100"/>
+            </FormItem>
+          </Col>
+        </Row>
+        <div className="d-flex justify-content-end mt-2">
+          <button className="btn btn-primary mr-2" onClick={handleSearch}>
+            {translate(defaultActions.filter)}
+          </button>
+          <button className="btn btn-outline-secondary text-dark" onClick={handleReset}>
+            <i className="fa mr-2 fa-times"/>
+            {translate(defaultActions.reset)}
+          </button>
+        </div>
+      </Form>
+    </Card>
+    <Table size="small"
+           bordered
+           tableLayout="fixed"
+           dataSource={dataSource}
+           columns={columns}
+           pagination={pagination}
+           onChange={handleTableChange}
+    />
+  </>);
 }
 
 export default DistrictContentTable;

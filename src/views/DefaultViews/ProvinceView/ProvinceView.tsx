@@ -7,8 +7,8 @@ function ProvinceView(props: RouteConfigComponentProps) {
   const {route} = props;
 
   return (<Switch>
-      {route?.routes instanceof Array && renderRoutes(route.routes)}
-    </Switch>);
+    {route?.routes instanceof Array && renderRoutes(route.routes)}
+  </Switch>);
 }
 
 export default withRouter(ProvinceView);

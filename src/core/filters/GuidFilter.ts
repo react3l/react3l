@@ -24,12 +24,12 @@ export class GuidFilter extends Filter {
       },
     ];
   }
-  
+
   public equal?: string;
-  
+
   public notEqual?: string;
-  
+
   public in?: string[];
-  
+
   public notIn?: string[];
 }

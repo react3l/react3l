@@ -24,12 +24,12 @@ export class IdFilter extends Filter {
       },
     ];
   }
-  
+
   public equal?: number;
-  
+
   public notEqual?: number;
-  
+
   public in?: number[];
-  
+
   public notIn?: number[];
 }

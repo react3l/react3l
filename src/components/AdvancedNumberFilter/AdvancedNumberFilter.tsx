@@ -59,13 +59,13 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
     const numberFilterRange: [number | undefined, number | undefined] = [filter.greaterEqual, filter.lessEqual];
     return (<NumberRange value={numberFilterRange}
                          onChange={handleChangeRange}
-      />);
+    />);
   }
   return (<InputNumber defaultValue={filter[filterType] as number}
                        onChange={handleChange}
                        className={className}
                        onPressEnter={handleSubmitChange}
-    />);
+  />);
 }
 
 export default AdvancedNumberFilter;

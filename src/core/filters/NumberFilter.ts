@@ -36,18 +36,18 @@ export class NumberFilter extends Filter {
       },
     ];
   }
-  
+
   public equal?: number;
-  
+
   public notEqual?: number;
-  
+
   public greater?: number;
-  
+
   public greaterEqual?: number;
-  
+
   public less?: number;
-  
+
   public lessEqual?: number;
-  
+
   public range?: [number | undefined, number | undefined];
 }

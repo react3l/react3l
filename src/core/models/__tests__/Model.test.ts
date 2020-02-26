@@ -5,7 +5,7 @@ class TestModel extends Model {
 }
 
 describe('Model', () => {
-
+  
   it('create model from object', () => {
     const name: string = 'Test Model';
     const childModel: TestModel = TestModel.clone<TestModel>({
