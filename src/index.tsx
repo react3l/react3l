@@ -12,19 +12,25 @@ import React, {setGlobal} from 'reactn';
 import * as serviceWorker from 'service-worker';
 import 'styles';
 
-Promise.all([i18next.use(initReactI18next)
-  .init(initialI18NextConfig)
-  .then(() => {
-    return changeLanguage('vi');
-  }), setGlobal<GlobalState>(initialGlobalState)])
-  .then(() => {
-    const root: HTMLDivElement = document.getElementById(ROOT_ID) as HTMLDivElement;
-    (root.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render)(<BrowserRouter>
-      <App routes={routes}/>
-    </BrowserRouter>, root);
+Promise.all([
+  i18next.use(initReactI18next)
+         .init(initialI18NextConfig)
+         .then(() => {
+           return changeLanguage('vi');
+         }),
+  setGlobal<GlobalState>(initialGlobalState)],
+)
+       .then(() => {
+         const root: HTMLDivElement = document.getElementById(ROOT_ID) as HTMLDivElement;
+         (root.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render)(
+           <BrowserRouter>
+             <App routes={routes}/>
+           </BrowserRouter>,
+           root,
+         );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-    serviceWorker.unregister();
-  });
+         serviceWorker.unregister();
+       });

@@ -2,15 +2,15 @@ export type ValueTransformer = (value?: any) => any;
 
 export type KeyTransformer = (key?: string | number) => string | number;
 
-export const defaultValueTransformFunction = (value?: string | number | boolean): any => {
-  return value;
-};
+export const defaultValueTransformFunction = (value?: string | number | boolean): any => value;
 
-export const defaultKeyTransformFunction = (key?: string | number) => {
-  return key;
-};
+export const defaultKeyTransformFunction = (key?: string | number) => key;
 
-export function transformAPIContent(data: any, transformKey: KeyTransformer = defaultKeyTransformFunction, transformValue: ValueTransformer = defaultValueTransformFunction) {
+export function transformAPIContent(
+  data: any,
+  transformKey: KeyTransformer = defaultKeyTransformFunction,
+  transformValue: ValueTransformer = defaultValueTransformFunction,
+) {
   if (typeof data === 'object' && data !== null) {
     if (data instanceof Array) {
       return data.map((e) => transformAPIContent(e, transformKey, transformValue));

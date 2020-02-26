@@ -19,11 +19,11 @@ export async function changeLanguage(language: LanguageType) {
     loading: true,
   });
   await axios.get(join('/i18n', `${language}.json`))
-    .then(async (response: AxiosResponse<any>) => {
-      await i18next.addResource(language, '', '', response.data);
-      await i18next.changeLanguage(language);
-      await setGlobal<GlobalState>({
-        language,
-      });
-    });
+             .then(async (response: AxiosResponse<any>) => {
+               await i18next.addResource(language, '', '', response.data);
+               await i18next.changeLanguage(language);
+               await setGlobal<GlobalState>({
+                 language,
+               });
+             });
 }

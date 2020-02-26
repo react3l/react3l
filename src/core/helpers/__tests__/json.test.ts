@@ -8,7 +8,7 @@ describe('json helpers', () => {
       },
     };
     expect(flatten(nestedObject)['a.b']).toEqual(1);
-
+    
     const flattenObject = {
       'a.b.c': 'string',
     };

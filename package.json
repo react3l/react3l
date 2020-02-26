@@ -119,6 +119,5 @@
     "hooks": {
       "pre-commit": "yarn lint"
     }
-  },
-  "proxy": "https://localhost:5001"
+  }
 }

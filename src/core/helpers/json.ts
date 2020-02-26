@@ -27,7 +27,7 @@ export function unflatten(jsonTable: { [key: string]: string }): JSONObject {
         const namespaces: string[] = key.split('.');
         const lastIndex: number = namespaces.length - 1;
         let current: { [key: string]: any } = result;
-
+        
         namespaces.forEach((namespace: string, index: number) => {
           const hasKey: boolean = current.hasOwnProperty(namespace);
           const isLastIndex = index === lastIndex;
@@ -38,6 +38,7 @@ export function unflatten(jsonTable: { [key: string]: string }): JSONObject {
               current[namespace] = {};
             }
           }
+          
           if (typeof current[namespace] === 'object') {
             current = current[namespace];
           }
@@ -57,11 +58,13 @@ export function flatten(json: { [key: string]: any }, parentKey: string = '') {
         const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
         if (typeof json[key] !== 'object') {
           result = {
-            ...result, [combinedKey]: json[key],
+            ...result,
+            [combinedKey]: json[key],
           };
         } else {
           result = {
-            ...result, ...flatten(json[key], combinedKey),
+            ...result,
+            ...flatten(json[key], combinedKey),
           };
         }
       });

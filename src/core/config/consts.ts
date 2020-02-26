@@ -3,9 +3,9 @@ import {TableKeys} from 'core/types';
 
 export const __DEV__: boolean = process.env.NODE_ENV === 'development';
 
-export const BASE_URL: string = __DEV__ ? window.location.origin : process.env.REACT_APP_BASE_URL;
+export const BASE_URL: string = process.env.REACT_APP_BASE_URL;
 
-export const APP_TITLE: string = process.env.REACT_APP_TITLE ?? '';
+export const APP_TITLE: string = process.env.REACT_APP_TITLE;
 
 export const DEFAULT_TAKE: number = 10;
 

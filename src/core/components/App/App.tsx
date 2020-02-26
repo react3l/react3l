@@ -10,16 +10,21 @@ export interface AppProps extends ComponentProps<any> {
 
 function App(props: AppProps) {
   const {routes} = props;
-
+  
   const [title] = React.useGlobal<GlobalState, 'title'>('title');
-
-  React.useEffect(() => {
-    document.title = title;
-  }, [title]);
-
-  return (<Switch>
+  
+  React.useEffect(
+    () => {
+      document.title = title;
+    },
+    [title],
+  );
+  
+  return (
+    <Switch>
       {renderRoutes(routes)}
-    </Switch>);
+    </Switch>
+  );
 }
 
 export default App;
