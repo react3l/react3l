@@ -1,11 +1,6 @@
 {
   "menu": {
-    "provinces": {
-      "add": "Thêm mới",
-      "detail": "Thông tin {{name}}",
-      "master": "Danh sách tỉnh thành",
-      "name": "Tỉnh thành"
-    },
-    "root": "Trang chủ"
+    "provinces": ""
   }
 }
+

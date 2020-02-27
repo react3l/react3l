@@ -1,3 +1,1 @@
-export * from 'core/services';
-
-export {antTableService} from 'services/ant-design/TableService';
+export {tableService} from './ant-design/TableService';

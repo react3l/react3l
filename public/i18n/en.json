@@ -1,0 +1,73 @@
+{
+  "filters": {
+    "dateFilter": {
+      "equal": "",
+      "greater": "",
+      "greaterEqual": "",
+      "less": "",
+      "lessEqual": "",
+      "notEqual": "",
+      "range": ""
+    },
+    "guidFilter": {
+      "equal": "",
+      "in": "",
+      "notEqual": "",
+      "notIn": ""
+    },
+    "idFilter": {
+      "equal": "",
+      "in": "",
+      "notEqual": "",
+      "notIn": ""
+    },
+    "numberFilter": {
+      "equal": "",
+      "greater": "",
+      "greaterEqual": "",
+      "less": "",
+      "lessEqual": "",
+      "notEqual": "",
+      "range": ""
+    },
+    "stringFilter": {
+      "contain": "",
+      "endWith": "",
+      "equal": "",
+      "notContain": "",
+      "notEndWith": "",
+      "notEqual": "",
+      "notStartWith": "",
+      "startWith": ""
+    }
+  },
+  "general": {
+    "actions": {
+      "close": "",
+      "create": "",
+      "delete": "",
+      "export": "",
+      "filter": "",
+      "import": "",
+      "label": "",
+      "reset": "",
+      "search": "",
+      "update": ""
+    },
+    "columns": {
+      "index": ""
+    },
+    "master": {
+      "defaultPreviewTitle": "",
+      "pagination": ""
+    }
+  },
+  "provinces": {
+    "code": "",
+    "id": "",
+    "master": {
+      "title": ""
+    },
+    "name": ""
+  }
+}

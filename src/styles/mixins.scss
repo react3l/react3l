@@ -25,7 +25,7 @@
 
 @mixin themify($themes: $themes) {
   @each $theme, $map in $themes {
-    &.#{$theme} {
+    .#{$theme} {
       $theme-map: () !global;
       @each $key, $submap in $map {
         $value: map-get(map-get($themes, $theme), '#{$key}');
@@ -34,6 +34,33 @@
 
       @content;
       $theme-map: null !global;
+    }
+  }
+}
+
+#root {
+  .default {
+    a {
+      color: #0000ff;
+    }
+  }
+
+  .monokai {
+    a {
+      color: #ff00ff;
+    }
+  }
+}
+
+
+#root {
+  a {
+    text-decoration: none;
+  }
+
+  @include themify($themes) {
+    a {
+      color: themed('link-color');
     }
   }
 }

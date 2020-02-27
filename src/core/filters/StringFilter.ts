@@ -1,10 +1,10 @@
-import {translate} from 'core/helpers';
-import {FilterType} from 'core/types';
+import {translate} from '../helpers/internationalization';
+import {FilterType} from 'react3l';
 import nameof from 'ts-nameof.macro';
 import {Filter} from './Filter';
 
 export class StringFilter extends Filter {
-  public static types(filter?: StringFilter): Array<FilterType<StringFilter>> {
+  public static types(filter?: StringFilter): FilterType<StringFilter>[] {
     return [
       {
         key: nameof(filter.startWith),

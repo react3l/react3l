@@ -1,36 +1,36 @@
 import {PaginationProps} from 'antd/lib/pagination';
 import {SorterResult} from 'antd/lib/table';
-import {antSortType} from 'config/ant-design/ant-design';
 import {DEFAULT_TAKE} from 'core/config';
-import {Model, Search} from 'core/models';
 import nameof from 'ts-nameof.macro';
+import {antSortType} from 'config/ant-design/form';
+import {Model, ModelFilter} from 'core/models';
 
-export function setOrderType(search: Search, orderType: string | null | undefined | boolean) {
+export function setOrderType(filter: ModelFilter, orderType: string | null | undefined | boolean) {
   if (typeof orderType === 'undefined') {
-    search.orderType = undefined;
+    filter.orderType = undefined;
     return;
   }
   if (typeof orderType === 'string') {
     if (orderType.toUpperCase().startsWith(nameof(antSortType.ASC))) {
-      search.orderType = nameof(antSortType.ASC);
+      filter.orderType = nameof(antSortType.ASC);
       return;
     }
-    search.orderType = nameof(antSortType.DESC);
+    filter.orderType = nameof(antSortType.DESC);
     return;
   }
   if (typeof orderType === 'boolean') {
     if (orderType) {
       return nameof(antSortType.ASC);
     }
-    search.orderType = nameof(antSortType.DESC);
+    filter.orderType = nameof(antSortType.DESC);
     return nameof(antSortType.DESC);
   }
-  search.orderType = undefined;
+  filter.orderType = undefined;
 }
 
-export function getOrderType(search: Search): 'ascend' | 'descend' | undefined {
-  if (search.orderType) {
-    if (search.orderType === nameof(antSortType.ASC)) {
+export function getOrderType(filter: ModelFilter): 'ascend' | 'descend' | undefined {
+  if (filter.orderType) {
+    if (filter.orderType === nameof(antSortType.ASC)) {
       return 'ascend';
     }
     return 'descend';

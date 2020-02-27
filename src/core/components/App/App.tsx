@@ -1,24 +1,16 @@
-import {GlobalState} from 'core/config';
-import {ComponentProps} from 'react';
-import {renderRoutes, RouteConfig} from 'react-router-config';
-import {Switch} from 'react-router-dom';
-import React from 'reactn';
+import React from 'react';
+import {renderRoutes, RouteConfig, RouteConfigComponentProps} from 'react-router-config';
+import {Switch, withRouter} from 'react-router-dom';
+import {languageService} from 'core/services/LanguageService';
 
-export interface AppProps extends ComponentProps<any> {
-  routes?: RouteConfig[];
+export interface AppProps extends RouteConfigComponentProps {
+  routes: RouteConfig[];
 }
 
 function App(props: AppProps) {
   const {routes} = props;
 
-  const [title] = React.useGlobal<GlobalState, 'title'>('title');
-
-  React.useEffect(
-    () => {
-      document.title = title;
-    },
-    [title],
-  );
+  languageService.useLanguage();
 
   return (
     <Switch>
@@ -27,4 +19,4 @@ function App(props: AppProps) {
   );
 }
 
-export default App;
+export default withRouter(App);

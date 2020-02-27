@@ -1,7 +1,7 @@
-import {FilterType} from 'core/types';
+import {FilterType} from 'react3l';
 
 export class Filter {
-  public static types(): Array<FilterType<Filter>> {
+  public static types(): FilterType<Filter>[] {
     return [];
   }
 

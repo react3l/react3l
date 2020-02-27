@@ -1,3 +1,3 @@
-export {crudService} from './CRUDService';
+export * from './CRUDService';
 
-export {routerService} from './RouterService';
+export * from './RouterService';

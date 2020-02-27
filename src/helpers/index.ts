@@ -1,1 +1,1 @@
-export * from 'core/helpers';
+export default {};

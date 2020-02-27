@@ -1,11 +1,11 @@
 import {Filter} from 'core/filters/Filter';
-import {translate} from 'core/helpers';
-import {FilterType} from 'core/types';
+import {translate} from '../helpers/internationalization';
+import {FilterType} from 'react3l';
 import {Moment} from 'moment';
 import nameof from 'ts-nameof.macro';
 
 export class DateFilter extends Filter {
-  public static types(filter?: DateFilter): Array<FilterType<DateFilter>> {
+  public static types(filter?: DateFilter): FilterType<DateFilter>[] {
     return [
       {
         key: nameof(filter.equal),
@@ -50,5 +50,5 @@ export class DateFilter extends Filter {
 
   public lessEqual?: Moment;
 
-  public range?: [Moment | null | undefined, Moment | null | undefined];
+  public range?: [Moment | null, Moment | null];
 }

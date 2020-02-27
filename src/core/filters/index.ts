@@ -1,8 +1,8 @@
 export {Filter} from './Filter';
 
-export {GuidFilter} from './GuidFilter';
-
 export {IdFilter} from './IdFilter';
+
+export {GuidFilter} from './GuidFilter';
 
 export {StringFilter} from './StringFilter';
 

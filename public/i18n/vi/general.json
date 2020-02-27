@@ -1,35 +1,23 @@
 {
   "general": {
     "actions": {
-      "add": "Thêm mới",
       "close": "Đóng",
+      "create": "Tạo mới",
       "delete": "Xóa",
       "export": "Xuất Excel",
-      "filter": "Tìm kiếm",
+      "filter": "Lọc",
       "import": "Nhập Excel",
       "label": "Tác vụ",
       "reset": "Bỏ lọc",
-      "save": "Lưu"
+      "search": "Tìm kiếm",
+      "update": "Chỉnh sửa"
     },
-    "delete": {
-      "content": "Thao tác này không thể khôi phục",
-      "failure": "Xóa {{name}} thành công",
-      "success": "Xóa {{name}} thất bại",
-      "title": "Bạn đang chuẩn bị xóa {{name}}?"
-    },
-    "keys": {
-      "actions": "Tác vụ",
-      "checkbox": "Chọn",
-      "expand": "Mở rộng",
+    "columns": {
       "index": "STT"
     },
     "master": {
-      "defaultPreviewTitle": "Xem chi tiết {{name}}",
+      "defaultPreviewTitle": "Thông tin chi tiết {{name}}",
       "pagination": "Hiển thị {{pageSize}} / {{total}} bản ghi"
-    },
-    "numberRange": {
-      "from": "Từ",
-      "to": "Đến"
     }
   }
 }

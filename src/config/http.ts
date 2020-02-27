@@ -1,8 +1,8 @@
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {transformAPIContent} from 'core/helpers/api';
-import {Repository} from 'core/repositories';
+import {Repository} from 'core/repositories/Repository';
 import {transformAPIRequestValue, transformAPIResponseValue} from 'helpers/api';
-import {BASE_URL} from './consts';
+import {BASE_URL} from 'core/config';
 
 Repository.defaultRequestInterceptor = requestInterceptor;
 
@@ -26,7 +26,8 @@ export function responseInterceptor<T>(response: AxiosResponse<T>) {
 }
 
 export const httpConfig: AxiosRequestConfig = {
-  baseURL: BASE_URL, headers: {
+  baseURL: BASE_URL,
+  headers: {
     'Content-Type': 'application/json',
   },
 };
