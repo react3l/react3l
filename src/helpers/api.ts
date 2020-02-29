@@ -1,5 +1,5 @@
-import {DATE_TIME_FORMAT} from 'core/config';
-import {isDateValue, isTimeValue} from 'core/helpers';
+import {STANDARD_DATE_TIME_FORMAT} from 'core/config';
+import {isDateValue, isTimeValue} from 'core/helpers/date-time';
 import moment from 'moment';
 
 export function transformAPIResponseValue(value?: string | number | boolean): any {
@@ -17,7 +17,7 @@ export function transformAPIResponseValue(value?: string | number | boolean): an
 export function transformAPIRequestValue(value?: any): any {
   if (typeof value === 'object' && value !== null) {
     if ('isMomentObject' in value) {
-      return value.format(DATE_TIME_FORMAT);
+      return value.format(STANDARD_DATE_TIME_FORMAT);
     }
   }
   return value;

@@ -1,17 +1,16 @@
-import {ErrorMap} from '../types';
+import {ErrorMap, PureModelData} from 'react3l';
 import {Cloneable} from './Cloneable';
 
 export class Model extends Cloneable {
   public errors?: ErrorMap<Model>;
 
-  public key?: string | number;
-
   [key: string]: any;
 
-  constructor(model?: Model) {
-    super();
-    if (model !== null && typeof model === 'object') {
-      Object.assign(this, model);
+  public static clone<T extends Model>(model?: PureModelData<T>): T {
+    const instance: T = new Model() as T;
+    if (typeof model === 'object' && model !== null) {
+      Object.assign(instance, model);
     }
+    return instance;
   }
 }

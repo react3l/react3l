@@ -1,9 +1,0 @@
-node_modules/
-public/
-src/
-.env
-.env.local
-.gitignore
-tsconfig.json
-tslint.json
-yarn.lock

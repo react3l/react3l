@@ -1,0 +1,44 @@
+{
+  "filters": {
+    "dateFilter": {
+      "equal": "Bằng",
+      "greater": "Lớn hơn",
+      "greaterEqual": "Lớn hơn hoặc bằng",
+      "less": "Nhỏ hơn",
+      "lessEqual": "Nhỏ hơn hoặc bằng",
+      "notEqual": "Khác",
+      "range": "Trong khoảng"
+    },
+    "guidFilter": {
+      "equal": "Bằng",
+      "in": "Nằm trong",
+      "notEqual": "Khác",
+      "notIn": "Không nằm trong"
+    },
+    "idFilter": {
+      "equal": "Bằng",
+      "in": "Nằm trong",
+      "notEqual": "Khác",
+      "notIn": "Không nằm trong"
+    },
+    "numberFilter": {
+      "equal": "Bằng",
+      "greater": "Lớn hơn",
+      "greaterEqual": "Lớn hơn hoặc bằng",
+      "less": "Nhỏ hơn",
+      "lessEqual": "Nhỏ hơn hoặc bằng",
+      "notEqual": "Khác",
+      "range": "Trong khoảng"
+    },
+    "stringFilter": {
+      "contain": "Có chứa",
+      "endWith": "Kết thúc với",
+      "equal": "Bằng",
+      "notContain": "Không chứa",
+      "notEndWith": "Không kết thúc bởi",
+      "notEqual": "Khác",
+      "notStartWith": "Không bắt đầu bởi",
+      "startWith": "Bắt đầu với"
+    }
+  }
+}

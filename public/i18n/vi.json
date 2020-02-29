@@ -1,0 +1,90 @@
+{
+  "filters": {
+    "dateFilter": {
+      "equal": "Bằng",
+      "greater": "Lớn hơn",
+      "greaterEqual": "Lớn hơn hoặc bằng",
+      "less": "Nhỏ hơn",
+      "lessEqual": "Nhỏ hơn hoặc bằng",
+      "notEqual": "Khác",
+      "range": "Trong khoảng"
+    },
+    "guidFilter": {
+      "equal": "Bằng",
+      "in": "Nằm trong",
+      "notEqual": "Khác",
+      "notIn": "Không nằm trong"
+    },
+    "idFilter": {
+      "equal": "Bằng",
+      "in": "Nằm trong",
+      "notEqual": "Khác",
+      "notIn": "Không nằm trong"
+    },
+    "numberFilter": {
+      "equal": "Bằng",
+      "greater": "Lớn hơn",
+      "greaterEqual": "Lớn hơn hoặc bằng",
+      "less": "Nhỏ hơn",
+      "lessEqual": "Nhỏ hơn hoặc bằng",
+      "notEqual": "Khác",
+      "range": "Trong khoảng"
+    },
+    "stringFilter": {
+      "contain": "Có chứa",
+      "endWith": "Kết thúc với",
+      "equal": "Bằng",
+      "notContain": "Không chứa",
+      "notEndWith": "Không kết thúc bởi",
+      "notEqual": "Khác",
+      "notStartWith": "Không bắt đầu bởi",
+      "startWith": "Bắt đầu với"
+    }
+  },
+  "general": {
+    "actions": {
+      "close": "Đóng",
+      "create": "Tạo mới",
+      "delete": "Xóa",
+      "export": "Xuất Excel",
+      "filter": "Lọc",
+      "import": "Nhập Excel",
+      "label": "Tác vụ",
+      "reset": "Bỏ lọc",
+      "search": "Tìm kiếm",
+      "update": "Chỉnh sửa"
+    },
+    "batchDelete": {
+      "content": "Thao tác này không thể khôi phục, hãy cân nhắc!",
+      "title": "Bạn đang muốn xóa nhiều bản ghi?"
+    },
+    "columns": {
+      "index": "STT"
+    },
+    "delete": {
+      "content": "Thao tác này không thể khôi phục, hãy cân nhắc!",
+      "title": "Bạn đang muốn xóa bản ghi này?"
+    },
+    "master": {
+      "defaultPreviewTitle": "Thông tin chi tiết {{name}}",
+      "pagination": "Hiển thị {{pageSize}} / {{total}} bản ghi"
+    },
+    "numberRange": {
+      "from": "Từ",
+      "to": "Đến"
+    }
+  },
+  "menu": {
+    "provinces": "Tỉnh thành"
+  },
+  "provinces": {
+    "code": "Mã tỉnh thành",
+    "createdAt": "Ngày tạo",
+    "id": "ID tỉnh thành",
+    "master": {
+      "title": "Danh sách tỉnh thành"
+    },
+    "name": "Tên tỉnh thành",
+    "provinceType": "Loại"
+  }
+}

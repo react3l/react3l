@@ -1,30 +1,19 @@
 import {Model} from 'core/models';
-import {ErrorMap, PureModelData} from 'core/types';
-import {District} from './District';
+import {ErrorMap} from 'react3l';
+import {WardType} from './WardType';
 
 export class Ward extends Model {
-  public static clone<T extends Model = Ward>(ward?: PureModelData<Ward>): T | null {
-    const instance: T = new Model() as T;
-    if (typeof ward !== 'undefined' && ward !== null) {
-      Object.assign(instance, {
-        ...ward,
-
-        district: District?.clone<District>(ward.district),
-      });
-      return instance;
-    }
-    return null;
-  }
-
   public id?: number;
 
   public code?: string;
 
   public name?: string;
 
+  public wardTypeId?: number;
+
   public districtId?: number;
 
-  public district?: District;
+  public wardType?: WardType;
 
   public errors?: ErrorMap<Ward>;
 }

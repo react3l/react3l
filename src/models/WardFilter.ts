@@ -1,12 +1,14 @@
 import {IdFilter, StringFilter} from 'core/filters';
-import {Search} from 'core/models';
+import {ModelFilter} from 'core/models';
 
-export class WardFilter extends Search {
+export class WardFilter extends ModelFilter {
   public id?: IdFilter = new IdFilter();
 
   public code?: StringFilter = new StringFilter();
 
   public name?: StringFilter = new StringFilter();
+
+  public wardTypeId?: IdFilter = new IdFilter();
 
   public districtId?: IdFilter = new IdFilter();
 }

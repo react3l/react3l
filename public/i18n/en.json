@@ -1,0 +1,90 @@
+{
+  "filters": {
+    "dateFilter": {
+      "equal": "",
+      "greater": "",
+      "greaterEqual": "",
+      "less": "",
+      "lessEqual": "",
+      "notEqual": "",
+      "range": ""
+    },
+    "guidFilter": {
+      "equal": "",
+      "in": "",
+      "notEqual": "",
+      "notIn": ""
+    },
+    "idFilter": {
+      "equal": "",
+      "in": "",
+      "notEqual": "",
+      "notIn": ""
+    },
+    "numberFilter": {
+      "equal": "",
+      "greater": "",
+      "greaterEqual": "",
+      "less": "",
+      "lessEqual": "",
+      "notEqual": "",
+      "range": ""
+    },
+    "stringFilter": {
+      "contain": "",
+      "endWith": "",
+      "equal": "",
+      "notContain": "",
+      "notEndWith": "",
+      "notEqual": "",
+      "notStartWith": "",
+      "startWith": ""
+    }
+  },
+  "general": {
+    "actions": {
+      "close": "",
+      "create": "",
+      "delete": "",
+      "export": "",
+      "filter": "",
+      "import": "",
+      "label": "",
+      "reset": "",
+      "search": "",
+      "update": ""
+    },
+    "batchDelete": {
+      "content": "",
+      "title": ""
+    },
+    "columns": {
+      "index": ""
+    },
+    "delete": {
+      "content": "",
+      "title": ""
+    },
+    "master": {
+      "defaultPreviewTitle": "",
+      "pagination": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
+    }
+  },
+  "menu": {
+    "provinces": ""
+  },
+  "provinces": {
+    "code": "",
+    "createdAt": "",
+    "id": "",
+    "master": {
+      "title": ""
+    },
+    "name": "",
+    "provinceType": ""
+  }
+}

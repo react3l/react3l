@@ -1,3 +1,3 @@
 export {Model} from './Model';
 
-export {Search} from './Search';
+export {ModelFilter} from './ModelFilter';

@@ -1,7 +1,7 @@
-import {withTableFilterSuffix} from '../string';
+import {url} from 'core/helpers/string';
 
 describe('string helpers', () => {
-  it('string works', () => {
-    expect(withTableFilterSuffix('id')).toEqual('id-filter');
+  it('url works', () => {
+    expect(url('http://localhost', 'api/test')).toEqual('http://localhost/api/test');
   });
 });

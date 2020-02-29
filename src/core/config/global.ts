@@ -1,19 +1,13 @@
-import {APP_TITLE} from 'core/config/consts';
-
-export type LanguageType = 'en' | 'vi';
-
 export interface GlobalState {
-  language?: LanguageType;
+  loading: boolean;
 
-  fallbackLanguage?: LanguageType;
+  language: string;
 
-  loading?: boolean;
-
-  title?: string;
+  fallbackLanguage: string;
 }
 
-const initialGlobalState: GlobalState = {
-  language: 'vi', fallbackLanguage: 'vi', loading: true, title: APP_TITLE,
+export const initialGlobalState: GlobalState = {
+  loading: false,
+  language: 'vi',
+  fallbackLanguage: 'vi',
 };
-
-export default initialGlobalState;
