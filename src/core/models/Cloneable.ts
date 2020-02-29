@@ -8,4 +8,10 @@ export class Cloneable {
     }
     return instance;
   }
+
+  constructor(t?: Cloneable) {
+    if (typeof t === 'object' && t !== null) {
+      Object.assign(this, t);
+    }
+  }
 }

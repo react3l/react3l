@@ -1,5 +1,5 @@
 import {ModelFilter} from 'core/models/ModelFilter';
-import {IdFilter, StringFilter} from 'core/filters';
+import {DateFilter, IdFilter, StringFilter} from 'core/filters';
 
 export class ProvinceFilter extends ModelFilter {
   public id: IdFilter = new IdFilter();
@@ -7,4 +7,8 @@ export class ProvinceFilter extends ModelFilter {
   public name: StringFilter = new StringFilter();
 
   public code: StringFilter = new StringFilter();
+
+  public provinceTypeId: IdFilter = new IdFilter();
+
+  public createdAt: DateFilter = new DateFilter();
 }

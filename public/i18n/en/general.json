@@ -12,12 +12,24 @@
       "search": "",
       "update": ""
     },
+    "batchDelete": {
+      "content": "",
+      "title": ""
+    },
     "columns": {
       "index": ""
+    },
+    "delete": {
+      "content": "",
+      "title": ""
     },
     "master": {
       "defaultPreviewTitle": "",
       "pagination": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
     }
   }
 }

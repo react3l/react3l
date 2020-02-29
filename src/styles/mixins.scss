@@ -38,29 +38,7 @@
   }
 }
 
-#root {
-  .default {
-    a {
-      color: #0000ff;
-    }
-  }
-
-  .monokai {
-    a {
-      color: #ff00ff;
-    }
-  }
-}
-
-
-#root {
-  a {
-    text-decoration: none;
-  }
-
-  @include themify($themes) {
-    a {
-      color: themed('link-color');
-    }
-  }
+@mixin hidden() {
+  display: none;
+  visibility: hidden;
 }

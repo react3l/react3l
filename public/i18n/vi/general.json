@@ -12,12 +12,24 @@
       "search": "Tìm kiếm",
       "update": "Chỉnh sửa"
     },
+    "batchDelete": {
+      "content": "Thao tác này không thể khôi phục, hãy cân nhắc!",
+      "title": "Bạn đang muốn xóa nhiều bản ghi?"
+    },
     "columns": {
       "index": "STT"
+    },
+    "delete": {
+      "content": "Thao tác này không thể khôi phục, hãy cân nhắc!",
+      "title": "Bạn đang muốn xóa bản ghi này?"
     },
     "master": {
       "defaultPreviewTitle": "Thông tin chi tiết {{name}}",
       "pagination": "Hiển thị {{pageSize}} / {{total}} bản ghi"
+    },
+    "numberRange": {
+      "from": "Từ",
+      "to": "Đến"
     }
   }
 }

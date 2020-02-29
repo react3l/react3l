@@ -1,6 +1,11 @@
 import {Model, ModelFilter} from 'core/models';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Filter} from 'core/filters';
+import {AxiosError} from 'axios';
+import {API_BASE_URL} from 'core/config';
+import {url} from 'core/helpers/string';
+import {generalLanguageKeys} from 'config/consts';
+import nameof from 'ts-nameof.macro';
 
 export class CRUDService {
   public useMaster<T extends Model, TFilter extends ModelFilter>(
@@ -70,10 +75,10 @@ export class CRUDService {
     const handleFilter = React.useCallback(
       <TF extends Filter>(field: string) => {
         return (f: TF) => {
-          ModelFilter.clone<TFilter>({
+          setFilter(ModelFilter.clone<TFilter>({
             ...filter,
             [field]: f,
-          });
+          }));
         };
       },
       [filter],
@@ -108,6 +113,72 @@ export class CRUDService {
       handleFilter,
       handleSearch,
       handleReset,
+    ];
+  }
+
+  public useEnumList<T extends Model>(
+    handleList: () => Promise<T[]>,
+  ): [
+    T[],
+    Dispatch<SetStateAction<T[]>>
+  ] {
+    const [list, setList] = React.useState<T[]>([]);
+
+    React.useEffect(
+      () => {
+        handleList()
+          .then((list: T[]) => {
+            setList(list);
+          });
+      },
+      [handleList],
+    );
+
+    return [
+      list,
+      setList,
+    ];
+  }
+
+  public useImport(
+    onImport: (file: File) => Promise<void>,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    onSuccess?: () => void,
+    onError?: (error: AxiosError<any> | Error) => void,
+  ): [
+    (event: React.ChangeEvent<HTMLInputElement>) => void,
+  ] {
+    return [
+      React.useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+          if (event.target.files.length > 0) {
+            const file: File = event.target.files[0];
+            setLoading(true);
+            onImport(file)
+              .then(onSuccess)
+              .catch(onError)
+              .finally(() => {
+                setLoading(false);
+              });
+          }
+        },
+        [onError, onImport, onSuccess, setLoading],
+      ),
+    ];
+  }
+
+  public useExport(
+    baseRoute: string,
+  ): [
+    () => void
+  ] {
+    return [
+      React.useCallback(
+        () => {
+          window.open(url(API_BASE_URL, baseRoute, nameof(generalLanguageKeys.actions.export)), '_blank');
+        },
+        [baseRoute],
+      ),
     ];
   }
 }

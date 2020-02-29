@@ -6,5 +6,5 @@ export class DistrictFilter extends ModelFilter {
 
   public name: StringFilter = new StringFilter();
 
-  public provinceId?: IdFilter = new IdFilter();
+  public provinceId: IdFilter = new IdFilter();
 }

@@ -1,5 +1,5 @@
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
-import {transformAPIContent} from 'core/helpers/api';
+import {transformAPIContent} from 'core/helpers/data';
 import {Repository} from 'core/repositories/Repository';
 import {transformAPIRequestValue, transformAPIResponseValue} from 'helpers/api';
 import {BASE_URL} from 'core/config';

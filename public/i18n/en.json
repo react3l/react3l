@@ -54,20 +54,37 @@
       "search": "",
       "update": ""
     },
+    "batchDelete": {
+      "content": "",
+      "title": ""
+    },
     "columns": {
       "index": ""
+    },
+    "delete": {
+      "content": "",
+      "title": ""
     },
     "master": {
       "defaultPreviewTitle": "",
       "pagination": ""
+    },
+    "numberRange": {
+      "from": "",
+      "to": ""
     }
+  },
+  "menu": {
+    "provinces": ""
   },
   "provinces": {
     "code": "",
+    "createdAt": "",
     "id": "",
     "master": {
       "title": ""
     },
-    "name": ""
+    "name": "",
+    "provinceType": ""
   }
 }

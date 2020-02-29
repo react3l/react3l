@@ -23,4 +23,12 @@ export const generalLanguageKeys: LanguageKeys = {
   columns: {
     index: translate('general.columns.index'),
   },
+  delete: {
+    title: translate('general.delete.title'),
+    content: translate('general.delete.content'),
+  },
+  batchDelete: {
+    title: translate('general.batchDelete.title'),
+    content: translate('general.batchDelete.content'),
+  },
 };

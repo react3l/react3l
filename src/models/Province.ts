@@ -1,14 +1,11 @@
 import {Model} from 'core/models/Model';
 import {District} from './District';
-import moment, {Moment} from 'moment';
-import {PureModelData} from 'react3l';
+import {Moment} from 'moment';
 
 export class Province extends Model {
   public id?: number;
 
   public name?: string;
-
-  public provinceTypeId?: number;
 
   public districts?: District[];
 
@@ -16,13 +13,5 @@ export class Province extends Model {
 
   public updatedAt?: Moment;
 
-  constructor(province?: PureModelData<Province>) {
-    super();
-    if (typeof province === 'object' && province !== null) {
-      Object.assign(this, {
-        ...province,
-        date: moment(province.date),
-      });
-    }
-  }
+  public deletedAt?: Moment;
 }

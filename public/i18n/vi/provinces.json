@@ -1,10 +1,12 @@
 {
   "provinces": {
     "code": "Mã tỉnh thành",
+    "createdAt": "Ngày tạo",
     "id": "ID tỉnh thành",
     "master": {
       "title": "Danh sách tỉnh thành"
     },
-    "name": "Tên tỉnh thành"
+    "name": "Tên tỉnh thành",
+    "provinceType": "Loại"
   }
 }

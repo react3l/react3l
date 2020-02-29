@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ba022ae-c9e3-4e46-bf0b-44466d691a11" name="Default Changelist" comment="">
+    <list default="true" id="2ba022ae-c9e3-4e46-bf0b-44466d691a11" name="Default Changelist" comment="Done master">
+      <change afterPath="$PROJECT_DIR$/public/assets/img/brand/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/brand/sygnet.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdvancedIdFilter/AdvancedIdFilter.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdvancedIdFilter/AdvancedIdFilter.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdvancedIdFilter/AdvancedIdFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/InputNumber/InputNumber.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/InputNumber/InputNumber.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/InputNumber/InputNumber.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NumberRange/NumberRange.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NumberRange/NumberRange.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NumberRange/NumberRange.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Select/Select.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Select/Select.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Select/Select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/services/LocalStorageService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ApplicationUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ApplicationUserFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/DistrictType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/DistrictTypeFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Page.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/PageFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Permission.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/PermissionData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/PermissionDataFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/PermissionFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Provider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ProviderFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ProviderType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ProviderTypeFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ProvinceType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ProvinceTypeFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Role.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/RoleFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Site.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/SiteFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UserStatus.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UserStatusFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Ward.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/WardFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/WardType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/WardTypeFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/en.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/i18n/en/filters.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/en/filters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/en/general.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/en/general.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/en/provinces.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/en/provinces.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/vi.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/vi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/vi/general.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/vi/general.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/vi/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/vi/menu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/i18n/vi/provinces.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/i18n/vi/provinces.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdvancedDateFilter/AdvancedDateFilter.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdvancedDateFilter/AdvancedDateFilter.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdvancedDateFilter/AdvancedDateFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdvancedDateFilter/AdvancedDateFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdvancedNumberFilter/AdvancedNumberFilter.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdvancedNumberFilter/AdvancedNumberFilter.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdvancedNumberFilter/AdvancedNumberFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdvancedNumberFilter/AdvancedNumberFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdvancedStringFilter/AdvancedStringFilter.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdvancedStringFilter/AdvancedStringFilter.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/api-consts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/api-consts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/consts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/consts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/http.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/menu.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/config/internationalization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/config/internationalization.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/DateFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/DateFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/Filter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/Filter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/GuidFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/GuidFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/IdFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/IdFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/NumberFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/NumberFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/filters/StringFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/filters/StringFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/helpers/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/helpers/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/helpers/date-time.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/helpers/date-time.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/models/Cloneable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/Cloneable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/models/Model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/Model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react3l.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react3l.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/CRUDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/CRUDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/DefaultLayout/DefaultLayout.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/DefaultLayout/DefaultLayout.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/DefaultLayout/DefaultLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/DefaultLayout/DefaultLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/District.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/District.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DistrictFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/DistrictFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Province.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Province.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/ProvinceFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ProvinceFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serviceWorker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/serviceWorker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ant-design/TableService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ant-design/TableService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceDetail/ProvinceDetail.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceDetail/ProvinceDetail.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceMaster/ProvinceMaster.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceMaster/ProvinceMaster.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceMaster/ProvinceMaster.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceMaster/ProvinceMaster.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceMaster/ProvinceMasterRepository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceView.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProvinceView/ProvinceView.test.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +123,28 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@178.128.52.198" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@178.128.52.198" type="feb32156:DbDataSourceImpl" />
+        <item name="DMS: database" type="ccb7ac2a:MsImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@178.128.52.198" type="feb32156:DbDataSourceImpl" />
+        <item name="DMS: database" type="ccb7ac2a:MsImplModel$Database" />
+        <item name="dbo: schema" type="2865ee2e:MsImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@178.128.52.198" type="feb32156:DbDataSourceImpl" />
+        <item name="Portal: database" type="ccb7ac2a:MsImplModel$Database" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -73,19 +186,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/core/views" />
-      <recent name="$PROJECT_DIR$/src/core/services" />
-      <recent name="$PROJECT_DIR$/src/core/helpers" />
-      <recent name="$PROJECT_DIR$/src/core/config" />
-      <recent name="$PROJECT_DIR$/src/layouts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/ProvinceView" />
       <recent name="$PROJECT_DIR$/src/layouts" />
       <recent name="$PROJECT_DIR$/src/core/layouts" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/core/views" />
+      <recent name="$PROJECT_DIR$/src/core/services" />
+      <recent name="$PROJECT_DIR$/src/core/helpers" />
+      <recent name="$PROJECT_DIR$/src/core/config" />
+      <recent name="$PROJECT_DIR$/src/layouts" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -146,6 +259,28 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:@178.128.52.198" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:@178.128.52.198" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@720ebb0d" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -174,7 +309,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="rewrite all" />
-    <option name="LAST_COMMIT_MESSAGE" value="rewrite all" />
+    <MESSAGE value="Done master" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done master" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="215" width="800" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582775355941">
@@ -185,26 +321,26 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="301" width="524" height="507" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582761516714" />
-    <state x="532" y="63" width="845" height="983" key="CommitChangelistDialog2" timestamp="1582775242535">
+    <state x="532" y="63" width="845" height="983" key="CommitChangelistDialog2" timestamp="1582971845700">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="532" y="63" width="845" height="983" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582775242535" />
-    <state width="1870" height="218" key="GridCell.Tab.0.bottom" timestamp="1582777219364">
+    <state x="532" y="63" width="845" height="983" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582971845700" />
+    <state width="1876" height="186" key="GridCell.Tab.0.bottom" timestamp="1582971892781">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1870" height="218" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1582777219364" />
-    <state width="1870" height="218" key="GridCell.Tab.0.center" timestamp="1582777219363">
+    <state width="1876" height="186" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1582971892781" />
+    <state width="1876" height="186" key="GridCell.Tab.0.center" timestamp="1582971892780">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1870" height="218" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1582777219363" />
-    <state width="1870" height="218" key="GridCell.Tab.0.left" timestamp="1582777219363">
+    <state width="1876" height="186" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1582971892780" />
+    <state width="1876" height="186" key="GridCell.Tab.0.left" timestamp="1582971892780">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1870" height="218" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1582777219363" />
-    <state width="1870" height="218" key="GridCell.Tab.0.right" timestamp="1582777219363">
+    <state width="1876" height="186" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1582971892780" />
+    <state width="1876" height="186" key="GridCell.Tab.0.right" timestamp="1582971892780">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1870" height="218" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1582777219363" />
+    <state width="1876" height="186" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1582971892780" />
     <state x="772" y="179" width="366" height="750" key="RollbackChangesDialog" timestamp="1582777226356">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

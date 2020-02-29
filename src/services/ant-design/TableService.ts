@@ -5,6 +5,11 @@ import {SorterResult, TableRowSelection} from 'antd/lib/table';
 import {getOrderType, setOrderType} from 'helpers/ant-design/table';
 import {DEFAULT_TAKE} from 'core/config';
 import {Dispatch, SetStateAction} from 'react';
+import {AxiosError} from 'axios';
+import {Modal} from 'antd';
+import {translate} from 'core/helpers/internationalization';
+import {generalLanguageKeys} from 'config/consts';
+import {BatchId} from 'react3l';
 
 export class TableService {
   public useRowSelection<T extends Model>(): [
@@ -80,6 +85,101 @@ export class TableService {
       [pagination, filter, setFilter, sorter],
     );
     return [pagination, sorter, handleTableChange];
+  }
+
+  public useDeleteHandler<T extends Model>(
+    onDelete: (t: T) => Promise<T>,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    list?: T[],
+    setList?: Dispatch<SetStateAction<T[]>>,
+    setT?: Dispatch<SetStateAction<T>>,
+    onSuccess?: () => void,
+    onError?: (error: AxiosError<T> | Error) => void,
+    onCancel?: () => void,
+  ): [
+    (t: T) => () => void,
+  ] {
+    return [
+      React.useCallback(
+        (t: T) => {
+          return () => {
+            Modal.confirm({
+              title: translate(generalLanguageKeys.delete.title),
+              content: translate(generalLanguageKeys.delete.content),
+              onCancel,
+              okType: 'danger',
+              onOk() {
+                setLoading(true);
+                onDelete(t)
+                  .then(onSuccess)
+                  .catch((error: AxiosError<T> | Error) => {
+                    if (typeof onError === 'function') {
+                      onError(error);
+                      return;
+                    }
+                    if ('response' in error) {
+                      if (typeof list === 'object' && list instanceof Array && typeof setList === 'function') {
+                        setList(list.map((listItem: T) => {
+                          if (listItem.id === t.id) {
+                            listItem.errors = error.response?.data;
+                          }
+                          return listItem;
+                        }));
+                        return;
+                      }
+                      if (typeof t === 'object' && t !== null && typeof setT === 'function') {
+                        t.errors = error.response?.data;
+                        setT(Model.clone<T>(t));
+                        return;
+                      }
+                    }
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              },
+            });
+          };
+        },
+        [list, onCancel, onDelete, onError, onSuccess, setList, setLoading, setT],
+      ),
+    ];
+  }
+
+  public useBatchDeleteHandler(
+    selectedRowKeys: number[] | string[],
+    onDelete: (idList: BatchId) => Promise<void>,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    onSuccess?: () => void,
+    onError?: (error: AxiosError<any> | Error) => void,
+    onCancel?: () => void,
+  ): [
+    () => void,
+  ] {
+    return [
+      React.useCallback(
+        () => {
+          Modal.confirm({
+            title: translate(generalLanguageKeys.batchDelete.title),
+            content: translate(generalLanguageKeys.batchDelete.content),
+            onCancel,
+            okType: 'danger',
+            onOk() {
+              setLoading(true);
+              onDelete({
+                ids: selectedRowKeys,
+              })
+                .then(onSuccess)
+                .catch(onError)
+                .finally(() => {
+                  setLoading(false);
+                });
+            },
+          });
+        },
+        [onCancel, onDelete, onError, onSuccess, selectedRowKeys, setLoading],
+      ),
+    ];
   }
 }
 

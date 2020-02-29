@@ -1,10 +1,12 @@
 {
   "provinces": {
     "code": "",
+    "createdAt": "",
     "id": "",
     "master": {
       "title": ""
     },
-    "name": ""
+    "name": "",
+    "provinceType": ""
   }
 }
