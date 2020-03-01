@@ -146,7 +146,7 @@ export class TableService {
     ];
   }
 
-  public useBatchDeleteHandler(
+  public useBulkDeleteHandler(
     selectedRowKeys: number[] | string[],
     onDelete: (idList: BatchId) => Promise<void>,
     setLoading: Dispatch<SetStateAction<boolean>>,

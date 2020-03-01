@@ -18,7 +18,7 @@ export const routes: RouteConfig[] = [
         component: ProvinceView,
         routes: [
           {
-            path: path.join(PROVINCE_ROUTE, nameof(generalLanguageKeys.actions.add)),
+            path: path.join(PROVINCE_ROUTE, nameof(generalLanguageKeys.actions.create)),
             component: ProvinceDetail,
           },
           {

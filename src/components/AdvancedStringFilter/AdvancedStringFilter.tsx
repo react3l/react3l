@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import 'components/AdvancedStringFilter/AdvancedStringFilter.scss';
 import {GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import React, {ChangeEvent, ComponentProps, RefObject} from 'react';
+import AntInput from 'antd/lib/input';
 
 export interface AdvancedStringFilterProps extends ComponentProps<any> {
   filter: StringFilter | NumberFilter | IdFilter | GuidFilter;
@@ -14,7 +15,7 @@ export interface AdvancedStringFilterProps extends ComponentProps<any> {
 function AdvancedStringFilter(props: AdvancedStringFilterProps) {
   const {filter, filterType, onChange, className} = props;
 
-  const ref: RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
+  const ref: RefObject<AntInput> = React.useRef<AntInput>(null);
 
   const {
     [filterType]: value,
@@ -33,7 +34,9 @@ function AdvancedStringFilter(props: AdvancedStringFilterProps) {
   React.useEffect(
     () => {
       if (typeof filter[filterType] === 'undefined') {
-        ref.current.value = '';
+        ref.current.setState({
+          value: '',
+        });
       }
     },
     [filter, filterType],
@@ -49,12 +52,13 @@ function AdvancedStringFilter(props: AdvancedStringFilterProps) {
   );
 
   return (
-    <input type="text"
-           ref={ref}
-           className={classNames('form-control', className)}
-           defaultValue={value}
-           onKeyPress={handlePressEnter}
-           onChange={handleChange}
+    <AntInput type="text"
+              ref={ref}
+              className={classNames(className)}
+              defaultValue={value}
+              size="small"
+              onKeyPress={handlePressEnter}
+              onChange={handleChange}
     />
   );
 }

@@ -1,1 +1,7 @@
 /* Style for AdvancedIdFilter.tsx */
+
+.advanced-id-filter {
+  .ant-select-selection--single {
+    height: 24px;
+  }
+}

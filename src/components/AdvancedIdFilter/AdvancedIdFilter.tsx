@@ -3,6 +3,7 @@ import Select, {SelectProps} from 'components/Select/Select';
 import {GuidFilter, IdFilter} from 'core/filters';
 import {Model, ModelFilter} from 'core/models';
 import React from 'react';
+import classNames from 'classnames';
 
 export interface AdvancedIdFilterProps<T extends Model, TModelFilter extends ModelFilter> extends SelectProps<T, TModelFilter> {
   filter: IdFilter | GuidFilter;
@@ -34,6 +35,8 @@ function AdvancedIdFilter<T extends Model, TModelFilter extends ModelFilter>(pro
       list={list}
       value={filter?.equal}
       onChange={handleChange}
+      size="small"
+      className={classNames('advanced-id-filter')}
     />
   );
 }

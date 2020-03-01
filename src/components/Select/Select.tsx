@@ -1,4 +1,4 @@
-import AntSelect, {OptionProps} from 'antd/lib/select';
+import AntSelect, {OptionProps, SelectProps as AntSelectProps} from 'antd/lib/select';
 import {AxiosError} from 'axios';
 import classNames from 'classnames';
 import './Select.scss';
@@ -51,7 +51,7 @@ export interface SelectProps<T extends Model, TModelFilter extends ModelFilter> 
 }
 
 const Select = React.forwardRef(
-  <T extends Model, TModelFilter extends ModelFilter>(props: SelectProps<T, TModelFilter>, ref: Ref<any>) => {
+  <T extends Model, TModelFilter extends ModelFilter>(props: SelectProps<T, TModelFilter> & AntSelectProps, ref: Ref<any>) => {
     const {
       modelFilter,
       setModelFilter,

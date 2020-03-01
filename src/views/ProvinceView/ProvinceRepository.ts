@@ -31,8 +31,35 @@ export class ProvinceRepository extends Repository {
       });
   };
 
-  public batchDelete = (idList: BatchId): Promise<void> => {
-    return this.http.post(kebabCase(nameof(this.batchDelete)), idList)
+  public create = (province: Province): Promise<Province> => {
+    return this.http.post(kebabCase(nameof(this.create)), province)
+      .then((response: AxiosResponse<Province>) => {
+        return Province.clone<Province>(response.data);
+      });
+  };
+
+  public update = (province: Province): Promise<Province> => {
+    return this.http.post(kebabCase(nameof(this.update)), province)
+      .then((response: AxiosResponse<Province>) => {
+        return Province.clone<Province>(response.data);
+      });
+  };
+
+  public save = (province: Province): Promise<Province> => {
+    return !province.id ? this.create(province) : this.update(province);
+  };
+
+  public get = (id: number | string): Promise<Province> => {
+    return this.http.post(kebabCase(nameof(this.get)), {
+      id,
+    })
+      .then((response: AxiosResponse<Province>) => {
+        return Province.clone<Province>(response.data);
+      });
+  };
+
+  public bulkDelete = (idList: BatchId): Promise<void> => {
+    return this.http.post(kebabCase(nameof(this.bulkDelete)), idList)
       .then((response: AxiosResponse<void>) => {
         return response.data;
       });

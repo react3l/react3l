@@ -19,6 +19,7 @@ export const generalLanguageKeys: LanguageKeys = {
     import: translate('general.actions.import'),
     export: translate('general.actions.export'),
     reset: translate('general.actions.reset'),
+    save: translate('general.actions.save'),
   },
   columns: {
     index: translate('general.columns.index'),

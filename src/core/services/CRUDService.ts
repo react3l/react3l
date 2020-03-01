@@ -6,13 +6,17 @@ import {API_BASE_URL} from 'core/config';
 import {url} from 'core/helpers/string';
 import {generalLanguageKeys} from 'config/consts';
 import nameof from 'ts-nameof.macro';
+import {useParams} from 'react-router';
+import {debounce} from 'core/helpers/debounce';
+import {Moment} from 'moment';
 
 export class CRUDService {
   public useMaster<T extends Model, TFilter extends ModelFilter>(
     modelClass: new () => T,
     modelFilterClass: new () => TFilter,
-    getList: (filter: TFilter) => Promise<T[]>,
     count: (filter: TFilter) => Promise<number>,
+    getList: (filter: TFilter) => Promise<T[]>,
+    getDetail: (id: number | string) => Promise<T>,
   ): [
     TFilter,
     Dispatch<SetStateAction<TFilter>>,
@@ -22,8 +26,9 @@ export class CRUDService {
     Dispatch<SetStateAction<boolean>>,
     number,
     boolean,
+    boolean,
     T,
-    (t: T) => () => void,
+    (id: string | number) => () => void,
     () => void,
     <TF extends Filter>(field: string) => (f: TF) => void,
     () => void,
@@ -35,6 +40,7 @@ export class CRUDService {
     const [total, setTotal] = React.useState<number>(0);
     const [previewModel, setPreviewModel] = React.useState<T>(new modelClass());
     const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
+    const [previewLoading, setPreviewLoading] = React.useState<boolean>(false);
 
     React.useEffect(
       () => {
@@ -55,13 +61,21 @@ export class CRUDService {
     );
 
     const handleOpenPreview = React.useCallback(
-      (t: T) => {
+      (id: number | string) => {
         return () => {
-          setPreviewModel(t);
+          setPreviewModel(new modelClass());
+          setPreviewLoading(true);
           setPreviewVisible(true);
+          getDetail(id)
+            .then((tDetail: T) => {
+              setPreviewModel(tDetail);
+            })
+            .finally(() => {
+              setPreviewLoading(false);
+            });
         };
       },
-      [],
+      [getDetail, modelClass],
     );
 
     const handleClosePreview = React.useCallback(
@@ -106,6 +120,7 @@ export class CRUDService {
       loading,
       setLoading,
       total,
+      previewLoading,
       previewVisible,
       previewModel,
       handleOpenPreview,
@@ -180,6 +195,136 @@ export class CRUDService {
         [baseRoute],
       ),
     ];
+  }
+
+  public useDetail<T extends Model>(
+    modelClass: new () => T,
+    handleGet: (id: number | string) => Promise<T>,
+    onSave: (t: T) => Promise<T>,
+  ): [
+    T,
+    Dispatch<SetStateAction<T>>,
+    boolean,
+    Dispatch<SetStateAction<boolean>>,
+    boolean,
+    () => void,
+  ] {
+    const [loading, setLoading] = React.useState<boolean>(false);
+    const [t, setT] = React.useState<T>(new modelClass());
+    const {id} = useParams();
+    const isDetail: boolean = id !== nameof(generalLanguageKeys.actions.create);
+
+    React.useEffect(
+      () => {
+        if (isDetail) {
+          setLoading(true);
+          handleGet(id)
+            .then((t: T) => {
+              setT(t);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
+      },
+      [handleGet, id, isDetail],
+    );
+
+    const handleSave = React.useCallback(
+      () => {
+        setLoading(true);
+        onSave(t)
+          .then((t: T) => {
+            setT(t);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      },
+      [onSave, t],
+    );
+
+    return [
+      t,
+      setT,
+      loading,
+      setLoading,
+      isDetail,
+      handleSave,
+    ];
+  }
+
+  public useChangeHandlers<T extends Model>(
+    model?: T,
+    setModel?: (t: T) => void,
+  ): [
+    (field: string) => (value) => void,
+    (field: string) => (value) => void,
+    (field: string) => (value) => void,
+  ] {
+    const handleSetInputValue = React.useCallback(
+      (field: string, value?: string | number | boolean | null) => {
+        setModel(Model.clone<T>({
+          ...model, [field]: value,
+        }));
+      },
+      [model, setModel],
+    );
+
+    const handleDebounceInputValue = React.useCallback(
+      debounce(handleSetInputValue),
+      [handleSetInputValue],
+    );
+
+    const handleChangeSimpleField = React.useCallback(
+      (field: string, debounce: boolean = false) => {
+        return (event: React.ChangeEvent<HTMLInputElement> | number | string | boolean) => {
+          if (typeof event === 'object') {
+            if ('target' in event) {
+              if (debounce) {
+                return handleDebounceInputValue(field, event.target.value);
+              }
+              return handleSetInputValue(field, event.target.value);
+            }
+            if ('format' in event) {
+              setModel(Model.clone<T>({
+                ...model,
+                [field]: event,
+              }));
+            }
+          }
+          if (debounce) {
+            return handleDebounceInputValue(field, event);
+          }
+          return handleSetInputValue(field, event);
+        };
+      },
+      [handleDebounceInputValue, handleSetInputValue, model, setModel],
+    );
+
+    const handleUpdateDateField = React.useCallback(
+      (field: string) => {
+        return (moment: Moment) => {
+          setModel(Model.clone<T>({
+            ...model, [field]: moment,
+          }));
+        };
+      },
+      [model, setModel],
+    );
+
+    const handleChangeObjectField = React.useCallback(
+      (field: string) => {
+        return (id?: number | string | null, t?: T) => {
+          setModel(Model.clone<T>({
+            ...model, [field]: t,
+            [`${field}Id`]: id,
+          }));
+        };
+      },
+      [model, setModel],
+    );
+    return [handleChangeSimpleField, handleChangeObjectField, handleUpdateDateField];
   }
 }
 

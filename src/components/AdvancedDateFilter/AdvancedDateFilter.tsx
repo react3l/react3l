@@ -5,6 +5,7 @@ import {FilterType} from 'react3l';
 import {Moment} from 'moment';
 import React, {ComponentProps} from 'react';
 import nameof from 'ts-nameof.macro';
+import classNames from 'classnames';
 
 export interface AdvancedDateFilterProps extends ComponentProps<any> {
   filter: DateFilter;
@@ -53,14 +54,14 @@ function AdvancedDateFilter(props: AdvancedDateFilterProps) {
         return (
           <DatePicker.RangePicker value={dateFilterRange}
                                   onChange={handleChangeRange}
-                                  className={className}
+                                  className={classNames('advanced-date-filter', className)}
           />
         );
       }
       return (
         <DatePicker value={filter[type] as Moment}
                     onChange={handleChange}
-                    className={className}
+                    className={classNames('advanced-date-filter', className)}
         />
       );
     },
