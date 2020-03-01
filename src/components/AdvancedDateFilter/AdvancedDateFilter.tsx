@@ -10,7 +10,7 @@ import classNames from 'classnames';
 export interface AdvancedDateFilterProps extends ComponentProps<any> {
   filter: DateFilter;
 
-  filterType?: keyof DateFilter | string;
+  filterType: keyof DateFilter | string;
 
   onChange?(filter: DateFilter);
 }

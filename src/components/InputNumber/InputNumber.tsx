@@ -1,6 +1,6 @@
 import AntInputNumber, {InputNumberProps} from 'antd/lib/input-number';
 import classNames from 'classnames';
-import 'components/ant-design/InputNumber/InputNumber.scss';
+import 'components/InputNumber/InputNumber.scss';
 import {debounce} from 'core/helpers/debounce';
 import React, {LegacyRef, ReactText} from 'react';
 

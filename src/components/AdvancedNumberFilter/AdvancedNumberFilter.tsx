@@ -10,7 +10,7 @@ import nameof from 'ts-nameof.macro';
 export interface AdvancedNumberFilterProps extends ComponentProps<any> {
   filter: NumberFilter;
 
-  filterType?: keyof NumberFilter | string;
+  filterType: keyof NumberFilter | string;
 
   onChange?(filter: NumberFilter);
 }

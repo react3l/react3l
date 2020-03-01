@@ -9,7 +9,7 @@ export interface AdvancedStringFilterProps extends ComponentProps<any> {
 
   filterType?: keyof StringFilter | keyof NumberFilter | keyof IdFilter | keyof GuidFilter | string;
 
-  onChange(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
+  onChange?(filter: StringFilter | NumberFilter | IdFilter | GuidFilter);
 }
 
 function AdvancedStringFilter(props: AdvancedStringFilterProps) {

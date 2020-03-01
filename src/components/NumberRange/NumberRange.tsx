@@ -1,5 +1,5 @@
 import InputNumber from 'components/InputNumber/InputNumber';
-import 'components/ant-design/NumberRange/NumberRange.scss';
+import 'components/NumberRange/NumberRange.scss';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
