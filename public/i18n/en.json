@@ -51,6 +51,7 @@
       "import": "",
       "label": "",
       "reset": "",
+      "save": "",
       "search": "",
       "update": ""
     },
@@ -75,12 +76,17 @@
     }
   },
   "menu": {
+    "applicationUsers": "",
     "provinces": ""
   },
   "provinces": {
     "code": "",
     "createdAt": "",
+    "detail": {
+      "title": ""
+    },
     "id": "",
+    "isActive": "",
     "master": {
       "title": ""
     },

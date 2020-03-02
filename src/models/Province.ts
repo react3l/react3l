@@ -9,6 +9,8 @@ export class Province extends Model {
 
   public districts?: District[];
 
+  public isActive?: boolean;
+
   public createdAt?: Moment;
 
   public updatedAt?: Moment;

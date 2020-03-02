@@ -15,3 +15,11 @@
     }
   }
 }
+
+.ant-card {
+  &.filter-card {
+    .ant-card-head {
+      border: none;
+    }
+  }
+}

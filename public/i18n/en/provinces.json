@@ -2,7 +2,11 @@
   "provinces": {
     "code": "",
     "createdAt": "",
+    "detail": {
+      "title": ""
+    },
     "id": "",
+    "isActive": "",
     "master": {
       "title": ""
     },

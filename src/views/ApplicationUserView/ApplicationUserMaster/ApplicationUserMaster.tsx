@@ -6,19 +6,19 @@ import {Col, Row} from 'antd/lib/grid';
 import Descriptions from 'antd/lib/descriptions';
 import {crudService, routerService} from 'core/services';
 import {getOrderTypeForTable, renderMasterIndex} from 'helpers/ant-design/table';
-import {Province} from 'models/Province';
-import {ProvinceFilter} from 'models/ProvinceFilter';
+import {ApplicationUser} from 'models/ApplicationUser';
+import {ApplicationUserFilter} from 'models/ApplicationUserFilter';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import nameof from 'ts-nameof.macro';
-import './ProvinceMaster.scss';
-import {provinceRepository} from 'views/ProvinceView/ProvinceRepository';
+import './ApplicationUserMaster.scss';
+import {applicationUserRepository} from 'views/ApplicationUserView/ApplicationUserRepository';
 import {tableService} from 'services';
 import {generalColumnWidths, generalLanguageKeys} from 'config/consts';
 import {PROVINCE_ROUTE} from 'config/route-consts';
-import {ProvinceType} from 'models/ProvinceType';
+import {ApplicationUserType} from 'models/ApplicationUserType';
 import {API_PROVINCE_ROUTE} from 'config/api-consts';
-import {ProvinceTypeFilter} from 'models/ProvinceTypeFilter';
+import {ApplicationUserTypeFilter} from 'models/ApplicationUserTypeFilter';
 import {formItemLayout} from 'config/ant-design/form';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
@@ -27,7 +27,7 @@ import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter
 
 const {Item: FormItem} = Form;
 
-function ProvinceMaster() {
+function ApplicationUserMaster() {
   const [translate] = useTranslation();
 
   const [
@@ -46,22 +46,22 @@ function ProvinceMaster() {
     handleFilter,
     handleSearch,
     handleReset,
-  ] = crudService.useMaster<Province, ProvinceFilter>(
-    Province,
-    ProvinceFilter,
-    provinceRepository.count,
-    provinceRepository.list,
-    provinceRepository.get,
+  ] = crudService.useMaster<ApplicationUser, ApplicationUserFilter>(
+    ApplicationUser,
+    ApplicationUserFilter,
+    applicationUserRepository.count,
+    applicationUserRepository.list,
+    applicationUserRepository.get,
   );
   const [handleGoCreate, handleGoDetail] = routerService.useMasterNavigation(PROVINCE_ROUTE);
   const [pagination, sorter, handleTableChange] = tableService.useMasterTable(filter, setFilter, total);
-  const [rowSelection, hasSelected] = tableService.useRowSelection<Province>();
+  const [rowSelection, hasSelected] = tableService.useRowSelection<ApplicationUser>();
 
   /**
    * If import
    */
   const [handleImport] = crudService.useImport(
-    provinceRepository.import,
+    applicationUserRepository.import,
     setLoading,
   );
 
@@ -73,48 +73,48 @@ function ProvinceMaster() {
   /**
    * Call hook for all enum lists here
    */
-  const [provinceTypes] = crudService.useEnumList<ProvinceType>(provinceRepository.singleListProvinceType);
+  const [applicationUserTypes] = crudService.useEnumList<ApplicationUserType>(applicationUserRepository.singleListApplicationUserType);
 
   /**
    * Define filter for reference searching
    */
-  const [provinceTypeFilter, setProvinceTypeFilter] = React.useState<ProvinceTypeFilter>(new ProvinceTypeFilter());
+  const [applicationUserTypeFilter, setApplicationUserTypeFilter] = React.useState<ApplicationUserTypeFilter>(new ApplicationUserTypeFilter());
 
   /**
    * Delete handlers
    */
-  const [handleDelete] = tableService.useDeleteHandler<Province>(
-    provinceRepository.delete,
+  const [handleDelete] = tableService.useDeleteHandler<ApplicationUser>(
+    applicationUserRepository.delete,
     setLoading,
     list,
     setList,
   );
   const [handleBulkDelete] = tableService.useBulkDeleteHandler(
     rowSelection.selectedRowKeys,
-    provinceRepository.bulkDelete,
+    applicationUserRepository.bulkDelete,
     setLoading,
   );
 
-  const columns: ColumnProps<Province>[] = React.useMemo(() => [
+  const columns: ColumnProps<ApplicationUser>[] = React.useMemo(() => [
       {
         title: translate(generalLanguageKeys.columns.index),
         key: nameof(generalLanguageKeys.index),
         width: generalColumnWidths.index,
-        render: renderMasterIndex<Province>(pagination),
+        render: renderMasterIndex<ApplicationUser>(pagination),
       },
       {
-        title: translate('provinces.id'),
+        title: translate('applicationUsers.id'),
         key: nameof(list[0].id),
         sorter: true,
-        sortOrder: getOrderTypeForTable<Province>(nameof(list[0].id), sorter),
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].id), sorter),
         dataIndex: nameof(list[0].id),
       },
       {
-        title: translate('provinces.name'),
+        title: translate('applicationUsers.name'),
         key: nameof(list[0].name),
         dataIndex: nameof(list[0].name),
         sorter: true,
-        sortOrder: getOrderTypeForTable<Province>(nameof(list[0].name), sorter),
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].name), sorter),
       },
       {
         title: translate(generalLanguageKeys.actions.label),
@@ -122,7 +122,7 @@ function ProvinceMaster() {
         dataIndex: nameof(list[0].id),
         width: generalColumnWidths.actions,
         align: 'center',
-        render(id: number, province: Province) {
+        render(id: number, applicationUser: ApplicationUser) {
           return (
             <div className="d-flex justify-content-center">
               <button className="btn btn-sm btn-link text-warning" onClick={handleOpenPreview(id)}>
@@ -131,7 +131,7 @@ function ProvinceMaster() {
               <button className="btn btn-sm btn-link" onClick={handleGoDetail(id)}>
                 <i className="fa fa-edit"/>
               </button>
-              <button className="btn btn-sm btn-link text-danger" onClick={handleDelete(province)}>
+              <button className="btn btn-sm btn-link text-danger" onClick={handleDelete(applicationUser)}>
                 <i className="fa fa-trash"/>
               </button>
             </div>
@@ -144,12 +144,12 @@ function ProvinceMaster() {
 
   return (
     <div className="page master-page">
-      <Card title={translate('provinces.master.title')}>
+      <Card title={translate('applicationUsers.master.title')}>
         <Card className="filter-card mb-4" title={translate(generalLanguageKeys.actions.search)}>
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.id')}>
+                <FormItem className="mb-0" label={translate('applicationUsers.id')}>
                   <AdvancedStringFilter filterType={nameof(filter.id.equal)}
                                         filter={filter.id}
                                         onChange={handleFilter(nameof(previewModel.id))}
@@ -157,30 +157,30 @@ function ProvinceMaster() {
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.provinceType')}>
-                  <AdvancedIdFilter filter={filter.provinceTypeId}
-                                    filterType={nameof(filter.provinceTypeId.equal)}
+                <FormItem className="mb-0" label={translate('applicationUsers.applicationUserType')}>
+                  <AdvancedIdFilter filter={filter.applicationUserTypeId}
+                                    filterType={nameof(filter.applicationUserTypeId.equal)}
                                     setModelFilter={setFilter}
-                                    value={filter.provinceTypeId.equal}
-                                    onChange={handleFilter(nameof(filter.provinceTypeId))}
-                                    list={provinceTypes}
+                                    value={filter.applicationUserTypeId.equal}
+                                    onChange={handleFilter(nameof(filter.applicationUserTypeId))}
+                                    list={applicationUserTypes}
                   />
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.provinceType')}>
-                  <AdvancedIdFilter filter={filter.provinceTypeId}
-                                    filterType={nameof(filter.provinceTypeId.equal)}
-                                    value={filter.provinceTypeId.equal}
-                                    onChange={handleFilter(nameof(filter.provinceTypeId))}
-                                    getList={provinceRepository.singleListProvinceType}
-                                    modelFilter={provinceTypeFilter}
-                                    setModelFilter={setProvinceTypeFilter}
+                <FormItem className="mb-0" label={translate('applicationUsers.applicationUserType')}>
+                  <AdvancedIdFilter filter={filter.applicationUserTypeId}
+                                    filterType={nameof(filter.applicationUserTypeId.equal)}
+                                    value={filter.applicationUserTypeId.equal}
+                                    onChange={handleFilter(nameof(filter.applicationUserTypeId))}
+                                    getList={applicationUserRepository.singleListApplicationUserType}
+                                    modelFilter={applicationUserTypeFilter}
+                                    setModelFilter={setApplicationUserTypeFilter}
                   />
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.name')}>
+                <FormItem className="mb-0" label={translate('applicationUsers.name')}>
                   <AdvancedStringFilter filterType={nameof(filter.name.startWith)}
                                         filter={filter.name}
                                         onChange={handleFilter(nameof(previewModel.name))}
@@ -188,7 +188,7 @@ function ProvinceMaster() {
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.name')}>
+                <FormItem className="mb-0" label={translate('applicationUsers.name')}>
                   <AdvancedStringFilter filterType={nameof(filter.name.startWith)}
                                         filter={filter.name}
                                         onChange={handleFilter(nameof(previewModel.name))}
@@ -196,7 +196,7 @@ function ProvinceMaster() {
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('provinces.createdAt')}>
+                <FormItem className="mb-0" label={translate('applicationUsers.createdAt')}>
                   <AdvancedDateFilter filterType={nameof(filter.createdAt.equal)}
                                       filter={filter.createdAt}
                                       onChange={handleFilter(nameof(previewModel.createdAt))}
@@ -258,16 +258,16 @@ function ProvinceMaster() {
         <MasterPreview isOpen={previewVisible} onClose={handleClosePreview} size="xl">
           <Spin spinning={previewLoading}>
             <Descriptions title={previewModel.name} bordered>
-              <Descriptions.Item label={translate('provinces.id')}>
+              <Descriptions.Item label={translate('applicationUsers.id')}>
                 {previewModel.id}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('provinces.provinceType')}>
-                {previewModel.provinceType?.name}
+              <Descriptions.Item label={translate('applicationUsers.applicationUserType')}>
+                {previewModel.applicationUserType?.name}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('provinces.code')}>
+              <Descriptions.Item label={translate('applicationUsers.code')}>
                 {previewModel.code}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('provinces.name')}>
+              <Descriptions.Item label={translate('applicationUsers.name')}>
                 {previewModel.name}
               </Descriptions.Item>
             </Descriptions>
@@ -278,4 +278,4 @@ function ProvinceMaster() {
   );
 }
 
-export default ProvinceMaster;
+export default ApplicationUserMaster;

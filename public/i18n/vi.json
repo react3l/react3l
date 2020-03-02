@@ -51,6 +51,7 @@
       "import": "Nhập Excel",
       "label": "Tác vụ",
       "reset": "Bỏ lọc",
+      "save": "Lưu",
       "search": "Tìm kiếm",
       "update": "Chỉnh sửa"
     },
@@ -75,12 +76,17 @@
     }
   },
   "menu": {
+    "applicationUsers": "Người dùng",
     "provinces": "Tỉnh thành"
   },
   "provinces": {
     "code": "Mã tỉnh thành",
     "createdAt": "Ngày tạo",
+    "detail": {
+      "title": "Thông tin chi tiết"
+    },
     "id": "ID tỉnh thành",
+    "isActive": "Hoạt động",
     "master": {
       "title": "Danh sách tỉnh thành"
     },

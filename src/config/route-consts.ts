@@ -2,4 +2,4 @@ export const ROOT_ROUTE: string = '/';
 
 export const PROVINCE_ROUTE: string = '/provinces';
 
-export const PROVINCE_DETAIL_ROUTE: string = '/province/:id';
+export const APPLICATION_USER_ROUTE: string = '/application-user';
