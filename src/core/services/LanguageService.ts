@@ -11,8 +11,8 @@ export class LanguageService {
 
     const handleChangeLanguage = React.useCallback(
       async () => {
-        setLoading(true);
-        axios.get(path.join('/i18n', `${language}.json`))
+        await setLoading(true);
+        await axios.get(path.join('/i18n', `${language}.json`))
           .then(async (response: AxiosResponse<any>) => {
             await i18next.addResource(language, '', '', response.data);
             await i18next.changeLanguage(language);

@@ -9,6 +9,7 @@ import nameof from 'ts-nameof.macro';
 import {useParams} from 'react-router';
 import {debounce} from 'core/helpers/debounce';
 import {Moment} from 'moment';
+import v4 from 'uuid/v4';
 
 export class CRUDService {
   public useMaster<T extends Model, TFilter extends ModelFilter>(
@@ -212,7 +213,7 @@ export class CRUDService {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [t, setT] = React.useState<T>(new modelClass());
     const {id} = useParams();
-    const isDetail: boolean = id !== nameof(generalLanguageKeys.actions.create);
+    const isDetail: boolean = (typeof id !== 'undefined');
 
     React.useEffect(
       () => {
@@ -325,6 +326,70 @@ export class CRUDService {
       [model, setModel],
     );
     return [handleChangeSimpleField, handleChangeObjectField, handleUpdateDateField];
+  }
+
+  public useContentTable<T extends Model, TContent extends Model>(
+    model: T,
+    setModel: (t: T) => void,
+    field: string,
+  ): [
+    TContent[],
+    (v: TContent[]) => void,
+    () => void,
+    (id: number) => () => void,
+  ] {
+    const value: TContent[] = React.useMemo(
+      () => {
+        if (model[field]) {
+          model[field]?.forEach((t: T) => {
+            if (!t?.key) {
+              if (t?.id) {
+                t.key = t.id;
+              } else {
+                t.key = v4();
+              }
+            }
+          });
+          return model[field];
+        }
+        return [];
+      },
+      [field, model],
+    );
+
+    const setValue = React.useCallback(
+      (v: TContent[]) => {
+        setModel(Model.clone<T>({
+          ...model, [field]: v,
+        }));
+      },
+      [field, model, setModel],
+    );
+
+    const handleDelete = React.useCallback(
+      (id: number) => {
+        return () => {
+          const newValue: TContent[] = value.filter((v: TContent) => v.id !== id);
+          setValue(newValue);
+        };
+      },
+      [value, setValue],
+    );
+
+    const handleAdd = React.useCallback(
+      () => {
+        const newContent: TContent = new Model() as TContent;
+        newContent.key = v4();
+        if (value instanceof Array) {
+          setValue([...value, newContent]);
+        } else {
+          setValue([newContent]);
+        }
+      },
+      [setValue, value],
+    );
+
+    return [value, setValue, handleAdd, handleDelete];
   }
 }
 

@@ -15,15 +15,14 @@ import './ApplicationUserMaster.scss';
 import {applicationUserRepository} from 'views/ApplicationUserView/ApplicationUserRepository';
 import {tableService} from 'services';
 import {generalColumnWidths, generalLanguageKeys} from 'config/consts';
-import {PROVINCE_ROUTE} from 'config/route-consts';
-import {ApplicationUserType} from 'models/ApplicationUserType';
+import {APPLICATION_USER_ROUTE} from 'config/route-consts';
 import {API_PROVINCE_ROUTE} from 'config/api-consts';
-import {ApplicationUserTypeFilter} from 'models/ApplicationUserTypeFilter';
 import {formItemLayout} from 'config/ant-design/form';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import MasterPreview from 'components/MasterPreview/MasterPreview';
-import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter';
+import {UserStatus} from 'models/UserStatus';
+import {Provider} from 'models/Provider';
 
 const {Item: FormItem} = Form;
 
@@ -53,7 +52,7 @@ function ApplicationUserMaster() {
     applicationUserRepository.list,
     applicationUserRepository.get,
   );
-  const [handleGoCreate, handleGoDetail] = routerService.useMasterNavigation(PROVINCE_ROUTE);
+  const [handleGoCreate, handleGoDetail] = routerService.useMasterNavigation(APPLICATION_USER_ROUTE);
   const [pagination, sorter, handleTableChange] = tableService.useMasterTable(filter, setFilter, total);
   const [rowSelection, hasSelected] = tableService.useRowSelection<ApplicationUser>();
 
@@ -73,12 +72,11 @@ function ApplicationUserMaster() {
   /**
    * Call hook for all enum lists here
    */
-  const [applicationUserTypes] = crudService.useEnumList<ApplicationUserType>(applicationUserRepository.singleListApplicationUserType);
+  const [userStatusList] = crudService.useEnumList<UserStatus>(applicationUserRepository.singleListUserStatus);
 
   /**
    * Define filter for reference searching
    */
-  const [applicationUserTypeFilter, setApplicationUserTypeFilter] = React.useState<ApplicationUserTypeFilter>(new ApplicationUserTypeFilter());
 
   /**
    * Delete handlers
@@ -110,11 +108,52 @@ function ApplicationUserMaster() {
         dataIndex: nameof(list[0].id),
       },
       {
-        title: translate('applicationUsers.name'),
-        key: nameof(list[0].name),
-        dataIndex: nameof(list[0].name),
+        title: translate('applicationUsers.username'),
+        key: nameof(list[0].username),
+        dataIndex: nameof(list[0].username),
         sorter: true,
-        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].name), sorter),
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].username), sorter),
+      },
+      {
+        title: translate('applicationUsers.displayName'),
+        key: nameof(list[0].displayName),
+        dataIndex: nameof(list[0].displayName),
+        sorter: true,
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].displayName), sorter),
+      },
+      {
+        title: translate('applicationUsers.provider'),
+        key: nameof(list[0].provider),
+        dataIndex: nameof(list[0].provider),
+        sorter: true,
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].provider), sorter),
+        render(provider: Provider) {
+          return provider?.name;
+        },
+      },
+      {
+        title: translate('applicationUsers.email'),
+        key: nameof(list[0].email),
+        dataIndex: nameof(list[0].email),
+        sorter: true,
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].email), sorter),
+      },
+      {
+        title: translate('applicationUsers.phone'),
+        key: nameof(list[0].phone),
+        dataIndex: nameof(list[0].phone),
+        sorter: true,
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].phone), sorter),
+      },
+      {
+        title: translate('applicationUsers.userStatus'),
+        key: nameof(list[0].userStatus),
+        dataIndex: nameof(list[0].userStatus),
+        sorter: true,
+        sortOrder: getOrderTypeForTable<ApplicationUser>(nameof(list[0].userStatus), sorter),
+        render(userStatus: UserStatus) {
+          return userStatus?.name;
+        },
       },
       {
         title: translate(generalLanguageKeys.actions.label),
@@ -157,50 +196,27 @@ function ApplicationUserMaster() {
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('applicationUsers.applicationUserType')}>
-                  <AdvancedIdFilter filter={filter.applicationUserTypeId}
-                                    filterType={nameof(filter.applicationUserTypeId.equal)}
+                <FormItem className="mb-0" label={translate('applicationUsers.userStatus')}>
+                  <AdvancedIdFilter filter={filter.userStatusId}
+                                    filterType={nameof(filter.userStatusId.equal)}
                                     setModelFilter={setFilter}
-                                    value={filter.applicationUserTypeId.equal}
-                                    onChange={handleFilter(nameof(filter.applicationUserTypeId))}
-                                    list={applicationUserTypes}
+                                    value={filter.userStatusId.equal}
+                                    onChange={handleFilter(nameof(filter.userStatusId))}
+                                    list={userStatusList}
                   />
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
                 <FormItem className="mb-0" label={translate('applicationUsers.applicationUserType')}>
-                  <AdvancedIdFilter filter={filter.applicationUserTypeId}
-                                    filterType={nameof(filter.applicationUserTypeId.equal)}
-                                    value={filter.applicationUserTypeId.equal}
-                                    onChange={handleFilter(nameof(filter.applicationUserTypeId))}
-                                    getList={applicationUserRepository.singleListApplicationUserType}
-                                    modelFilter={applicationUserTypeFilter}
-                                    setModelFilter={setApplicationUserTypeFilter}
-                  />
+
                 </FormItem>
               </Col>
               <Col className="pl-1" span={8}>
                 <FormItem className="mb-0" label={translate('applicationUsers.name')}>
-                  <AdvancedStringFilter filterType={nameof(filter.name.startWith)}
-                                        filter={filter.name}
-                                        onChange={handleFilter(nameof(previewModel.name))}
+                  <AdvancedStringFilter filterType={nameof(filter.username.startWith)}
+                                        filter={filter.username}
+                                        onChange={handleFilter(nameof(previewModel.username))}
                                         className="w-100"/>
-                </FormItem>
-              </Col>
-              <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('applicationUsers.name')}>
-                  <AdvancedStringFilter filterType={nameof(filter.name.startWith)}
-                                        filter={filter.name}
-                                        onChange={handleFilter(nameof(previewModel.name))}
-                                        className="w-100"/>
-                </FormItem>
-              </Col>
-              <Col className="pl-1" span={8}>
-                <FormItem className="mb-0" label={translate('applicationUsers.createdAt')}>
-                  <AdvancedDateFilter filterType={nameof(filter.createdAt.equal)}
-                                      filter={filter.createdAt}
-                                      onChange={handleFilter(nameof(previewModel.createdAt))}
-                                      className="w-100"/>
                 </FormItem>
               </Col>
             </Row>
@@ -259,16 +275,16 @@ function ApplicationUserMaster() {
           <Spin spinning={previewLoading}>
             <Descriptions title={previewModel.name} bordered>
               <Descriptions.Item label={translate('applicationUsers.id')}>
-                {previewModel.id}
+                {previewModel?.id}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('applicationUsers.applicationUserType')}>
-                {previewModel.applicationUserType?.name}
+              <Descriptions.Item label={translate('applicationUsers.userStatus')}>
+                {previewModel?.userStatus?.name}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('applicationUsers.code')}>
-                {previewModel.code}
+              <Descriptions.Item label={translate('applicationUsers.username')}>
+                {previewModel?.username}
               </Descriptions.Item>
-              <Descriptions.Item label={translate('applicationUsers.name')}>
-                {previewModel.name}
+              <Descriptions.Item label={translate('applicationUsers.displayName')}>
+                {previewModel?.displayName}
               </Descriptions.Item>
             </Descriptions>
           </Spin>

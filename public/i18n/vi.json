@@ -1,4 +1,19 @@
 {
+  "applicationUsers": {
+    "applicationUserType": "",
+    "code": "Mã người dùng",
+    "createdAt": "Ngày tạo",
+    "detail": {
+      "title": "Thông tin chi tiết"
+    },
+    "id": "ID người dùng",
+    "isActive": "Hoạt động",
+    "master": {
+      "title": "Danh sách người dùng"
+    },
+    "name": "Tên người dùng",
+    "userStatus": "Trạng thái người dùng"
+  },
   "filters": {
     "dateFilter": {
       "equal": "Bằng",

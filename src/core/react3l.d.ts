@@ -1,6 +1,7 @@
 declare module 'react3l' {
   import {Moment} from 'moment';
   import {Model} from 'core/models/Model';
+  import {ModelFilter} from 'core/models';
 
   export type Id = string | number;
 
@@ -46,4 +47,16 @@ declare module 'react3l' {
   export interface BatchId {
     ids: number[] | string[];
   }
+
+  export interface ContentTableProps<T extends Model, TContent extends Model> {
+    model: T;
+
+    setModel: (t: T) => void;
+
+    field: keyof T | string;
+
+    onChange?: (v: TContent[]) => void;
+  }
+
+  export type FilterHandlerType<TModelFilter extends ModelFilter> = (list: any[], search?: TModelFilter) => any[];
 }

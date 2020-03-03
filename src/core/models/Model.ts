@@ -4,6 +4,8 @@ import {Cloneable} from './Cloneable';
 export class Model extends Cloneable {
   public errors?: ErrorMap<Model>;
 
+  key?: string | number;
+
   [key: string]: any;
 
   public static clone<T extends Model>(model?: PureModelData<T>): T {

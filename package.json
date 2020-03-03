@@ -35,7 +35,8 @@
     "reflect-metadata": "^0.1.13",
     "simple-line-icons": "^2.4.1",
     "typescript": "~3.7.2",
-    "universal-cookie": "^4.0.3"
+    "universal-cookie": "^4.0.3",
+    "uuid": "^7.0.1"
   },
   "devDependencies": {
     "@storybook/cli": "^5.3.14",
@@ -48,6 +49,7 @@
     "@types/reactstrap": "^8.4.2",
     "@types/ts-nameof": "^4.2.1",
     "@types/universal-cookie": "^2.2.0",
+    "@types/uuid": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
     "babel-plugin-import": "^1.13.0",

@@ -1,4 +1,19 @@
 {
+  "applicationUsers": {
+    "applicationUserType": "",
+    "code": "",
+    "createdAt": "",
+    "detail": {
+      "title": ""
+    },
+    "id": "",
+    "isActive": "",
+    "master": {
+      "title": ""
+    },
+    "name": "",
+    "userStatus": ""
+  },
   "filters": {
     "dateFilter": {
       "equal": "",

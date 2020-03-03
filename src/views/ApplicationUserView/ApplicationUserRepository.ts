@@ -9,6 +9,7 @@ import kebabCase from 'lodash/kebabCase';
 import nameof from 'ts-nameof.macro';
 import {AxiosResponse} from 'axios';
 import {BatchId, PureModelData} from 'react3l';
+import {UserStatus} from 'models/UserStatus';
 
 export class ApplicationUserRepository extends Repository {
   constructor() {
@@ -77,6 +78,15 @@ export class ApplicationUserRepository extends Repository {
     return this.http.post<void>(kebabCase(nameof(this.import)), formData)
       .then((response: AxiosResponse<void>) => {
         return response.data;
+      });
+  };
+
+  public singleListUserStatus = (): Promise<UserStatus[]> => {
+    return this.http.post<UserStatus[]>(kebabCase(nameof(this.singleListUserStatus)), {})
+      .then((response: AxiosResponse<UserStatus[]>) => {
+        return response.data?.map((userStatus: PureModelData<UserStatus>) => {
+          return UserStatus.clone<UserStatus>(userStatus);
+        });
       });
   };
 }

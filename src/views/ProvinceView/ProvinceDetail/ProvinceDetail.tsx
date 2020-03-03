@@ -27,7 +27,7 @@ function ProvinceDetail() {
     setProvince,
     loading,
     ,
-    ,
+    isDetail,
     handleSave,
   ] = crudService.useDetail(
     Province,
@@ -56,7 +56,7 @@ function ProvinceDetail() {
             <button className="btn btn-link mr-2" onClick={handleGoBack}>
               <i className="fa fa-arrow-left"/>
             </button>
-            {translate('provinces.detail.title')}
+            {isDetail ? translate('provinces.detail.title') : translate(generalLanguageKeys.actions.create)}
           </>
         )}>
           <div className="d-flex justify-content-end mb-4">
