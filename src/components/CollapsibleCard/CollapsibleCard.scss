@@ -1,0 +1,11 @@
+/* Style for CollapsibleCard.tsx */
+
+@import "src/styles/mixins";
+
+.collapsible-card {
+  &.collapsed {
+    .ant-card-body {
+      @include hidden();
+    }
+  }
+}

@@ -23,6 +23,7 @@ import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import MasterPreview from 'components/MasterPreview/MasterPreview';
 import {UserStatus} from 'models/UserStatus';
 import {Provider} from 'models/Provider';
+import CollapsibleCard from 'components/CollapsibleCard/CollapsibleCard';
 
 const {Item: FormItem} = Form;
 
@@ -216,7 +217,7 @@ function ApplicationUserMaster() {
   return (
     <div className="page master-page">
       <Card title={translate('applicationUsers.master.title')}>
-        <Card className="head-borderless mb-4" title={translate(generalLanguageKeys.actions.search)}>
+        <CollapsibleCard title={translate(generalLanguageKeys.actions.search)} className="mb-4">
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
@@ -263,7 +264,7 @@ function ApplicationUserMaster() {
               {translate(generalLanguageKeys.actions.reset)}
             </button>
           </div>
-        </Card>
+        </CollapsibleCard>
         <Table dataSource={list}
                columns={columns}
                bordered

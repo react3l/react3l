@@ -15,7 +15,7 @@ import Form from 'antd/lib/form';
 import {formItemLayout} from 'config/ant-design/form';
 import {Col, Row} from 'antd/lib/grid';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
-import Card from 'antd/lib/card';
+import CollapsibleCard from 'components/CollapsibleCard/CollapsibleCard';
 
 const {Item: FormItem} = Form;
 
@@ -131,7 +131,7 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
 
   return (
     <>
-      <Card className="head-borderless mb-4" title={translate(generalLanguageKeys.actions.search)}>
+      <CollapsibleCard title={translate(generalLanguageKeys.actions.search)} className="mb-4">
         <Form {...formItemLayout}>
           <Row>
             <Col className="pl-1" span={8}>
@@ -155,7 +155,7 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
             {translate(generalLanguageKeys.actions.reset)}
           </button>
         </div>
-      </Card>
+      </CollapsibleCard>
       <Table pagination={pagination}
              dataSource={dataSource}
              columns={columns}

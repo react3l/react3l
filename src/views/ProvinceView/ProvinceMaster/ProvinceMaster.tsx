@@ -24,6 +24,7 @@ import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedString
 import AdvancedIdFilter from 'components/AdvancedIdFilter/AdvancedIdFilter';
 import MasterPreview from 'components/MasterPreview/MasterPreview';
 import AdvancedDateFilter from 'components/AdvancedDateFilter/AdvancedDateFilter';
+import CollapsibleCard from 'components/CollapsibleCard/CollapsibleCard';
 
 const {Item: FormItem} = Form;
 
@@ -177,7 +178,7 @@ function ProvinceMaster() {
   return (
     <div className="page master-page">
       <Card title={translate('provinces.master.title')}>
-        <Card className="head-borderless mb-4" title={translate(generalLanguageKeys.actions.search)}>
+        <CollapsibleCard title={translate(generalLanguageKeys.actions.search)} className="mb-4">
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
@@ -247,7 +248,7 @@ function ProvinceMaster() {
               {translate(generalLanguageKeys.actions.reset)}
             </button>
           </div>
-        </Card>
+        </CollapsibleCard>
         <Table dataSource={list}
                columns={columns}
                bordered

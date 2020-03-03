@@ -42,3 +42,8 @@
   display: none;
   visibility: hidden;
 }
+
+@mixin shown() {
+  display: initial;
+  visibility: visible;
+}
