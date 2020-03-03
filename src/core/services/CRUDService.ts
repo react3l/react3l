@@ -280,7 +280,7 @@ export class CRUDService {
     const handleChangeSimpleField = React.useCallback(
       (field: string, debounce: boolean = false) => {
         return (event: React.ChangeEvent<HTMLInputElement> | number | string | boolean) => {
-          if (typeof event === 'object') {
+          if (typeof event === 'object' && event !== null) {
             if ('target' in event) {
               if (debounce) {
                 return handleDebounceInputValue(field, event.target.value);
@@ -297,7 +297,7 @@ export class CRUDService {
           if (debounce) {
             return handleDebounceInputValue(field, event);
           }
-          return handleSetInputValue(field, event);
+          return handleSetInputValue(field, event as (string | number | boolean));
         };
       },
       [handleDebounceInputValue, handleSetInputValue, model, setModel],

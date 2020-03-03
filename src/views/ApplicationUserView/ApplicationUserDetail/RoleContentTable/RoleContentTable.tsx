@@ -82,7 +82,7 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
               <input type="text"
                      className="form-control form-control-sm"
                      name={nameof(name)}
-                     value={name}
+                     defaultValue={name}
               />
             </FormItem>
           );

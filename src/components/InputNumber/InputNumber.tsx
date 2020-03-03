@@ -1,14 +1,12 @@
-import AntInputNumber, {InputNumberProps} from 'antd/lib/input-number';
-import classNames from 'classnames';
 import 'components/InputNumber/InputNumber.scss';
-import {debounce} from 'core/helpers/debounce';
 import React, {LegacyRef, ReactText} from 'react';
+import classNames from 'classnames';
 
 function formatter(x: ReactText) {
   if (typeof x === 'string') {
     x = parser(x);
   }
-  if (typeof x === 'number') {
+  if (typeof x === 'number' && !Number.isNaN(x)) {
     return x.toLocaleString();
   }
   return '';
@@ -22,54 +20,27 @@ function parser(x: string) {
   return result;
 }
 
-function InputNumber(props: InputNumberProps) {
+function InputNumber(props) {
+  const ref: LegacyRef<HTMLInputElement> = React.useRef();
+
   const {
-    defaultValue,
-    onChange,
     className,
     ...restProps
   } = props;
 
-  const ref: LegacyRef<any> = React.useRef();
-
-  const [value, setValue] = React.useState<number>(defaultValue);
-
-  React.useEffect(
-    () => {
-      if (typeof defaultValue === 'undefined') {
-        setValue(undefined);
-      }
-    },
-    [defaultValue],
-  );
-
-  const debouncedHandleChange = React.useCallback(
-    debounce((value: number) => {
-      setValue(value);
-      if (typeof onChange === 'function') {
-        onChange(value);
-      }
-    }),
-    [onChange],
-  );
-
   return (
-    <AntInputNumber
+    <input
       ref={ref}
-      formatter={formatter}
-      defaultValue={defaultValue}
-      onChange={debouncedHandleChange}
-      value={value}
       {...restProps}
-      className={classNames('input-number', className)}
+      className={classNames('form-control form-control-sm', className)}
     />
   );
 }
 
 InputNumber.defaultProps = {
-  allowNegative: true,
-  onlyInteger: false,
   step: 1,
+  formatter,
+  parser,
 };
 
 export default InputNumber;
