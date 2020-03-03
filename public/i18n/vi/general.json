@@ -1,6 +1,7 @@
 {
   "general": {
     "actions": {
+      "add": "Thêm mới",
       "close": "Đóng",
       "create": "Tạo mới",
       "delete": "Xóa",

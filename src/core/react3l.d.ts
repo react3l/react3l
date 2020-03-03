@@ -41,7 +41,7 @@ declare module 'react3l' {
   } | T;
 
   export type ErrorMap<T> = {
-    [P in keyof T]: string | ErrorMap<T[P]>;
+    [key in keyof T]: string | ErrorMap<T[key]> | null;
   };
 
   export interface BatchId {

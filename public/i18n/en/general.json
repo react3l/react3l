@@ -1,6 +1,7 @@
 {
   "general": {
     "actions": {
+      "add": "",
       "close": "",
       "create": "",
       "delete": "",

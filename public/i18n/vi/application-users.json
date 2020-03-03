@@ -1,17 +1,21 @@
 {
   "applicationUsers": {
     "applicationUserType": "",
-    "code": "Mã người dùng",
     "createdAt": "Ngày tạo",
     "detail": {
       "title": "Thông tin chi tiết"
     },
+    "displayName": "Tên hiển thị",
+    "email": "Địa chỉ email",
     "id": "ID người dùng",
     "isActive": "Hoạt động",
     "master": {
       "title": "Danh sách người dùng"
     },
     "name": "Tên người dùng",
-    "userStatus": "Trạng thái người dùng"
+    "phone": "Số điện thoại",
+    "provider": "Nhà cung cấp",
+    "userStatus": "Trạng thái người dùng",
+    "username": "Tên đăng nhập"
   }
 }

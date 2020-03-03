@@ -1,18 +1,22 @@
 {
   "applicationUsers": {
     "applicationUserType": "",
-    "code": "",
     "createdAt": "",
     "detail": {
       "title": ""
     },
+    "displayName": "",
+    "email": "",
     "id": "",
     "isActive": "",
     "master": {
       "title": ""
     },
     "name": "",
-    "userStatus": ""
+    "phone": "",
+    "provider": "",
+    "userStatus": "",
+    "username": ""
   },
   "filters": {
     "dateFilter": {
@@ -58,6 +62,7 @@
   },
   "general": {
     "actions": {
+      "add": "",
       "close": "",
       "create": "",
       "delete": "",
@@ -107,5 +112,9 @@
     },
     "name": "",
     "provinceType": ""
+  },
+  "roles": {
+    "id": "",
+    "name": ""
   }
 }

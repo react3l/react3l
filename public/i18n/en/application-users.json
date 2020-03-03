@@ -1,17 +1,21 @@
 {
   "applicationUsers": {
     "applicationUserType": "",
-    "code": "",
     "createdAt": "",
     "detail": {
       "title": ""
     },
+    "displayName": "",
+    "email": "",
     "id": "",
     "isActive": "",
     "master": {
       "title": ""
     },
     "name": "",
-    "userStatus": ""
+    "phone": "",
+    "provider": "",
+    "userStatus": "",
+    "username": ""
   }
 }

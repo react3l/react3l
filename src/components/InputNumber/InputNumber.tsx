@@ -23,7 +23,12 @@ function parser(x: string) {
 }
 
 function InputNumber(props: InputNumberProps) {
-  const {defaultValue, onChange, className, ...restProps} = props;
+  const {
+    defaultValue,
+    onChange,
+    className,
+    ...restProps
+  } = props;
 
   const ref: LegacyRef<any> = React.useRef();
 

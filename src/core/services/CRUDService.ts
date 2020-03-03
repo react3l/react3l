@@ -367,10 +367,10 @@ export class CRUDService {
     );
 
     const handleDelete = React.useCallback(
-      (id: number) => {
+      (index: number) => {
         return () => {
-          const newValue: TContent[] = value.filter((v: TContent) => v.id !== id);
-          setValue(newValue);
+          value.splice(index, 1);
+          setValue([...value]);
         };
       },
       [value, setValue],
@@ -390,6 +390,64 @@ export class CRUDService {
     );
 
     return [value, setValue, handleAdd, handleDelete];
+  }
+
+  public useBulkModal<T extends Model, TModelFilter extends ModelFilter>(
+    modelFilterClass: new () => TModelFilter,
+    getList: (filter: TModelFilter) => Promise<T[]>,
+    count: (filter: TModelFilter) => Promise<number>,
+  ): [
+    TModelFilter,
+    Dispatch<SetStateAction<TModelFilter>>,
+    boolean,
+    boolean,
+    T[],
+    number,
+    () => void,
+    () => void,
+  ] {
+    const [visible, setVisible] = React.useState<boolean>(false);
+    const [loading, setLoading] = React.useState<boolean>(false);
+    const [filter, setFilter] = React.useState<TModelFilter>(new modelFilterClass());
+    const [list, setList] = React.useState<T[]>([]);
+    const [total, setTotal] = React.useState<number>(0);
+
+    const handleOpenModal = React.useCallback(
+      () => {
+        setVisible(true);
+        setLoading(true);
+        Promise.all([
+          getList(filter),
+          count(filter),
+        ])
+          .then(([list, total]) => {
+            setList(list);
+            setTotal(total);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      },
+      [count, filter, getList],
+    );
+
+    const handleCloseModal = React.useCallback(
+      () => {
+        setVisible(false);
+      },
+      [],
+    );
+
+    return [
+      filter,
+      setFilter,
+      visible,
+      loading,
+      list,
+      total,
+      handleOpenModal,
+      handleCloseModal,
+    ];
   }
 }
 

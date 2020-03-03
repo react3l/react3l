@@ -10,6 +10,10 @@ import nameof from 'ts-nameof.macro';
 import {AxiosResponse} from 'axios';
 import {BatchId, PureModelData} from 'react3l';
 import {UserStatus} from 'models/UserStatus';
+import {Role} from 'models/Role';
+import {RoleFilter} from 'models/RoleFilter';
+import {Provider} from 'models/Provider';
+import {ProviderFilter} from 'models/ProviderFilter';
 
 export class ApplicationUserRepository extends Repository {
   constructor() {
@@ -87,6 +91,31 @@ export class ApplicationUserRepository extends Repository {
         return response.data?.map((userStatus: PureModelData<UserStatus>) => {
           return UserStatus.clone<UserStatus>(userStatus);
         });
+      });
+  };
+
+  public singleListProvider = (providerFilter: ProviderFilter): Promise<Provider[]> => {
+    return this.http.post<Provider[]>(kebabCase(nameof(this.singleListProvider)), providerFilter)
+      .then((response: AxiosResponse<Provider[]>) => {
+        return response.data?.map((provider: PureModelData<Provider>) => {
+          return Provider.clone<Provider>(provider);
+        });
+      });
+  };
+
+  public listRole = (roleFilter: RoleFilter): Promise<Role[]> => {
+    return this.http.post<Role[]>(kebabCase(nameof(this.listRole)), roleFilter)
+      .then((response: AxiosResponse<Role[]>) => {
+        return response.data?.map((role: PureModelData<Role>) => {
+          return Role.clone<Role>(role);
+        });
+      });
+  };
+
+  public countRole = (roleFilter: RoleFilter): Promise<number> => {
+    return this.http.post<number>(kebabCase(nameof(this.countRole)), roleFilter)
+      .then((response: AxiosResponse<number>) => {
+        return response.data;
       });
   };
 }

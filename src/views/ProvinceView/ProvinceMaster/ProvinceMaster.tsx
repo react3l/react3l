@@ -145,7 +145,7 @@ function ProvinceMaster() {
   return (
     <div className="page master-page">
       <Card title={translate('provinces.master.title')}>
-        <Card className="filter-card mb-4" title={translate(generalLanguageKeys.actions.search)}>
+        <Card className="head-borderless mb-4" title={translate(generalLanguageKeys.actions.search)}>
           <Form {...formItemLayout}>
             <Row>
               <Col className="pl-1" span={8}>
