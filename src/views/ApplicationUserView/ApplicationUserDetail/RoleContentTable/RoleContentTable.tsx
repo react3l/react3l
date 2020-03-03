@@ -107,6 +107,28 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
     [dataSource, handleDelete, pagination, sorter, translate],
   );
 
+  const tableTitle = React.useCallback(
+    () => (
+      <button className="btn btn-sm btn-primary">
+        <i className="fa fa-plus mr-2"/>
+        {translate(generalLanguageKeys.actions.add)}
+      </button>
+    ),
+    [translate],
+  );
+
+  const tableFooter = React.useCallback(
+    () => (
+      <>
+        <button className="btn btn-link" onClick={handleAdd}>
+          <i className="fa fa-plus mr-2"/>
+          {translate(generalLanguageKeys.actions.create)}
+        </button>
+      </>
+    ),
+    [handleAdd, translate],
+  );
+
   return (
     <>
       <Card className="head-borderless mb-4" title={translate(generalLanguageKeys.actions.search)}>
@@ -125,6 +147,7 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
         </Form>
         <div className="d-flex justify-content-end mt-2">
           <button className="btn btn-sm btn-primary mr-2" onClick={handleSearch}>
+            <i className="fa fa-search mr-2"/>
             {translate(generalLanguageKeys.actions.filter)}
           </button>
           <button className="btn btn-sm btn-outline-secondary text-dark" onClick={handleReset}>
@@ -140,22 +163,8 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
              tableLayout="fixed"
              bordered={true}
              size="small"
-             title={() => (
-               <>
-                 <button className="btn btn-sm btn-primary">
-                   <i className="fa fa-plus mr-2"/>
-                   {translate(generalLanguageKeys.actions.add)}
-                 </button>
-               </>
-             )}
-             footer={() => (
-               <>
-                 <button className="btn btn-link" onClick={handleAdd}>
-                   <i className="fa fa-plus mr-2"/>
-                   {translate(generalLanguageKeys.actions.create)}
-                 </button>
-               </>
-             )}
+             title={tableTitle}
+             footer={tableFooter}
       />
     </>
   );

@@ -15,6 +15,16 @@
     "name": "",
     "phone": "",
     "provider": "",
+    "roleContentTable": {
+      "popup": {
+        "title": ""
+      }
+    },
+    "tabs": {
+      "roles": {
+        "title": ""
+      }
+    },
     "userStatus": "",
     "username": ""
   },

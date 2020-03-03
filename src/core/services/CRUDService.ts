@@ -449,6 +449,27 @@ export class CRUDService {
       handleCloseModal,
     ];
   }
+
+  public useDefaultSelectedRowKeys<T extends Model>(list: T[]): number[] {
+    return React.useMemo(
+      () => list
+        .filter((t: T) => typeof t.id === 'number' && !Number.isNaN(t.id))
+        .map((t: T) => t.id),
+      [list],
+    );
+  }
+
+  public useDefaultList<T extends Model>(t: T): T[] {
+    return React.useMemo(
+      () => {
+        if (typeof t === 'object' && t !== null) {
+          return [t];
+        }
+        return [];
+      },
+      [t],
+    );
+  }
 }
 
 export const crudService: CRUDService = new CRUDService();

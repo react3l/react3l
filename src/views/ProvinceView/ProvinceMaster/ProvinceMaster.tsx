@@ -142,6 +142,38 @@ function ProvinceMaster() {
     [handleDelete, handleGoDetail, handleOpenPreview, list, pagination, sorter, translate],
   );
 
+  const tableTitle = React.useCallback(
+    () => (
+      <>
+        <div className="d-flex justify-content-between">
+          <div className="flex-shrink-1 d-flex align-items-center">
+            <button className="btn btn-sm btn-primary mr-2" onClick={handleGoCreate}>
+              <i className="fa mr-2 fa-plus"/>
+              {translate(generalLanguageKeys.actions.create)}
+            </button>
+            <button className="btn btn-sm btn-danger mr-2" disabled={!hasSelected}
+                    onClick={handleBulkDelete}>
+              <i className="fa mr-2 fa-trash"/>
+              {translate(generalLanguageKeys.actions.delete)}
+            </button>
+            <label className="btn btn-sm btn-outline-primary mr-2 mb-0" htmlFor="master-import">
+              <i className="fa mr-2 fa-upload"/>
+              {translate(generalLanguageKeys.actions.import)}
+            </label>
+            <button className="btn btn-sm btn-outline-primary mr-2" onClick={handleExport}>
+              <i className="fa mr-2 fa-download"/>
+              {translate(generalLanguageKeys.actions.export)}
+            </button>
+          </div>
+          <div className="flex-shrink-1 d-flex align-items-center">
+            {translate('general.master.pagination', {pageSize: pagination.pageSize, total})}
+          </div>
+        </div>
+      </>
+    ),
+    [handleBulkDelete, handleExport, handleGoCreate, hasSelected, pagination.pageSize, total, translate],
+  );
+
   return (
     <div className="page master-page">
       <Card title={translate('provinces.master.title')}>
@@ -207,6 +239,7 @@ function ProvinceMaster() {
           </Form>
           <div className="d-flex justify-content-end mt-2">
             <button className="btn btn-sm btn-primary mr-2" onClick={handleSearch}>
+              <i className="fa fa-search mr-2"/>
               {translate(generalLanguageKeys.actions.filter)}
             </button>
             <button className="btn btn-sm btn-outline-secondary text-dark" onClick={handleReset}>
@@ -225,34 +258,7 @@ function ProvinceMaster() {
                pagination={pagination}
                rowSelection={rowSelection}
                onChange={handleTableChange}
-               title={() => (
-                 <>
-                   <div className="d-flex justify-content-between">
-                     <div className="flex-shrink-1 d-flex align-items-center">
-                       <button className="btn btn-sm btn-primary mr-2" onClick={handleGoCreate}>
-                         <i className="fa mr-2 fa-plus"/>
-                         {translate(generalLanguageKeys.actions.create)}
-                       </button>
-                       <button className="btn btn-sm btn-danger mr-2" disabled={!hasSelected}
-                               onClick={handleBulkDelete}>
-                         <i className="fa mr-2 fa-trash"/>
-                         {translate(generalLanguageKeys.actions.delete)}
-                       </button>
-                       <label className="btn btn-sm btn-outline-primary mr-2 mb-0" htmlFor="master-import">
-                         <i className="fa mr-2 fa-upload"/>
-                         {translate(generalLanguageKeys.actions.import)}
-                       </label>
-                       <button className="btn btn-sm btn-outline-primary mr-2" onClick={handleExport}>
-                         <i className="fa mr-2 fa-download"/>
-                         {translate(generalLanguageKeys.actions.export)}
-                       </button>
-                     </div>
-                     <div className="flex-shrink-1 d-flex align-items-center">
-                       {translate('general.master.pagination', {pageSize: pagination.pageSize, total})}
-                     </div>
-                   </div>
-                 </>
-               )}
+               title={tableTitle}
         />
         <input type="file" className="hidden" id="master-import" onChange={handleImport}/>
         <MasterPreview isOpen={previewVisible} onClose={handleClosePreview} size="xl">

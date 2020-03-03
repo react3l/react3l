@@ -12,6 +12,7 @@ export const generalLanguageKeys: LanguageKeys = {
   actions: {
     label: translate('general.actions.label'),
     create: translate('general.actions.create'),
+    close: translate('general.actions.close'),
     add: translate('general.actions.add'),
     update: translate('general.actions.update'),
     delete: translate('general.actions.delete'),

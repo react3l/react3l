@@ -14,19 +14,34 @@ import {Moment} from 'moment';
 import {DateFilter, Filter, GuidFilter, IdFilter, NumberFilter, StringFilter} from 'core/filters';
 import nameof from 'ts-nameof.macro';
 
+const crudDefaultSelectedRowKeys: string[] | number[] = [];
+
 export class TableService {
-  public useRowSelection<T extends Model>(): [
+  public useRowSelection<T extends Model>(
+    defaultSelectedRowKeys: string[] | number[] = crudDefaultSelectedRowKeys,
+    onChange?: (selectedRowKeys: string[] | number[], selectedRows: T[]) => void,
+  ): [
     TableRowSelection<T>,
     boolean,
   ] {
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[] | number[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[] | number[]>(defaultSelectedRowKeys);
+
+    const handleChange = React.useCallback(
+      (selectedRowKeys: string[] | number[], selectedRows: T[]) => {
+        setSelectedRowKeys(selectedRowKeys);
+        if (typeof onChange === 'function') {
+          onChange(selectedRowKeys, selectedRows);
+        }
+      },
+      [onChange],
+    );
 
     const rowSelection: TableRowSelection<T> = React.useMemo(
       () => ({
-        onChange: setSelectedRowKeys,
+        onChange: handleChange,
         selectedRowKeys,
       }),
-      [selectedRowKeys],
+      [handleChange, selectedRowKeys],
     );
 
     return [rowSelection, selectedRowKeys.length > 0];
@@ -84,7 +99,9 @@ export class TableService {
         } = newPagination;
         if (pagination.current !== current || pagination.pageSize !== pageSize || pagination.total !== total) {
           setFilter(ModelFilter.clone<TFilter>({
-            ...filter, take: pageSize, skip: (current - 1) * pageSize,
+            ...filter,
+            take: pageSize,
+            skip: (current - 1) * pageSize,
           }));
           return;
         }
@@ -273,38 +290,41 @@ export class TableService {
       };
     }, [dataSource, search]);
 
-    const handleTableChange = React.useCallback((newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => {
-      const {pageSize: take} = newPagination;
-      const skip: number = (newPagination.current - 1) * newPagination.pageSize;
+    const handleTableChange = React.useCallback(
+      (newPagination: PaginationConfig, filters: Record<string, any>, newSorter: SorterResult<T>) => {
+        const {pageSize: take} = newPagination;
+        const skip: number = (newPagination.current - 1) * newPagination.pageSize;
 
-      if (skip !== search.skip || take !== search.take) {
+        if (skip !== search.skip || take !== search.take) {
+          setModelFilter(ModelFilter.clone<TModelFilter>({
+            ...search, skip, take,
+          }));
+          return;
+        }
+
+        const {field, order} = sorter;
+
+        if (newSorter.field !== field || newSorter.order !== order) {
+          setModelFilter(ModelFilter.clone<TModelFilter>({
+            ...search, orderBy: newSorter.field, orderType: getOrderTypeForTable<T>(newSorter.field, newSorter),
+          }));
+          return;
+        }
+
         setModelFilter(ModelFilter.clone<TModelFilter>({
-          ...search, skip, take,
+          ...search, ...filters,
         }));
-        return;
-      }
-
-      const {field, order} = sorter;
-
-      if (newSorter.field !== field || newSorter.order !== order) {
-        setModelFilter(ModelFilter.clone<TModelFilter>({
-          ...search, orderBy: newSorter.field, orderType: getOrderTypeForTable<T>(newSorter.field, newSorter),
-        }));
-        return;
-      }
-
-      setModelFilter(ModelFilter.clone<TModelFilter>({
-        ...search, ...filters,
-      }));
-    }, [search, setModelFilter, sorter]);
+      }, [search, setModelFilter, sorter]);
 
     const handleFilter = React.useCallback((field: string) => {
-      return (filter: Filter) => {
-        setModelFilter(ModelFilter.clone<TModelFilter>({
-          ...search, [field]: filter,
-        }));
-      };
-    }, [search, setModelFilter]);
+        return (filter: Filter) => {
+          setModelFilter(ModelFilter.clone<TModelFilter>({
+            ...search, [field]: filter,
+          }));
+        };
+      },
+      [search, setModelFilter],
+    );
 
     return [dataSource, pagination, sorter, handleTableChange, handleFilter, handleSearch, handleReset];
   }

@@ -15,6 +15,16 @@
     "name": "Tên người dùng",
     "phone": "Số điện thoại",
     "provider": "Nhà cung cấp",
+    "roleContentTable": {
+      "popup": {
+        "title": "Thêm vai trò cho người dùng"
+      }
+    },
+    "tabs": {
+      "roles": {
+        "title": "Vai trò trong hệ thống"
+      }
+    },
     "userStatus": "Trạng thái người dùng",
     "username": "Tên đăng nhập"
   }

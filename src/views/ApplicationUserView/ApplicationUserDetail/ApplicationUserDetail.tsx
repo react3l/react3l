@@ -57,17 +57,7 @@ function ApplicationUserDetail() {
    * This section is for reference fields
    */
   const [providerFilter, setProviderFilter] = React.useState<ProviderFilter>(new ProviderFilter());
-  const defaultProviderList: Provider[] = React.useMemo(
-    () => {
-      if (typeof applicationUser.provider === 'object' && applicationUser.provider !== null) {
-        return [
-          applicationUser.provider,
-        ];
-      }
-      return [];
-    },
-    [applicationUser.provider],
-  );
+  const defaultProviderList: Provider[] = crudService.useDefaultList<Provider>(applicationUser.provider);
 
   return (
     <div className="page detail-page">
@@ -175,8 +165,6 @@ function ApplicationUserDetail() {
               />
             </FormItem>
           </Form>
-        </Card>
-        <Card className="mt-2">
           <Tabs defaultActiveKey="1">
             <TabPane key="1" tab={translate('applicationUsers.tabs.roles.title')}>
               <RoleContentTable model={applicationUser}

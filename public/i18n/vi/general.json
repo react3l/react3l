@@ -6,10 +6,10 @@
       "create": "Tạo mới",
       "delete": "Xóa",
       "export": "Xuất Excel",
-      "filter": "Lọc",
+      "filter": "Tìm kiếm",
       "import": "Nhập Excel",
       "label": "Tác vụ",
-      "reset": "Bỏ lọc",
+      "reset": "Đặt lại",
       "save": "Lưu",
       "search": "Tìm kiếm",
       "update": "Chỉnh sửa"
