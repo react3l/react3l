@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
 
-import RoleContentModal from './RoleContentModal';
+import ContentModal from './ContentModal';
 
-describe('RoleContentModal', () => {
+describe('ContentModal', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <MemoryRouter>
-                <RoleContentModal title="test title"/>
+                <ContentModal/>
             </MemoryRouter>,
             div,
         );

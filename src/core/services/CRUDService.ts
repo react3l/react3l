@@ -10,6 +10,7 @@ import {useParams} from 'react-router';
 import {debounce} from 'core/helpers/debounce';
 import {Moment} from 'moment';
 import v4 from 'uuid/v4';
+import {TableRowSelection} from 'antd/lib/table';
 
 export class CRUDService {
   public useMaster<T extends Model, TFilter extends ModelFilter>(
@@ -468,6 +469,92 @@ export class CRUDService {
         return [];
       },
       [t],
+    );
+  }
+
+  public useContentModal<T extends Model, TFilter extends ModelFilter>(
+    getList: (tFilter: TFilter) => Promise<T[]>,
+    count: (tFilter: TFilter) => Promise<number>,
+    filterClass: new () => TFilter,
+  ): [
+    boolean,
+    boolean,
+    T[],
+    number,
+    () => void,
+    () => void,
+    TFilter,
+    Dispatch<SetStateAction<TFilter>>,
+  ] {
+    const [visible, setVisible] = React.useState<boolean>(false);
+    const [loading, setLoading] = React.useState<boolean>(false);
+    const [filter, setFilter] = React.useState<TFilter>(new filterClass());
+    const [list, setList] = React.useState<T[]>([]);
+    const [total, setTotal] = React.useState<number>(0);
+
+    const handleOpen = React.useCallback(
+      () => {
+        setVisible(true);
+      },
+      [],
+    );
+
+    const handleClose = React.useCallback(
+      () => {
+        setVisible(false);
+      },
+      [],
+    );
+
+    React.useEffect(
+      () => {
+        if (visible) {
+          setLoading(true);
+          Promise.all([
+            getList(filter),
+            count(filter),
+          ])
+            .then(([list, total]) => {
+              setList(list);
+              setTotal(total);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
+      },
+      [count, filter, getList, visible],
+    );
+
+    return [
+      loading,
+      visible,
+      list,
+      total,
+      handleOpen,
+      handleClose,
+      filter,
+      setFilter,
+    ];
+  }
+
+  public useContentModalList<T extends Model>(
+    list: T[],
+    setList: Dispatch<SetStateAction<T[]>>,
+  ): TableRowSelection<T> {
+    return React.useMemo(
+      () => ({
+        selectedRowKeys: list.map((t: T) => t.id),
+        onSelect: (record: T, selected: boolean) => {
+          if (selected) {
+            list.push(record);
+            setList([...list]);
+          } else {
+            setList(list.filter((t: T) => t.id !== record.id));
+          }
+        },
+      }),
+      [list, setList],
     );
   }
 }

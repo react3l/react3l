@@ -16,6 +16,8 @@ import {formItemLayout} from 'config/ant-design/form';
 import {Col, Row} from 'antd/lib/grid';
 import AdvancedStringFilter from 'components/AdvancedStringFilter/AdvancedStringFilter';
 import CollapsibleCard from 'components/CollapsibleCard/CollapsibleCard';
+import RoleContentModal from 'views/ApplicationUserView/ApplicationUserDetail/RoleContentModal/RoleContentModal';
+import {applicationUserRepository} from 'views/ApplicationUserView/ApplicationUserRepository';
 
 const {Item: FormItem} = Form;
 
@@ -29,7 +31,7 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
 
   const [
     roles,
-    /*setRoles*/,
+    setRoles,
     handleAdd,
     handleDelete,
   ] = crudService.useContentTable<ApplicationUser, Role>(
@@ -38,7 +40,20 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
     nameof(model.roles),
   );
 
-  const [roleFilter, setRoleFilter] = React.useState<RoleFilter>(new RoleFilter());
+  const [
+    loading,
+    visible,
+    list,
+    total,
+    handleOpen,
+    handleClose,
+    roleFilter,
+    setRoleFilter,
+  ] = crudService.useContentModal(
+    applicationUserRepository.listRole,
+    applicationUserRepository.countRole,
+    RoleFilter,
+  );
 
   const [
     dataSource,
@@ -109,12 +124,12 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
 
   const tableTitle = React.useCallback(
     () => (
-      <button className="btn btn-sm btn-primary">
+      <button className="btn btn-sm btn-primary" onClick={handleOpen}>
         <i className="fa fa-plus mr-2"/>
         {translate(generalLanguageKeys.actions.add)}
       </button>
     ),
-    [translate],
+    [handleOpen, translate],
   );
 
   const tableFooter = React.useCallback(
@@ -132,6 +147,18 @@ function RoleContentTable(props: ContentTableProps<ApplicationUser, Role>) {
   return (
     <>
       <CollapsibleCard title={translate(generalLanguageKeys.actions.search)} className="mb-4">
+        <RoleContentModal title={translate('applicationUsers.roleContentModal.title')}
+                          selectedList={roles}
+                          setSelectedList={setRoles}
+                          list={list}
+                          total={total}
+                          isOpen={visible}
+                          loading={loading}
+                          toggle={handleClose}
+                          onClose={handleClose}
+                          filter={roleFilter}
+                          setFilter={setRoleFilter}
+        />
         <Form {...formItemLayout}>
           <Row>
             <Col className="pl-1" span={8}>
