@@ -1,18 +1,15 @@
 name: Docker Image CI
-
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+       IMAGE_TAG: thanhtunguet/react3l:$(date + %s)
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: IMAGE_TAG=thanhtunguet/react3l:$(date + %s) docker build . --tag $IMAGE_TAG
+      run: docker build . --tag $IMAGE_TAG
