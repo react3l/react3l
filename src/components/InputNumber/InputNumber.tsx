@@ -1,8 +1,9 @@
 import 'components/InputNumber/InputNumber.scss';
 import React, {LegacyRef} from 'react';
 import classNames from 'classnames';
+import {InputProps} from 'reactstrap';
 
-function InputNumber(props) {
+function InputNumber(props: InputProps) {
   const ref: LegacyRef<HTMLInputElement> = React.useRef();
 
   const {
