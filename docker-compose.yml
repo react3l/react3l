@@ -1,0 +1,4 @@
+version: '3'
+services:
+  react3l:
+    image: thanhtunguet/react3l:latest
