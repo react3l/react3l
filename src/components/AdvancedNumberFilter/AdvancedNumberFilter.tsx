@@ -79,6 +79,7 @@ function AdvancedNumberFilter(props: AdvancedNumberFilterProps) {
     <InputNumber defaultValue={filter[filterType] as number}
                  onChange={handleChange}
                  className={className}
+                 onPressEnter={handleSubmitChange}
     />
   );
 }

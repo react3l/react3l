@@ -1,10 +1,10 @@
 import 'components/InputNumber/InputNumber.scss';
 import React, {LegacyRef} from 'react';
 import classNames from 'classnames';
-import {InputProps} from 'reactstrap';
+import AntInputNumber, {InputNumberProps} from 'antd/lib/input-number';
 
-function InputNumber(props: InputProps) {
-  const ref: LegacyRef<HTMLInputElement> = React.useRef();
+function InputNumber(props: InputNumberProps) {
+  const ref: LegacyRef<AntInputNumber> = React.useRef();
 
   const {
     className,
@@ -12,7 +12,7 @@ function InputNumber(props: InputProps) {
   } = props;
 
   return (
-    <input
+    <AntInputNumber
       ref={ref}
       {...restProps}
       className={classNames('form-control form-control-sm', className)}
