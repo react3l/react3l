@@ -44,6 +44,7 @@
     "uuid": "^7.0.1"
   },
   "devDependencies": {
+    "@storybook/addons": "^5.3.17",
     "@storybook/cli": "^5.3.14",
     "@storybook/preset-create-react-app": "^2.0.0",
     "@storybook/react": "^5.3.14",
@@ -109,6 +110,7 @@
     "extract": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ extract",
     "merge": "react-i18next-extract -i src/ -o public/i18n/ -p public/i18n/ merge",
     "start-storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "react-scripts": "react-app-rewired"
   }
 }
