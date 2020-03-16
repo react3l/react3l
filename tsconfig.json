@@ -33,6 +33,6 @@
     "src"
   ],
   "exclude": [
-    "src/**/*.stories.tsx"
+    "node_modules/"
   ]
 }
