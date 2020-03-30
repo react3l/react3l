@@ -7,3 +7,5 @@ export * from './LanguageService';
 export * from './LocalStorageService';
 
 export * from './FormService';
+
+export * from './TableService';
