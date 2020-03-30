@@ -1,7 +1,7 @@
 declare module 'react3l' {
-  import {Moment} from 'moment';
-  import {Model} from 'core/models/Model';
-  import {ModelFilter} from 'core/models';
+  import { Moment } from 'moment';
+  import { Model } from 'core/models/Model';
+  import { ModelFilter } from 'core/models';
 
   export type Id = string | number;
 
@@ -31,22 +31,20 @@ declare module 'react3l' {
 
   export type PureModelData<T extends Model> = {
     [P in keyof T]: T[P] extends number ? number
-      : T[P] extends string ? string
-        : T[P] extends boolean ? boolean
-          : T[P] extends null ? null
-            : T[P] extends undefined ? undefined
-              : T[P] extends Model ? T[P]
-                : T[P] extends Moment ? string
-                  : any;
+    : T[P] extends string ? string
+    : T[P] extends boolean ? boolean
+    : T[P] extends null ? null
+    : T[P] extends undefined ? undefined
+    : T[P] extends Model ? T[P]
+    : T[P] extends Moment ? string
+    : any;
   } | T;
 
   export type ErrorMap<T> = {
     [key in keyof T]: string | ErrorMap<T[key]> | null;
   };
 
-  export interface BatchId {
-    ids: number[] | string[];
-  }
+  export type BatchId = number[] | string[];
 
   export interface ContentTableProps<T extends Model, TContent extends Model> {
     model: T;

@@ -1,17 +1,17 @@
-import React from 'reactn';
-import { PaginationConfig, PaginationProps } from 'antd/lib/pagination';
-import { Model, ModelFilter } from 'core/models';
-import { SorterResult, TableRowSelection } from 'antd/lib/table';
-import { getOrderType, getOrderTypeForTable, setOrderType } from 'helpers/ant-design/table';
-import { DEFAULT_TAKE } from 'core/config';
-import { Dispatch, SetStateAction } from 'react';
-import { AxiosError } from 'axios';
 import { Modal } from 'antd';
-import { translate } from 'core/helpers/internationalization';
+import { PaginationConfig, PaginationProps } from 'antd/lib/pagination';
+import { SorterResult, TableRowSelection } from 'antd/lib/table';
+import { AxiosError } from 'axios';
 import { generalLanguageKeys } from 'config/consts';
-import { BatchId, FilterHandlerType } from 'react3l';
-import { Moment } from 'moment';
+import { DEFAULT_TAKE } from 'core/config';
 import { DateFilter, Filter, GuidFilter, IdFilter, NumberFilter, StringFilter } from 'core/filters';
+import { translate } from 'core/helpers/internationalization';
+import { Model, ModelFilter } from 'core/models';
+import { getOrderType, getOrderTypeForTable, setOrderType } from 'helpers/ant-design/table';
+import { Moment } from 'moment';
+import { Dispatch, SetStateAction } from 'react';
+import { BatchId, FilterHandlerType } from 'react3l';
+import React from 'reactn';
 import nameof from 'ts-nameof.macro';
 
 const crudDefaultSelectedRowKeys: string[] | number[] = [];
@@ -51,10 +51,12 @@ export class TableService {
     filter: TFilter,
     setFilter: Dispatch<SetStateAction<TFilter>>,
     total: number,
+    handleSearch?: () => void,
   ): [
       PaginationProps,
       SorterResult<T>,
-      (pagination: PaginationProps,
+      (
+        pagination: PaginationProps,
         filters: Record<string, any>,
         newSorter: SorterResult<T>) => void,
     ] {
@@ -92,6 +94,9 @@ export class TableService {
           });
           setOrderType(newFilter, newSorter.order);
           setFilter(newFilter);
+          if (typeof handleSearch === 'function') {
+            handleSearch();
+          }
           return;
         }
         const {
@@ -103,13 +108,19 @@ export class TableService {
             take: pageSize,
             skip: (current - 1) * pageSize,
           }));
+          if (typeof handleSearch === 'function') {
+            handleSearch();
+          }
           return;
         }
         setFilter(ModelFilter.clone<TFilter>({
           ...filter, ...filters,
         }));
+        if (typeof handleSearch === 'function') {
+          handleSearch();
+        }
       },
-      [pagination, filter, setFilter, sorter],
+      [sorter, pagination, setFilter, filter, handleSearch],
     );
     return [pagination, sorter, handleTableChange];
   }
@@ -119,6 +130,7 @@ export class TableService {
     setLoading: Dispatch<SetStateAction<boolean>>,
     list?: T[],
     setList?: Dispatch<SetStateAction<T[]>>,
+    handleLoadList?: () => void,
     setT?: Dispatch<SetStateAction<T>>,
     onSuccess?: () => void,
     onError?: (error: AxiosError<T> | Error) => void,
@@ -138,7 +150,14 @@ export class TableService {
               onOk() {
                 setLoading(true);
                 onDelete(t)
-                  .then(onSuccess)
+                  .then(() => {
+                    if (typeof handleLoadList === 'function') {
+                      handleLoadList();
+                    }
+                    if (typeof onSuccess === 'function') {
+                      onSuccess();
+                    }
+                  })
                   .catch((error: AxiosError<T> | Error) => {
                     if (typeof onError === 'function') {
                       onError(error);
@@ -168,7 +187,7 @@ export class TableService {
             });
           };
         },
-        [list, onCancel, onDelete, onError, onSuccess, setList, setLoading, setT],
+        [handleLoadList, list, onCancel, onDelete, onError, onSuccess, setList, setLoading, setT],
       ),
     ];
   }
@@ -177,6 +196,7 @@ export class TableService {
     selectedRowKeys: number[] | string[],
     onDelete: (idList: BatchId) => Promise<void>,
     setLoading: Dispatch<SetStateAction<boolean>>,
+    handleLoadList?: () => void,
     onSuccess?: () => void,
     onError?: (error: AxiosError<any> | Error) => void,
     onCancel?: () => void,
@@ -193,10 +213,15 @@ export class TableService {
             okType: 'danger',
             onOk() {
               setLoading(true);
-              onDelete({
-                ids: selectedRowKeys,
-              })
-                .then(onSuccess)
+              onDelete(selectedRowKeys)
+                .then(() => {
+                  if (typeof handleLoadList === 'function') {
+                    handleLoadList();
+                  }
+                  if (typeof onSuccess === 'function') {
+                    onSuccess();
+                  }
+                })
                 .catch(onError)
                 .finally(() => {
                   setLoading(false);
@@ -204,7 +229,7 @@ export class TableService {
             },
           });
         },
-        [onCancel, onDelete, onError, onSuccess, selectedRowKeys, setLoading],
+        [handleLoadList, onCancel, onDelete, onError, onSuccess, selectedRowKeys, setLoading],
       ),
     ];
   }
@@ -213,10 +238,11 @@ export class TableService {
     list: T[],
     search: TModelFilter,
     setModelFilter: (search: TModelFilter) => void,
-    filterHandler: FilterHandlerType<TModelFilter> = this.defaultFilterHandler): [
+    filterHandler: FilterHandlerType<TModelFilter> = this.defaultFilterHandler,
+  ): [
       T[],
       PaginationProps,
-      SorterResult<TModelFilter>,
+      any,
       (
         newPagination: PaginationConfig,
         filters: Record<string, any>,
@@ -226,9 +252,12 @@ export class TableService {
       () => void,
       () => void,
     ] {
-    const sorter: SorterResult<TModelFilter> = React.useMemo(() => ({
-      field: search.orderBy, order: getOrderType(search), columnKey: search.orderBy, column: undefined,
-    }), [search]);
+    const sorter = React.useMemo(
+      () => ({
+        field: search.orderBy, order: getOrderType(search), columnKey: search.orderBy, column: undefined,
+      }),
+      [search],
+    );
 
     const dataSource: T[] = React.useMemo(() => {
       return filterHandler(list, search);
@@ -237,6 +266,7 @@ export class TableService {
     const handleSearch = React.useCallback(
       () => {
         setModelFilter(ModelFilter.clone<TModelFilter>(search));
+
       },
       [search, setModelFilter],
     );
@@ -327,6 +357,97 @@ export class TableService {
     );
 
     return [dataSource, pagination, sorter, handleTableChange, handleFilter, handleSearch, handleReset];
+  }
+
+  public useModalRowSelection<T extends Model, TMapping extends Model>(
+    rootId: string | number,
+    rootFieldName: string,
+    fieldName: string,
+    currentList?: TMapping[],
+    setCurrentList?: Dispatch<SetStateAction<TMapping[]>>,
+  ): TableRowSelection<T> {
+    const handleChange = React.useCallback(
+      (selectedRowKeys: string[] | number[], selectedRows?: T[]) => {
+        let list: TMapping[] = [...currentList];
+        const newKeys = {};
+        selectedRowKeys.forEach((id: number | string) => {
+          newKeys[id] = true;
+        });
+        list = list.filter((tMapping: TMapping) => {
+          return newKeys[tMapping[`${fieldName}Id`]];
+        });
+        const oldKeys = {};
+        list.forEach((t: TMapping) => {
+          oldKeys[t[`${fieldName}Id`]] = t;
+        });
+        selectedRows.forEach((t: T) => {
+          if (!oldKeys[t.id]) {
+            const newMapping: TMapping = Model.clone<TMapping>({
+              [`${rootFieldName}Id`]: rootId,
+              [`${fieldName}Id`]: t.id,
+              [`${fieldName}`]: t,
+            } as any);
+            list = [
+              ...list,
+              newMapping,
+            ];
+          }
+        });
+        if (typeof setCurrentList === 'function') {
+          setCurrentList(list);
+        }
+      },
+      [currentList, fieldName, rootFieldName, rootId, setCurrentList],
+    );
+
+    const defaultSelectedKeys: number[] | string[] = React.useMemo(
+      () => {
+        if (typeof currentList === 'object' && currentList !== null && currentList instanceof Array) {
+          return currentList.map((t: TMapping) => {
+            return (t[`${fieldName}Id`] as string);
+          });
+        }
+        return [];
+      },
+      [currentList, fieldName],
+    );
+
+    return {
+      selectedRowKeys: defaultSelectedKeys,
+      onChange: handleChange,
+    };
+  }
+
+  public usePaginationAndSorter<TFilter extends ModelFilter>(
+    modelFilter: TFilter,
+    total,
+  ): [
+      PaginationConfig,
+      SorterResult<TFilter>
+    ] {
+    const pagination: PaginationConfig = React.useMemo(
+      () => {
+        return {
+          total,
+          pageSize: modelFilter.take,
+          page: (modelFilter.skip / modelFilter.take) + 1,
+          size: 'small',
+        };
+      },
+      [modelFilter.skip, modelFilter.take, total],
+    );
+
+    const sorter: SorterResult<TFilter> = {
+      column: null,
+      columnKey: modelFilter.orderBy,
+      field: modelFilter.orderBy,
+      order: getOrderType(modelFilter),
+    };
+
+    return [
+      pagination,
+      sorter,
+    ];
   }
 
   private defaultFilterHandler<T extends Model, TSearch extends ModelFilter>(list: T[], search?: TSearch) {
