@@ -50,6 +50,7 @@
     "@storybook/react": "^5.3.14",
     "@types/ckeditor": "^4.9.8",
     "@types/classnames": "^2.2.9",
+    "@types/file-saver": "^2.0.1",
     "@types/lodash": "^4.14.149",
     "@types/react-router": "^5.1.4",
     "@types/react-router-config": "^5.0.1",
