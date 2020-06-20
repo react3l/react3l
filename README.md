@@ -1,44 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+react3l
+-------
 
-## Available Scripts
+React3L v4 has been fully rewritten from scratch. This repository now contains the core code, common services and repositories which are used in almost cases (both for web and mobile)
 
-In the project directory, you can run:
+#### Repository
 
-### `yarn start`
+Repository is the layer which contains all data accession code. (HTTP API, LocalStorage, AsyncStorage, Database, ...).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Most of repository's methods are API calls, which can be Promise or Observable (rxjs).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+If the repository data access task is asynchronous and called in an `useEffect()` hook, it must be unsubscribed and cleaned up in the returned cleanup function. You should use Observable to handle this.
 
-### `yarn test`
+All repositories must extend the base Repository class.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Service
 
-### `yarn build`
+Service is the business layer. It is just a class whose methods are custom hooks or pure functions to handle logic of a specific domain.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+All custom hooks and custom hook calls should respect the Single-Purpose principle. Each service should handle logic for only one domain. Each method should handle only one specific logic of its domain.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### View
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+View is the presentation layer. (It's called `view` on Web and `screen` on Mobile app).
 
-### `yarn eject`
+A view should be a component which contains only JSX and service calls to render.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Model
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Model is the name of all objects in the app:
+- Data access object
+- Data transfer object
+- Business object
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Because Javascript is a dynamic language. It does not require all fields of an object to explicitly have a value. All fields can be safely defined in the class. The property's values of their instances will be assigned in the data access layer where they are defined.
 
-## Learn More
+#### Internationalization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+react3l use `i18next` and `react-i18next` packages for internationalization. We provide a CLI package [i18next-extractor](https://github.com/react3l/i18next-extractor#readme) for managing the translation resources
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Define the languages
+- Extracting the language keys
+- Merging the translated files (JSON format)
+

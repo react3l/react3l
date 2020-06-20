@@ -1,37 +1,31 @@
-import {ColumnWidths, LanguageKeys} from 'react3l';
-import {translate} from 'core/helpers/internationalization';
+export const INITIAL_SKIP: number = 0;
 
-export const generalColumnWidths: ColumnWidths = {
-  index: 50,
-  checkbox: 50,
-  expand: 50,
-  actions: 120,
-};
+export const DEFAULT_TAKE: number = 10;
 
-export const generalLanguageKeys: LanguageKeys = {
-  actions: {
-    label: translate('general.actions.label'),
-    create: translate('general.actions.create'),
-    close: translate('general.actions.close'),
-    add: translate('general.actions.add'),
-    update: translate('general.actions.update'),
-    delete: translate('general.actions.delete'),
-    search: translate('general.actions.search'),
-    filter: translate('general.actions.filter'),
-    import: translate('general.actions.import'),
-    export: translate('general.actions.export'),
-    reset: translate('general.actions.reset'),
-    save: translate('general.actions.save'),
-  },
-  columns: {
-    index: translate('general.columns.index'),
-  },
-  delete: {
-    title: translate('general.delete.title'),
-    content: translate('general.delete.content'),
-  },
-  batchDelete: {
-    title: translate('general.batchDelete.title'),
-    content: translate('general.batchDelete.content'),
-  },
-};
+export const STANDARD_DATE_TIME_REGEX: RegExp = /^[0-9]{4}-[0-9]{2}-[0-9]{2}[\sT][0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,3})?Z?$/;
+
+export const STANDARD_DATE_TIME_FORMAT: string = 'YYYY-MM-DD HH:mm:ss.SSS';
+
+export const STANDARD_DATE_FORMAT: string = 'YYYY-MM-DD';
+
+export const STANDARD_TIME_FORMAT: string = 'HH:mm:ss';
+
+export const DEBOUNCE_TIME_100: number = 100;
+
+export const DEBOUNCE_TIME_150: number = 150;
+
+export const DEBOUNCE_TIME_200: number = 200;
+
+export const DEBOUNCE_TIME_250: number = 250;
+
+export const DEBOUNCE_TIME_300: number = 300;
+
+export const DEBOUNCE_TIME_350: number = 350;
+
+export const DEBOUNCE_TIME_400: number = 400;
+
+export const IMAGE_JPEG: string = 'image/jpeg';
+
+export const IMAGE_PNG: string = 'image/png';
+
+export const IMAGE_GIF: string = 'image/gif';

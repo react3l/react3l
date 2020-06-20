@@ -1,16 +1,27 @@
 module.exports = {
   stories: [
-    '../src/**/*.stories.tsx'
+    '../src/**/*.stories.ts',
+    '../src/**/*.stories.tsx',
   ],
-  webpackFinal: async config => {
-    config.module.rules.push({
-      test: /\.less$/,
-      use: [
-        {loader: 'style-loader'},
-        {loader: 'css-loader', options: {modules: false}},
-        {loader: 'less-loader', options: {javascriptEnabled: true}}
-      ]
-    });
-    return config
-  }
+  webpackFinal(config) {
+    config.module.rules.push(
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+    );
+    config.resolve.extensions.push('.less', '.css', '.scss');
+    return config;
+  },
 };

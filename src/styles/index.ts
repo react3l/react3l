@@ -1,3 +1,2 @@
 import 'antd/dist/antd.less';
-
-import './styles.scss';
+import 'styles/index.scss';
