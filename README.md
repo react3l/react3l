@@ -9,7 +9,7 @@ Repository is the layer which contains all data accession code. (HTTP API, Local
 
 Most of repository's methods are API calls, which can be Promise or Observable (rxjs).
 
-If the repository data access task is asynchronous and called in an `useEffect()` hook, it must be unsubscribed and cleaned up in the returned cleanup function. You should use Observable to handle this.
+If a repository data access task is asynchronous and called in an `useEffect()` hook, it must be unsubscribed and cleaned up in the returned cleanup function. You should use Observable to handle this.
 
 All repositories must extend the base Repository class.
 
