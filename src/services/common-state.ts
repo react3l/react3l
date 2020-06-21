@@ -65,12 +65,12 @@ export class CommonState extends Service {
     state: T,
     setState: Dispatch<SetStateAction<T>>
   ): [
-    <P extends keyof T>(field: P) => (value: T[P]) => void,
-    <P extends keyof T>(field: P) => (value: T[P]) => void,
+    <P extends keyof T>(field: P) => (value: T[P]) => Promise<void> | void,
+    <P extends keyof T>(field: P) => (value: T[P]) => Promise<void> | void,
   ] {
     const handleChangeSimpleField = React.useCallback(
-      <P extends keyof T>(field: P) => async (value: T[P]) => {
-        await setState({
+      <P extends keyof T>(field: P) => (value: T[P]) => {
+        return setState({
           ...state,
           [field]: value,
         });
@@ -79,8 +79,8 @@ export class CommonState extends Service {
     );
 
     const handleChangeRelationField = React.useCallback(
-      <P extends keyof T>(field: P) => async (value: T[P]) => {
-        await setState({
+      <P extends keyof T>(field: P) => (value: T[P]) => {
+        return setState({
           ...state,
           [field]: value,
           [`${field}Id`]: value?.id,
