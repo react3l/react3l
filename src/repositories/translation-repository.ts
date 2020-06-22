@@ -3,7 +3,13 @@ import {TranslationResource} from 'services/translation-service';
 import {AxiosResponse} from 'axios';
 
 export class TranslationRepository extends Repository {
-  public static baseURL: string = '';
+  public static instances: TranslationRepository[] = [];
+
+  public static set baseURL(baseURL: string) {
+    this.instances.forEach((instance: TranslationRepository) => {
+      instance.baseURL = baseURL;
+    });
+  }
 
   constructor() {
     super({});

@@ -1,7 +1,8 @@
 {
   "name": "react3l",
-  "version": "4.0.0-test",
-  "private": true,
+  "version": "4.0.0-test-rc1",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
     "antd": "^4.3.4",
     "axios": "^0.19.2",
@@ -58,13 +59,13 @@
     "typescript": "^3.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prebuild:lib": "rm -rf dist/",
-    "build:lib": "rollup -c",
-    "postbuild:lib": "tsc --project .",
+    "start": "rollup -c -w",
+    "prebuild": "rm -rf dist/",
+    "build": "rollup -c",
+    "postbuild": "run-s cp-package-json generate-declaration",
+    "generate-declaration": "tsc --project .",
+    "cp-package-json": "cp package.json dist/package.json",
     "start-storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook -o build/"
   },
