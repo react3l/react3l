@@ -1,4 +1,4 @@
-import {commonState} from 'services/common-state';
+import {commonState} from 'services/common-service';
 import React from 'react';
 import Switch from 'antd/lib/switch';
 
@@ -7,7 +7,7 @@ export default {
 };
 
 export const useBoolean = () => {
-  const [state, handleToggleState] = commonState.useBoolean(false);
+  const [state, handleToggleState] = commonState.useBooleanState(false);
 
   return (
     <Switch checked={state} onChange={handleToggleState}/>

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Common lodash helpers: debounce, kebabCase, snakeCase and camelCase
 - Translation repository
 - Translation service
-- CommonState service: boolean, HOF Change Handlers
+- CommonService service: boolean, HOF Change Handlers
 - Storybook for web
 
 ### Removed

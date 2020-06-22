@@ -1,8 +1,8 @@
 import {Service} from 'core/service';
 import React, {Dispatch, SetStateAction} from 'react';
 
-export class CommonState extends Service {
-  useBoolean(
+export class CommonService extends Service {
+  useBooleanState(
     initialState: boolean = false,
     callback?: () => any,
     onTrue?: () => any,
@@ -96,4 +96,4 @@ export class CommonState extends Service {
   }
 }
 
-export const commonState: CommonState = new CommonState();
+export const commonState: CommonService = new CommonService();
