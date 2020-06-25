@@ -1,19 +1,13 @@
 import {DEFAULT_TAKE, INITIAL_SKIP} from 'config/consts';
 import {OrderType} from 'core/order-type';
+import {Model} from 'core/model';
 
-export class ModelFilter {
+export class ModelFilter<T extends Model> {
   public skip: number = INITIAL_SKIP;
 
   public take: number = DEFAULT_TAKE;
 
-  public orderBy?: keyof this;
+  public orderBy?: Exclude<T, 'errors'>;
 
   public orderType?: OrderType;
-
-  public static clone<T extends ModelFilter>(ModelFilterClass: new () => T, tFilter?: Partial<T>) {
-    return {
-      ...new ModelFilterClass(),
-      ...(tFilter ?? {}),
-    };
-  }
 }

@@ -13,6 +13,7 @@ export class TranslationRepository extends Repository {
 
   constructor() {
     super({});
+    TranslationRepository.instances.push(this);
     this.baseURL = TranslationRepository.baseURL;
   }
 

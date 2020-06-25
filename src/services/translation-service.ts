@@ -32,7 +32,7 @@ export class TranslationService {
   };
 
   public readonly initTranslation = async () => {
-    return await i18next
+    await i18next
       .use(initReactI18next)
       .init(this.initialOptions)
       .then((translate: TFunction) => {

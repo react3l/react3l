@@ -8,7 +8,8 @@ export * from './order-type';
 
 export * from './primitive-type';
 
+export * from './registered-model';
+
 export * from './repository';
 
 export * from './service';
-
