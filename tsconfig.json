@@ -29,11 +29,11 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "ES5",
-    "useDefineForClassFields": false
+    "target": "ES5"
   },
   "exclude": [
     "./src/**/*.test.ts",

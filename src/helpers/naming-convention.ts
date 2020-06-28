@@ -32,3 +32,7 @@ export function transformKeys(
   }
   return data;
 }
+
+export default {
+  transformKeys,
+};

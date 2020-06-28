@@ -1,7 +1,14 @@
+import 'reflect-metadata';
 import {Model} from 'core/model';
 
 const registeredModels: Record<string, any> = {}
 
+/**
+ * Add a model to a registered list
+ *
+ * @param name string
+ * @constructor
+ */
 export function RegisteredModel<T extends Model>(name?: string) {
   return function (ModelClass: typeof Model) {
     if (new ModelClass() instanceof Model) {

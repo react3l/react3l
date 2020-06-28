@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import {Model} from 'core/model';
 import {RegisteredModel} from 'core/registered-model';
 
-test('Model and decorators work!', () => {
+test('model', () => {
   @RegisteredModel()
   class TestModel extends Model {
     public id?: number;

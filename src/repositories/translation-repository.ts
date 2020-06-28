@@ -22,5 +22,3 @@ export class TranslationRepository extends Repository {
       .then((response: AxiosResponse<TranslationResource>) => response.data);
   }
 }
-
-export const translationRepository: TranslationRepository = new TranslationRepository();

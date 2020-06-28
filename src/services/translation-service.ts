@@ -1,21 +1,46 @@
-import i18next, {InitOptions, TFunction} from 'i18next';
-import {initReactI18next} from 'react-i18next';
-import {translationRepository} from 'repositories/translation-repository';
+import i18next, {i18n, InitOptions, TFunction} from 'i18next';
+import {initReactI18next, useTranslation, UseTranslationOptions} from 'react-i18next';
+import {TranslationRepository} from 'repositories/translation-repository';
 
 export interface TranslationResource {
   [key: string]: string;
 }
 
 export class TranslationService {
-  public static defaultLanguage: string = 'vi';
+  private static _defaultLanguage: string = 'vi';
 
-  public readonly initialOptions: InitOptions = {
+  private static _fallbackLanguage: string = 'vi';
+
+  constructor(translationRepository: TranslationRepository) {
+    this.translationRepository = translationRepository;
+  }
+
+  public static set defaultLanguage(value: string) {
+    this._defaultLanguage = value;
+  }
+
+  public static set fallbackLanguage(value: string) {
+    this._fallbackLanguage = value;
+  }
+
+  public static setLanguage(language: string, fallbackLanguage?: string) {
+    this.defaultLanguage = language;
+    if (fallbackLanguage) {
+      this.fallbackLanguage = fallbackLanguage;
+    }
+  }
+
+  public i18n: i18n = i18next;
+
+  public translationRepository: TranslationRepository;
+
+  public initialOptions: InitOptions = {
     resources: {
       translations: {},
     },
     ns: '',
-    lng: TranslationService.defaultLanguage,
-    fallbackLng: TranslationService.defaultLanguage,
+    lng: TranslationService._defaultLanguage,
+    fallbackLng: TranslationService._fallbackLanguage,
     defaultNS: '',
     nsSeparator: false,
     keySeparator: '.',
@@ -31,8 +56,8 @@ export class TranslationService {
     return key;
   };
 
-  public readonly initTranslation = async () => {
-    await i18next
+  public initTranslation = async () => {
+    await this.i18n
       .use(initReactI18next)
       .init(this.initialOptions)
       .then((translate: TFunction) => {
@@ -40,18 +65,26 @@ export class TranslationService {
       });
   };
 
-  public readonly changeLanguage = async (language: string) => {
-    await i18next.changeLanguage(language);
+  public changeLanguage = async (language: string, resource?: TranslationResource) => {
+    if (resource) {
+      await this.setLanguage(language, resource);
+    }
+    await this.i18n.changeLanguage(language);
   };
 
-  public readonly setLanguage = async (language: string, resource: TranslationResource) => {
-    await i18next.addResource(language, '', '', resource as any);
+  public setLanguage = async (language: string, resource: TranslationResource) => {
+    await this.i18n.addResources(language, '', resource);
   };
 
-  public readonly addLanguage = async (language: string) => {
-    const resource: TranslationResource = await translationRepository.get(language);
+  public addLanguage = async (language: string) => {
+    const resource: TranslationResource = await this.translationRepository.get(language);
     await this.setLanguage(language, resource);
   };
-}
 
-export const translationService: TranslationService = new TranslationService();
+  public useTranslation(options: UseTranslationOptions = {
+    i18n: this.i18n,
+    useSuspense: false,
+  }) {
+    return useTranslation('', options);
+  }
+}

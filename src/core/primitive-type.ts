@@ -1,3 +1,3 @@
 import {Moment} from 'moment';
 
-export type PrimitiveType = undefined | null | string | boolean | number | Moment;
+export type PrimitiveType = null | string | boolean | number | Moment;

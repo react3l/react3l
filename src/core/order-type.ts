@@ -1,1 +1,4 @@
-export type OrderType = 'ASC' | 'DESC';
+/**
+ * Order Type
+ */
+export type OrderType = 'ASC' | 'DESC' | null;

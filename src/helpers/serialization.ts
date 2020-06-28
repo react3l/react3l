@@ -1,15 +1,6 @@
-import {PrimitiveType} from 'core/primitive-type';
 import moment, {Moment} from 'moment';
 import {STANDARD_DATE_TIME_REGEX} from 'config/consts';
-import {standardDateTime} from 'helpers/time';
-
-export interface SerializableObject {
-  [key: string]: PrimitiveType | Array<PrimitiveType | SerializableObject> | SerializableObject;
-}
-
-export type SerializedObject<T extends SerializableObject> = {
-  [P in keyof T]: T[P] extends Moment ? string : T[P];
-}
+import {standardLocalDateTime} from 'helpers/time';
 
 export function serialize<T>(data: T): T {
   if (typeof data === 'object' && data !== null) {
@@ -17,7 +8,7 @@ export function serialize<T>(data: T): T {
      * If data is a moment object
      */
     if (Object.prototype.hasOwnProperty.call(data, '_isAMomentObject')) {
-      return standardDateTime(data as any as Moment) as any as T;
+      return standardLocalDateTime(data as any as Moment) as any as T;
     }
     /**
      * If data is an array
@@ -63,3 +54,8 @@ export function deserialize<T>(data: T): T {
   }
   return data as any as T;
 }
+
+export default {
+  serialize,
+  deserialize,
+};

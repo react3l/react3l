@@ -10,3 +10,8 @@ export function stringToUint8Array(str: string): Uint8Array {
   for (let i = 0; i < length; i++) array[i] = str.charCodeAt(i);
   return array;
 }
+
+export default {
+  base64ToDataURL,
+  stringToUint8Array,
+};
