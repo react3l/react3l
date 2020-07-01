@@ -1,5 +1,5 @@
 import moment, {Moment} from 'moment';
-import {STANDARD_DATE_TIME_REGEX} from 'config/consts';
+import {STANDARD_DATE_TIME_REGEX, TIMEZONE_OFFSET} from 'config/consts';
 import {standardLocalDateTime} from 'helpers/time';
 
 export function serialize<T>(data: T): T {
@@ -32,8 +32,11 @@ export function deserialize<T>(data: T): T {
   /**
    * If data is a date-time value
    */
-  if (typeof data === 'string' && data.match(STANDARD_DATE_TIME_REGEX)) {
-    return moment(data) as any as T;
+  if (typeof data === 'string') {
+    const matches: RegExpMatchArray | null = data.match(STANDARD_DATE_TIME_REGEX);
+    if (matches) {
+      return moment(typeof matches[4] === 'undefined' ? `${data}${TIMEZONE_OFFSET}` : data) as any as T;
+    }
   }
   if (typeof data === 'object' && data !== null) {
     /**

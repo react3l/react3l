@@ -11,16 +11,12 @@ import moment, {Moment} from 'moment';
 export function standardDateTime(m: Moment | Date | string): string {
   return moment(m)
     .utcOffset(0)
-    .format(STANDARD_DATE_TIME_FORMAT)
-    .split(' ')
-    .join('T') + 'Z';
+    .format(STANDARD_DATE_TIME_FORMAT);
 }
 
 export function standardLocalDateTime(m: Moment | Date | string): string {
   return moment(m)
-    .format(STANDARD_DATE_TIME_FORMAT)
-    .split(' ')
-    .join('T');
+    .format(STANDARD_DATE_TIME_FORMAT);
 }
 
 /**
@@ -33,7 +29,7 @@ export function standardLocalDateTime(m: Moment | Date | string): string {
  * @return string
  */
 export function countTime(from: Date, to: Date) {
-  const time: number = to.getTime() - from.getTime();
+  const time: number = Math.abs(to.getTime() - from.getTime());
   return moment(time).utcOffset(0).format(STANDARD_TIME_FORMAT);
 }
 

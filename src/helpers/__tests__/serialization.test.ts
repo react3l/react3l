@@ -1,9 +1,10 @@
 import moment, {Moment} from 'moment';
 import {deserialize, serialize} from 'helpers/serialization';
 import {standardDateTime} from 'helpers/time';
+import {TIMEZONE_OFFSET} from 'config/consts';
 
 test('serialize works', () => {
-  const dateValue: string = '2020-06-28T17:23:54.235Z';
+  const dateValue: string = '2020-06-28T17:23:54.235' + TIMEZONE_OFFSET;
 
   interface TestInterface {
     name: string;
