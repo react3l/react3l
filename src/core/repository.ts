@@ -1,6 +1,12 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {Axios} from 'axios-observable';
 
+export interface RepositoryInterceptors {
+  http: number[];
+
+  httpObservable: number[];
+}
+
 /**
  * This class aims to include all data access method for only one business domain
  */
@@ -20,6 +26,16 @@ export class Repository {
    */
   public static errorInterceptor: (error: AxiosError) => any | Promise<any>;
 
+  protected currentRequestInterceptors: RepositoryInterceptors = {
+    http: [],
+    httpObservable: [],
+  };
+
+  protected currentResponseInterceptors: RepositoryInterceptors = {
+    http: [],
+    httpObservable: [],
+  };
+
   /**
    * HTTP Promise instance
    */
@@ -38,16 +54,28 @@ export class Repository {
      * Add request interceptor into both instances
      */
     if (typeof Repository.requestInterceptor === 'function') {
-      this.http.interceptors.request.use(Repository.requestInterceptor);
-      this.httpObservable.interceptors.request.use(Repository.requestInterceptor);
+      this.currentRequestInterceptors = {
+        http: [
+          this.http.interceptors.request.use(Repository.requestInterceptor),
+        ],
+        httpObservable: [
+          this.httpObservable.interceptors.request.use(Repository.requestInterceptor),
+        ],
+      }
     }
 
     /**
      * Add response and error interceptors into both instances
      */
     if (typeof Repository.responseInterceptor === 'function') {
-      this.http.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor);
-      this.httpObservable.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor);
+      this.currentResponseInterceptors = {
+        http: [
+          this.http.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor),
+        ],
+        httpObservable: [
+          this.httpObservable.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor),
+        ],
+      };
     }
 
     /**
@@ -67,4 +95,32 @@ export class Repository {
     this.http.defaults.baseURL = baseURL;
     this.httpObservable.defaults.baseURL = baseURL;
   }
+
+  public ejectInterceptor = (type: 'request' | 'response' | 'both') => {
+    switch (type) {
+      case 'request':
+        this.currentRequestInterceptors.http.forEach((id) => {
+          this.http.interceptors.request.eject(id);
+        });
+        this.currentRequestInterceptors.httpObservable.forEach((id) => {
+          this.httpObservable.interceptors.request.eject(id);
+        });
+        break;
+
+      case 'response':
+        this.currentResponseInterceptors.http.forEach((id) => {
+          this.http.interceptors.response.eject(id);
+        });
+        this.currentResponseInterceptors.httpObservable.forEach((id) => {
+          this.httpObservable.interceptors.response.eject(id);
+        });
+        break;
+
+      case 'both':
+      default:
+        this.ejectInterceptor('request');
+        this.ejectInterceptor('response');
+        break;
+    }
+  };
 }

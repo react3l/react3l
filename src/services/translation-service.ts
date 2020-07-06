@@ -1,35 +1,12 @@
 import i18next, {i18n, InitOptions, TFunction} from 'i18next';
 import {initReactI18next, useTranslation, UseTranslationOptions} from 'react-i18next';
-import {TranslationRepository} from 'repositories/translation-repository';
+import {translationRepository, TranslationRepository} from 'repositories/translation-repository';
 
 export interface TranslationResource {
   [key: string]: string;
 }
 
 export class TranslationService {
-  private static _defaultLanguage: string = 'vi';
-
-  private static _fallbackLanguage: string = 'vi';
-
-  constructor(translationRepository: TranslationRepository) {
-    this.translationRepository = translationRepository;
-  }
-
-  public static set defaultLanguage(value: string) {
-    this._defaultLanguage = value;
-  }
-
-  public static set fallbackLanguage(value: string) {
-    this._fallbackLanguage = value;
-  }
-
-  public static setLanguage(language: string, fallbackLanguage?: string) {
-    this.defaultLanguage = language;
-    if (fallbackLanguage) {
-      this.fallbackLanguage = fallbackLanguage;
-    }
-  }
-
   public i18n: i18n = i18next;
 
   public translationRepository: TranslationRepository;
@@ -51,6 +28,29 @@ export class TranslationService {
       suffix: '}}',
     },
   };
+
+  constructor(translationRepository: TranslationRepository) {
+    this.translationRepository = translationRepository;
+  }
+
+  private static _defaultLanguage: string = 'vi';
+
+  public static set defaultLanguage(value: string) {
+    this._defaultLanguage = value;
+  }
+
+  private static _fallbackLanguage: string = 'vi';
+
+  public static set fallbackLanguage(value: string) {
+    this._fallbackLanguage = value;
+  }
+
+  public static setLanguage(language: string, fallbackLanguage?: string) {
+    this.defaultLanguage = language;
+    if (fallbackLanguage) {
+      this.fallbackLanguage = fallbackLanguage;
+    }
+  }
 
   public translate: TFunction = (key: string) => {
     return key;
@@ -88,3 +88,5 @@ export class TranslationService {
     return useTranslation('', options);
   }
 }
+
+export const translationService: TranslationService = new TranslationService(translationRepository);
