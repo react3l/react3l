@@ -1,7 +1,8 @@
+import moment from 'moment';
+
 /**
  * Filter constants
  */
-import moment from 'moment';
 
 export const INITIAL_SKIP: number = 0;
 
@@ -41,6 +42,14 @@ export const DEBOUNCE_TIME_300: number = 300;
 export const DEBOUNCE_TIME_350: number = 350;
 
 export const DEBOUNCE_TIME_400: number = 400;
+
+export const DEBOUNCE_TIME_450: number = 450;
+
+export const DEBOUNCE_TIME_500: number = 500;
+
+export const DEBOUNCE_TIME_550: number = 550;
+
+export const DEBOUNCE_TIME_600: number = 600;
 
 /**
  * Image Mime Types

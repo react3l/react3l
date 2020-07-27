@@ -31,8 +31,8 @@
     "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "target": "ES5"
   },
   "exclude": [
