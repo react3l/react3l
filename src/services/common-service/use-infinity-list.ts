@@ -4,6 +4,8 @@ import {forkJoin, Observable, Subscription} from 'rxjs';
 import {finalize} from 'rxjs/operators';
 import {DEFAULT_TAKE} from 'config';
 
+export type List<T> = Record<number, T[]>;
+
 export interface ListData<T extends Model, TFilter extends ModelFilter> {
   refreshing: boolean;
 
@@ -11,7 +13,7 @@ export interface ListData<T extends Model, TFilter extends ModelFilter> {
 
   filter: TFilter;
 
-  list: Record<number, T[]>;
+  list: List<T>;
 
   total: number;
 }
@@ -45,10 +47,6 @@ export const ACTION_RESET_FILTER: string = 'ACTION_RESET_FILTER';
 export const ACTION_LOAD_MORE_ITEMS: string = 'ACTION_LOAD_MORE_ITEMS';
 
 export const ACTION_TURN_OFF_LOADING: string = 'ACTION_TURN_OFF_LOADING';
-
-export const ACTION_TURN_ON_LOADING: string = 'ACTION_TURN_ON_LOADING';
-
-export const ACTION_TURN_ON_REFRESHING: string = 'ACTION_TURN_ON_REFRESHING';
 
 export function listReducer<T extends Model,
   TFilter extends ModelFilter,
@@ -97,7 +95,7 @@ export function listReducer<T extends Model,
           skip: 0,
           take: DEFAULT_TAKE,
         },
-        loading: false,
+        loading: true,
         refreshing: true,
       };
 
@@ -128,20 +126,6 @@ export function listReducer<T extends Model,
         ...state,
         loading: false,
         refreshing: false,
-      };
-
-    case ACTION_TURN_ON_LOADING:
-      return {
-        ...state,
-        loading: true,
-        refreshing: false,
-      };
-
-    case ACTION_TURN_ON_REFRESHING:
-      return {
-        ...state,
-        loading: false,
-        refreshing: true,
       };
 
     default:
@@ -190,8 +174,8 @@ export function useInfinityList<T extends Model,
     {
       list: {},
       filter: new FilterClass(),
-      loading: false,
-      refreshing: false,
+      loading: true,
+      refreshing: true,
       total: 0,
     },
   );
@@ -222,10 +206,6 @@ export function useInfinityList<T extends Model,
 
   React.useEffect(
     () => {
-      dispatch({
-        type: ACTION_TURN_ON_REFRESHING,
-      });
-
       const subscription: Subscription = handleLoadList()
         // Subscription
         .pipe(
@@ -268,9 +248,6 @@ export function useInfinityList<T extends Model,
         !loading
       ) {
         dispatch({
-          type: ACTION_TURN_ON_LOADING,
-        });
-        dispatch({
           type: ACTION_LOAD_MORE_ITEMS,
         });
       }
@@ -280,9 +257,6 @@ export function useInfinityList<T extends Model,
 
   const handleSearch = React.useCallback(
     (searchValue: string) => {
-      dispatch({
-        type: ACTION_TURN_ON_LOADING,
-      });
       dispatch({
         type: ACTION_SEARCH_LIST,
         searchValue,

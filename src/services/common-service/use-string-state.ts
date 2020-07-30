@@ -2,6 +2,7 @@ import React, {Dispatch, Reducer} from 'react';
 
 export interface StringStateAction {
   type: 'clear' | 'input';
+
   value?: string;
 }
 
@@ -22,7 +23,5 @@ export function useStringState(initialState: string): [
   string,
   Dispatch<StringStateAction>,
 ] {
-  const [state, dispatch] = React.useReducer<Reducer<string, StringStateAction>>(stringStateReducer, initialState);
-
-  return [state, dispatch];
+  return React.useReducer<Reducer<string, StringStateAction>>(stringStateReducer, initialState);
 }

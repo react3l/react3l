@@ -1,23 +1,26 @@
-import i18next, {i18n, InitOptions, TFunction} from 'i18next';
-import {initReactI18next, useTranslation, UseTranslationOptions} from 'react-i18next';
-import {translationRepository, TranslationRepository} from 'repositories/translation-repository';
+import i18next, {InitOptions, TFunction} from 'i18next';
+import {initReactI18next} from 'react-i18next';
 
 export interface TranslationResource {
   [key: string]: string;
 }
 
-export class TranslationService {
-  public i18n: i18n = i18next;
+export enum Language {
+  vi = 'vi',
 
-  public translationRepository: TranslationRepository;
+  en = 'en',
+}
+
+export class TranslationService {
+  public translate: TFunction = (key: string): string => key;
 
   public initialOptions: InitOptions = {
     resources: {
       translations: {},
     },
     ns: '',
-    lng: TranslationService._defaultLanguage,
-    fallbackLng: TranslationService._fallbackLanguage,
+    lng: Language.vi,
+    fallbackLng: Language.vi,
     defaultNS: '',
     nsSeparator: false,
     keySeparator: '.',
@@ -29,35 +32,15 @@ export class TranslationService {
     },
   };
 
-  constructor(translationRepository: TranslationRepository) {
-    this.translationRepository = translationRepository;
-  }
-
-  private static _defaultLanguage: string = 'vi';
-
-  public static set defaultLanguage(value: string) {
-    this._defaultLanguage = value;
-  }
-
-  private static _fallbackLanguage: string = 'vi';
-
-  public static set fallbackLanguage(value: string) {
-    this._fallbackLanguage = value;
-  }
-
-  public static setLanguage(language: string, fallbackLanguage?: string) {
-    this.defaultLanguage = language;
-    if (fallbackLanguage) {
-      this.fallbackLanguage = fallbackLanguage;
+  constructor(defaultLanguage: string = Language.vi) {
+    if (defaultLanguage) {
+      this.initialOptions.lng = defaultLanguage;
+      this.initialOptions.fallbackLng = defaultLanguage;
     }
   }
 
-  public translate: TFunction = (key: string) => {
-    return key;
-  };
-
   public initTranslation = async () => {
-    await this.i18n
+    await i18next
       .use(initReactI18next)
       .init(this.initialOptions)
       .then((translate: TFunction) => {
@@ -67,26 +50,18 @@ export class TranslationService {
 
   public changeLanguage = async (language: string, resource?: TranslationResource) => {
     if (resource) {
-      await this.setLanguage(language, resource);
+      await this.addResource(language, resource);
     }
-    await this.i18n.changeLanguage(language);
+    await i18next.changeLanguage(language);
   };
 
   public setLanguage = async (language: string, resource: TranslationResource) => {
-    await this.i18n.addResources(language, '', resource);
+    await i18next.addResources(language, '', resource);
   };
 
-  public addLanguage = async (language: string) => {
-    const resource: TranslationResource = await this.translationRepository.get(language);
-    await this.setLanguage(language, resource);
-  };
-
-  public useTranslation(options: UseTranslationOptions = {
-    i18n: this.i18n,
-    useSuspense: false,
-  }) {
-    return useTranslation('', options);
+  public addResource = async (language: string, resource: TranslationResource) => {
+    await i18next.addResources(language, '', resource);
   }
 }
 
-export const translationService: TranslationService = new TranslationService(translationRepository);
+export const translationService: TranslationService = new TranslationService();

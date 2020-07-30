@@ -5,8 +5,8 @@ export function numberWithCommas(x: number): string {
   return '';
 }
 
-export function isValidNumber(v: any): boolean {
-  return typeof v === 'number' && !Number.isNaN(v);
+export function isValidNumber(value: any): boolean {
+  return typeof value === 'number' && !Number.isNaN(value);
 }
 
 export default {

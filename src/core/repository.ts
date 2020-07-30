@@ -11,6 +11,8 @@ export interface RepositoryInterceptors {
  * This class aims to include all data access method for only one business domain
  */
 export class Repository {
+  protected static instances: Repository[] = [];
+
   /**
    * Interceptor to handle API Request
    */
@@ -49,6 +51,7 @@ export class Repository {
   constructor(httpConfig: AxiosRequestConfig, baseURL?: string) {
     this.http = axios.create(httpConfig);
     this.httpObservable = Axios.create(httpConfig);
+    Repository.instances.push(this);
 
     /**
      * Add request interceptor into both instances
@@ -117,10 +120,12 @@ export class Repository {
         break;
 
       case 'both':
-      default:
         this.ejectInterceptor('request');
         this.ejectInterceptor('response');
         break;
+
+      default:
+        throw new Error('Param accept only request | response | both');
     }
   };
 }

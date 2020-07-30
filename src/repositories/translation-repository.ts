@@ -1,16 +1,9 @@
 import {Repository} from 'core/repository';
 import {TranslationResource} from 'services/translation-service';
-import {AxiosResponse} from 'axios';
+import {AxiosRequestConfig, AxiosResponse} from 'axios';
 
 export class TranslationRepository extends Repository {
   public static instances: TranslationRepository[] = [];
-
-  constructor() {
-    super({});
-    TranslationRepository.instances.push(this);
-    this.baseURL = TranslationRepository.baseURL;
-    this.ejectInterceptor('both');
-  }
 
   public static set baseURL(baseURL: string) {
     this.instances.forEach((instance: TranslationRepository) => {
@@ -18,7 +11,19 @@ export class TranslationRepository extends Repository {
     });
   }
 
-  public responseInterceptor = (response: AxiosResponse) => response;
+  public static get baseURL(): string {
+    if (this.instances.length > 0) {
+      return this.instances[0].http.defaults.baseURL;
+    }
+  }
+
+  public responseInterceptor = (response: AxiosResponse): any => response;
+
+  constructor(httpConfig: AxiosRequestConfig = {}) {
+    super(httpConfig);
+    TranslationRepository.instances.push(this);
+    this.ejectInterceptor('both');
+  }
 
   public get = (language: string): Promise<TranslationResource> => {
     return this.http.get<TranslationResource>(`${language}.json`)
