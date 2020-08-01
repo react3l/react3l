@@ -13,6 +13,14 @@ export interface RepositoryInterceptors {
 export class Repository {
   protected static instances: Repository[] = [];
 
+  public static addRepository(repository: Repository) {
+    this.instances.push(repository);
+  }
+
+  public static getInstances(): Repository[] {
+    return this.instances;
+  }
+
   /**
    * Interceptor to handle API Request
    */
@@ -51,7 +59,7 @@ export class Repository {
   constructor(httpConfig: AxiosRequestConfig, baseURL?: string) {
     this.http = axios.create(httpConfig);
     this.httpObservable = Axios.create(httpConfig);
-    Repository.instances.push(this);
+    Repository.addRepository(this);
 
     /**
      * Add request interceptor into both instances
