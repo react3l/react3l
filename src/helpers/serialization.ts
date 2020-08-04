@@ -35,7 +35,7 @@ export function deserialize<T>(data: T): T {
   if (typeof data === 'string') {
     const matches: RegExpMatchArray | null = data.match(STANDARD_DATE_TIME_REGEX);
     if (matches) {
-      return moment(typeof matches[4] === 'undefined' ? `${data}${TIMEZONE_OFFSET}` : data) as any as T;
+      return moment(typeof matches[4] === 'undefined' ? `${data}+00:00` : data) as any as T;
     }
   }
   if (typeof data === 'object' && data !== null) {
