@@ -16,8 +16,32 @@
     "build": "NODE_ENV=production rollup -c",
     "postbuild": "run-s cp-package-json disable-emit"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint --fix src/**/*.{ts,tsx}"
+    }
+  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "no-debugger": "error",
+      "no-console": "error",
+      "no-useless-return": "error",
+      "no-useless-constructor": "error",
+      "no-useless-call": "error",
+      "no-useless-computed-key": "error",
+      "no-useless-concat": "error",
+      "no-use-before-define": "error",
+      "no-useless-rename": "error"
+    }
   },
   "browserslist": {
     "production": [
@@ -68,6 +92,7 @@
     "babel-plugin-macros": "^2.8.0",
     "commander": "^5.1.0",
     "css-loader": "^3.6.0",
+    "husky": "^4.2.5",
     "i18next-extractor": "^0.3.4",
     "less": "^3.11.3",
     "less-loader": "^6.1.1",

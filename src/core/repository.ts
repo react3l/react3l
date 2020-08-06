@@ -72,7 +72,7 @@ export class Repository {
         httpObservable: [
           this.httpObservable.interceptors.request.use(Repository.requestInterceptor),
         ],
-      }
+      };
     }
 
     /**

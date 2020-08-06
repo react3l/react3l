@@ -15,6 +15,7 @@ export class TranslationRepository extends Repository {
     if (this.instances.length > 0) {
       return this.instances[0].http.defaults.baseURL;
     }
+    return null;
   }
 
   public responseInterceptor = (response: AxiosResponse): any => response;

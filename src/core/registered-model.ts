@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {Model} from 'core/model';
 
-const registeredModels: Record<string, any> = {}
+const registeredModels: Record<string, any> = {};
 
 /**
  * Add a model to a registered list
@@ -17,7 +17,7 @@ export function RegisteredModel<T extends Model>(name?: string) {
       return ModelClass;
     }
     throw new Error(`Class ${ModelClass.name} does not extend the base Model class`);
-  }
+  };
 }
 
 export function getModel(name: string) {

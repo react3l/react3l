@@ -1,5 +1,5 @@
 import moment, {Moment} from 'moment';
-import {STANDARD_DATE_TIME_REGEX, TIMEZONE_OFFSET} from 'config/consts';
+import {STANDARD_DATE_TIME_REGEX} from 'config/consts';
 import {standardLocalDateTime} from 'helpers/time';
 
 export function serialize<T>(data: T): T {
@@ -22,7 +22,7 @@ export function serialize<T>(data: T): T {
     return Object.fromEntries(
       Object
         .entries(data)
-        .map(([key, value]) => [key, serialize(value)])
+        .map(([key, value]) => [key, serialize(value)]),
     ) as any as T;
   }
   return data as any as T;
