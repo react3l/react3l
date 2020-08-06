@@ -1,4 +1,24 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Reducer} from 'react';
+
+export interface BooleanAction {
+  type: 'toggle' | 'turn-on' | 'turn-off';
+}
+
+function booleanReducer(state: boolean, action: BooleanAction) {
+  switch (action.type) {
+    case 'toggle':
+      return !state;
+
+    case 'turn-on':
+      return true;
+
+    case 'turn-off':
+      return false;
+
+    default:
+      return state;
+  }
+}
 
 export function useBooleanState(
   initialState: boolean = false,
@@ -10,23 +30,26 @@ export function useBooleanState(
   () => void,
   () => void,
   () => void,
-  Dispatch<SetStateAction<boolean>>,
 ] {
-  const [state, setState] = React.useState<boolean>(initialState);
+  const [state, dispatch] = React.useReducer<Reducer<boolean, BooleanAction>>(booleanReducer, initialState);
 
   const handleToggleState = React.useCallback(
     () => {
-      setState(!state);
+      dispatch({
+        type: 'toggle',
+      });
       if (typeof callback === 'function') {
         callback();
       }
     },
-    [callback, state]
+    [callback]
   );
 
   const handleSetTrue = React.useCallback(
     () => {
-      setState(true);
+      dispatch({
+        type: 'turn-on',
+      });
       if (typeof callback === 'function') {
         callback();
       }
@@ -39,7 +62,9 @@ export function useBooleanState(
 
   const handleSetFalse = React.useCallback(
     () => {
-      setState(true);
+      dispatch({
+        type: 'turn-off',
+      });
       if (typeof callback === 'function') {
         callback();
       }
@@ -55,6 +80,5 @@ export function useBooleanState(
     handleToggleState,
     handleSetTrue,
     handleSetFalse,
-    setState,
   ];
 }
