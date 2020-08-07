@@ -4,7 +4,8 @@ import {useStringState} from './use-string-state';
 import {useSpecificField} from './use-specific-field';
 import {useInfinityList} from './use-infinity-list';
 import {useNumberState} from './use-number-state';
-import {useSubscription} from 'services/common-service/use-subscription';
+import {useSubscription} from './use-subscription';
+import {useListState} from './use-list-state';
 
 export const commonService = {
   useBooleanState,
@@ -20,4 +21,6 @@ export const commonService = {
   useNumberState,
 
   useSubscription,
-}
+
+  useListState,
+};
