@@ -42,7 +42,7 @@ export function useBooleanState(
         callback();
       }
     },
-    [callback]
+    [callback],
   );
 
   const handleSetTrue = React.useCallback(

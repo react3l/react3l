@@ -3,7 +3,7 @@ import {jsonHelper} from 'helpers/json';
 test('flatten works', () => {
   const json = {
     test: {
-      key: 'value'
+      key: 'value',
     },
   };
   const flattenJSON = jsonHelper.flatten(json);

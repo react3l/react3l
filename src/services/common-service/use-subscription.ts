@@ -11,7 +11,7 @@ export function useSubscription() {
     () => {
       return function cleanup() {
         subscription.unsubscribe();
-      }
+      };
     },
     [subscription],
   );

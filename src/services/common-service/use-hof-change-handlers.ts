@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 
 export function useHOFChangeHandlers<T extends Record<string, any>>(
   state: T,
-  setState: Dispatch<SetStateAction<T>>
+  setState: Dispatch<SetStateAction<T>>,
 ): [
   <P extends keyof T>(field: P) => (value: T[P]) => Promise<void> | void,
   <P extends keyof T>(field: P) => (value: T[P]) => Promise<void> | void,
@@ -14,7 +14,7 @@ export function useHOFChangeHandlers<T extends Record<string, any>>(
         [field]: value,
       });
     },
-    [setState, state]
+    [setState, state],
   );
 
   const handleChangeRelationField = React.useCallback(
@@ -26,7 +26,7 @@ export function useHOFChangeHandlers<T extends Record<string, any>>(
       });
     },
     [setState, state],
-  )
+  );
 
   return [
     handleChangeSimpleField,

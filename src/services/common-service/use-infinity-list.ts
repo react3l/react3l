@@ -184,7 +184,7 @@ export function useInfinityList<T extends Model,
     () => {
       return [].concat(...Object.values(list));
     },
-    [list]
+    [list],
   );
 
   const handleLoadList = React.useCallback(
@@ -201,7 +201,7 @@ export function useInfinityList<T extends Model,
           )
       );
     },
-    [filter, getCount, getList]
+    [filter, getCount, getList],
   );
 
   React.useEffect(
@@ -227,7 +227,7 @@ export function useInfinityList<T extends Model,
         subscription.unsubscribe();
       };
     },
-    [handleLoadList]
+    [handleLoadList],
   );
 
   const handleRefresh = React.useCallback(
@@ -236,7 +236,7 @@ export function useInfinityList<T extends Model,
         type: ACTION_REFRESH_LIST,
       });
     },
-    []
+    [],
   );
 
   const handleLoadMore = React.useCallback(
@@ -252,7 +252,7 @@ export function useInfinityList<T extends Model,
         });
       }
     },
-    [arrayList.length, loading, total]
+    [arrayList.length, loading, total],
   );
 
   const handleSearch = React.useCallback(
