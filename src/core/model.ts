@@ -12,7 +12,17 @@ export class Model {
     return instance;
   }
 
+  /**
+   * Backend validation errors
+   *
+   * @type {ErrorMap<Model>}
+   */
   public errors?: ErrorMap<Model>;
 
+  /**
+   * Model fields
+   *
+   * @type {any}
+   */
   [key: string]: any;
 }

@@ -39,10 +39,13 @@ export class TranslationService {
     }
   }
 
-  public initTranslation = async () => {
+  public initTranslation = async (options?: InitOptions) => {
     await i18next
       .use(initReactI18next)
-      .init(this.initialOptions)
+      .init({
+        ...this.initialOptions,
+        ...(options ?? {}),
+      })
       .then((translate: TFunction) => {
         this.translate = translate;
       });

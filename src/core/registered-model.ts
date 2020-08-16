@@ -1,12 +1,17 @@
 import 'reflect-metadata';
 import {Model} from 'core/model';
 
-const registeredModels: Record<string, any> = {};
+/**
+ * Store all registered models
+ *
+ * @type {Record<string, Model>}
+ */
+const registeredModels: Record<string, Model> = {};
 
 /**
  * Add a model to a registered list
  *
- * @param name string
+ * @param name {string}
  * @constructor
  */
 export function RegisteredModel<T extends Model>(name?: string) {
@@ -20,10 +25,19 @@ export function RegisteredModel<T extends Model>(name?: string) {
   };
 }
 
+/**
+ * Get a model by name
+ * @param name {string}
+ *
+ * @return {Model}
+ */
 export function getModel(name: string) {
   return registeredModels[name];
 }
 
-export function getAllModels() {
+/**
+ * Get all registered models
+ */
+export function getAllModels(): Record<string, Model> {
   return registeredModels;
 }

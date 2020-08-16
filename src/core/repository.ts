@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {Axios} from 'axios-observable';
+import {Axios} from '@react3l/axios-observable';
 
 export interface RepositoryInterceptors {
   http: number[];
@@ -11,36 +11,69 @@ export interface RepositoryInterceptors {
  * This class aims to include all data access method for only one business domain
  */
 export class Repository {
+  /**
+   * Store all repository instances
+   *
+   * @protected
+   * @type {Repository[]}
+   */
   protected static instances: Repository[] = [];
 
-  public static addRepository(repository: Repository) {
+  /**
+   * Add a repository to static instance array
+   * @param repository {Repository}
+   */
+  public static addRepository(repository: Repository): void {
     this.instances.push(repository);
   }
 
+  /**
+   * Get all repository instances
+   *
+   * @return {Repository[]}
+   */
   public static getInstances(): Repository[] {
     return this.instances;
   }
 
   /**
    * Interceptor to handle API Request
+   *
+   * @param config {AxiosRequestConfig}
+   * @return {AxiosRequestConfig | Promise<AxiosRequestConfig>}
    */
   public static requestInterceptor: (config: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
 
   /**
    * Interceptor to handle API Response
+   *
+   * @param response {AxiosResponse}
+   * @return {AxiosResponse | Promise<AxiosResponse>}
    */
   public static responseInterceptor: (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
 
   /**
    * Interceptor to handle API Call errors
+   *
+   * @param error {AxiosError}
+   * @throws {AxiosError}
+   * @return {void | Promise<void>}
    */
   public static errorInterceptor: (error: AxiosError) => any | Promise<any>;
 
+  /**
+   * Store current request interceptors
+   * @protected
+   */
   protected currentRequestInterceptors: RepositoryInterceptors = {
     http: [],
     httpObservable: [],
   };
 
+  /**
+   * Store current response interceptors
+   * @protected
+   */
   protected currentResponseInterceptors: RepositoryInterceptors = {
     http: [],
     httpObservable: [],
@@ -48,22 +81,30 @@ export class Repository {
 
   /**
    * HTTP Promise instance
+   *
+   * @type {AxiosInstance}
    */
   protected http: AxiosInstance;
 
   /**
    * HTTP Observable instance
+   *
+   * @type {Axios}
    */
   protected httpObservable: Axios;
 
+  /**
+   * Construct a repository
+   * @param httpConfig {AxiosRequestConfig}
+   * @param baseURL {string}
+   */
   constructor(httpConfig: AxiosRequestConfig, baseURL?: string) {
     this.http = axios.create(httpConfig);
     this.httpObservable = Axios.create(httpConfig);
+
     Repository.addRepository(this);
 
-    /**
-     * Add request interceptor into both instances
-     */
+    // Add request interceptor into both instances
     if (typeof Repository.requestInterceptor === 'function') {
       this.currentRequestInterceptors = {
         http: [
@@ -75,9 +116,7 @@ export class Repository {
       };
     }
 
-    /**
-     * Add response and error interceptors into both instances
-     */
+    // Add response and error interceptors into both instances
     if (typeof Repository.responseInterceptor === 'function') {
       this.currentResponseInterceptors = {
         http: [
@@ -89,9 +128,7 @@ export class Repository {
       };
     }
 
-    /**
-     * Set baseURL in constructor
-     */
+    // Set baseURL in constructor
     if (typeof baseURL === 'string') {
       this.baseURL = baseURL;
     }
@@ -100,13 +137,17 @@ export class Repository {
   /**
    * Set baseURL for both http instances of this repository
    *
-   * @param baseURL
+   * @param baseURL {string}
    */
   public set baseURL(baseURL: string) {
     this.http.defaults.baseURL = baseURL;
     this.httpObservable.defaults.baseURL = baseURL;
   }
 
+  /**
+   * Eject an interceptor
+   * @param type {'request' | 'response' | 'both'}
+   */
   public ejectInterceptor = (type: 'request' | 'response' | 'both') => {
     switch (type) {
       case 'request':

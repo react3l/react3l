@@ -1,6 +1,6 @@
 {
   "name": "react3l",
-  "version": "4.0.0-test-rc38",
+  "version": "4.0.0-test-rc42",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -15,6 +15,9 @@
     "prebuild": "run-s rm-old-build enable-emit",
     "build": "NODE_ENV=production rollup -c",
     "postbuild": "run-s cp-package-json disable-emit"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "husky": {
     "hooks": {
@@ -55,19 +58,18 @@
       "last 1 safari version"
     ]
   },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "axios-observable": "^1.1.3",
-    "i18next": "^19.5.0",
-    "lodash": "^4.17.15",
-    "moment": "^2.26.0",
-    "path": "^0.12.7",
-    "react": "^16.13.1",
-    "react-i18next": "^11.7.0",
-    "reactn": "^2.2.7",
-    "redux": "^4.0.5",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+  "peerDependencies": {
+    "@react3l/axios-observable": "*",
+    "axios": "*",
+    "i18next": "*",
+    "lodash": "*",
+    "moment": "*",
+    "path": "*",
+    "react": "*",
+    "react-i18next": "*",
+    "reactn": "*",
+    "reflect-metadata": "*",
+    "rxjs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

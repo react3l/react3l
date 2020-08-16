@@ -32,7 +32,7 @@ const inputFiles = [];
 
 findTSFiles("src", inputFiles);
 
-const dependencies = Object.keys(pkg.dependencies);
+const dependencies = Object.keys(pkg.dependencies || {});
 
 export default {
   external: (id) => {
