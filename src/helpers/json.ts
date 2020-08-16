@@ -1,13 +1,15 @@
+import {Typing} from 'helpers/typing';
+
 export class JSONHelper {
   sort(json: Record<string, any>): Record<string, any> {
     const result: Record<string, any> = {};
-    if (typeof json === 'object' && json !== null) {
+    if (Typing.isObject(json)) {
       Object
         .keys(json)
         .sort()
         .forEach((key: string) => {
           result[key] = json[key];
-          if (typeof result[key] === 'object' && result[key] !== null) {
+          if (Typing.isObject(result[key])) {
             result[key] = this.sort(result[key]);
           }
         });
@@ -39,13 +41,13 @@ export class JSONHelper {
   }
 
   flatten(json: { [key: string]: any }, parentKey: string = '') {
-    if (typeof json === 'object' && json !== null) {
+    if (Typing.isObject(json)) {
       let result: Record<string, any> = {};
       Object
         .keys(json)
         .forEach((key: string) => {
           const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
-          if (typeof json[key] !== 'object' || json[key] === null) {
+          if (Typing.isObject(json[key])) {
             result[combinedKey] = json[key];
           } else {
             result = {

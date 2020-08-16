@@ -12,6 +12,7 @@ const registeredModels: Record<string, Model> = {};
  * Add a model to a registered list
  *
  * @param name {string}
+ *
  * @constructor
  */
 export function RegisteredModel<T extends Model>(name?: string) {
@@ -27,6 +28,7 @@ export function RegisteredModel<T extends Model>(name?: string) {
 
 /**
  * Get a model by name
+ *
  * @param name {string}
  *
  * @return {Model}
@@ -37,6 +39,8 @@ export function getModel(name: string) {
 
 /**
  * Get all registered models
+ *
+ * @return {Record<string, Model>}
  */
 export function getAllModels(): Record<string, Model> {
   return registeredModels;

@@ -35,13 +35,6 @@
     "strictPropertyInitialization": false,
     "target": "ES5"
   },
-  "exclude": [
-    "./src/**/*.test.ts",
-    "./src/**/*.test.tsx",
-    "./src/**/*.stories.ts",
-    "./src/**/*.stories.tsx",
-    "./src/**/*.d.ts"
-  ],
   "include": [
     "./src/"
   ]

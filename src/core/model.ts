@@ -1,4 +1,5 @@
 import {ErrorMap} from 'core/error-map';
+import {Typing} from 'helpers/typing';
 
 /**
  * App model
@@ -6,7 +7,7 @@ import {ErrorMap} from 'core/error-map';
 export class Model {
   public static clone<T>(partial: Partial<T>) {
     const instance = new this();
-    if (typeof partial === 'object' && partial !== null) {
+    if (Typing.isObject(partial)) {
       Object.assign(instance, partial);
     }
     return instance;

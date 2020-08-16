@@ -1,7 +1,7 @@
 import lodashDebounce from 'lodash/debounce';
 import {DEBOUNCE_TIME_100} from 'config/consts';
 
-export function debounce(fn: (...params: any[]) => any, time: number = DEBOUNCE_TIME_100) {
+export function debounce<T extends (...params: any[]) => any>(fn: T, time: number = DEBOUNCE_TIME_100): T {
   return lodashDebounce(fn, time);
 }
 
