@@ -1,7 +1,22 @@
+/**
+ * Transform degree to radian
+ *
+ * @param {number} deg
+ * @return {number}
+ */
 export function deg2rad(deg: number): number {
   return deg * (Math.PI / 180);
 }
 
+/**
+ * Calculate distance between two points on GPS Map
+ *
+ * @param {number} lat1
+ * @param {number} lon1
+ * @param {number} lat2
+ * @param {number} lon2
+ * @return {number}
+ */
 export function calculateDistance(
   lat1: number,
   lon1: number,

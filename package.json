@@ -14,7 +14,8 @@
     "cp-package-json": "cp package.json README.md dist/",
     "prebuild": "run-s rm-old-build enable-emit",
     "build": "NODE_ENV=production rollup -c",
-    "postbuild": "run-s cp-package-json disable-emit"
+    "postbuild": "run-s cp-package-json disable-emit",
+    "typedoc": "typedoc --out docs/ --exclude 'src/**/*.test.tsx?' src/"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -100,11 +101,13 @@
     "husky": "^4.2.5",
     "i18next": "^19.6.3",
     "i18next-extractor": "^0.3.4",
+    "jsdoc": "^3.6.5",
     "less": "^3.11.3",
     "less-loader": "^6.1.1",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
+    "node-static": "^0.7.11",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "react": "^16.13.1",
@@ -120,6 +123,7 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "rxjs": "^6.6.2",
     "style-loader": "^1.2.1",
+    "typedoc": "^0.18.0",
     "typescript": "^3.9.5"
   }
 }

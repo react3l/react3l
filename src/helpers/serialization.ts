@@ -2,6 +2,12 @@ import moment, {Moment} from 'moment';
 import {STANDARD_DATE_TIME_REGEX} from 'config/consts';
 import {standardLocalDateTime} from 'helpers/time';
 
+/**
+ * Serialize data to a serializable object
+ *
+ * @param {T} data
+ * @return {T}
+ */
 export function serialize<T>(data: T): T {
   if (typeof data === 'object' && data !== null) {
     /**
@@ -28,6 +34,12 @@ export function serialize<T>(data: T): T {
   return data as any as T;
 }
 
+/**
+ * Deserialize data to a full-featured Javascript object
+ *
+ * @param {T} data
+ * @return {T}
+ */
 export function deserialize<T>(data: T): T {
   /**
    * If data is a date-time value

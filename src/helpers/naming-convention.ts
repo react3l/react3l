@@ -4,8 +4,18 @@ import {kebabCase} from 'helpers/lodash';
 
 export type NamingConvention = 'snakeCase' | 'camelCase' | 'kebabCase';
 
+/**
+ * Naming convention transformer
+ */
 export type TransformFunction = (key: string) => string;
 
+/**
+ * Transform key convention of an object and all of its properties
+ *
+ * @param data
+ * @param {NamingConvention} functionName
+ * @return {any}
+ */
 export function transformKeys(
   data: any,
   functionName: NamingConvention = 'snakeCase',

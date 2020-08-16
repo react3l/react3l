@@ -1,15 +1,24 @@
-import {Typing} from 'helpers/typing';
+import {TypeChecking} from 'helpers/type-checking';
 
+/**
+ * This class provide some methods to handle JSON
+ */
 export class JSONHelper {
+  /**
+   * Sort keys of a JSON object
+   *
+   * @param {Record<string, any>} json
+   * @return {Record<string, any>}
+   */
   sort(json: Record<string, any>): Record<string, any> {
     const result: Record<string, any> = {};
-    if (Typing.isObject(json)) {
+    if (TypeChecking.isObject(json)) {
       Object
         .keys(json)
         .sort()
         .forEach((key: string) => {
           result[key] = json[key];
-          if (Typing.isObject(result[key])) {
+          if (TypeChecking.isObject(result[key])) {
             result[key] = this.sort(result[key]);
           }
         });
@@ -17,6 +26,12 @@ export class JSONHelper {
     return result;
   }
 
+  /**
+   * Un-flatten a JSON object
+   *
+   * @param {Record<string, any>} jsonTable
+   * @return {Record<string, any>}
+   */
   unflatten(jsonTable: Record<string, any>) {
     if (jsonTable) {
       const result: Record<string, any> = {};
@@ -40,14 +55,21 @@ export class JSONHelper {
     return jsonTable;
   }
 
+  /**
+   * Flatten a JSON object
+   *
+   * @param {{[p: string]: any}} json
+   * @param {string} parentKey
+   * @return {{[p: string]: any} | Record<string, any>}
+   */
   flatten(json: { [key: string]: any }, parentKey: string = '') {
-    if (Typing.isObject(json)) {
+    if (TypeChecking.isObject(json)) {
       let result: Record<string, any> = {};
       Object
         .keys(json)
         .forEach((key: string) => {
           const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
-          if (Typing.isObject(json[key])) {
+          if (TypeChecking.isObject(json[key])) {
             result[combinedKey] = json[key];
           } else {
             result = {
