@@ -3,6 +3,24 @@ react3l
 
 React3L v4 has been fully rewritten from scratch. This repository now contains the core code, common services and repositories which are used in almost cases (both for web and mobile)
 
+# Installation
+
+Config `.nmprc` to download packages from GitHub registry:
+```npmrc
+@react3l:registry=https://npm.pkg.github.com
+registry=https://registry.npmjs.org
+```
+
+Install packages:
+```sh
+yarn add react3l axios rxjs @react3l/axios-observable react-i18next i18next
+```
+
+Install dev packages:
+```sh
+yarn add -D react3l-cli i18next-extractor npm-run-all
+```
+
 #### Repository
 
 Repository is the layer which contains all data accession code. (HTTP API, LocalStorage, AsyncStorage, Database, ...).
