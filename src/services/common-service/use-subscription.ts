@@ -1,5 +1,5 @@
 import React from 'react';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 /**
  * Use a subscription state to cancel async tasks

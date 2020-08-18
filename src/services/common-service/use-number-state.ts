@@ -1,4 +1,4 @@
-import React, {Dispatch, Reducer} from 'react';
+import React, { Dispatch, Reducer } from 'react';
 
 export interface NumberAction {
   type: 'increase' | 'decrease' | 'clear' | 'reset' | 'set-value';

@@ -1,8 +1,8 @@
-import React, {Dispatch, Reducer} from 'react';
-import {Model, ModelFilter} from 'core';
-import {forkJoin, Observable, Subscription} from 'rxjs';
-import {finalize} from 'rxjs/operators';
-import {DEFAULT_TAKE} from 'config';
+import React, { Dispatch, Reducer } from 'react';
+import { Model, ModelFilter } from 'core';
+import { forkJoin, Observable, Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { DEFAULT_TAKE } from 'config';
 
 export type List<T> = Record<number, T[]>;
 
@@ -48,6 +48,12 @@ export const ACTION_LOAD_MORE_ITEMS: string = 'ACTION_LOAD_MORE_ITEMS';
 
 export const ACTION_TURN_OFF_LOADING: string = 'ACTION_TURN_OFF_LOADING';
 
+/**
+ * Infinity list reducer
+ *
+ * @param state
+ * @param action
+ */
 export function listReducer<T extends Model,
   TFilter extends ModelFilter,
   P extends keyof TFilter>(state: ListData<T, TFilter>, action: ListAction<T, TFilter, P>): ListData<T, TFilter> {
@@ -136,25 +142,25 @@ export function listReducer<T extends Model,
 export function useInfinityList<T extends Model,
   TFilter extends ModelFilter,
   P extends keyof TFilter = any>(
-  FilterClass: new () => TFilter,
-  getList: (filter: TFilter) => Observable<T[]>,
-  getCount: (filter: TFilter) => Observable<number>,
-  searchField: P,
-  searchType?: keyof TFilter[P],
+    FilterClass: new () => TFilter,
+    getList: (filter: TFilter) => Observable<T[]>,
+    getCount: (filter: TFilter) => Observable<number>,
+    searchField: P,
+    searchType?: keyof TFilter[P],
 ): [
-  // List Data
-  T[],
-  number,
-  boolean,
-  boolean,
-  TFilter,
-  // Dispatch function
-  () => void,
-  () => void,
-  (searchValue: string) => void,
-  Dispatch<ListAction<T, TFilter, P>>,
-  boolean,
-] {
+    // List Data
+    T[],
+    number,
+    boolean,
+    boolean,
+    TFilter,
+    // Dispatch function
+    () => void,
+    () => void,
+    (searchValue: string) => void,
+    Dispatch<ListAction<T, TFilter, P>>,
+    boolean,
+  ] {
   const [
     {
       // Loaded items

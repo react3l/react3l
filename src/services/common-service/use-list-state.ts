@@ -1,4 +1,4 @@
-import React, {Dispatch, Reducer} from 'react';
+import React, { Dispatch, Reducer } from 'react';
 
 export interface ListStateAction<T> {
   type: 'reset' | 'add-item' | 'remove-item' | 'concat' | 'set-value';
@@ -45,5 +45,5 @@ export function useListState<T>(): [
   T[],
   Dispatch<ListStateAction<T>>,
 ] {
-  return  React.useReducer<Reducer<T[], ListStateAction<T>>>(listStateReducer, []);
+  return React.useReducer<Reducer<T[], ListStateAction<T>>>(listStateReducer, []);
 }

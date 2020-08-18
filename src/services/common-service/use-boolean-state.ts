@@ -1,9 +1,15 @@
-import React, {Reducer} from 'react';
+import React, { Reducer } from 'react';
 
 export interface BooleanAction {
   type: 'toggle' | 'turn-on' | 'turn-off';
 }
 
+/**
+ * Boolean Reducer
+ *
+ * @param state {boolean}
+ * @param action {BooleanAction}
+ */
 function booleanReducer(state: boolean, action: BooleanAction) {
   switch (action.type) {
     case 'toggle':
@@ -26,11 +32,11 @@ export function useBooleanState(
   onTrue?: () => any,
   onFalse?: () => any,
 ): [
-  boolean,
-  () => void,
-  () => void,
-  () => void,
-] {
+    boolean,
+    () => void,
+    () => void,
+    () => void,
+  ] {
   const [state, dispatch] = React.useReducer<Reducer<boolean, BooleanAction>>(booleanReducer, initialState);
 
   const handleToggleState = React.useCallback(

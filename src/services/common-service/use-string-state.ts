@@ -1,4 +1,4 @@
-import React, {Dispatch, Reducer} from 'react';
+import React, { Dispatch, Reducer } from 'react';
 
 export interface StringStateAction {
   type: 'clear' | 'input';

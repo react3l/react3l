@@ -1,5 +1,5 @@
-import {Model} from 'core/model';
-import {Dispatch, SetStateAction} from 'react';
+import { Model } from 'core/model';
+import { Dispatch, SetStateAction } from 'react';
 import React from 'react';
 
 export function useSpecificField<T extends Model, P extends keyof T>(
@@ -7,9 +7,9 @@ export function useSpecificField<T extends Model, P extends keyof T>(
   setModel: Dispatch<SetStateAction<T>>,
   field: P,
 ): [
-  (value: T[P]) => void | Promise<void>,
-  (value: T[P]) => void | Promise<void>,
-] {
+    (value: T[P]) => void | Promise<void>,
+    (value: T[P]) => void | Promise<void>,
+  ] {
   return [
     React.useCallback(
       (value: T[P]) => {
