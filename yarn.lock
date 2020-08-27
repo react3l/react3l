@@ -2248,11 +2248,6 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@react3l/axios-observable@^1.1.4":
-  version "1.1.4"
-  resolved "https://npm.pkg.github.com/download/@react3l/axios-observable/1.1.4/5c8fdd02c5d6de6debc09ebde209adebdba4fc7bf1db5b6102314530fc6db717#340bcd4d1e97f3e6e5217404cfcc7131d8dc88c8"
-  integrity sha512-jG5ONd2x219KRRFnj7xJV3Er10JRWqQbjtBJWs40PZRAXtyJpTcOMjCgaRKkEn4T5a+KxjAQ6dSfJ3MMXLBMFg==
-
 "@rollup/plugin-babel@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.0.4.tgz#dbfcf86a0561e399579ceb1a534a83c970e76645"
@@ -12946,6 +12941,11 @@ react-textarea-autosize@^7.1.0:
   dependencies:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
+
+react3l-axios-observable@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react3l-axios-observable/-/react3l-axios-observable-1.1.3.tgz#a355d66ac63d9ad41443c8320936c387bca2922f"
+  integrity sha512-RNlRwean1FuMRF8ORV1p5oAlbY66ONyRx/BCHCF5+/FL5OSUHYtarRbbxr7jmqI6esKxqpxg308/2+kSJK9Icg==
 
 react3l-cli@^0.4.0:
   version "0.4.0"

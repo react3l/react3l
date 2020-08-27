@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {Axios} from '@react3l/axios-observable';
+import {Axios} from 'react3l-axios-observable';
 
 export interface RepositoryInterceptors {
   http: number[];
@@ -21,6 +21,7 @@ export class Repository {
 
   /**
    * Add a repository to static instance array
+   *
    * @param repository {Repository}
    */
   public static addRepository(repository: Repository): void {
@@ -81,6 +82,8 @@ export class Repository {
 
   /**
    * HTTP Promise instance
+   *
+   * @deprecated Using Promise http request is deprecated. Now all http requests must use Observable
    *
    * @type {AxiosInstance}
    */
