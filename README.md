@@ -13,7 +13,7 @@ registry=https://registry.npmjs.org
 
 Install packages:
 ```sh
-yarn add react3l axios rxjs @react3l/axios-observable react-i18next i18next
+yarn add react3l axios rxjs @react3l/axios-observable moment react-i18next i18next yup
 ```
 
 Install dev packages:

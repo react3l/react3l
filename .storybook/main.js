@@ -1,27 +1,20 @@
+const path = require('path');
+
 module.exports = {
-  stories: [
-    '../src/**/*.stories.ts',
-    '../src/**/*.stories.tsx',
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  webpackFinal(config) {
-    config.module.rules.push(
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
-      },
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+  ],
+  webpackFinal: async (config) => {
+    config.resolve.modules.push(
+      path.resolve(__dirname, '..', 'node_modules'),
+      path.resolve(__dirname, '..', 'src'),
     );
-    config.resolve.extensions.push('.less', '.css', '.scss');
+    // Return the altered config
     return config;
   },
 };

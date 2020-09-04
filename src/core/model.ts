@@ -1,5 +1,5 @@
 import {ErrorMap} from 'core/error-map';
-import {TypeChecking} from 'helpers/type-checking';
+import {Cloneable} from 'core/cloneable';
 
 /**
  * App model
@@ -11,27 +11,24 @@ import {TypeChecking} from 'helpers/type-checking';
  * @module "react3l/core"
  * @class {Model}
  */
-export class Model {
-  /**
-   * Clone a model instance
-   *
-   * @param {Partial<T>} partial
-   * @return {Model}
-   */
-  public static clone<T>(partial: Partial<T>) {
-    const instance = new this();
-    if (TypeChecking.isObject(partial)) {
-      Object.assign(instance, partial);
-    }
-    return instance;
-  }
-
+export class Model extends Cloneable {
   /**
    * Backend validation errors
    *
    * @type {ErrorMap<self>}
    */
   public errors?: ErrorMap<this>;
+
+  /**
+   * React key
+   *
+   * @type {string | number}
+   */
+  public key?: string | number;
+
+  public static getIdFieldName<T extends Model>(fieldName: keyof T): keyof T {
+    return `${fieldName}Id`;
+  }
 
   /**
    * Model fields

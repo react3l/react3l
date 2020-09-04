@@ -8,3 +8,8 @@ addDecorator((storyFn) => (
     {storyFn()}
   </Card>
 ));
+
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+}

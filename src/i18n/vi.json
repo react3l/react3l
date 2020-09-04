@@ -1,0 +1,10 @@
+{
+  "form.name.required": "Tên bắt buộc phải nhập",
+  "form.name.min": "Tên dài tối thiểu {{min}} ký tự",
+  "form.name.max": "Tên dài tối đa {{max}} ký tự",
+  "form.name.preserved": "Tên không được trùng với {{names}}",
+  "form.email.required": "Email bắt buộc phải nhập",
+  "form.email.min": "Email dài tối thiểu {{min}} ký tự",
+  "form.email.max": "Email dài tối đa {{max}} ký tự",
+  "form.userClass.required": "Chưa chọn lớp học"
+}

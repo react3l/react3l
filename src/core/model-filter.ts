@@ -1,6 +1,7 @@
 import {DEFAULT_TAKE, INITIAL_SKIP} from 'config/consts';
 import {Model} from 'core/model';
 import {OrderType} from 'core/order-type';
+import {Cloneable} from 'core/cloneable';
 
 /**
  * App model filter
@@ -12,7 +13,7 @@ import {OrderType} from 'core/order-type';
  * @module "react3l/core"
  * @class {ModelFilter}
  */
-export class ModelFilter<T extends Model = any> {
+export class ModelFilter<T extends Model = any> extends Cloneable {
   /**
    * Skip number
    *

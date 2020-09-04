@@ -1,2 +1,2 @@
-import 'antd/dist/antd.less';
-import '.storybook/styles/index.scss';
+import 'antd/dist/antd.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
