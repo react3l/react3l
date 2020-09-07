@@ -1,4 +1,4 @@
-import { Model } from 'react3l/core/model';
+import { Model } from '@react3l/react3l/core/model';
 import React, { Dispatch, SetStateAction } from 'react';
 
 export function useSpecificField<T extends Model, P extends keyof T>(

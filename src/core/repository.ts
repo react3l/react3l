@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import Axios from 'react3l-axios-observable';
+import Axios from '@react3l/axios-observable';
 
 export interface RepositoryInterceptors {
   http: number[];

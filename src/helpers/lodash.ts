@@ -1,5 +1,5 @@
 import lodashDebounce from 'lodash/debounce';
-import {DEBOUNCE_TIME_100} from 'react3l/config/consts';
+import {DEBOUNCE_TIME_100} from '@react3l/react3l/config/consts';
 
 /**
  * Limit the number of times a function will be called in an amount of time

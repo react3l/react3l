@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {TestUser} from 'react3l/__tests__/models/TestUser';
+import {TestUser} from '@react3l/react3l/__tests__/models/TestUser';
 
 test('model', () => {
   const testId: number = 1;

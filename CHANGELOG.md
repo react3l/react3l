@@ -6,16 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [4.0.0-test] - 2020-06-20
-### Added
-- Core
-- Core constants
-- Common lodash helpers: debounce, kebabCase, snakeCase and camelCase
-- Translation repository
-- Translation service
-- CommonService service: boolean, HOF Change Handlers
-- Storybook for web
+## [4.0.1] - 2020-09-07
+### Modified
+- Fix TSC build path
+- Rebuild docs
 
-### Removed
-- Advanced filters by TrueSight team
-- Model service and router service
+## [4.0.0] - 2020-09-07
+### Added
+- Fix TSC build
+- Republish with scoped name on github registry

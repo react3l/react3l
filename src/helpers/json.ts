@@ -1,4 +1,4 @@
-import {TypeChecking} from 'react3l/helpers/type-checking';
+import {TypeChecking} from '@react3l/react3l/helpers/type-checking';
 
 /**
  * This class provide some methods to handle JSON

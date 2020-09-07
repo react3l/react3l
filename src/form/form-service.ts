@@ -1,12 +1,12 @@
-import { Model } from 'react3l/core';
-import { FormAction } from 'react3l/form/types/form-action';
-import { FormResponse } from 'react3l/form/types/form-response';
-import { FormState } from 'react3l/form/types/form-state';
-import { FormValidationErrors } from 'react3l/form/types/form-validation-errors';
-import { useForm } from 'react3l/form/use-form';
-import { FormFieldHTMLChangeHandler, FormFieldPureChangeHandler, useFormField } from 'react3l/form/use-form-field';
-import { useValidation } from 'react3l/form/use-validation';
-import { validate } from 'react3l/form/validate';
+import { Model } from '@react3l/react3l/core';
+import { FormAction } from '@react3l/react3l/form/types/form-action';
+import { FormResponse } from '@react3l/react3l/form/types/form-response';
+import { FormState } from '@react3l/react3l/form/types/form-state';
+import { FormValidationErrors } from '@react3l/react3l/form/types/form-validation-errors';
+import { useForm } from '@react3l/react3l/form/use-form';
+import { FormFieldHTMLChangeHandler, FormFieldPureChangeHandler, useFormField } from '@react3l/react3l/form/use-form-field';
+import { useValidation } from '@react3l/react3l/form/use-validation';
+import { validate } from '@react3l/react3l/form/validate';
 import { Dispatch } from 'react';
 import { ObjectSchema, Schema } from 'yup';
 

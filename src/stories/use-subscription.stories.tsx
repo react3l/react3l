@@ -2,8 +2,8 @@ import Button from 'antd/lib/button';
 import message from 'antd/lib/message';
 import React, { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { translationService } from 'react3l/services';
-import { commonService } from 'react3l/services/common-service';
+import { translationService } from '@react3l/react3l/services';
+import { commonService } from '@react3l/react3l/services/common-service';
 
 export default {
   title: 'Common State/Subscription',

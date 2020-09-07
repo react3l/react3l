@@ -1,7 +1,7 @@
-import { Model } from 'react3l/core';
-import { FormAction } from 'react3l/form/types/form-action';
-import { FormActionType } from 'react3l/form/types/form-action-type';
-import { FormState } from 'react3l/form/types/form-state';
+import { Model } from '@react3l/react3l/core';
+import { FormAction } from '@react3l/react3l/form/types/form-action';
+import { FormActionType } from '@react3l/react3l/form/types/form-action-type';
+import { FormState } from '@react3l/react3l/form/types/form-state';
 
 export function formReducer<T extends Model>(state: FormState<T>, action: FormAction<T>): FormState<T> {
   switch (action.type) {

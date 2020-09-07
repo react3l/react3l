@@ -1,5 +1,5 @@
-import { Cloneable } from 'react3l/core/cloneable';
-import { ErrorMap } from 'react3l/core/error-map';
+import { Cloneable } from '@react3l/react3l/core/cloneable';
+import { ErrorMap } from '@react3l/react3l/core/error-map';
 
 /**
  * App model

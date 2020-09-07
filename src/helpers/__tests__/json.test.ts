@@ -1,4 +1,4 @@
-import {jsonHelper} from 'react3l/helpers/json';
+import {jsonHelper} from '@react3l/react3l/helpers/json';
 
 test('flatten works', () => {
   const json = {

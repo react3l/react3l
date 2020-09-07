@@ -1,6 +1,6 @@
 import moment, {Moment} from 'moment';
-import {STANDARD_DATE_TIME_REGEX} from 'react3l/config/consts';
-import {standardLocalDateTime} from 'react3l/helpers/time';
+import {STANDARD_DATE_TIME_REGEX} from '@react3l/react3l/config/consts';
+import {standardLocalDateTime} from '@react3l/react3l/helpers/time';
 
 /**
  * Serialize data to a serializable object

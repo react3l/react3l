@@ -1,5 +1,5 @@
-import { DEFAULT_TAKE } from 'react3l/config';
-import { Model, ModelFilter } from 'react3l/core';
+import { DEFAULT_TAKE } from '@react3l/react3l/config';
+import { Model, ModelFilter } from '@react3l/react3l/core';
 import React, { Dispatch, Reducer } from 'react';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';

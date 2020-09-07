@@ -1,7 +1,7 @@
 import moment, {Moment} from 'moment';
-import {deserialize, serialize} from 'react3l/helpers/serialization';
-import {standardDateTime} from 'react3l/helpers/time';
-import {TIMEZONE_OFFSET} from 'react3l/config/consts';
+import {deserialize, serialize} from '@react3l/react3l/helpers/serialization';
+import {standardDateTime} from '@react3l/react3l/helpers/time';
+import {TIMEZONE_OFFSET} from '@react3l/react3l/config/consts';
 
 test('serialize works', () => {
   const dateValue: string = '2020-06-28T17:23:54.235' + TIMEZONE_OFFSET;

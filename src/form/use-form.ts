@@ -1,12 +1,12 @@
 import React, {Reducer} from 'react';
-import {Model} from 'react3l/core';
-import {formReducer} from 'react3l/form/reducers/form-reducer';
-import {FormActionType} from 'react3l/form/types/form-action-type';
-import {FormAction} from 'react3l/form/types/form-action';
-import {FormState} from 'react3l/form/types/form-state';
+import {Model} from '@react3l/react3l/core';
+import {formReducer} from '@react3l/react3l/form/reducers/form-reducer';
+import {FormActionType} from '@react3l/react3l/form/types/form-action-type';
+import {FormAction} from '@react3l/react3l/form/types/form-action';
+import {FormState} from '@react3l/react3l/form/types/form-state';
 import {ObjectSchema} from 'yup';
-import {FormResponse} from 'react3l/form/types/form-response';
-import {useValidationTrigger} from 'react3l/form/use-validation-trigger';
+import {FormResponse} from '@react3l/react3l/form/types/form-response';
+import {useValidationTrigger} from '@react3l/react3l/form/use-validation-trigger';
 
 export type HigherOrderFocusFunction<T extends Model> = (fieldName: keyof T) => () => void;
 

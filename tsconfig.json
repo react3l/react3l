@@ -19,12 +19,12 @@
       "ESNext"
     ],
     "listEmittedFiles": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "noEmit": true,
+    "noEmit": false,
     "outDir": "dist",
     "paths": {
-      "react3l/*": [
+      "@react3l/react3l/*": [
         "./src/*"
       ]
     },
@@ -38,8 +38,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
-    "target": "ES5",
-    "mapRoot": ""
+    "target": "ES5"
   },
   "exclude": [
     "__tests__"

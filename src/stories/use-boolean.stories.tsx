@@ -1,6 +1,6 @@
 import Switch from 'antd/lib/switch';
 import React from 'react';
-import { commonService } from 'react3l/services/common-service';
+import { commonService } from '@react3l/react3l/services/common-service';
 
 export default {
   title: 'Common State/Boolean',

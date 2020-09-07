@@ -1,13 +1,13 @@
 import Form, { FormProps } from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Select from 'antd/lib/select';
-import { formService } from 'react3l/form';
+import { formService } from '@react3l/react3l/form';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as YUP from 'yup';
 import { ObjectSchema } from 'yup';
-import { TestClass } from 'react3l/__tests__/models/TestClass';
-import { TestUser } from 'react3l/__tests__/models/TestUser';
+import { TestClass } from '@react3l/react3l/__tests__/models/TestClass';
+import { TestUser } from '@react3l/react3l/__tests__/models/TestUser';
 
 const {Item: FormItem} = Form;
 

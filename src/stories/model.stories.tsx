@@ -1,5 +1,5 @@
 import React from 'react';
-import { TestUser } from 'react3l/__tests__/models/TestUser';
+import { TestUser } from '@react3l/react3l/__tests__/models/TestUser';
 
 export default {
   title: 'Model',

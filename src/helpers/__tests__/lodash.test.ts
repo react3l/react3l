@@ -1,5 +1,5 @@
-import {debounce} from 'react3l/helpers/lodash';
-import {DEBOUNCE_TIME_100} from 'react3l/config/consts';
+import {debounce} from '@react3l/react3l/helpers/lodash';
+import {DEBOUNCE_TIME_100} from '@react3l/react3l/config/consts';
 import {act} from 'react-dom/test-utils';
 
 test('debounce works', async () => {

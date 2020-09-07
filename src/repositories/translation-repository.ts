@@ -1,5 +1,5 @@
-import {Repository} from 'react3l/core/repository';
-import {TranslationResource} from 'react3l/services/translation-service';
+import {Repository} from '@react3l/react3l/core/repository';
+import {TranslationResource} from '@react3l/react3l/services/translation-service';
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {map, retry} from 'rxjs/operators';
 
