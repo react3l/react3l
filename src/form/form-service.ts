@@ -1,14 +1,14 @@
-import {useForm} from 'form/use-form';
-import {FormFieldHTMLChangeHandler, FormFieldPureChangeHandler, useFormField} from 'form/use-form-field';
-import {Model} from 'core';
-import {ObjectSchema, Schema} from 'yup';
-import {FormState} from 'form/types/form-state';
-import {Dispatch} from 'react';
-import {FormAction} from 'form/types/form-action';
-import {FormResponse} from 'form/types/form-response';
-import {useValidation} from 'form/use-validation';
-import {validate} from 'form/validate';
-import {FormValidationErrors} from 'form/types/form-validation-errors';
+import { Model } from 'react3l/core';
+import { FormAction } from 'react3l/form/types/form-action';
+import { FormResponse } from 'react3l/form/types/form-response';
+import { FormState } from 'react3l/form/types/form-state';
+import { FormValidationErrors } from 'react3l/form/types/form-validation-errors';
+import { useForm } from 'react3l/form/use-form';
+import { FormFieldHTMLChangeHandler, FormFieldPureChangeHandler, useFormField } from 'react3l/form/use-form-field';
+import { useValidation } from 'react3l/form/use-validation';
+import { validate } from 'react3l/form/validate';
+import { Dispatch } from 'react';
+import { ObjectSchema, Schema } from 'yup';
 
 export type HandlerType = 'web' | 'native';
 

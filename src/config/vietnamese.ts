@@ -1,4 +1,4 @@
-import {STANDARD_TIME_FORMAT} from 'config/consts';
+import {STANDARD_TIME_FORMAT} from 'react3l/config/consts';
 
 /**
  * Vietnamese date format

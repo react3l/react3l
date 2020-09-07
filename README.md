@@ -1,5 +1,5 @@
-react3l
--------
+@react3l/react3l
+----------------
 
 React3L v4 has been fully rewritten from scratch. This repository now contains the core code, common services and repositories which are used in almost cases (both for web and mobile)
 
@@ -13,7 +13,7 @@ registry=https://registry.npmjs.org
 
 Install packages:
 ```sh
-yarn add react3l axios rxjs @react3l/axios-observable moment react-i18next i18next yup
+yarn add @react3l/react3l axios rxjs @react3l/axios-observable moment react-i18next i18next yup
 ```
 
 Install dev packages:

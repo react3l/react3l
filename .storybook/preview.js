@@ -3,13 +3,14 @@ import Card from "antd/lib/card";
 import React from 'react';
 import './styles';
 
-addDecorator((storyFn) => (
-  <Card>
-    {storyFn()}
-  </Card>
-));
-
+addDecorator((storyFn) => {
+  return (
+    <Card>
+      {storyFn()}
+    </Card>
+  );
+});
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
+  actions: {argTypesRegex: "^on[A-Z].*"},
+};

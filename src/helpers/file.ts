@@ -1,4 +1,4 @@
-import { IMAGE_JPEG, IMAGE_PNG, IMAGE_GIF } from 'config';
+import { IMAGE_JPEG, IMAGE_PNG, IMAGE_GIF } from 'react3l/config';
 
 /**
  * Convert base64 string to Data URL

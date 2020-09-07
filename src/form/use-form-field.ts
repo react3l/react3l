@@ -1,8 +1,8 @@
-import {Model} from 'core';
+import {Model} from 'react3l/core';
 import React, {Dispatch} from 'react';
-import {FormAction} from 'form/types/form-action';
-import {FormActionType} from 'form/types/form-action-type';
-import {FormState} from 'form/types/form-state';
+import {FormAction} from 'react3l/form/types/form-action';
+import {FormActionType} from 'react3l/form/types/form-action-type';
+import {FormState} from 'react3l/form/types/form-state';
 
 export type HTMLTypingElement = HTMLInputElement | HTMLTextAreaElement;
 

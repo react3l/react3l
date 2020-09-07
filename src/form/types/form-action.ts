@@ -1,5 +1,5 @@
-import {Model} from 'core';
-import {FormActionType} from 'form/types/form-action-type';
+import {Model} from 'react3l/core';
+import {FormActionType} from 'react3l/form/types/form-action-type';
 import {ObjectSchema} from 'yup';
 
 export interface FormAction<T extends Model> {

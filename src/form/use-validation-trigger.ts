@@ -1,12 +1,12 @@
 import React, {Reducer} from 'react';
-import {Model} from 'core';
-import {FormState} from 'form/types/form-state';
-import {FormValidationErrors} from 'form/types/form-validation-errors';
-import {DEBOUNCE_TIME_100} from 'config';
+import {Model} from 'react3l/core';
+import {FormState} from 'react3l/form/types/form-state';
+import {FormValidationErrors} from 'react3l/form/types/form-validation-errors';
+import {DEBOUNCE_TIME_100} from 'react3l/config';
 import {Subject} from 'rxjs';
-import {FormValidationTrigger} from 'form/types/form-validation-trigger';
+import {FormValidationTrigger} from 'react3l/form/types/form-validation-trigger';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {commonService} from 'services/common-service';
+import {commonService} from 'react3l/services/common-service';
 import {Schema} from 'yup';
 
 enum FormValidationErrorActionType {

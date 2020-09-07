@@ -1,5 +1,5 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {Axios} from 'react3l-axios-observable';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import Axios from 'react3l-axios-observable';
 
 export interface RepositoryInterceptors {
   http: number[];
@@ -11,32 +11,6 @@ export interface RepositoryInterceptors {
  * This class aims to include all data access method for only one business domain
  */
 export class Repository {
-  /**
-   * Store all repository instances
-   *
-   * @protected
-   * @type {Repository[]}
-   */
-  protected static instances: Repository[] = [];
-
-  /**
-   * Add a repository to static instance array
-   *
-   * @param repository {Repository}
-   */
-  public static addRepository(repository: Repository): void {
-    this.instances.push(repository);
-  }
-
-  /**
-   * Get all repository instances
-   *
-   * @return {Repository[]}
-   */
-  public static getInstances(): Repository[] {
-    return this.instances;
-  }
-
   /**
    * Interceptor to handle API Request
    *
@@ -61,6 +35,14 @@ export class Repository {
    * @return {void | Promise<void>}
    */
   public static errorInterceptor: (error: AxiosError) => any | Promise<any>;
+
+  /**
+   * Store all repository instances
+   *
+   * @protected
+   * @type {Repository[]}
+   */
+  protected static instances: Repository[] = [];
 
   /**
    * Store current request interceptors
@@ -145,6 +127,24 @@ export class Repository {
   public set baseURL(baseURL: string) {
     this.http.defaults.baseURL = baseURL;
     this.httpObservable.defaults.baseURL = baseURL;
+  }
+
+  /**
+   * Add a repository to static instance array
+   *
+   * @param repository {Repository}
+   */
+  public static addRepository(repository: Repository): void {
+    this.instances.push(repository);
+  }
+
+  /**
+   * Get all repository instances
+   *
+   * @return {Repository[]}
+   */
+  public static getInstances(): Repository[] {
+    return this.instances;
   }
 
   /**

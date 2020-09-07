@@ -1,4 +1,4 @@
-import {STANDARD_DATE_TIME_FORMAT, STANDARD_TIME_FORMAT} from 'config/consts';
+import {STANDARD_DATE_TIME_FORMAT, STANDARD_TIME_FORMAT} from 'react3l/config/consts';
 import moment, {Moment} from 'moment';
 
 /**

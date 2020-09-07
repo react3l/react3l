@@ -1,6 +1,7 @@
-import { Repository } from 'core/repository';
-import { TranslationResource } from 'services/translation-service';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import {Repository} from 'react3l/core/repository';
+import {TranslationResource} from 'react3l/services/translation-service';
+import {AxiosRequestConfig, AxiosResponse} from 'axios';
+import {map, retry} from 'rxjs/operators';
 
 /**
  * Translation repository
@@ -14,6 +15,22 @@ export class TranslationRepository extends Repository {
    */
   public static instances: TranslationRepository[] = [];
 
+  constructor(httpConfig: AxiosRequestConfig = {}) {
+    super(httpConfig);
+    TranslationRepository.instances.push(this);
+    this.ejectInterceptor('both');
+  }
+
+  /**
+   * Translation resource base URL getter
+   */
+  public static get baseURL(): string {
+    if (this.instances.length > 0) {
+      return this.instances[0].httpObservable.defaults.baseURL;
+    }
+    return null;
+  }
+
   /**
    * Translation resource base URL setter
    */
@@ -24,28 +41,12 @@ export class TranslationRepository extends Repository {
   }
 
   /**
-   * Translation resource base URL getter
-   */
-  public static get baseURL(): string {
-    if (this.instances.length > 0) {
-      return this.instances[0].http.defaults.baseURL;
-    }
-    return null;
-  }
-
-  /**
    * HTTP Response Interceptor
    *
    * @param response {AxiosResponse}
    * @return {AxiosResponse | Promise<AxiosResponse>}
    */
   public responseInterceptor = (response: AxiosResponse): any => response;
-
-  constructor(httpConfig: AxiosRequestConfig = {}) {
-    super(httpConfig);
-    TranslationRepository.instances.push(this);
-    this.ejectInterceptor('both');
-  }
 
   /**
    * Get language resource
@@ -54,8 +55,12 @@ export class TranslationRepository extends Repository {
    * @return {TranslationResource}
    */
   public get = (language: string): Promise<TranslationResource> => {
-    return this.http.get<TranslationResource>(`${language}.json`)
-      .then((response: AxiosResponse<TranslationResource>) => response.data);
+    return this.httpObservable.get<TranslationResource>(`${language}.json`)
+      .pipe(
+        retry(3),
+        map((response: AxiosResponse<TranslationResource>) => response.data),
+      )
+      .toPromise();
   }
 }
 

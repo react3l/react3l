@@ -6,5 +6,7 @@
   "form.email.required": "Email bắt buộc phải nhập",
   "form.email.min": "Email dài tối thiểu {{min}} ký tự",
   "form.email.max": "Email dài tối đa {{max}} ký tự",
-  "form.userClass.required": "Chưa chọn lớp học"
+  "form.userClass.required": "Chưa chọn lớp học",
+  "subscription.unsubscribeSuccessfully": "Gọi unsubscribe thành công",
+  "subscription.unmount": "Unmount"
 }

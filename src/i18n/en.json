@@ -6,5 +6,7 @@
   "form.email.required": "",
   "form.email.min": "",
   "form.email.max": "",
-  "form.userClass.required": ""
+  "form.userClass.required": "",
+  "subscription.unsubscribeSuccessfully": "",
+  "subscription.unmount": ""
 }

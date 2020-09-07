@@ -3,7 +3,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "checkJs": false,
     "declaration": true,
     "emitDeclarationOnly": false,
@@ -19,10 +19,15 @@
       "ESNext"
     ],
     "listEmittedFiles": true,
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noEmit": true,
     "outDir": "dist",
+    "paths": {
+      "react3l/*": [
+        "./src/*"
+      ]
+    },
     "removeComments": false,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
@@ -33,9 +38,13 @@
     "strictFunctionTypes": true,
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
-    "target": "ES5"
+    "target": "ES5",
+    "mapRoot": ""
   },
+  "exclude": [
+    "__tests__"
+  ],
   "include": [
-    "./src/"
+    "src/"
   ]
 }

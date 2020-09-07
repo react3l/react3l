@@ -1,24 +1,16 @@
 import 'reflect-metadata';
-import {Model} from 'core/model';
-import {RegisteredModel} from 'core/registered-model';
+import {TestUser} from 'react3l/__tests__/models/TestUser';
 
 test('model', () => {
-  @RegisteredModel()
-  class TestModel extends Model {
-    public id?: number;
-
-    public name?: string;
-  }
-
   const testId: number = 1;
   const testName: string = 'Test Name';
 
-  const testModel: TestModel = TestModel.clone<TestModel>({
+  const testUser: TestUser = TestUser.clone<TestUser>({
     id: testId,
     name: testName,
   });
 
-  expect(testModel.id).toEqual(testId);
-  expect(testModel.name).toEqual(testName);
-  expect(testModel instanceof TestModel).toEqual(true);
+  expect(testUser.id).toEqual(testId);
+  expect(testUser.name).toEqual(testName);
+  expect(testUser instanceof TestUser).toEqual(true);
 });

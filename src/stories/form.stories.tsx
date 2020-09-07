@@ -1,41 +1,19 @@
-import React from 'react';
-import {Model} from 'core';
-import {Moment} from 'moment';
-import {useTranslation} from 'react-i18next';
-import {formService} from 'form';
-import * as YUP from 'yup';
-import {ObjectSchema} from 'yup';
-import Form, {FormProps} from 'antd/lib/form';
+import Form, { FormProps } from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Select from 'antd/lib/select';
+import { formService } from 'react3l/form';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import * as YUP from 'yup';
+import { ObjectSchema } from 'yup';
+import { TestClass } from 'react3l/__tests__/models/TestClass';
+import { TestUser } from 'react3l/__tests__/models/TestUser';
 
 const {Item: FormItem} = Form;
 
 export default {
   title: 'Form',
 };
-
-export class TestClass extends Model {
-  public id?: number;
-
-  public code?: string;
-
-  public name?: string;
-}
-
-export class TestUser extends Model {
-  public code?: string;
-
-  public name?: string;
-
-  public email?: string;
-
-  public birthday?: Moment;
-
-  public userClassId?: number;
-
-  public userClass?: TestClass;
-}
 
 const sampleClasses: TestClass[] = [
   {

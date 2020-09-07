@@ -1,5 +1,5 @@
 import lodashDebounce from 'lodash/debounce';
-import {DEBOUNCE_TIME_100} from 'config/consts';
+import {DEBOUNCE_TIME_100} from 'react3l/config/consts';
 
 /**
  * Limit the number of times a function will be called in an amount of time
@@ -8,7 +8,7 @@ import {DEBOUNCE_TIME_100} from 'config/consts';
  * @param {number} time
  * @return {T}
  */
-export function debounce<T extends (...params: any[]) => any>(fn: T, time: number = DEBOUNCE_TIME_100): T {
+export function debounce(fn: (...params: any[]) => any, time: number = DEBOUNCE_TIME_100): (...params: any[]) => any {
   return lodashDebounce(fn, time);
 }
 

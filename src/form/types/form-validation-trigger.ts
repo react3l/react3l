@@ -1,4 +1,4 @@
-import {Model} from 'core';
+import {Model} from 'react3l/core';
 
 /**
  * @template T

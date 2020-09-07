@@ -1,6 +1,6 @@
 import snakeCase from 'lodash/snakeCase';
 import camelCase from 'lodash/camelCase';
-import {kebabCase} from 'helpers/lodash';
+import {kebabCase} from 'react3l/helpers/lodash';
 
 export type NamingConvention = 'snakeCase' | 'camelCase' | 'kebabCase';
 

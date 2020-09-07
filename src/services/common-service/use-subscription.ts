@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
  * Use a subscription state to cancel async tasks
  */
 export function useSubscription() {
-  const [subscription] = React.useState<Subscription>(new Subscription());
+  const subscription: Subscription = React.useRef<Subscription>(new Subscription()).current;
 
   React.useEffect(
     () => {

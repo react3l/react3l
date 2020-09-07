@@ -1,5 +1,5 @@
-import i18next, {InitOptions, TFunction} from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import i18next, { InitOptions, TFunction } from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 export interface TranslationResource {
   [key: string]: string;

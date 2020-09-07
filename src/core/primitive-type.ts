@@ -1,4 +1,4 @@
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 /**
  * Data primitive types, which will be treated as simple fields

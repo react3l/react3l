@@ -10,6 +10,7 @@ program.command('enable-emit')
   .action(() => {
     tsConfig.compilerOptions.noEmit = false;
     fs.writeFileSync('tsconfig.json', JSON.stringify(tsConfig, null, 2));
+    // eslint-disable-next-line no-console
     console.log('TS compilerOption `noEmit` updated');
   });
 
@@ -17,6 +18,7 @@ program.command('disable-emit')
   .action(() => {
     tsConfig.compilerOptions.noEmit = true;
     fs.writeFileSync('tsconfig.json', JSON.stringify(tsConfig, null, 2));
+    // eslint-disable-next-line no-console
     console.log('TS compilerOption `noEmit` updated');
   });
 

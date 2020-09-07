@@ -1,5 +1,5 @@
-import {ErrorMap} from 'core/error-map';
-import {Cloneable} from 'core/cloneable';
+import { Cloneable } from 'react3l/core/cloneable';
+import { ErrorMap } from 'react3l/core/error-map';
 
 /**
  * App model
@@ -26,6 +26,11 @@ export class Model extends Cloneable {
    */
   public key?: string | number;
 
+  /**
+   * Get relationship ID field name
+   * @param fieldName {string}
+   * @return {string}
+   */
   public static getIdFieldName<T extends Model>(fieldName: keyof T): keyof T {
     return `${fieldName}Id`;
   }

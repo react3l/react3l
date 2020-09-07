@@ -1,4 +1,4 @@
-import {TypeChecking} from 'helpers/type-checking';
+import { TypeChecking } from 'react3l/helpers/type-checking';
 
 export class Cloneable {
   /**

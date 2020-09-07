@@ -4,6 +4,8 @@ build/
 node_modules/
 public/
 src/
+__tests__
+stories/
 .gitignore
 .npmignore
 README.md

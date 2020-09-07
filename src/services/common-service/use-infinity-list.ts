@@ -1,8 +1,8 @@
+import { DEFAULT_TAKE } from 'react3l/config';
+import { Model, ModelFilter } from 'react3l/core';
 import React, { Dispatch, Reducer } from 'react';
-import { Model, ModelFilter } from 'core';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { DEFAULT_TAKE } from 'config';
 
 export type List<T> = Record<number, T[]>;
 

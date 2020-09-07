@@ -1,3 +1,4 @@
-export * from 'services/common-service';
+export * from 'react3l/services/common-service';
+export * from 'react3l/services/translation-service';
 
-export * from './translation-service';
+
