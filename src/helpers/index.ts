@@ -19,3 +19,5 @@ export * from './path';
 export * from './serialization';
 
 export * from './time';
+
+export * from './type-checking';
