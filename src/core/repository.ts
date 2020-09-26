@@ -130,6 +130,15 @@ export class Repository {
   }
 
   /**
+   * Get baseURL
+   *
+   * @param baseURL {string}
+   */
+  public get baseURL(): string {
+    return this.httpObservable.defaults.baseURL;
+  }
+
+  /**
    * Add a repository to static instance array
    *
    * @param repository {Repository}

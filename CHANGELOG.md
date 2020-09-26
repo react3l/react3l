@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0] - 2020-09-23
+### Added
+- Add baseURL getter for repository
+
 ## [4.0.1] - 2020-09-07
 ### Modified
 - Fix TSC build path
