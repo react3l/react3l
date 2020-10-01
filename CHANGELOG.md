@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.2] - 2020-10-01
+
+## Deprecated
+- Repository http interceptor id list
+- Global state interface
+
 ## [4.1.1] - 2020-09-26
 ### Added
 - Fix importing of type-checking helper

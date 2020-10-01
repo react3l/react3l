@@ -2,6 +2,9 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import Axios from '@react3l/axios-observable';
 
 export interface RepositoryInterceptors {
+  /**
+   * @deprecated This is deprecated due to deprecation of Repository.http
+   */
   http: number[];
 
   httpObservable: number[];

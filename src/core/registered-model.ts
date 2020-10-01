@@ -15,7 +15,7 @@ const registeredModels: Record<string, Model> = {};
  *
  * @constructor
  */
-export function RegisteredModel<T extends Model>(name?: string) {
+export function RegisteredModel(name?: string) {
   return function (ModelClass: typeof Model) {
     if (ModelClass.prototype instanceof Model) {
       const modelName: string = name ?? ModelClass.name;
