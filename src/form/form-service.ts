@@ -28,7 +28,7 @@ export interface FormService {
     FormFieldPureChangeHandler<T, P>,
   ];
 
-  useFormField<T extends Model, P extends keyof T, HT = 'web'>(
+  useFormField<T extends Model, P extends keyof T>(
     form: FormState<T>,
     dispatch: Dispatch<FormAction<T>>,
     fieldName: P,
