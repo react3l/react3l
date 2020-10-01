@@ -105,7 +105,7 @@ export function useValidationTrigger<T extends Model>(
         },
       );
     },
-    [form, subject],
+    [T, form, subject],
   );
 
   return [
