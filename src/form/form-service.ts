@@ -34,7 +34,7 @@ export interface FormService {
     fieldName: P,
   ): [
     T[P],
-    FormFieldHTMLChangeHandler<T, P>,
+    FormFieldHTMLChangeHandler,
   ];
 
   useValidation<T>(initialValue: Schema<T>): Schema<T>;
