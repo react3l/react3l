@@ -1,7 +1,7 @@
 import { DEFAULT_TAKE, INITIAL_SKIP } from '@react3l/react3l/config/consts';
 import { Cloneable } from '@react3l/react3l/core/cloneable';
 import { Model } from '@react3l/react3l/core/model';
-import { OrderType } from '@react3l/react3l/core/order-type';
+import { OrderType } from '@react3l/react3l/types';
 
 /**
  * App model filter

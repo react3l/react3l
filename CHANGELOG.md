@@ -6,9 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [4.1.2] - 2020-10-01
+## [4.2.0] - 2020-11-03
+### Deprecated
+- Cloneable class. Model and ModelFilter will use decorator feature
+- Type declaration from `core`
+- TranslationRepository and TranslationService
+- RegisteredModel decorator. It is not useful.
 
-## Deprecated
+
+## [4.1.2] - 2020-10-01
+### Deprecated
 - Repository http interceptor id list
 - Global state interface
 

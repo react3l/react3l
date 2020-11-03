@@ -10,7 +10,7 @@ export class JSONHelper {
    * @param {Record<string, any>} json
    * @return {Record<string, any>}
    */
-  sort(json: Record<string, any>): Record<string, any> {
+  public sort(json: Record<string, any>): Record<string, any> {
     const result: Record<string, any> = {};
     if (TypeChecking.isObject(json)) {
       Object
@@ -32,7 +32,7 @@ export class JSONHelper {
    * @param {Record<string, any>} jsonTable
    * @return {Record<string, any>}
    */
-  unflatten(jsonTable: Record<string, any>) {
+  public unflatten(jsonTable: Record<string, any>) {
     if (jsonTable) {
       const result: Record<string, any> = {};
       Object
@@ -62,14 +62,14 @@ export class JSONHelper {
    * @param {string} parentKey
    * @return {{[p: string]: any} | Record<string, any>}
    */
-  flatten(json: { [key: string]: any }, parentKey: string = '') {
+  public flatten(json: { [key: string]: any }, parentKey: string = '') {
     if (TypeChecking.isObject(json)) {
       let result: Record<string, any> = {};
       Object
         .keys(json)
         .forEach((key: string) => {
           const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
-          if (TypeChecking.isObject(json[key])) {
+          if (!TypeChecking.isObject(json[key])) {
             result[combinedKey] = json[key];
           } else {
             result = {

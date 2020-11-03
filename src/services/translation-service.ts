@@ -11,6 +11,9 @@ export enum Language {
   en = 'en',
 }
 
+/**
+ * @deprecated TranslationService is deprecated due to new decorator feature.
+ */
 export class TranslationService {
   public translate: TFunction = (key: string): string => key;
 
@@ -67,4 +70,7 @@ export class TranslationService {
   }
 }
 
+/**
+ * @deprecated translationService is deprecated due to new decorator feature.
+ */
 export const translationService: TranslationService = new TranslationService();

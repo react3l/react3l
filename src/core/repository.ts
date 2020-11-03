@@ -4,6 +4,7 @@ import Axios from '@react3l/axios-observable';
 export interface RepositoryInterceptors {
   /**
    * @deprecated This is deprecated due to deprecation of Repository.http
+   * @deprecated Lastest warning: This is the last version that supports Promise-based HTTP Request.
    */
   http: number[];
 

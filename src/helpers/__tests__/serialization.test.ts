@@ -27,8 +27,8 @@ test('serialize works', () => {
 
   const serializedValue: TestInterface = serialize<TestInterface>(input);
 
-  expect(serializedValue.date).toEqual(dateValue);
-  expect(serializedValue.dates[0]).toEqual(dateValue);
+  expect(moment(serializedValue.date).toDate().getTime()).toEqual(new Date(dateValue).getTime());
+  expect(moment(serializedValue.dates[0]).toDate().getTime()).toEqual(new Date(dateValue).getTime());
   expect(serializedValue.name).toEqual(input.name);
   expect(serializedValue.number).toEqual(input.number);
 });
@@ -44,7 +44,7 @@ test('deserialize works', () => {
     };
   }
 
-  const dateValue: string = '2020-06-19T17:06:23.234Z';
+  const dateValue: string = '2020-06-19T17:06:23.234' + TIMEZONE_OFFSET;
 
   const input: TestInterface = {
     date: dateValue,
@@ -61,8 +61,8 @@ test('deserialize works', () => {
 
   const deserializedValue: TestInterface = deserialize<TestInterface>(input);
 
-  expect(standardDateTime(deserializedValue.date)).toEqual(dateValue);
-  expect(standardDateTime(deserializedValue.object.date)).toEqual(dateValue);
-  expect(standardDateTime(deserializedValue.array[1])).toEqual(dateValue);
+  expect(new Date(standardDateTime(deserializedValue.date)).getTime()).toEqual(new Date(dateValue).getTime());
+  expect(new Date(standardDateTime(deserializedValue.object.date)).getTime()).toEqual(new Date(dateValue).getTime());
+  expect(new Date(standardDateTime(deserializedValue.array[1])).getTime()).toEqual(new Date(dateValue).getTime());
   expect(deserializedValue.array[0]).toEqual(input.array[0]);
 });

@@ -6,6 +6,7 @@ import {map, retry} from 'rxjs/operators';
 /**
  * Translation repository
  * Load translation resources via HTTP
+ * @deprecated TranslationRepository is deprecated
  */
 export class TranslationRepository extends Repository {
   /**
@@ -64,4 +65,7 @@ export class TranslationRepository extends Repository {
   }
 }
 
+/**
+ * @deprecated translationRepository is deprecated
+ */
 export const translationRepository: TranslationRepository = new TranslationRepository();

@@ -38,10 +38,16 @@
     "strictFunctionTypes": true,
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
-    "target": "ES5"
+    "target": "ES5",
+    "typeRoots": [
+      "node_modules/@types/"
+    ]
   },
   "exclude": [
-    "__tests__"
+    "__tests__",
+    "node_modules",
+    "src/stories",
+    "src/tests"
   ],
   "include": [
     "src/"

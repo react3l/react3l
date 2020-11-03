@@ -13,6 +13,8 @@ const registeredModels: Record<string, Model> = {};
  *
  * @param name {string}
  *
+ * @deprecated RegisteredModel is deprecated due to new decorator feature.
+ *
  * @constructor
  */
 export function RegisteredModel(name?: string) {
@@ -33,6 +35,8 @@ export function RegisteredModel(name?: string) {
  *
  * @param name {string}
  *
+ * @deprecated getModel is deprecated due to new decorator feature.
+ *
  * @return {Model}
  */
 export function getModel(name: string) {
@@ -41,6 +45,8 @@ export function getModel(name: string) {
 
 /**
  * Get all registered models
+ *
+ * @deprecated getAllModels is deprecated due to new decorator feature.
  *
  * @return {Record<string, Model>}
  */
