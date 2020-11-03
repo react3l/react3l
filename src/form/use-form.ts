@@ -38,7 +38,7 @@ export function useForm<T extends Model>(
         fieldName,
       });
     },
-    [T],
+    [],
   );
 
   const handleBlur: HigherOrderBlurFunction<T> = React.useCallback(
@@ -49,7 +49,7 @@ export function useForm<T extends Model>(
         validationSchema,
       });
     },
-    [T, validationSchema],
+    [validationSchema],
   );
 
   const handleObjectChange: HigherOrderObjectChangeHandler<T> = React.useCallback(
@@ -60,7 +60,7 @@ export function useForm<T extends Model>(
         fieldValue: record,
       });
     },
-    [T],
+    [],
   );
 
   return {

@@ -40,7 +40,7 @@ export function useFormField<T extends Model, P extends keyof T>(
         });
       }
     },
-    [P, T, dispatch, fieldName],
+    [dispatch, fieldName],
   );
 
   return [
