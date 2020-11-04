@@ -28,5 +28,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+        npm login --registry=//npm.pkg.github.com/:_authToken=$NPM_TOKEN
         yarn install
         yarn test
