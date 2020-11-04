@@ -11,12 +11,12 @@ module.exports = {
     'ts-jest': {
       tsconfig: {
         allowJs: true,
-      }
-    }
+      },
+    },
   },
   moduleDirectories: ["node_modules", "src"],
   moduleNameMapper: {
-    "^@react3l\\/react3l\\/(.*)$": "<rootDir>/src/$1"
+    "^@react3l\\/react3l\\/(.*)$": "<rootDir>/src/$1",
   },
   preset: 'ts-jest',
   transformIgnorePatterns: [],

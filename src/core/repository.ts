@@ -1,13 +1,7 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Axios from '@react3l/axios-observable';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface RepositoryInterceptors {
-  /**
-   * @deprecated This is deprecated due to deprecation of Repository.http
-   * @deprecated Lastest warning: This is the last version that supports Promise-based HTTP Request.
-   */
-  http: number[];
-
   httpObservable: number[];
 }
 
@@ -53,7 +47,6 @@ export class Repository {
    * @protected
    */
   protected currentRequestInterceptors: RepositoryInterceptors = {
-    http: [],
     httpObservable: [],
   };
 
@@ -62,18 +55,8 @@ export class Repository {
    * @protected
    */
   protected currentResponseInterceptors: RepositoryInterceptors = {
-    http: [],
     httpObservable: [],
   };
-
-  /**
-   * HTTP Promise instance
-   *
-   * @deprecated Using Promise http request is deprecated. Now all http requests must use Observable
-   *
-   * @type {AxiosInstance}
-   */
-  protected http: AxiosInstance;
 
   /**
    * HTTP Observable instance
@@ -88,7 +71,6 @@ export class Repository {
    * @param baseURL {string}
    */
   constructor(httpConfig: AxiosRequestConfig, baseURL?: string) {
-    this.http = axios.create(httpConfig);
     this.httpObservable = Axios.create(httpConfig);
 
     Repository.addRepository(this);
@@ -96,9 +78,6 @@ export class Repository {
     // Add request interceptor into both instances
     if (typeof Repository.requestInterceptor === 'function') {
       this.currentRequestInterceptors = {
-        http: [
-          this.http.interceptors.request.use(Repository.requestInterceptor),
-        ],
         httpObservable: [
           this.httpObservable.interceptors.request.use(Repository.requestInterceptor),
         ],
@@ -108,9 +87,6 @@ export class Repository {
     // Add response and error interceptors into both instances
     if (typeof Repository.responseInterceptor === 'function') {
       this.currentResponseInterceptors = {
-        http: [
-          this.http.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor),
-        ],
         httpObservable: [
           this.httpObservable.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor),
         ],
@@ -129,7 +105,6 @@ export class Repository {
    * @param baseURL {string}
    */
   public set baseURL(baseURL: string) {
-    this.http.defaults.baseURL = baseURL;
     this.httpObservable.defaults.baseURL = baseURL;
   }
 
@@ -167,18 +142,12 @@ export class Repository {
   public ejectInterceptor = (type: 'request' | 'response' | 'both') => {
     switch (type) {
       case 'request':
-        this.currentRequestInterceptors.http.forEach((id) => {
-          this.http.interceptors.request.eject(id);
-        });
         this.currentRequestInterceptors.httpObservable.forEach((id) => {
           this.httpObservable.interceptors.request.eject(id);
         });
         break;
 
       case 'response':
-        this.currentResponseInterceptors.http.forEach((id) => {
-          this.http.interceptors.response.eject(id);
-        });
         this.currentResponseInterceptors.httpObservable.forEach((id) => {
           this.httpObservable.interceptors.response.eject(id);
         });

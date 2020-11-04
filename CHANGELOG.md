@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0-alpha.1] - 2020-11-04
+### Removed
+- Deprecated features
+- Temporarily removed form
+### Added
+- Add new decorator features
+
 ## [4.2.0] - 2020-11-03
 ### Deprecated
 - Cloneable class. Model and ModelFilter will use decorator feature

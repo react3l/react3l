@@ -43,12 +43,6 @@
       "node_modules/@types/"
     ]
   },
-  "exclude": [
-    "__tests__",
-    "node_modules",
-    "src/stories",
-    "src/tests"
-  ],
   "include": [
     "src/"
   ]

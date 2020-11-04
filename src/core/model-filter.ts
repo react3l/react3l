@@ -1,6 +1,6 @@
-import { DEFAULT_TAKE, INITIAL_SKIP } from '@react3l/react3l/config/consts';
-import { Cloneable } from '@react3l/react3l/core/cloneable';
+import { DEFAULT_TAKE, INITIAL_SKIP } from '@react3l/react3l/config';
 import { Model } from '@react3l/react3l/core/model';
+import { Entity, Field } from '@react3l/react3l/decorators';
 import { OrderType } from '@react3l/react3l/types';
 
 /**
@@ -13,12 +13,14 @@ import { OrderType } from '@react3l/react3l/types';
  * @module "react3l/core"
  * @class {ModelFilter}
  */
-export class ModelFilter<T extends Model = any> extends Cloneable {
+@Entity()
+export class ModelFilter<T extends Model = Model> extends Model {
   /**
    * Skip number
    *
    * @type {number}
    */
+  @Field(Number)
   public skip: number = INITIAL_SKIP;
 
   /**
@@ -26,6 +28,7 @@ export class ModelFilter<T extends Model = any> extends Cloneable {
    *
    * @type {number}
    */
+  @Field(Number)
   public take: number = DEFAULT_TAKE;
 
   /**
@@ -33,14 +36,16 @@ export class ModelFilter<T extends Model = any> extends Cloneable {
    *
    * @type {string}
    */
-  public orderBy?: keyof T | string;
+  @Field(String)
+  public orderBy?: keyof T | string = null;
 
   /**
    * Order type
    *
    * @type {OrderType}
    */
-  public orderType?: OrderType;
+  @Field(String)
+  public orderType?: OrderType = null;
 
   /**
    * Filter fields

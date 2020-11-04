@@ -1,4 +1,4 @@
-import { Cloneable } from '@react3l/react3l/core/cloneable';
+import { getEnumerableProperties } from '@react3l/react3l/decorators/helpers/get-enumerable-properties';
 import { ErrorMap } from '@react3l/react3l/types';
 
 /**
@@ -11,7 +11,7 @@ import { ErrorMap } from '@react3l/react3l/types';
  * @module "react3l/core"
  * @class {Model}
  */
-export class Model extends Cloneable {
+export class Model {
   /**
    * Backend validation errors
    *
@@ -27,18 +27,19 @@ export class Model extends Cloneable {
   public key?: string | number;
 
   /**
-   * Get relationship ID field name
-   * @param fieldName {string}
-   * @return {string}
-   */
-  public static getIdFieldName<T extends Model>(fieldName: keyof T): keyof T {
-    return `${fieldName}Id`;
-  }
-
-  /**
    * Model fields
    *
    * @type {any}
    */
   [key: string]: any;
+
+  constructor(partial?: Partial<Model>) {
+    if (partial) {
+      getEnumerableProperties(Object.getPrototypeOf(this)).forEach((key: string) => {
+        if (partial.hasOwnProperty(key)) {
+          this[key] = partial[key];
+        }
+      });
+    }
+  }
 }
