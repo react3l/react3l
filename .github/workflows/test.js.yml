@@ -28,6 +28,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        echo //npm.pkg.github.com/:_authToken=$(NPM_TOKEN) >> .npmrc
+        echo "//npm.pkg.github.com/:_authToken=$(NPM_TOKEN)"
+        echo "//npm.pkg.github.com/:_authToken=$(NPM_TOKEN)" >> .npmrc
         yarn install
         yarn test
