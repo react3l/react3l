@@ -26,6 +26,9 @@
     "paths": {
       "@react3l/react3l/*": [
         "./src/*"
+      ],
+      "stories/*": [
+        "./stories"
       ]
     },
     "removeComments": false,
@@ -44,6 +47,7 @@
     ]
   },
   "include": [
-    "src/"
+    "src/",
+    "stories/"
   ]
 }
