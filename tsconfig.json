@@ -6,7 +6,7 @@
     "baseUrl": ".",
     "checkJs": false,
     "declaration": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -16,6 +16,8 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
+      "ES2015",
+      "ES2016",
       "ESNext"
     ],
     "listEmittedFiles": true,
@@ -47,6 +49,7 @@
     ]
   },
   "include": [
+    "__tests__/",
     "src/",
     "stories/"
   ]

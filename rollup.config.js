@@ -4,10 +4,13 @@ import url from '@rollup/plugin-url';
 import fs from 'fs';
 import path from 'path';
 import multiInput from 'rollup-plugin-multi-input';
-import resolve from 'rollup-plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
-import typescript from 'rollup-plugin-typescript2';
 import tsConfig from './tsconfig.json';
+import babel from '@rollup/plugin-babel';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+
+const babelConfig = require('./babel.config');
 
 const files = [];
 
@@ -33,15 +36,30 @@ export default {
     sourcemap: true,
   },
   plugins: [
-    multiInput(),
+    multiInput({
+      relative: './src/',
+    }),
     external(),
+    nodeResolve({
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.node'],
+      modulesOnly: true,
+    }),
     url(),
     json(),
-    resolve(),
-    typescript({
-      rollupCommonJSResolveHack: true,
-      clean: true,
+    commonjs({
+      sourceMap: true,
+      transformMixedEsModules: true,
     }),
-    commonjs(),
+    babel({
+      ...babelConfig,
+      babelHelpers: 'bundled',
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.node'],
+      sourceType: 'module',
+      minified: true,
+      comments: false,
+    }),
+    typescript({
+      include: ['src/'],
+    }),
   ],
 };

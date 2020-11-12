@@ -1,4 +1,7 @@
-export * from './model';
-export * from './model-filter';
-export * from './repository';
-export * from './service';
+export {Model} from './Model';
+
+export {ModelFilter} from './ModelFilter';
+
+export {Repository} from './Repository';
+
+export {Service} from './Service';

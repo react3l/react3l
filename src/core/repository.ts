@@ -1,165 +1,78 @@
+import {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Axios from '@react3l/axios-observable';
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export interface RepositoryInterceptors {
-  httpObservable: number[];
-}
-
-/**
- * This class aims to include all data access method for only one business domain
- */
 export class Repository {
   /**
-   * Interceptor to handle API Request
+   * Global request interceptor
+   * Transform HTTP Request
+   * Apply for all instances
    *
-   * @param config {AxiosRequestConfig}
-   * @return {AxiosRequestConfig | Promise<AxiosRequestConfig>}
+   * @type {RequestInterceptor}
    */
-  public static requestInterceptor: (config: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
+  public static requestInterceptor?: RequestInterceptor;
 
   /**
-   * Interceptor to handle API Response
+   * Global response interceptor
+   * Transform HTTP Response
+   * Apply for all instances
    *
-   * @param response {AxiosResponse}
-   * @return {AxiosResponse | Promise<AxiosResponse>}
+   * @type {ResponseInterceptor}
    */
-  public static responseInterceptor: (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
+  public static responseInterceptor?: ResponseInterceptor;
 
   /**
-   * Interceptor to handle API Call errors
+   * Global error interceptor
+   * Handle HTTP Error
+   * Apply for all instances
    *
-   * @param error {AxiosError}
-   * @throws {AxiosError}
-   * @return {void | Promise<void>}
+   * @type {ErrorInterceptor}
    */
-  public static errorInterceptor: (error: AxiosError) => any | Promise<any>;
+  public static errorInterceptor?: ErrorInterceptor;
 
   /**
-   * Store all repository instances
+   * Axios instance of this repository
    *
    * @protected
-   * @type {Repository[]}
-   */
-  protected static instances: Repository[] = [];
-
-  /**
-   * Store current request interceptors
-   * @protected
-   */
-  protected currentRequestInterceptors: RepositoryInterceptors = {
-    httpObservable: [],
-  };
-
-  /**
-   * Store current response interceptors
-   * @protected
-   */
-  protected currentResponseInterceptors: RepositoryInterceptors = {
-    httpObservable: [],
-  };
-
-  /**
-   * HTTP Observable instance
-   *
    * @type {Axios}
    */
-  protected httpObservable: Axios;
+  protected http: Axios;
 
-  /**
-   * Construct a repository
-   * @param httpConfig {AxiosRequestConfig}
-   * @param baseURL {string}
-   */
-  constructor(httpConfig: AxiosRequestConfig, baseURL?: string) {
-    this.httpObservable = Axios.create(httpConfig);
+  constructor(config?: AxiosRequestConfig) {
+    this.http = Axios.create(config);
 
-    Repository.addRepository(this);
-
-    // Add request interceptor into both instances
     if (typeof Repository.requestInterceptor === 'function') {
-      this.currentRequestInterceptors = {
-        httpObservable: [
-          this.httpObservable.interceptors.request.use(Repository.requestInterceptor),
-        ],
-      };
+      this.http.interceptors.request.use(Repository.requestInterceptor);
     }
 
-    // Add response and error interceptors into both instances
     if (typeof Repository.responseInterceptor === 'function') {
-      this.currentResponseInterceptors = {
-        httpObservable: [
-          this.httpObservable.interceptors.response.use(Repository.responseInterceptor, Repository.errorInterceptor),
-        ],
-      };
+      this.http.interceptors.response.use(Repository.responseInterceptor);
     }
 
-    // Set baseURL in constructor
-    if (typeof baseURL === 'string') {
-      this.baseURL = baseURL;
+    if (typeof Repository.errorInterceptor === 'function') {
+      this.http.interceptors.response.use(
+        undefined,
+        Repository.errorInterceptor,
+      );
     }
   }
 
-  /**
-   * Set baseURL for both http instances of this repository
-   *
-   * @param baseURL {string}
-   */
-  public set baseURL(baseURL: string) {
-    this.httpObservable.defaults.baseURL = baseURL;
-  }
-
-  /**
-   * Get baseURL
-   *
-   * @param baseURL {string}
-   */
   public get baseURL(): string {
-    return this.httpObservable.defaults.baseURL;
+    return this.http?.defaults?.baseURL;
   }
 
-  /**
-   * Add a repository to static instance array
-   *
-   * @param repository {Repository}
-   */
-  public static addRepository(repository: Repository): void {
-    this.instances.push(repository);
+  public set baseURL(baseURL: string) {
+    this.http.defaults.baseURL = baseURL;
   }
-
-  /**
-   * Get all repository instances
-   *
-   * @return {Repository[]}
-   */
-  public static getInstances(): Repository[] {
-    return this.instances;
-  }
-
-  /**
-   * Eject an interceptor
-   * @param type {'request' | 'response' | 'both'}
-   */
-  public ejectInterceptor = (type: 'request' | 'response' | 'both') => {
-    switch (type) {
-      case 'request':
-        this.currentRequestInterceptors.httpObservable.forEach((id) => {
-          this.httpObservable.interceptors.request.eject(id);
-        });
-        break;
-
-      case 'response':
-        this.currentResponseInterceptors.httpObservable.forEach((id) => {
-          this.httpObservable.interceptors.response.eject(id);
-        });
-        break;
-
-      case 'both':
-        this.ejectInterceptor('request');
-        this.ejectInterceptor('response');
-        break;
-
-      default:
-        throw new Error('Param accept only request | response | both');
-    }
-  };
 }
+
+export type RequestInterceptor = (
+  config: AxiosRequestConfig,
+) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
+
+export type ResponseInterceptor = (
+  response: AxiosResponse,
+) => AxiosResponse | Promise<AxiosResponse>;
+
+export type ErrorInterceptor = (
+  error: AxiosError,
+) => AxiosError | Promise<AxiosError>;
