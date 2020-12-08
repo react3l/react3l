@@ -16,8 +16,6 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ES2015",
-      "ES2016",
       "ESNext"
     ],
     "listEmittedFiles": true,
@@ -28,9 +26,6 @@
     "paths": {
       "@react3l/react3l/*": [
         "./src/*"
-      ],
-      "stories/*": [
-        "./stories"
       ]
     },
     "removeComments": false,
@@ -48,9 +43,11 @@
       "node_modules/@types/"
     ]
   },
-  "include": [
+  "exclude": [
     "__tests__/",
-    "src/",
     "stories/"
+  ],
+  "include": [
+    "src/"
   ]
 }
