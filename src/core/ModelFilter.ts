@@ -1,13 +1,20 @@
 import {Model} from './Model';
+import {FieldName, OrderType} from '@react3l/react3l/types';
+import {PrimitiveValue} from '@react3l/react3l/decorators/PrimitiveValue';
+import {EnumValue} from '@react3l/react3l/decorators/EnumValue';
 
 export class ModelFilter<T extends Model = Model> extends Model {
+  @PrimitiveValue(Number)
   public skip: number;
 
+  @PrimitiveValue(Number)
   public take: number;
 
-  public orderBy?: Exclude<keyof T, 'errors' | 'key'>;
+  @PrimitiveValue(String)
+  public orderBy?: FieldName<T>;
 
-  public orderType?: 'ASC' | 'DESC';
+  @EnumValue(String)
+  public orderType?: OrderType;
 
   constructor(partial?: Partial<ModelFilter<T>>) {
     super();

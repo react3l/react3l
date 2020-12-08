@@ -1,10 +1,7 @@
-import {Model} from '@react3l/react3l/core';
+export {OrderType} from './OrderType';
 
-export type ErrorMap<T extends Model> = Record<
-  Exclude<keyof T, 'errors'>,
-  string
->;
+export type {ErrorMap} from './ErrorMap';
 
-export interface ModelWithErrorMap {
-  errors?: ErrorMap<this>;
-}
+export type {FieldName} from './FieldName';
+
+export type {ModelWithErrorMap} from './ModelWithErrorMap';

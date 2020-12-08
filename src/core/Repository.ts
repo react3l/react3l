@@ -4,7 +4,9 @@ import Axios from '@react3l/axios-observable';
 export class Repository {
   /**
    * Global request interceptor
+   *
    * Transform HTTP Request
+   *
    * Apply for all instances
    *
    * @type {RequestInterceptor}
@@ -13,7 +15,9 @@ export class Repository {
 
   /**
    * Global response interceptor
+   *
    * Transform HTTP Response
+   *
    * Apply for all instances
    *
    * @type {ResponseInterceptor}
@@ -22,7 +26,9 @@ export class Repository {
 
   /**
    * Global error interceptor
+   *
    * Handle HTTP Error
+   *
    * Apply for all instances
    *
    * @type {ErrorInterceptor}
@@ -56,6 +62,11 @@ export class Repository {
     }
   }
 
+  /**
+   * URL prefix for this repository
+   *
+   * @type {string}
+   */
   public get baseURL(): string {
     return this.http?.defaults?.baseURL;
   }

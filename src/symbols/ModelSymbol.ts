@@ -1,3 +1,3 @@
 export class ModelSymbol {
-  public static readonly proto: symbol = Symbol.for('__prototype__');
+  public static readonly rawValue: symbol = Symbol.for('__raw_value__');
 }
