@@ -1,9 +1,9 @@
-import 'reflect-metadata';
-import {ModelSymbol} from '@react3l/react3l/symbols';
 import {Model} from '@react3l/react3l/core';
+import {ModelSymbol} from '@react3l/react3l/symbols';
+import moment from 'moment';
 
-export const ClassValue = (constructor?: typeof Model) => {
-  return (Target: any, property: string | symbol) => {
+export const MomentValue = () => {
+  return (Target: typeof Model['prototype'], property: string | symbol) => {
     Object.defineProperty(Target, property, {
       enumerable: true,
       configurable: true,
@@ -18,11 +18,7 @@ export const ClassValue = (constructor?: typeof Model) => {
             return Reflect.getMetadata(ModelSymbol.rawValue, this, property);
           },
           set(value: any) {
-            if (
-              value === null ||
-              value === undefined ||
-              value instanceof Target.constructor
-            ) {
+            if (value === null || value === undefined) {
               Reflect.defineMetadata(
                 ModelSymbol.rawValue,
                 value,
@@ -31,11 +27,9 @@ export const ClassValue = (constructor?: typeof Model) => {
               );
               return;
             }
-            const instance = (constructor ?? Target.constructor).create();
-            Object.assign(instance, value);
             Reflect.defineMetadata(
               ModelSymbol.rawValue,
-              instance,
+              moment(value),
               this,
               property,
             );
