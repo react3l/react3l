@@ -52,7 +52,7 @@ export default {
     }),
     babel({
       ...babelConfig,
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.node'],
       sourceType: 'module',
       minified: true,
@@ -60,6 +60,9 @@ export default {
     }),
     typescript({
       include: ['src/'],
+      noEmit: false,
+      declaration: true,
+      emitDeclarationOnly: true,
     }),
   ],
 };
