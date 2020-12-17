@@ -1,4 +1,4 @@
-// import {Model} from '@react3l/react3l/core';
+import 'reflect-metadata';
 
 export const Entity = () => {
   return (/*Target: typeof Model['prototype']['constructor']*/) => {};

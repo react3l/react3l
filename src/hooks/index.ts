@@ -1,1 +1,1 @@
-export * from './useSubscription';
+export * from './use-subscription';
