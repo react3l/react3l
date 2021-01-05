@@ -89,7 +89,7 @@
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
     "antd": "^4.5.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-jest": "^26.6.2",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.0.0",
