@@ -1,5 +1,5 @@
-import moment from 'moment';
 import type {Moment} from 'moment';
+import moment from 'moment';
 import 'reflect-metadata';
 
 export class Model {
@@ -16,9 +16,7 @@ export class Model {
    * @return {this}
    */
   public static create() {
-    const instance = Object.create(this.prototype);
-    Object.assign(instance, new this());
-    return instance;
+    return Object.create(this.prototype);
   }
 
   /**

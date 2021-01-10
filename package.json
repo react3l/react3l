@@ -7,7 +7,7 @@
   "scripts": {
     "start-storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook -o build/",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "watch": "NODE_ENV=development rollup -c -w",
     "rm-old-build": "rm -rf dist/",
     "cp-files": "cp package.json tsconfig.json README.md dist/",
