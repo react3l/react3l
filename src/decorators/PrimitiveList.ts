@@ -1,6 +1,12 @@
 import 'reflect-metadata';
 import {ModelSymbol} from '@react3l/react3l/symbols';
 
+/**
+ * Decorate a field as a list of primitive values
+ *
+ * @param prototype {Function}
+ * @constructor
+ */
 export const PrimitiveList = (prototype: Function) => {
   return (Target: any, property: string | symbol) => {
     Object.defineProperty(Target, property, {

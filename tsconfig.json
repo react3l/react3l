@@ -24,6 +24,9 @@
     "noEmit": false,
     "outDir": "dist",
     "paths": {
+      "@react3l/react3l": [
+        "./src"
+      ],
       "@react3l/react3l/*": [
         "./src/*"
       ]
@@ -43,12 +46,6 @@
       "node_modules/@types/"
     ]
   },
-  "exclude": [
-    "__tests__/",
-    "dist/",
-    "node_modules/",
-    "stories/"
-  ],
   "include": [
     "src/"
   ]

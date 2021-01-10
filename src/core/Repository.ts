@@ -1,6 +1,14 @@
-import {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
 import Axios from '@react3l/axios-observable';
+import type {AxiosRequestConfig, AxiosResponse} from 'axios';
+import type {Interceptors} from '@react3l/react3l/types';
+import {map} from 'rxjs/operators';
+import type {Model} from '@react3l/react3l/core';
+import type {OperatorFunction} from 'rxjs';
 
+/**
+ * Combines all api requests that belong to a specific business domain or group
+ * to one single class instance
+ */
 export class Repository {
   /**
    * Global request interceptor
@@ -9,9 +17,9 @@ export class Repository {
    *
    * Apply for all instances
    *
-   * @type {RequestInterceptor}
+   * @type {Interceptors.RequestInterceptor}
    */
-  public static requestInterceptor?: RequestInterceptor;
+  public static requestInterceptor?: Interceptors.RequestInterceptor;
 
   /**
    * Global response interceptor
@@ -20,9 +28,9 @@ export class Repository {
    *
    * Apply for all instances
    *
-   * @type {ResponseInterceptor}
+   * @type {Interceptors.ResponseInterceptor}
    */
-  public static responseInterceptor?: ResponseInterceptor;
+  public static responseInterceptor?: Interceptors.ResponseInterceptor;
 
   /**
    * Global error interceptor
@@ -31,9 +39,9 @@ export class Repository {
    *
    * Apply for all instances
    *
-   * @type {ErrorInterceptor}
+   * @type {Interceptors.ErrorInterceptor}
    */
-  public static errorInterceptor?: ErrorInterceptor;
+  public static errorInterceptor?: Interceptors.ErrorInterceptor;
 
   /**
    * Axios instance of this repository
@@ -43,6 +51,11 @@ export class Repository {
    */
   protected http: Axios;
 
+  /**
+   * Repository constructor
+   *
+   * @param config {AxiosRequestConfig} - Axios config
+   */
   constructor(config?: AxiosRequestConfig) {
     this.http = Axios.create(config);
 
@@ -71,19 +84,49 @@ export class Repository {
     return this.http?.defaults?.baseURL;
   }
 
+  /**
+   * Set baseURL for this repository instance
+   */
   public set baseURL(baseURL: string) {
     this.http.defaults.baseURL = baseURL;
   }
+
+  /**
+   * Map a http response to list of ModelClass
+   *
+   * @param ModelClass {typeof Model}
+   */
+  public static responseMapToList<T extends Model>(
+    ModelClass: typeof Model,
+  ): OperatorFunction<AxiosResponse<T[]>, T[]> {
+    return map((response: AxiosResponse<T[]>) => {
+      return response.data?.map((data: T) => {
+        const instance: T = ModelClass.create();
+        Object.assign(instance, data);
+        return instance;
+      });
+    });
+  }
+
+  /**
+   * Map a http response to a ModelClass
+   *
+   * @param ModelClass {typeof Model}
+   */
+  public static responseMapToModel<T extends Model>(
+    ModelClass: typeof Model,
+  ): OperatorFunction<AxiosResponse<T>, T> {
+    return map((response: AxiosResponse<T>) => {
+      const instance: T = ModelClass.create();
+      Object.assign(instance, response.data);
+      return instance;
+    });
+  }
+
+  /**
+   * Get response data as type T
+   */
+  public static responseDataMapper<T>(): OperatorFunction<AxiosResponse<T>, T> {
+    return map((response: AxiosResponse<T>) => response.data);
+  }
 }
-
-export type RequestInterceptor = (
-  config: AxiosRequestConfig,
-) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
-
-export type ResponseInterceptor = (
-  response: AxiosResponse,
-) => AxiosResponse | Promise<AxiosResponse>;
-
-export type ErrorInterceptor = (
-  error: AxiosError,
-) => AxiosError | Promise<AxiosError>;

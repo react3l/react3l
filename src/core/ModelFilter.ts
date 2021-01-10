@@ -1,21 +1,17 @@
-import {Model} from './Model';
-import {FieldName, OrderType} from '@react3l/react3l/types';
-import {PrimitiveValue} from '@react3l/react3l/decorators/PrimitiveValue';
 import {EnumValue} from '@react3l/react3l/decorators/EnumValue';
-import {
-  MODEL_FILTER_DEFAULT_SKIP,
-  MODEL_FILTER_DEFAULT_TAKE,
-} from '@react3l/react3l/config';
+import {PrimitiveValue} from '@react3l/react3l/decorators/PrimitiveValue';
+import type {AppDTO, OrderType} from '@react3l/react3l/types';
+import {Model} from './Model';
 
 export class ModelFilter<T extends Model = Model> extends Model {
   @PrimitiveValue(Number)
-  public skip: number = MODEL_FILTER_DEFAULT_SKIP;
+  public skip: number = 0;
 
   @PrimitiveValue(Number)
-  public take: number = MODEL_FILTER_DEFAULT_TAKE;
+  public take: number = 10;
 
   @PrimitiveValue(String)
-  public orderBy?: FieldName<T>;
+  public orderBy?: AppDTO.FieldName<T>;
 
   @EnumValue(String)
   public orderType?: OrderType;

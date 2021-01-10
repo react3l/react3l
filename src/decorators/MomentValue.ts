@@ -1,7 +1,12 @@
-import {Model} from '@react3l/react3l/core';
+import type {Model} from '@react3l/react3l/core';
 import {ModelSymbol} from '@react3l/react3l/symbols';
 import moment from 'moment';
 
+/**
+ * Decorate a field with moment format
+ *
+ * @constructor
+ */
 export const MomentValue = () => {
   return (Target: typeof Model['prototype'], property: string | symbol) => {
     Object.defineProperty(Target, property, {

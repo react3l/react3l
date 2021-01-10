@@ -9,3 +9,5 @@ export {EnumValue} from './EnumValue';
 export {PrimitiveList} from './PrimitiveList';
 
 export {PrimitiveValue} from './PrimitiveValue';
+
+export {MomentValue} from './MomentValue';

@@ -39,7 +39,9 @@ export default {
     multiInput({
       relative: './src/',
     }),
-    external(),
+    external({
+      includeDependencies: true,
+    }),
     nodeResolve({
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.node'],
       modulesOnly: true,

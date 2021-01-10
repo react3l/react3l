@@ -1,6 +1,12 @@
 import 'reflect-metadata';
 import {ModelSymbol} from '@react3l/react3l/symbols';
 
+/**
+ * Decorate a field with primitive format: String, Number, Boolean
+ *
+ * @param prototype {Function}
+ * @constructor
+ */
 export const PrimitiveValue = (prototype: Function) => {
   return (Target: any, property: string | symbol) => {
     Object.defineProperty(Target, property, {

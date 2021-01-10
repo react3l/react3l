@@ -1,6 +1,12 @@
 import 'reflect-metadata';
 import {ModelSymbol} from '@react3l/react3l/symbols';
 
+/**
+ * Decorate a field as enum value
+ *
+ * @param enumObject
+ * @constructor
+ */
 export const EnumValue = (enumObject: object) => {
   return (Target: any, property: string | symbol) => {
     Object.defineProperty(Target, property, {

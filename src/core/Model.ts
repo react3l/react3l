@@ -1,7 +1,15 @@
+import moment from 'moment';
+import type {Moment} from 'moment';
 import 'reflect-metadata';
-import moment, {Moment} from 'moment';
 
 export class Model {
+  /**
+   * Registered model map
+   *
+   * @type {Record<string, Model>}
+   */
+  protected static registeredModels: Record<string, Model> = {};
+
   /**
    * Create a model instance with defined property descriptors
    *
@@ -24,6 +32,23 @@ export class Model {
         return (value as Moment).toISOString();
       }
       return value;
+    });
+  }
+
+  /**
+   * Register a model to map
+   *
+   * Each model can be registered only once.
+   *
+   * @param name  - Name of model to be registered
+   * @param model - The model class to be registered
+   */
+  public static registerModel(name: string, model: typeof Model) {
+    Object.defineProperty(this.registeredModels, name, {
+      enumerable: true,
+      configurable: false,
+      writable: false,
+      value: model,
     });
   }
 }

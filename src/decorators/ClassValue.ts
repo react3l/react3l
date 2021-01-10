@@ -1,7 +1,13 @@
 import 'reflect-metadata';
 import {ModelSymbol} from '@react3l/react3l/symbols';
-import {Model} from '@react3l/react3l/core';
+import type {Model} from '@react3l/react3l/core';
 
+/**
+ * Decorate a field as a model relation
+ *
+ * @param constructor
+ * @constructor
+ */
 export const ClassValue = (constructor?: typeof Model) => {
   return (Target: any, property: string | symbol) => {
     Object.defineProperty(Target, property, {
