@@ -2,11 +2,10 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
     "baseUrl": ".",
     "checkJs": false,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -18,35 +17,56 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "listEmittedFiles": true,
     "module": "ESNext",
     "moduleResolution": "node",
     "noEmit": false,
-    "outDir": "dist",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
-      "@react3l/react3l": [
-        "./src"
+      "@react3l/advanced-filters": [
+        "src/advanced-filters"
       ],
-      "@react3l/react3l/*": [
-        "./src/*"
+      "@react3l/advanced-filters/*": [
+        "src/advanced-filters/*"
+      ],
+      "@react3l/axios-observable": [
+        "src/axios-observable"
+      ],
+      "@react3l/axios-observable/*": [
+        "src/axios-observable/*"
+      ],
+      "@react3l/common": [
+        "src/common"
+      ],
+      "@react3l/common/*": [
+        "src/common/*"
+      ],
+      "@react3l/decorators": [
+        "src/decorators"
+      ],
+      "@react3l/decorators/*": [
+        "src/decorators/*"
+      ],
+      "@react3l/localization": [
+        "src/localization"
+      ],
+      "@react3l/localization/*": [
+        "src/localization/*"
       ]
     },
-    "removeComments": false,
+    "outDir": "dist",
     "resolveJsonModule": true,
-    "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
     "strictNullChecks": false,
-    "strictPropertyInitialization": false,
-    "target": "ES5",
-    "typeRoots": [
-      "node_modules/@types/"
-    ]
+    "target": "ES5"
   },
   "include": [
-    "src/"
+    "src",
+    "src/**/*/package.json"
   ]
 }
