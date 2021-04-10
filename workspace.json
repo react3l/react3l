@@ -1,0 +1,248 @@
+{
+  "version": 2,
+  "projects": {
+    "@react3l-common": {
+      "root": "libs/@react3l/common",
+      "sourceRoot": "libs/@react3l/common/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/common/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/common"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/common",
+            "tsConfig": "libs/@react3l/common/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/common/package.json",
+            "main": "libs/@react3l/common/src/index.ts",
+            "assets": [
+              "libs/@react3l/common/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "@react3l-axios-observable": {
+      "root": "libs/@react3l/axios-observable",
+      "sourceRoot": "libs/@react3l/axios-observable/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/axios-observable/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/axios-observable"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/axios-observable/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/axios-observable",
+            "tsConfig": "libs/@react3l/axios-observable/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/axios-observable/package.json",
+            "main": "libs/@react3l/axios-observable/src/index.ts",
+            "assets": [
+              "libs/@react3l/axios-observable/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "@react3l-advanced-filters": {
+      "root": "libs/@react3l/advanced-filters",
+      "sourceRoot": "libs/@react3l/advanced-filters/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/advanced-filters/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/advanced-filters"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/advanced-filters/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/advanced-filters",
+            "tsConfig": "libs/@react3l/advanced-filters/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/advanced-filters/package.json",
+            "main": "libs/@react3l/advanced-filters/src/index.ts",
+            "assets": [
+              "libs/@react3l/advanced-filters/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "@react3l-decorators": {
+      "root": "libs/@react3l/decorators",
+      "sourceRoot": "libs/@react3l/decorators/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/decorators/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/decorators"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/decorators/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/decorators",
+            "tsConfig": "libs/@react3l/decorators/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/decorators/package.json",
+            "main": "libs/@react3l/decorators/src/index.ts",
+            "assets": [
+              "libs/@react3l/decorators/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "@react3l-localization": {
+      "root": "libs/@react3l/localization",
+      "sourceRoot": "libs/@react3l/localization/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/localization/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/localization"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/localization/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/localization",
+            "tsConfig": "libs/@react3l/localization/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/localization/package.json",
+            "main": "libs/@react3l/localization/src/index.ts",
+            "assets": [
+              "libs/@react3l/localization/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "@react3l-react3l": {
+      "root": "libs/@react3l/react3l",
+      "sourceRoot": "libs/@react3l/react3l/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/@react3l/react3l/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/@react3l/react3l"
+          ],
+          "options": {
+            "jestConfig": "libs/@react3l/react3l/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/@react3l/react3l",
+            "tsConfig": "libs/@react3l/react3l/tsconfig.lib.json",
+            "packageJson": "libs/@react3l/react3l/package.json",
+            "main": "libs/@react3l/react3l/src/index.ts",
+            "assets": [
+              "libs/@react3l/react3l/*.md"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
+}
