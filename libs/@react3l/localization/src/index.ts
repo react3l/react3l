@@ -1,1 +1,1 @@
-export * from './lib/@react3l-localization';
+export { default } from './Localization';
