@@ -1,4 +1,19 @@
 {
   "name": "react3l-advanced-filters",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "React3L advanced filters",
+  "license": "MIT",
+  "private": false,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "author": {
+    "url": "https://github.com/thanhtunguet",
+    "name": "thanhtunguet",
+    "email": "ht@thanhtunguet.info"
+  },
+  "repository": {
+    "url": "https://github.com/react3l/react3l",
+    "type": "git",
+    "directory": "libs/react3l-advanced-filters"
+  }
 }

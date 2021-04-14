@@ -1,4 +1,24 @@
 {
   "name": "react3l-localization",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "Localization for React3L",
+  "license": "MIT",
+  "private": false,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "author": {
+    "url": "https://github.com/thanhtunguet",
+    "name": "thanhtunguet",
+    "email": "ht@thanhtunguet.info"
+  },
+  "repository": {
+    "url": "https://github.com/react3l/react3l",
+    "type": "git",
+    "directory": "libs/react3l-localization"
+  },
+  "peerDependencies": {
+    "i18next": "*",
+    "react": "*",
+    "react-i18next": "*"
+  }
 }

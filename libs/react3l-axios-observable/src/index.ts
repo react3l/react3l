@@ -1,1 +1,5 @@
-export * from './lib/react3l-axios-observable';
+import { Axios } from './Axios';
+
+export default Axios;
+
+export { Axios };

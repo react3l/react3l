@@ -1,1 +1,6 @@
-export * from './lib/react3l-advanced-filters';
+export * from './DateFilter';
+export * from './IdFilter';
+export * from './GuidFilter';
+export * from './NumberFilter';
+export * from './StringFilter';
+export * from './AdvancedFilter';

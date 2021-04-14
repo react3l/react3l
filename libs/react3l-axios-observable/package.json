@@ -1,4 +1,23 @@
 {
   "name": "react3l-axios-observable",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "Observable axios client for React3L",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "private": false,
+  "author": {
+    "url": "https://github.com/thanhtunguet",
+    "name": "thanhtunguet",
+    "email": "ht@thanhtunguet.info"
+  },
+  "repository": {
+    "url": "https://github.com/react3l/react3l",
+    "type": "git",
+    "directory": "libs/react3l-axios-observable"
+  },
+  "peerDependencies": {
+    "axios": "*",
+    "rxjs": "*"
+  }
 }

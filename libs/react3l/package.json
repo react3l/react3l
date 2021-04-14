@@ -1,4 +1,24 @@
 {
   "name": "react3l",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "React3L core library",
+  "license": "MIT",
+  "private": false,
+  "author": {
+    "url": "https://github.com/thanhtunguet",
+    "name": "thanhtunguet",
+    "email": "ht@thanhtunguet.info"
+  },
+  "repository": {
+    "url": "https://github.com/react3l/react3l",
+    "type": "git",
+    "directory": "libs/react3l"
+  },
+  "peerDependencies": {
+    "react3l-advanced-filters": "*",
+    "react3l-axios-observable": "*",
+    "react3l-common": "*",
+    "react3l-decorators": "*",
+    "react3l-localization": "*"
+  }
 }
