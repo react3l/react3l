@@ -10,18 +10,23 @@
     "importHelpers": true,
     "target": "ES5",
     "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "react3l-axios-observable": [
+        "libs/react3l-axios-observable/src/index.ts"
+      ],
+      "react3l-decorators": ["libs/react3l-decorators/src/index.ts"],
+      "react3l/common": ["libs/react3l/common/src/index.ts"],
+      "react3l-common": ["libs/react3l-common/src/index.ts"],
+      "react3l-advanced-filters": [
+        "libs/react3l-advanced-filters/src/index.ts"
+      ],
+      "react3l-localization": ["libs/react3l-localization/src/index.ts"],
+      "react3l": ["libs/react3l/src/index.ts"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
