@@ -2,9 +2,10 @@ import React from 'react';
 import type { BooleanReducer } from '../reducers';
 import { booleanReducer } from '../reducers';
 
-export function useBoolean(
-  initialState: boolean
-): [
+/**
+ * Boolean state
+ */
+export type BooleanState = [
   boolean,
   // Toggle state to opposite value
   () => void,
@@ -12,7 +13,18 @@ export function useBoolean(
   () => void,
   // Set state to false
   () => void,
-] {
+]
+
+/**
+ * Boolean state hook
+ *
+ * @param initialState {boolean} - initial state
+ *
+ * @return {BooleanState}
+ */
+export function useBoolean(
+  initialState: boolean
+): BooleanState {
   const [state, dispatch] = React.useReducer<BooleanReducer>(
     booleanReducer,
     initialState

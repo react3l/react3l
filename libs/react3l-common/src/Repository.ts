@@ -5,16 +5,48 @@ import type { Model } from 'react3l-common';
 import { map } from 'rxjs/operators';
 
 export class Repository {
+  /**
+   * Axios interceptor for HTTP Request
+   *
+   * @type {Axios.RequestInterceptor}
+   */
   public static requestInterceptor: Axios.RequestInterceptor;
 
+  /**
+   * Axios interceptor for HTTP Response
+   *
+   * @type {Axios.ResponseInterceptor}
+   */
   public static responseInterceptor: Axios.ResponseInterceptor;
 
+  /**
+   * Axios interceptor for HTTP Error
+   *
+   * @type {Axios.ErrorInterceptor}
+   */
   public static errorInterceptor: Axios.ErrorInterceptor;
 
+  /**
+   * Repository instances
+   *
+   * @protected
+   * @type {Repository[]}
+   */
   protected static instances: Repository[] = [];
 
+  /**
+   * Axios instance
+   *
+   * @type {Axios}
+   * @protected
+   */
   protected http: Axios;
 
+  /**
+   * Class constructor
+   *
+   * @param config - AxiosRequestConfig
+   */
   constructor(config?: AxiosRequestConfig) {
     this.http = Axios.create(config);
 
@@ -39,6 +71,11 @@ export class Repository {
     }
   }
 
+  /**
+   * Repository instances
+   *
+   * @type {Repository[]}
+   */
   public static get repositoryInstances(): Repository[] {
     return this.instances;
   }

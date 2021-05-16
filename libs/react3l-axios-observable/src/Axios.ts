@@ -27,12 +27,33 @@ export namespace Axios {
   ) => void | Promise<void>;
 }
 
+/**
+ * @package [react3l-axios-observable](https://www.npmjs.com/package/react3l-axios-observable)
+ * @namespace Axios
+ * @author thanhtunguet <thanhtung.uet@gmail.com>
+ * @description Axios class, like axios, but with observable methods
+ */
 export class Axios implements Pick<AxiosInstance, 'defaults' | 'interceptors'> {
+  /**
+   * Axios default config
+   *
+   * @type {AxiosRequestConfig}
+   */
   public static defaults: AxiosRequestConfig = axios.defaults;
 
+  /**
+   * Axios interceptor manager
+   *
+   * @type {AxiosInstance['interceptor']}
+   */
   public static interceptors: AxiosInstance['interceptors'] =
     axios.interceptors;
 
+  /**
+   * Class constructor
+   *
+   * @param axiosInstance - Axios instance
+   */
   constructor(private axiosInstance: AxiosInstance) {
   }
 

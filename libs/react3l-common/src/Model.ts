@@ -1,5 +1,8 @@
 import { ObjectField, ObjectList } from 'react3l-decorators';
 
+/**
+ * Model namespace
+ */
 export declare namespace Model {
   /**
    * Model errors
@@ -10,6 +13,10 @@ export declare namespace Model {
     string>;
 }
 
+/**
+ * @package [react3l-common](https://www.npmjs.com/package/react3l-common)
+ * @description Auto mapper model
+ */
 export class Model {
   public errors?: Model.Errors<Model>;
 
@@ -50,6 +57,11 @@ export class Model {
     ObjectField(Parent)(Child.prototype, field as string);
   }
 
+  /**
+   * Serialize this model to JSON string
+   *
+   * @return {string}
+   */
   public toString(): string {
     return JSON.stringify(this);
   }
