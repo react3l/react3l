@@ -56,7 +56,7 @@ export class Repository {
       requestInterceptor,
       responseInterceptor,
       errorInterceptor
-    } = this.constructor.prototype;
+    } = Repository;
 
     if (typeof requestInterceptor === 'function') {
       this.http.interceptors.request.use(requestInterceptor);
