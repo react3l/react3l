@@ -15,4 +15,6 @@ export class ModelFilter extends Model implements Pagination {
 
   @Field(Number)
   public take?: number;
+
+  [key: string]: any;
 }
