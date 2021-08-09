@@ -1,7 +1,7 @@
-import { Localization } from './Localization';
+import { Localization, localization  } from './Localization';
 
-const localization: Localization = new Localization();
+export {Localization, localization};
 
 export default localization;
 
-export { Localization };
+export {translate} from './translate';

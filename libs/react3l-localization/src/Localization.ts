@@ -10,7 +10,17 @@ export class Localization {
   public readonly initialize = async (
     options: InitOptions = {}
   ): Promise<void> => {
-    this.translateFunction = await i18next.use(initReactI18next).init(options);
+    options.fallbackLng = options.fallbackLng ?? options.fallbackLng;
+    this.translateFunction = await i18next.use(initReactI18next).init({
+      ns: '',
+      defaultNS: '',
+      interpolation: {
+        prefix: '{{',
+        suffix: '}}',
+      },
+      resources: {},
+      ...options,
+    });
   };
 
   public readonly translate: TFunction = (
@@ -23,7 +33,7 @@ export class Localization {
     return key;
   };
 
-  public changeLanguage = async (lang: string): Promise<TFunction> => {
+  public readonly changeLanguage = async (lang: string): Promise<TFunction> => {
     return i18next.changeLanguage(lang);
   };
 
@@ -35,3 +45,5 @@ export class Localization {
     return this;
   };
 }
+
+export const localization: Localization = new Localization();
