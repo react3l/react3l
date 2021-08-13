@@ -38,7 +38,6 @@ export const ObjectList = (constructor?: new (...args: any[]) => any): PropertyD
               if (typeof element === 'object' && element !== null) {
                 Object.assign(instance, element);
               }
-              console.log(instance, element);
               return instance;
             });
             Reflect.defineMetadata(
