@@ -1,6 +1,6 @@
 {
   "name": "react3l",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0",
   "description": "React3L core library",
   "license": "MIT",
   "private": false,
@@ -14,11 +14,11 @@
     "type": "git",
     "directory": "libs/react3l"
   },
-  "peerDependencies": {
-    "react3l-advanced-filters": "*",
-    "react3l-axios-observable": "*",
-    "react3l-common": "*",
-    "react3l-decorators": "*",
-    "react3l-localization": "*"
+  "dependencies": {
+    "react3l-advanced-filters": "^6",
+    "react3l-axios-observable": "^6",
+    "react3l-common": "^6",
+    "react3l-decorators": "^6",
+    "react3l-localization": "^6"
   }
 }
