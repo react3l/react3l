@@ -10,6 +10,7 @@ import {cleanAsset} from './functions/clean-asset';
 import {cleanScss} from './functions/clean-scss';
 import {merge} from './helpers/merge';
 import {extract} from './helpers/extract';
+import {generateFilter} from './functions/generate-filter';
 
 const program: Command & {
   //
@@ -37,8 +38,12 @@ function generateAction(schematic: GenSchematic, name: string) {
       generateService(program, name);
       break;
 
+    case GenSchematic.FILTER:
+      generateFilter(program, name);
+      break;
+
     default:
-      console.log('Schematic must be "component" | "service" | "repository" | "model"');
+      console.log('Schematic must be "component" | "service" | "repository" | "model" | "filter"');
       break;
   }
 }
@@ -49,6 +54,47 @@ program
   .command('generate <schematic> <name>')
   .description('Generate component, service, repository and model')
   .action(generateAction);
+
+program
+  .option('-s, --scss', 'Add scss support')
+  .option('-d, --dest <dest>', 'Destination directory', '.')
+  .command('g:c <name>')
+  .description('Generate component (alias)')
+  .action((name: string) => {
+    generateAction(GenSchematic.COMPONENT, name);
+  });
+
+program
+  .option('-d, --dest <dest>', 'Destination directory', '.')
+  .command('g:m <name>')
+  .description('Generate model (alias)')
+  .action((name: string) => {
+    generateAction(GenSchematic.MODEL, name);
+  });
+
+program
+  .option('-d, --dest <dest>', 'Destination directory', '.')
+  .command('g:r <name>')
+  .description('Generate repository (alias)')
+  .action((name: string) => {
+    generateAction(GenSchematic.REPOSITORY, name);
+  });
+
+program
+  .option('-d, --dest <dest>', 'Destination directory', '.')
+  .command('g:s <name>')
+  .description('Generate service (alias)')
+  .action((name: string) => {
+    generateAction(GenSchematic.SERVICE, name);
+  });
+
+program
+  .option('-d, --dest <dest>', 'Destination directory', '.')
+  .command('g:f <name>')
+  .description('Generate filter (alias)')
+  .action((name: string) => {
+    generateAction(GenSchematic.FILTER, name);
+  });
 
 function cleanAction(resource: CleanableResource, path?: string) {
   switch (resource) {
