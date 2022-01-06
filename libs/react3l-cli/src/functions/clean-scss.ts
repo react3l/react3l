@@ -1,6 +1,6 @@
 import type {BaseEncodingOptions} from 'fs';
 import fs from 'fs';
-import {appService} from '../App.service';
+import {scssService} from '../ScssService';
 import chalk from 'chalk';
 import path from 'path';
 
@@ -34,9 +34,9 @@ export function cleanScss(entryPath: string): void {
               .readFileSync(entryPath, baseEncodingOptions)
               .toString();
             const usedClasses: Record<string,
-              string> = appService.getUsedClasses(tsxCode);
-            const newScss: string = appService.removeUnusedMixins(
-              appService.clean(scssCode, usedClasses),
+              string> = scssService.getUsedClasses(tsxCode);
+            const newScss: string = scssService.removeUnusedMixins(
+              scssService.clean(scssCode, usedClasses),
             );
             fs.writeFileSync(scssPath, newScss.split(/\n{3,}/gm).join('\n\n'));
           } catch (error) {

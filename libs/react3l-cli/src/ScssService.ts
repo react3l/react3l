@@ -5,29 +5,7 @@ export const STYLE_USAGE_REGEX = /styles((\.([_a-zA-Z0-9]+))|(\['([_\-a-zA-Z0-9]
 
 export const MIXIN_USAGE_REGEX = /@include ([A-z0-9-]+)/gm;
 
-export interface AppService {
-
-  clean(scss: string, usedClasses: Record<string, string>): string;
-
-  getNumLineOfCodeRemoved(oldScss: string, newScss: string): number;
-
-  formatRuleSpacing(scss: string): string;
-
-  getMixinDeclarations(
-    scss: string,
-    keyword?: string,
-    type?: string,
-  ): Record<string, string>;
-
-  removeUnusedMixins(scss: string): string;
-
-  getUsedClasses(tsx: string): Record<string, string>;
-
-  flatten(rootNode: Node): Node[];
-}
-
-export const appService: AppService = {
-
+export class ScssService {
   clean(scss: string, usedClasses: Record<string, string>): string {
     const ast = parse(scss);
     const newNodes: Node[] = (ast.value as Node[]).filter((node) => {
@@ -58,17 +36,17 @@ export const appService: AppService = {
       value: newNodes,
     }).trim();
     return this.formatRuleSpacing(newScss);
-  },
+  }
 
   getNumLineOfCodeRemoved(oldScss: string, newScss: string): number {
     const oldLength: number = oldScss.split('\n').length;
     const newLength: number = newScss.split('\n').length;
     return oldLength - newLength;
-  },
+  }
 
   formatRuleSpacing(scss: string): string {
     return scss.split(/\n{2,}/).join('\n\n') + '\n';
-  },
+  }
 
   getUsedClasses(tsx: string): Record<string, string> {
     const map: Record<string, string> = {};
@@ -86,7 +64,7 @@ export const appService: AppService = {
       }
     }
     return map;
-  },
+  }
 
   getMixinDeclarations(
     scss: string,
@@ -113,7 +91,7 @@ export const appService: AppService = {
       }
     });
     return map;
-  },
+  }
 
   flatten(rootNode: Node): Node[] {
     const nodes: Node[] = [];
@@ -124,7 +102,7 @@ export const appService: AppService = {
       });
     }
     return nodes;
-  },
+  }
 
   removeUnusedMixins(scss: string): string {
     const rootNode: Node = parse(scss);
@@ -161,5 +139,7 @@ export const appService: AppService = {
       return true;
     });
     return this.formatRuleSpacing(stringify(rootNode));
-  },
-};
+  }
+}
+
+export const scssService: ScssService = new ScssService();

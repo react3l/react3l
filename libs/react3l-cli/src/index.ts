@@ -22,19 +22,19 @@ program
 function generateAction(schematic: GenSchematic, name: string) {
   switch (schematic) {
     case GenSchematic.COMPONENT:
-      generateComponent(name);
+      generateComponent(program, name);
       break;
 
     case GenSchematic.MODEL:
-      generateModel(name);
+      generateModel(program, name);
       break;
 
     case GenSchematic.REPOSITORY:
-      generateRepository(name);
+      generateRepository(program, name);
       break;
 
     case GenSchematic.SERVICE:
-      generateService(name);
+      generateService(program, name);
       break;
 
     default:
@@ -44,6 +44,8 @@ function generateAction(schematic: GenSchematic, name: string) {
 }
 
 program
+  .option('-s, --scss', 'Add scss support')
+  .option('-d, --dest <dest>', 'Destination directory', '.')
   .command('generate <schematic> <name>')
   .description('Generate component, service, repository and model')
   .action(generateAction);

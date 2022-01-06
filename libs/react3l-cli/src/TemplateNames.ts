@@ -6,4 +6,6 @@ export interface TemplateNames {
   camelCase: string;
 
   name: string;
+
+  pascalCase: string;
 }
