@@ -1,5 +1,48 @@
 {
   "name": "react3l-cli",
-  "version": "0.0.1",
-  "description": "React3L cli"
+  "version": "1.0.1",
+  "description": "React3L cli",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "scripts": {
+    "react3l": "node ./dist/index.js"
+  },
+  "bin": {
+    "react3l": "./dist/index.js"
+  },
+  "author": {
+    "email": "thanhtung.uet@gmail.com",
+    "name": "thanhtunguet"
+  },
+  "maintainers": [
+    {
+      "email": "thanhtung.uet@gmail.com",
+      "name": "thanhtunguet"
+    }
+  ],
+  "files": [
+    "dist",
+    "src/**/*",
+    "cli.js",
+    "package.json",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/lodash": "^4.14.178",
+    "@types/node": "^17.0.8",
+    "babel-loader": "^8.2.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "commander": "^8.3.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "scss-parser": "^1.0.5"
+  }
 }

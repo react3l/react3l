@@ -1,5 +1,4 @@
 import {Command} from 'commander';
-import {description, version} from '../package.json';
 import {GenSchematic} from './GenSchematic';
 import {CleanableResource} from './CleanableResource';
 import {generateComponent} from './functions/generate-component';
@@ -12,9 +11,9 @@ import {merge} from './helpers/merge';
 import {extract} from './helpers/extract';
 import {generateFilter} from './functions/generate-filter';
 
-const program: Command & {
-  //
-} = new Command();
+const {description, version} = require('../package.json');
+
+const program = new Command();
 
 program
   .version(version)
