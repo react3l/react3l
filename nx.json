@@ -21,6 +21,7 @@
     },
     "react3l-advanced-filters": { "tags": [] },
     "react3l-localization": { "tags": [] },
-    "react3l": { "tags": [] }
+    "react3l": { "tags": [] },
+    "react3l-cli": { "tags": [] }
   }
 }

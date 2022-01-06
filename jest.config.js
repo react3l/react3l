@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/react3l-advanced-filters',
     '<rootDir>/libs/react3l-localization',
     '<rootDir>/libs/react3l',
+    '<rootDir>/libs/react3l-cli',
   ],
 };

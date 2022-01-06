@@ -186,6 +186,37 @@
           }
         }
       }
+    },
+    "react3l-cli": {
+      "root": "libs/react3l-cli",
+      "sourceRoot": "libs/react3l-cli/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/react3l-cli/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/react3l-cli"],
+          "options": {
+            "jestConfig": "libs/react3l-cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/react3l-cli",
+            "tsConfig": "libs/react3l-cli/tsconfig.lib.json",
+            "packageJson": "libs/react3l-cli/package.json",
+            "main": "libs/react3l-cli/src/index.ts",
+            "assets": ["libs/react3l-cli/*.md"],
+            "webpackConfig": "libs/react3l-cli/webpack.config.js"
+          }
+        }
+      }
     }
   },
   "cli": { "defaultCollection": "@nrwl/workspace" }

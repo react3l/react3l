@@ -25,10 +25,13 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "prepare": "cp tsconfig.base.json tsconfig.json",
-    "docs": "node scripts/docs.js"
+    "docs": "node scripts/docs.js",
+    "react3l": "node dist/libs/react3l-cli",
+    "build-cli": "nx build react3l-cli"
   },
   "private": true,
   "dependencies": {
+    "scss-parser": "^1.0.5",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -49,8 +52,8 @@
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "4.19.0",
     "axios": "^0.21.1",
-    "chalk": "^4.1.1",
-    "commander": "^7.2.0",
+    "chalk": "^4.1.0",
+    "commander": "^8.3.0",
     "dotenv": "8.2.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
