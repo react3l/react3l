@@ -48,7 +48,8 @@
       ],
       "extends": [
         "plugin:@nrwl/nx/typescript",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended"
       ],
       "rules": {
         "@typescript-eslint/consistent-type-imports": [

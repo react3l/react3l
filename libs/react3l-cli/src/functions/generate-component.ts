@@ -7,15 +7,13 @@ import moment from 'moment';
 
 export function generateComponent(program: Command, name: string): void {
   const {
-    kebabCase,
     camelCase,
     pascalCase,
   } = composeNames(name);
 
   const {dest, scss} = program.opts();
 
-  const dirName = path.resolve(dest, kebabCase);
-
+  const dirName = path.resolve(dest, pascalCase);
 
   execSync(`mkdir -p ${dirName}`);
 
@@ -44,7 +42,7 @@ export default SampleComponent;
   if (scss) {
     content = content.replace(
       `import React from 'react';`,
-      `import React from 'react';\nimport './${kebabCase}.scss';`,
+      `import React from 'react';\nimport './${pascalCase}.scss';`,
     );
   }
 
@@ -57,6 +55,6 @@ export default SampleComponent;
 `
       .split('YYYY-MM-DD HH:mm:ss').join(moment().format('YYYY-MM-DD HH:mm:ss'))
       .split('SampleComponent').join(pascalCase);
-    writeFileSync(path.join(dirName, `${kebabCase}.scss`), scssContent);
+    writeFileSync(path.join(dirName, `${pascalCase}.scss`), scssContent);
   }
 }
