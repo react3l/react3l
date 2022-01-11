@@ -1,8 +1,7 @@
 import {composeNames} from '../helpers/naming';
-import {writeFileSync} from 'fs';
+import fs, {writeFileSync} from 'fs';
 import path from 'path';
 import type {Command} from 'commander';
-import {execSync} from 'child_process';
 import moment from 'moment';
 
 export function generateComponent(program: Command, name: string): void {
@@ -15,7 +14,12 @@ export function generateComponent(program: Command, name: string): void {
 
   const dirName = path.resolve(dest, pascalCase);
 
-  execSync(`mkdir -p ${dirName}`);
+  try {
+    fs.mkdirSync(dirName);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Can not create directory %s', dirName);
+  }
 
   let content = `import type {PropsWithChildren, ReactElement} from 'react';
 import React from 'react';
