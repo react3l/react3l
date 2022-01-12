@@ -21,8 +21,9 @@ export function generateComponent(program: Command, name: string): void {
     console.log('Can not create directory %s', dirName);
   }
 
-  let content = `import type {PropsWithChildren, ReactElement} from 'react';
-import React from 'react';
+  let content = `import React from 'react';
+import type {PropsWithChildren, ReactElement} from 'react';
+import nameof from 'ts-nameof.macro';
 
 export function SampleComponent(props: PropsWithChildren<SampleComponentProps>): ReactElement {
   const {children} = props;
@@ -37,6 +38,12 @@ export function SampleComponent(props: PropsWithChildren<SampleComponentProps>):
 export interface SampleComponentProps {
   //
 }
+
+SampleComponent.defaultProps = {
+  //
+};
+
+SampleComponent.displayName = nameof(SampleComponent);
 
 export default SampleComponent;
 `

@@ -1,10 +1,10 @@
-import type {BaseEncodingOptions} from 'fs';
+import type {ObjectEncodingOptions} from 'fs';
 import fs from 'fs';
 import {scssService} from '../ScssService';
 import chalk from 'chalk';
 import path from 'path';
 
-const baseEncodingOptions: BaseEncodingOptions = {
+const baseEncodingOptions: ObjectEncodingOptions = {
   encoding: 'utf-8',
 };
 
