@@ -1,6 +1,6 @@
 {
   "name": "react3l-cli",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "React3L cli",
   "license": "MIT",
   "main": "./dist/index.js",

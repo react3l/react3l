@@ -67,5 +67,14 @@ export default SampleComponent;
       .split('YYYY-MM-DD HH:mm:ss').join(moment().format('YYYY-MM-DD HH:mm:ss'))
       .split('SampleComponent').join(pascalCase);
     writeFileSync(path.join(dirName, `${pascalCase}.scss`), scssContent);
+
+    const styleContent = `import {StyleSheet} from 'react-native';
+
+export const sampleComponentStyles = StyleSheet.create({
+  //
+});
+`
+      .split('sampleComponent').join(camelCase);
+    writeFileSync(path.join(dirName, `${pascalCase}.styles.ts`), styleContent);
   }
 }
