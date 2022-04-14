@@ -7,5 +7,5 @@ export function useTimeout(fn: () => void | Promise<void>, time: number): void {
     return function cleanup(): void {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [fn, time]);
 }

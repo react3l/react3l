@@ -13,5 +13,5 @@ export function useInterval(fn: () => void | Promise<void>, time: number): void 
     return function cleanup(): void {
       clearInterval(timeout);
     };
-  }, []);
+  }, [fn, time]);
 }

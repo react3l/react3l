@@ -10,7 +10,7 @@ export function useSubscription(): Subscription {
     return function cleanup(): void {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [subscription]);
 
   return subscription;
 }

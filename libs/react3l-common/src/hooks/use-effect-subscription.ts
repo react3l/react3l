@@ -13,5 +13,5 @@ export function useEffectSubscription(subscriber: () => Subscription): void {
     return function cleanup(): void {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [subscriber]);
 }
