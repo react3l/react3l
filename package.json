@@ -63,7 +63,7 @@
     "eslint-config-prettier": "^8.3.0",
     "i18next": "^20.2.1",
     "jest": "26.2.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "node-static": "^0.7.11",
     "react": "^17.0.2",
     "react-i18next": "^11.8.13",
