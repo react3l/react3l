@@ -114,17 +114,18 @@ function cleanAction(resource: CleanableResource, path?: string) {
 program
   .option('-a, --asset <assetDir>', 'Asset folder')
   .option('-s, --source <sourceDir>', 'Source folder')
-  .command('clean asset')
+  .command('clean <assetType> [path]')
   .description('Clean resources (asset files, scss classes)')
-  .action(() => {
-    cleanAction(CleanableResource.ASSET);
-  });
-
-program
-  .command('clean scss <path>')
-  .description('Clean resources (asset files, scss classes)')
-  .action((path: string) => {
-    cleanAction(CleanableResource.SCSS, path);
+  .action((assetType: CleanableResource, path?: string) => {
+    switch (assetType) {
+      case CleanableResource.SCSS:
+        cleanAction(CleanableResource.SCSS, path);
+        break;
+      default:
+      case CleanableResource.ASSET:
+        cleanAction(CleanableResource.ASSET);
+        break;
+    }
   });
 
 function handleTranslateAction(action: 'extract' | 'merge') {
