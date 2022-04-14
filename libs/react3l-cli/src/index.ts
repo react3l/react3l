@@ -11,6 +11,7 @@ import {merge} from './helpers/merge';
 import {extract} from './helpers/extract';
 import {generateFilter} from './functions/generate-filter';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {description, version} = require('../package.json');
 
 const program = new Command();
