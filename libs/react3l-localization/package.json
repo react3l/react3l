@@ -20,5 +20,9 @@
     "i18next": "*",
     "react": "*",
     "react-i18next": "*"
+  },
+  "dependencies": {
+    "i18next": "^20.2.1",
+    "react-i18next": "^11.8.13"
   }
 }

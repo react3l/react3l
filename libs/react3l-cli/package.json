@@ -1,11 +1,13 @@
 {
   "name": "react3l-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React3L cli",
   "license": "MIT",
   "main": "./dist/index.js",
   "scripts": {
-    "react3l": "node ./dist/index.js"
+    "react3l": "node ./dist/index.js",
+    "start": "NODE_ENV=development webpack --watch",
+    "build": "NODE_ENV=production webpack"
   },
   "bin": {
     "react3l": "./dist/index.js"

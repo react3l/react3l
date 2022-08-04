@@ -147,8 +147,8 @@ function handleTranslateAction(action: 'extract' | 'merge') {
 
 program
   .option('-i, --input <inputPath>', 'Input path', 'src/')
-  .option('-o, --output <outputPath>', 'Output path', 'public/assets/i18n/')
-  .option('-p, --partials <partialPath>', 'Partial path', 'public/assets/i18n/partials/')
+  .option('-o, --output <outputPath>', 'Output path', 'src/i18n/')
+  .option('-p, --partials <partialPath>', 'Partial path', 'src/i18n/')
   .option('-ic, --include <include>', 'Include pattern', '\\.(js|jsx|ts|tsx)$')
   .option('-ex, --exclude <exclude>', 'Exclude pattern', '\\.(spec|test)\\.(js|jsx|ts|tsx)$')
   .option('-ks, --key-separator <keySeparator>', 'Key separator', '.')
