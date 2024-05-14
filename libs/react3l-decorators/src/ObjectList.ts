@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { DecoratorSymbol } from './DecoratorSymbol';
+import { BasePrototype } from './BasePrototype';
 
 /**
  * Decorate a field as a list of model relation
@@ -7,9 +8,13 @@ import { DecoratorSymbol } from './DecoratorSymbol';
  * @param constructor
  * @constructor
  */
-export const ObjectList = (constructor?: new (...args: any[]) => any): PropertyDecorator => {
+export const ObjectList = (
+  constructor?: new (...args: any[]) => any,
+): PropertyDecorator => {
   return (Target: any, property: string | symbol): void => {
-    Object.defineProperty(Target, property, {
+    const basePrototype = BasePrototype.getOrCreate(Target.constructor);
+
+    const descriptor: PropertyDescriptor = {
       enumerable: true,
       configurable: true,
       get() {
@@ -23,7 +28,7 @@ export const ObjectList = (constructor?: new (...args: any[]) => any): PropertyD
             return Reflect.getMetadata(
               DecoratorSymbol.RAW_VALUE,
               this,
-              property
+              property,
             );
           },
           set(value: any) {
@@ -44,12 +49,15 @@ export const ObjectList = (constructor?: new (...args: any[]) => any): PropertyD
               DecoratorSymbol.RAW_VALUE,
               instances,
               this,
-              property
+              property,
             );
-          }
+          },
         });
-        this[property] = value;
-      }
-    });
+        (this as any)[property] = value;
+      },
+    };
+
+    Object.defineProperty(Target, property, descriptor);
+    basePrototype.setPropertyDescriptor(property, descriptor);
   };
 };

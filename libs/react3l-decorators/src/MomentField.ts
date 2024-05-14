@@ -1,5 +1,6 @@
 import { DecoratorSymbol } from './DecoratorSymbol';
 import moment from 'moment';
+import { BasePrototype } from './BasePrototype';
 
 /**
  * Decorate a field with moment format
@@ -8,7 +9,9 @@ import moment from 'moment';
  */
 export const MomentField = (): PropertyDecorator => {
   return (Target: any, property: string | symbol): void => {
-    Object.defineProperty(Target, property, {
+    const basePrototype = BasePrototype.getOrCreate(Target.constructor);
+
+    const descriptor: PropertyDescriptor = {
       enumerable: true,
       configurable: true,
       get() {
@@ -22,7 +25,7 @@ export const MomentField = (): PropertyDecorator => {
             return Reflect.getMetadata(
               DecoratorSymbol.RAW_VALUE,
               this,
-              property
+              property,
             );
           },
           set(value: any) {
@@ -31,7 +34,7 @@ export const MomentField = (): PropertyDecorator => {
                 DecoratorSymbol.RAW_VALUE,
                 value,
                 this,
-                property
+                property,
               );
               return;
             }
@@ -39,12 +42,15 @@ export const MomentField = (): PropertyDecorator => {
               DecoratorSymbol.RAW_VALUE,
               moment(value),
               this,
-              property
+              property,
             );
-          }
+          },
         });
-        this[property] = value;
-      }
-    });
+        (this as any)[property] = value;
+      },
+    };
+
+    Object.defineProperty(Target, property, descriptor);
+    basePrototype.setPropertyDescriptor(property, descriptor);
   };
 };
