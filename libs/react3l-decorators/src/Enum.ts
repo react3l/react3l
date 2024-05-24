@@ -7,7 +7,9 @@ import { DecoratorSymbol } from './DecoratorSymbol';
  * @param enumObject
  * @constructor
  */
-export const Enum = (enumObject: Record<string, string | number | boolean>): PropertyDecorator => {
+export const Enum = (
+  enumObject: Record<string, string | number | boolean>,
+): PropertyDecorator => {
   return (Target: any, property: string | symbol): void => {
     Object.defineProperty(Target, property, {
       enumerable: true,
@@ -23,7 +25,7 @@ export const Enum = (enumObject: Record<string, string | number | boolean>): Pro
             return Reflect.getMetadata(
               DecoratorSymbol.RAW_VALUE,
               this,
-              property
+              property,
             );
           },
           set(value: any) {
@@ -32,7 +34,7 @@ export const Enum = (enumObject: Record<string, string | number | boolean>): Pro
                 DecoratorSymbol.RAW_VALUE,
                 value,
                 this,
-                property
+                property,
               );
               return;
             }
@@ -40,20 +42,20 @@ export const Enum = (enumObject: Record<string, string | number | boolean>): Pro
             if (!values.includes(value)) {
               throw new Error(
                 `Value ${value} is not a member of enum { ${values.join(
-                  ', '
-                )} }`
+                  ', ',
+                )} }`,
               );
             }
             Reflect.defineMetadata(
               DecoratorSymbol.RAW_VALUE,
               value,
               this,
-              property
+              property,
             );
-          }
+          },
         });
         this[property] = value;
-      }
+      },
     });
   };
 };

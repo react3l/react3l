@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { DecoratorSymbol } from './DecoratorSymbol';
+import { BasePrototype } from './BasePrototype';
 
 /**
  * Decorate a field as a list of primitive values
@@ -7,9 +8,13 @@ import { DecoratorSymbol } from './DecoratorSymbol';
  * @param prototype {Function}
  * @constructor
  */
-export const List = (prototype: (...params: any[]) => any): PropertyDecorator => {
+export const List = (
+  prototype: (...params: any[]) => any,
+): PropertyDecorator => {
   return (Target: any, property: string | symbol): void => {
-    Object.defineProperty(Target, property, {
+    const basePrototype = BasePrototype.getOrCreate(Target.constructor);
+
+    const descriptor: PropertyDescriptor = {
       enumerable: true,
       configurable: true,
       get() {
@@ -23,7 +28,7 @@ export const List = (prototype: (...params: any[]) => any): PropertyDecorator =>
             return Reflect.getMetadata(
               DecoratorSymbol.RAW_VALUE,
               this,
-              property
+              property,
             );
           },
           set(value: any) {
@@ -37,12 +42,15 @@ export const List = (prototype: (...params: any[]) => any): PropertyDecorator =>
               DecoratorSymbol.RAW_VALUE,
               instances,
               this,
-              property
+              property,
             );
-          }
+          },
         });
-        this[property] = value;
-      }
-    });
+        (this as any)[property] = value;
+      },
+    };
+
+    Object.defineProperty(Target, property, descriptor);
+    basePrototype.setPropertyDescriptor(property, descriptor);
   };
 };

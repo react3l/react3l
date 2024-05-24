@@ -33,7 +33,7 @@
   "private": true,
   "dependencies": {
     "scss-parser": "^1.0.5",
-    "tslib": "^2.0.0"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
